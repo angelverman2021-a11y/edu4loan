@@ -23,9 +23,21 @@ export default {
         brand: {
           50: '#EFF6FF',
           100: '#DBEAFE',
-          500: '#2563EB',
-          600: '#1D4ED8',
-          700: '#1E40AF',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6',
+          600: '#2563EB',
+          700: '#1D4ED8',
+          800: '#1E40AF',
+          900: '#1E3A8A',
+        },
+        vit: {
+          navy: '#0B2545',
+          blue: '#134074',
+          royal: '#0F3A78',
+          accent: '#1D4ED8',
+          subtle: '#EEF4F8',
         },
         verified: {
           light: '#ECFDF5',
@@ -36,15 +48,16 @@ export default {
           light: '#FFFBEB',
           DEFAULT: '#D97706',
           dark: '#B45309',
-        }
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       boxShadow: {
-        'fintech': '0 4px 20px -2px rgba(11, 25, 44, 0.06), 0 2px 6px -1px rgba(11, 25, 44, 0.04)',
-        'fintech-hover': '0 10px 25px -3px rgba(11, 25, 44, 0.1), 0 4px 10px -2px rgba(11, 25, 44, 0.05)',
-      }
+        'fintech': '0 1px 3px 0 rgba(11, 25, 44, 0.05), 0 1px 2px 0 rgba(11, 25, 44, 0.03)',
+        'fintech-md': '0 4px 14px -2px rgba(11, 25, 44, 0.07), 0 2px 6px -1px rgba(11, 25, 44, 0.04)',
+        'fintech-hover': '0 10px 25px -3px rgba(11, 25, 44, 0.09), 0 4px 10px -2px rgba(11, 25, 44, 0.04)',
+      },
     },
   },
   plugins: [],
