@@ -1,0 +1,26 @@
+{
+  "name": "edu4loan",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Smart Education Loan Guidance & Decision-Support Platform for VIT Bhopal Students",
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "seed": "npm run seed --workspace=backend"
+  },
+  "keywords": [
+    "education-loan",
+    "vit-bhopal",
+    "decision-support",
+    "fintech",
+    "vidya-lakshmi",
+    "pm-vidyalaxmi"
+  ],
+  "author": "Edu4Loan Team",
+  "license": "MIT"
+}

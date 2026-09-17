@@ -1,3 +1,7 @@
+# Local tools & credentials
+.tools/
+.ssh/
+
 # Dependencies
 node_modules/
 .pnp
