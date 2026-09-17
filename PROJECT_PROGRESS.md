@@ -16,7 +16,7 @@
 | **Phase 3** | **Core Financial Data Ingestion & Seed Engine** | **COMPLETED** | September 2026 | Authoritative seeds (SBI, BoB, PNB, PM-Vidyalaxmi, Vidya Lakshmi, CSIS, VIT Bhopal, 21-doc taxonomy, 7 FAQs), safe upsert engine, data freshness monitor, data quality audit report, demo seed & safe reset engine, admin verification endpoints. 15/15 Phase 3 tests + 13/13 Phase 2 tests passed (28/28 total) |
 | **Phase 4** | **Production REST API & Financial Query Engine** | **COMPLETED** | September 2026 | Production REST API layer: Bank discovery with pagination & safe regex search, loan schemes with amount/collateral filtering, side-by-side comparison engine (zero ranking, featureMatrix), loan finder decision-support engine, EMI & moratorium simple interest calculator with amortization schedule, document taxonomy & personalized checklist generator, government schemes with normalized alias resolution (`pm-vidyalaxmi`, `vidya-lakshmi`, `csis`), institution profile with helpdesk info, multi-collection global search across 6 collections, multi-tenant student application tracking with tenant isolation, FAQ engine, standardized API error handling, API.md documentation. 30/30 Phase 4 tests + 15/15 Phase 3 tests + 13/13 Phase 2 tests passed (58/58 total). |
 | **Phase 5** | **Frontend FinTech Design System & Shell** | **COMPLETED** | September 2026 | VIT royal blue & clean white FinTech design system. Implemented: Tailwind configuration, FinTech shadow & color tokens, UI atomic primitives (Button, Badge, Card, VerifiedBadge with source popover, Input, Select, Alert, Modal, Tabs), Application Shell (persistent regulatory DisclaimerBanner, responsive Navbar with Cmd+K global search, comprehensive Footer with official portals, MainLayout), global search modal with debounce, typed API client (`api.ts`), AuthContext with token persistence, full HomePage showcase with interactive quick EMI simulator, and shells for all core modules. TypeScript build (`tsc && vite build`) passed with 0 errors. |
-| **Phase 6** | **Student Loan Discovery & Comparison Engine** | PENDING | — | Modules 1–4: Home, Student Loan Finder, Bank Database, Neutral Comparison Matrix |
+| **Phase 6** | **Student Loan Discovery & Comparison Engine** | **COMPLETED** | September 2026 | Full discovery & comparison engine. Features: `/loans` & `/finder` discovery page with debounced search, factual multi-filter rail (Bank, Amount coverage, RBI collateral tiers, Degree, Subsidies, Concessions), pagination & URL parameter sync, `LoanSchemeCard` with verified provenance popovers, `SchemeDetailPage` (`/loans/:id`) deep dive, side-by-side comparison engine (`/compare`) supporting 2–4 schemes with neutral difference highlighting, floating/sticky `ComparisonTray` with 4-scheme limit enforcement, 0 ranking / non-presumptive language compliance, 17/17 frontend tests passed, 0 prohibited words found, production build passed. |
 | **Phase 7** | **Financial Education & Interactive Calculator** | PENDING | — | Modules 5–7: Interest Rate Education, EMI & Repayment Calculator (Recharts), Collateral Explainer |
 | **Phase 8** | **Document Checklist & Personalized Document Engine** | PENDING | — | Modules 8 & 14: Category-wise checklist, download/print prep pack, VIT Bhopal specific documents |
 | **Phase 9** | **Government Schemes & VIT Bhopal Guides** | PENDING | — | Modules 9–11: Vidya Lakshmi Portal Guide, PM-Vidyalaxmi (2024) Guide, VIT Bhopal Loan Guidance |
@@ -28,10 +28,10 @@
 
 ## Detailed Checklist by Module
 
-- [ ] 1. Home (Hero, Trust metrics, Quick Finder, Scheme highlights, Strict Disclaimer)
-- [ ] 2. Student Loan Finder (Multi-parameter wizard: Degree, Fee, Collateral, Income)
-- [ ] 3. Bank Database (Directory of banks, public vs private, branch contacts)
-- [ ] 4. Bank Comparison (Side-by-side factual comparison, zero ranking, full citations)
+- [x] 1. Home (Hero, Trust metrics, Quick Finder, Scheme highlights, Strict Disclaimer)
+- [x] 2. Student Loan Finder (Multi-parameter search & factual filtering: Degree, Amount coverage, Collateral, Income)
+- [x] 3. Bank Database (Directory of banks, public vs private, branch contacts)
+- [x] 4. Bank Comparison (Side-by-side factual comparison, zero ranking, full citations)
 - [ ] 5. Interest Rate Education (Repo rate, spread, MCLR vs EBLR, fixed vs floating, moratorium impact)
 - [ ] 6. EMI & Repayment Calculator (Interactive principal/rate/tenure sliders, moratorium amortization schedule, Recharts visualization)
 - [ ] 7. Collateral Explainer (Collateral-free up to ₹7.5L / ₹4L thresholds, third-party guarantee, tangible assets)
@@ -39,9 +39,10 @@
 - [ ] 9. Vidya Lakshmi Guide (CELFS, step-by-step registration guide, common pitfalls)
 - [ ] 10. PM-Vidyalaxmi Guide (2024 scheme, NIRF top 100/200 eligibility, 3% interest subvention for <₹8L income)
 - [ ] 11. VIT Bhopal Education Loan Guide (Branch details, fee payment schedule, bonafide & fee estimate letter workflow)
-- [ ] 12. Bank Directory (Searchable directory with official branch contacts and verified URLs)
-- [ ] 13. Loan Scheme Details (Deep-dive modal/page for each scheme with official source citations)
+- [x] 12. Bank Directory (Searchable directory with official branch contacts and verified URLs)
+- [x] 13. Loan Scheme Details (Deep-dive modal/page for each scheme with official source citations)
 - [ ] 14. Personalized Documents (Tailored checklist generator based on student loan quantum and collateral status)
+
 - [ ] 15. Loan Eligibility Explainer (Educational guide on credit score, co-borrower eligibility, margin money)
 - [ ] 16. Application Tracking (Student personal tracker for steps completed and bank interactions)
 - [ ] 17. Student Dashboard (Saved schemes, document readiness score, quick links)

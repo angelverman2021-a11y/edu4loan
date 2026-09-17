@@ -48,8 +48,8 @@ export const Navbar: React.FC = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Loan Finder', path: '/finder', icon: Compass },
-    { name: 'Compare Banks', path: '/banks', icon: Building2 },
+    { name: 'Loan Discovery', path: '/loans', icon: Compass },
+    { name: 'Compare Schemes', path: '/compare', icon: Building2 },
     { name: 'EMI Calculator', path: '/calculator', icon: Calculator },
     { name: 'Documents', path: '/documents', icon: FileCheck2 },
     { name: 'Govt Schemes', path: '/schemes', icon: Landmark },

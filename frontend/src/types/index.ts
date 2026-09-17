@@ -1,4 +1,5 @@
 export * from '@shared/types';
+export * from './loanScheme';
 
 export interface ApiResponse<T = any> {
   success: boolean;

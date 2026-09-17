@@ -7,3 +7,4 @@ export * from './Select';
 export * from './Alert';
 export * from './Modal';
 export * from './Tabs';
+export * from './Skeleton';
