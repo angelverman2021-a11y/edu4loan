@@ -102,3 +102,57 @@ edu4loan/
 - **Authorization:** Role-Based Access Control (`student` vs `admin`) with middleware guards on all mutating routes.
 - **Sanitization & Validation:** Express-validator / Zod schemas to protect against NoSQL injection, XSS, and parameter pollution.
 - **Rate Limiting:** Helmet security headers, CORS origin restrictions, and Express rate limiting on sensitive auth and calculation endpoints.
+
+---
+
+## 6. Backend Implementation & Security Blueprint (Phase 2 Completed)
+
+### 6.1 Modular Directory Organization
+```
+backend/
+├── src/
+│   ├── config/          # env.ts (strict validation), database.ts (Mongoose + In-Memory fallback)
+│   ├── controllers/     # Modular handlers (auth, bank, scheme, document, gov, inst, app, source, faq, admin)
+│   ├── middleware/      # auth.middleware.ts, role.middleware.ts, validation.middleware.ts, error.middleware.ts
+│   ├── models/          # 10 Mongoose models with strict type mapping & security pre-save hooks
+│   ├── routes/          # REST route modules mounted under /api/
+│   ├── services/        # Business logic, audit logging, factual sorting
+│   ├── utils/           # apiResponse.ts, jwt.ts, password.ts
+│   ├── validators/      # Zod validation schemas for request bodies and queries
+│   ├── test/            # verifyPhase2.ts (13-point automated verification suite)
+│   ├── app.ts           # Express application setup, Helmet, CORS, centralized errorHandler
+│   └── server.ts        # Lifecycle management, graceful shutdown (SIGTERM/SIGINT)
+```
+
+### 6.2 Data Verification Guardrails
+- **Pre-save Validation:** Both `LoanScheme` and `Source` models enforce Mongoose pre-save hooks. If an administrator or script attempts to save a record with status `verified` without valid primary `source` or `sourceUrl` links, Mongoose automatically demotes the status to `needs_verification`.
+- **Factual Sorting Guarantee:** All bank and scheme discovery queries strictly sort by `name: 1` or `schemeName: 1`. Algorithmic rankings, "best bank" tags, or subjective scores are strictly forbidden by architecture.
+
+### 6.3 Authentication & RBAC Architecture
+- **Password Protection:** Passwords hashed with `bcryptjs` using 12 salt rounds. Plaintext passwords are never persisted.
+- **JWT Standard:** Signed with HS256 containing only minimal non-sensitive identity claims: `{ userId, role }`.
+- **Authorization Enforcement:** Mutating operations (`POST /api/banks`, `PUT /api/loan-schemes/:id`, etc.) enforce server-side `requireRole('admin')`. Unauthorized attempts receive HTTP 403 `FORBIDDEN`.
+- **Student Data Isolation:** Application tracking endpoints (`/api/applications`) strictly scope data access to `req.user.userId`. Students can never inspect or alter other students' application records.
+- **Self-Reported Disclosure:** The `Application` model features an immutable `isStudentEnteredSelfReported: true` flag to prevent any misrepresentation of live bank status feeds.
+
+### 6.4 Standardized API Response Protocol
+- **Success Format:**
+  ```json
+  {
+    "success": true,
+    "data": { ... },
+    "message": "Optional user-friendly confirmation",
+    "meta": { "count": 10 }
+  }
+  ```
+- **Error Format:**
+  ```json
+  {
+    "success": false,
+    "error": {
+      "code": "VALIDATION_ERROR | UNAUTHORIZED | FORBIDDEN | NOT_FOUND | DUPLICATE_KEY_ERROR",
+      "message": "Descriptive human-readable explanation",
+      "details": [ { "field": "email", "message": "..." } ]
+    }
+  }
+  ```
