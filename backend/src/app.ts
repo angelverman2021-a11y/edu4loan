@@ -26,9 +26,16 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration
+const configuredOrigins = config.FRONTEND_URL
+  ? config.FRONTEND_URL.split(',').map((u) => u.trim())
+  : [];
+const allowedOrigins = Array.from(
+  new Set([...configuredOrigins, 'http://localhost:5173', 'http://127.0.0.1:5173'])
+);
+
 app.use(
   cors({
-    origin: [config.FRONTEND_URL, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: allowedOrigins.includes('*') ? '*' : allowedOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],

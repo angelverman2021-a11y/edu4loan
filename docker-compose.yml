@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: edu4loan-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=edu4loan
+    networks:
+      - edu4loan-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: edu4loan-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/edu4loan
+      - FRONTEND_URL=http://localhost:80,http://localhost:5173,http://localhost
+      - JWT_SECRET=production_docker_jwt_secret_key_83749182374918274
+    depends_on:
+      - mongodb
+    networks:
+      - edu4loan-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        - VITE_API_URL=/api
+    container_name: edu4loan-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - edu4loan-net
+
+volumes:
+  mongodb_data:
+
+networks:
+  edu4loan-net:
+    driver: bridge

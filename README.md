@@ -271,6 +271,23 @@ The web client opens at `http://localhost:5173`.
 
 ---
 
+## Production Deployment
+
+Comprehensive production deployment instructions, environment setup, and troubleshooting are detailed in [`DEPLOYMENT.md`](DEPLOYMENT.md):
+
+- **Option A (Recommended Free Cloud Stack)**: Vercel (Frontend SPA) + Render / Railway (Backend API) + MongoDB Atlas (M0 Database).
+- **Option B (1-Click Monorepo Blueprint)**: Render.com automated deployment using root `render.yaml`.
+- **Option C (Docker & VPS)**: Single-command self-hosted stack via `docker-compose up -d --build`.
+
+Pre-configured deployment manifests:
+- `frontend/vercel.json`: Handles client-side SPA routing rewrites.
+- `frontend/public/_redirects`: Netlify / Cloudflare Pages fallback routing.
+- `render.yaml`: Multi-service Infrastructure-as-Code blueprint.
+- `backend/Dockerfile` & `frontend/Dockerfile`: Multi-stage production container images.
+- `docker-compose.yml`: Full stack orchestration for MongoDB, API, and NGINX web client.
+
+---
+
 ## Disclaimer & Regulatory Boundary
 
 Edu4Loan is an educational decision-support platform. It is not an authorized lender, loan broker, NBFC, or financial intermediary. The platform does not issue loans, sanction credit, or make loan guarantees. 

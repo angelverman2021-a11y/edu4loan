@@ -1,0 +1,38 @@
+services:
+  # Backend API Web Service
+  - type: web
+    name: edu4loan-backend
+    env: node
+    plan: free
+    buildCommand: npm install && cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        value: "*"
+
+  # Frontend Static Site
+  - type: web
+    name: edu4loan-frontend
+    env: static
+    plan: free
+    buildCommand: npm install && cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: edu4loan-backend
+          property: host
