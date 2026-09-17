@@ -19,8 +19,8 @@
 | **Phase 6** | **Student Loan Discovery & Comparison Engine** | **COMPLETED** | September 2026 | Full discovery & comparison engine. Features: `/loans` & `/finder` discovery page with debounced search, factual multi-filter rail (Bank, Amount coverage, RBI collateral tiers, Degree, Subsidies, Concessions), pagination & URL parameter sync, `LoanSchemeCard` with verified provenance popovers, `SchemeDetailPage` (`/loans/:id`) deep dive, side-by-side comparison engine (`/compare`) supporting 2–4 schemes with neutral difference highlighting, floating/sticky `ComparisonTray` with 4-scheme limit enforcement, 0 ranking / non-presumptive language compliance, 17/17 frontend tests passed, 0 prohibited words found, production build passed. |
 | **Phase 7** | **Financial Education & Interactive Calculator** | **COMPLETED** | September 2026 | Modules 5–7: Module 5 Interest Rate Education (EBLR, repo rate, spread mechanics, fixed vs floating, concessions, 80E tax deduction); Module 6 Interactive EMI & Moratorium Simulator with 60fps local math + online REST support, Recharts Donut/Area/Bar charts, simple interest servicing toggle with massive savings calculation, prepayment acceleration simulator, year/month expandable amortization schedule with CSV export; Module 7 Statutory Collateral Explainer (RBI tiers, acceptable/prohibited assets, 13-30 yr TSR & valuation SOP, margin money). 22/22 Phase 7 tests passed, 0 prohibited words found, production build passed. |
 | **Phase 8** | **Document Checklist & Personalized Document Engine** | **COMPLETED** | September 2026 | Modules 8 & 14: Module 14 Personalized Document Engine (profile wizard adapting to loan quantum, co-borrower type, collateral, and degree level with live readiness meter and local storage sync); Module 8 Master Document Catalog (browsable by category, search, issuing authority, and verification tips); VIT Bhopal Institutional Document Guide (admissions letter, fee structure bonafide, hostel fee slip, semester tranche DD/NEFT disbursement); Bank Branch Prep Pack (6-tab physical binder order, OSV photocopy rules, and print-to-PDF / CSV export). 20/20 Phase 8 tests passed, 0 prohibited words found, production build passed. |
-| **Phase 9** | **Government Schemes & VIT Bhopal Guides** | PENDING | — | Modules 9–11: Vidya Lakshmi Portal Guide, PM-Vidyalaxmi (2024) Guide, VIT Bhopal Loan Guidance |
-| **Phase 10**| **Student Workspace & Application Tracker** | PENDING | — | Modules 16–17: Self-service student tracker (checklists, status stages, bank interaction logs) |
+| **Phase 9** | **Government Schemes & VIT Bhopal Guides** | **COMPLETED** | September 2026 | Modules 9–11: Module 9 Vidya Lakshmi Portal Guide (CELFS form completion, 3-bank simultaneous application strategy, tracking, rejection avoidance); Module 10 PM-Vidyalaxmi 2024 & CSIS Guide (Cabinet 2024 scheme, 3% interest subvention for ≤ ₹8L income on loans up to ₹10L in top NIRF 100/200 institutions, 75% credit guarantee via NCGTC, and CSIS 100% moratorium waiver comparison, interactive subsidy checker); Module 11 VIT Bhopal Comprehensive Loan Guide (Categories 1–5 tuition tables, hostel boarding schedules, bonafide fee estimate letter SOP, campus bank desks, semester tranche DD/RTGS workflow). 14/14 Phase 9 tests passed, 0 prohibited ranking words, production build passed. |
+| **Phase 10**| **Student Workspace & Application Tracker** | **COMPLETED** | September 2026 | Modules 16–17: Module 16 Student Application Tracker (7-stage pipeline: `draft` → `submitted` → `documents_required` → `under_review` → `bank_verification` → `sanctioned` → `disbursed` / `rejected`, bank branch visit & follow-up log manager, dual-engine sync with `localStorage` and backend `/api/applications`); Module 17 Student Dashboard (Centralized command center: active application cards, document readiness snapshot, saved schemes comparison launcher, quick EMI calculator card, VIT Bhopal academic deadline reminders). 15/15 Phase 10 tests passed, 0 prohibited ranking words, production build passed. |
 | **Phase 11**| **Admin Dashboard & Source Verification System** | PENDING | — | Modules 18–19: Admin portal, rate & scheme manager, audit logs, source verification workflow |
 | **Phase 12**| **Search, FAQ, Disclaimers & Edge Case Hardening**| PENDING | — | Modules 15, 20–22: Global Search, FAQ Accordion, Legal disclaimers, a11y audit, final polish |
 
@@ -36,16 +36,16 @@
 - [x] 6. EMI & Repayment Calculator (Interactive principal/rate/tenure sliders, moratorium amortization schedule, Recharts visualization)
 - [x] 7. Collateral Explainer (Collateral-free up to ₹7.5L / ₹4L thresholds, third-party guarantee, tangible assets)
 - [x] 8. Document Checklist (Comprehensive step-by-step checklist with download capability)
-- [ ] 9. Vidya Lakshmi Guide (CELFS, step-by-step registration guide, common pitfalls)
-- [ ] 10. PM-Vidyalaxmi Guide (2024 scheme, NIRF top 100/200 eligibility, 3% interest subvention for <₹8L income)
-- [ ] 11. VIT Bhopal Education Loan Guide (Branch details, fee payment schedule, bonafide & fee estimate letter workflow)
+- [x] 9. Vidya Lakshmi Guide (CELFS, step-by-step registration guide, common pitfalls)
+- [x] 10. PM-Vidyalaxmi Guide (2024 scheme, NIRF top 100/200 eligibility, 3% interest subvention for <₹8L income)
+- [x] 11. VIT Bhopal Education Loan Guide (Branch details, fee payment schedule, bonafide & fee estimate letter workflow)
 - [x] 12. Bank Directory (Searchable directory with official branch contacts and verified URLs)
 - [x] 13. Loan Scheme Details (Deep-dive modal/page for each scheme with official source citations)
 - [x] 14. Personalized Documents (Tailored checklist generator based on student loan quantum and collateral status)
 
 - [ ] 15. Loan Eligibility Explainer (Educational guide on credit score, co-borrower eligibility, margin money)
-- [ ] 16. Application Tracking (Student personal tracker for steps completed and bank interactions)
-- [ ] 17. Student Dashboard (Saved schemes, document readiness score, quick links)
+- [x] 16. Application Tracking (Student personal tracker for steps completed and bank interactions)
+- [x] 17. Student Dashboard (Saved schemes, document readiness score, quick links)
 - [ ] 18. Admin Dashboard (Data management, source audit trail, scheme updates)
 - [ ] 19. Source Verification System (Verification statuses: `verified`, `needs_verification`, `expired`)
 - [ ] 20. FAQ (Interactive search & accordion)

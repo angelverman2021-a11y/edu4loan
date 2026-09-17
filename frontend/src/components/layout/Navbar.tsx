@@ -15,6 +15,8 @@ import {
   Landmark,
   BookOpen,
   HelpCircle,
+  Layers,
+  LayoutDashboard,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { useAuth } from '@/context/AuthContext';
@@ -52,6 +54,7 @@ export const Navbar: React.FC = () => {
     { name: 'Compare Schemes', path: '/compare', icon: Building2 },
     { name: 'EMI Calculator', path: '/calculator', icon: Calculator },
     { name: 'Documents', path: '/documents', icon: FileCheck2 },
+    { name: 'Tracker', path: '/tracker', icon: Layers },
     { name: 'Govt Schemes', path: '/schemes', icon: Landmark },
     { name: 'VIT Bhopal Guide', path: '/vit-bhopal', icon: BookOpen },
     { name: 'FAQs', path: '/faqs', icon: HelpCircle },
@@ -148,6 +151,26 @@ export const Navbar: React.FC = () => {
                           )}
                         </div>
 
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setUserDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-50 transition-colors font-medium text-left"
+                        >
+                          <LayoutDashboard className="h-3.5 w-3.5 text-brand-700" />
+                          <span>Dashboard</span>
+                        </Link>
+
+                        <Link
+                          to="/tracker"
+                          onClick={() => setUserDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-50 transition-colors font-medium text-left"
+                        >
+                          <Layers className="h-3.5 w-3.5 text-brand-700" />
+                          <span>Loan Tracker</span>
+                        </Link>
+
+                        <div className="my-1 border-t border-slate-100" />
+
                         <button
                           onClick={() => {
                             logout();
@@ -163,11 +186,13 @@ export const Navbar: React.FC = () => {
                   )}
                 </div>
               ) : (
-                <Link to="/login">
-                  <Button variant="secondary" size="sm" leftIcon={<User className="h-3.5 w-3.5 text-slate-500" />}>
-                    Student Portal
-                  </Button>
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link to="/dashboard">
+                    <Button variant="secondary" size="sm" leftIcon={<LayoutDashboard className="h-3.5 w-3.5 text-slate-500" />}>
+                      Dashboard
+                    </Button>
+                  </Link>
+                </div>
               )}
 
               {/* Mobile menu trigger */}

@@ -1,4 +1,12 @@
 export type ApplicationStage =
+  | 'draft'
+  | 'submitted'
+  | 'documents_required'
+  | 'under_review'
+  | 'bank_verification'
+  | 'sanctioned'
+  | 'disbursed'
+  | 'rejected'
   | 'exploring_options'
   | 'gathering_documents'
   | 'vidya_lakshmi_submitted'
