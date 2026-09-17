@@ -5,22 +5,26 @@ import { sendSuccess } from '../utils/apiResponse';
 
 export const getLoanSchemes = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const bankId = req.query.bankId as string | undefined;
-    const degreeLevel = req.query.degreeLevel as string | undefined;
-    const status = req.query.status as string | undefined;
-    const vitBhopalEligible =
-      req.query.vitBhopalEligible !== undefined ? req.query.vitBhopalEligible === 'true' : undefined;
-    const maxAmountMin = req.query.maxAmountMin ? parseFloat(req.query.maxAmountMin as string) : undefined;
+    const result = await schemeService.listLoanSchemes(req.query);
+    sendSuccess(
+      res,
+      result.schemes,
+      200,
+      undefined,
+      { count: result.schemes.length },
+      result.pagination
+    );
+  } catch (err) {
+    next(err);
+  }
+};
 
-    const schemes = await schemeService.listLoanSchemes({
-      bankId,
-      degreeLevel,
-      status,
-      vitBhopalEligible,
-      maxAmountMin,
-    });
-
-    sendSuccess(res, schemes, 200, undefined, { count: schemes.length });
+export const compareSchemes = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const idsQuery = req.query.ids as string | undefined;
+    const ids = idsQuery ? idsQuery.split(',').map((id) => id.trim()).filter(Boolean) : [];
+    const result = await schemeService.compareLoanSchemes(ids);
+    sendSuccess(res, result, 200, undefined, { disclaimer: result.disclaimer });
   } catch (err) {
     next(err);
   }

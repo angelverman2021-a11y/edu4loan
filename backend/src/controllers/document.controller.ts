@@ -1,15 +1,63 @@
 import { Request, Response, NextFunction } from 'express';
 import { DocumentModel } from '../models/Document';
-import { sendSuccess } from '../utils/apiResponse';
+import { sendSuccess, sendError } from '../utils/apiResponse';
+import { parsePagination, buildPaginationMeta, escapeRegex, sanitizeString, isValidObjectId } from '../utils/querySafety';
 
 export const getDocuments = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const category = req.query.category as string | undefined;
+    const { page, limit, skip } = parsePagination(req.query, 30, 100);
     const filter: any = {};
+
+    const category = sanitizeString(req.query.category);
     if (category) filter.category = category;
 
-    const docs = await DocumentModel.find(filter).sort({ category: 1, isRequired: -1 });
-    sendSuccess(res, docs, 200, undefined, { count: docs.length });
+    if (req.query.isRequired !== undefined) {
+      filter.isRequired = String(req.query.isRequired).toLowerCase() === 'true';
+    }
+
+    const search = sanitizeString(req.query.search);
+    if (search) {
+      const escaped = escapeRegex(search);
+      filter.$or = [
+        { name: { $regex: escaped, $options: 'i' } },
+        { description: { $regex: escaped, $options: 'i' } },
+        { issuingAuthority: { $regex: escaped, $options: 'i' } },
+      ];
+    }
+
+    const [docs, total] = await Promise.all([
+      DocumentModel.find(filter)
+        .sort({ category: 1, isRequired: -1, name: 1 })
+        .skip(skip)
+        .limit(limit),
+      DocumentModel.countDocuments(filter),
+    ]);
+
+    sendSuccess(
+      res,
+      docs,
+      200,
+      undefined,
+      { count: docs.length },
+      buildPaginationMeta(page, limit, total)
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getDocumentById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    if (!isValidObjectId(req.params.id)) {
+      sendError(res, 400, 'INVALID_ID', 'Invalid document ID format.');
+      return;
+    }
+    const doc = await DocumentModel.findById(req.params.id).lean();
+    if (!doc) {
+      sendError(res, 404, 'DOCUMENT_NOT_FOUND', 'Document not found.');
+      return;
+    }
+    sendSuccess(res, doc, 200);
   } catch (err) {
     next(err);
   }
@@ -25,59 +73,110 @@ export const generatePersonalizedChecklist = async (
       estimatedLoanAmount = 400000,
       coApplicantType = 'salaried',
       hasCollateral = false,
+      collateralType = 'property',
       applyingThroughVidyaLakshmi = true,
+      degreeLevel = 'Undergraduate',
     } = req.body;
 
-    // Fetch all documents from catalog
-    const allDocs = await DocumentModel.find({});
+    const loanAmt = Number(estimatedLoanAmount) || 400000;
+    const coAppType = (coApplicantType || 'salaried').toLowerCase();
 
-    const requiredDocs = allDocs.filter((doc) => {
-      // Basic student KYC, VIT admission & academic docs are always required
+    // Fetch all catalog items
+    const allDocs = await DocumentModel.find({ isDemo: false }).sort({ category: 1, name: 1 });
+
+    const requiredDocuments: any[] = [];
+    const optionalDocuments: any[] = [];
+    const notApplicableDocuments: any[] = [];
+    const verificationNotes: { documentName: string; tip: string; authority: string }[] = [];
+
+    for (const doc of allDocs) {
+      let status: 'required' | 'optional' | 'not_applicable' = 'optional';
+
+      // 1. Mandatory Student KYC & Academic & VIT Bhopal Admission
       if (
         doc.category === 'student_kyc' ||
         doc.category === 'academic_records' ||
         doc.category === 'vit_bhopal_admission'
       ) {
-        return true;
+        status = 'required';
       }
 
-      // Co-applicant KYC is always required for Indian education loans
-      if (doc.category === 'coapplicant_kyc') {
-        return true;
+      // 2. Co-applicant KYC
+      else if (doc.category === 'coapplicant_kyc') {
+        status = 'required';
       }
 
-      // Income proof based on co-applicant profession
-      if (coApplicantType === 'salaried' && doc.category === 'coapplicant_income_salaried') {
-        return true;
-      }
-      if (coApplicantType === 'self_employed' && doc.category === 'coapplicant_income_selfemployed') {
-        return true;
-      }
-
-      // Collateral documents required only if loan > ₹7.5 Lakhs or student indicated collateral
-      if ((estimatedLoanAmount > 750000 || hasCollateral) && doc.category === 'collateral_property') {
-        return true;
+      // 3. Co-applicant Income Proof
+      else if (doc.category === 'coapplicant_income_salaried') {
+        status = coAppType === 'salaried' ? 'required' : 'not_applicable';
+      } else if (doc.category === 'coapplicant_income_selfemployed') {
+        status = coAppType === 'self_employed' || coAppType === 'business' ? 'required' : 'not_applicable';
       }
 
-      // Vidya Lakshmi registration summary if applying via portal
-      if (applyingThroughVidyaLakshmi && doc.name.includes('Vidya Lakshmi')) {
-        return true;
+      // 4. Collateral Property Documents
+      else if (doc.category === 'collateral_property') {
+        if (loanAmt > 750000 && (hasCollateral || collateralType === 'property')) {
+          status = 'required';
+        } else if (loanAmt <= 750000 && !hasCollateral) {
+          status = 'not_applicable';
+        } else {
+          status = 'optional';
+        }
       }
 
-      return false;
-    });
+      // 5. Liquid Collateral (FD)
+      else if (doc.category === 'collateral_liquid') {
+        if (hasCollateral && collateralType === 'liquid') {
+          status = 'required';
+        } else {
+          status = 'optional';
+        }
+      }
+
+      // 6. Bank Specific Forms & Portal Forms
+      else if (doc.category === 'bank_specific_forms') {
+        if (applyingThroughVidyaLakshmi && doc.name.toLowerCase().includes('celfs')) {
+          status = 'required';
+        } else {
+          status = 'required';
+        }
+      }
+
+      // Categorize
+      if (status === 'required') {
+        requiredDocuments.push(doc);
+        verificationNotes.push({
+          documentName: doc.name,
+          tip: doc.verificationTip,
+          authority: doc.issuingAuthority,
+        });
+      } else if (status === 'optional') {
+        optionalDocuments.push(doc);
+      } else {
+        notApplicableDocuments.push(doc);
+      }
+    }
 
     sendSuccess(res, {
-      estimatedLoanAmount,
-      coApplicantType,
-      hasCollateral,
-      applyingThroughVidyaLakshmi,
-      totalRequired: requiredDocs.length,
-      documents: requiredDocs,
-      guidanceNote:
-        estimatedLoanAmount <= 750000
-          ? 'Under RBI Model Scheme and CGFSEL/PM-Vidyalaxmi guidelines, loans up to ₹7.5 Lakhs do not mandate tangible physical collateral.'
-          : 'For loans exceeding ₹7.5 Lakhs, banks mandate tangible property collateral (with title search report & valuation report) or liquid security (FD/LIC surrender value).',
+      profileParameters: {
+        estimatedLoanAmount: loanAmt,
+        coApplicantType: coAppType,
+        hasCollateral,
+        collateralType,
+        applyingThroughVidyaLakshmi,
+        degreeLevel,
+      },
+      summary: {
+        totalRequired: requiredDocuments.length,
+        totalOptional: optionalDocuments.length,
+        totalNotApplicable: notApplicableDocuments.length,
+      },
+      requiredDocuments,
+      optionalDocuments,
+      notApplicableDocuments,
+      verificationNotes,
+      disclaimer:
+        'This personalized checklist is an educational guidance tool based on IBA model guidelines and VIT Bhopal admissions procedures. Final document requirements and formats are determined exclusively by the lending bank upon formal credit appraisal.',
     });
   } catch (err) {
     next(err);

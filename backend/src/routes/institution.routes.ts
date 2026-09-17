@@ -7,6 +7,7 @@ const router = Router();
 
 // Public discovery endpoint
 router.get('/', instController.getInstitutionDetails);
+router.get('/:id', instController.getInstitutionById);
 
 // Admin-only mutation endpoint
 router.put('/', authenticateJwt, requireRole('admin'), instController.updateInstitutionDetails);

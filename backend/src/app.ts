@@ -16,6 +16,9 @@ import applicationRoutes from './routes/application.routes';
 import sourceRoutes from './routes/source.routes';
 import faqRoutes from './routes/faq.routes';
 import adminRoutes from './routes/admin.routes';
+import loanFinderRoutes from './routes/loanFinder.routes';
+import calculatorRoutes from './routes/calculator.routes';
+import searchRoutes from './routes/search.routes';
 
 const app = express();
 
@@ -63,6 +66,9 @@ app.use('/api/applications', applicationRoutes);
 app.use('/api/sources', sourceRoutes);
 app.use('/api/faqs', faqRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/loan-finder', loanFinderRoutes);
+app.use('/api/calculator', calculatorRoutes);
+app.use('/api/search', searchRoutes);
 
 // 404 Route Handler
 app.use((req: Request, res: Response) => {

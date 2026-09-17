@@ -5,12 +5,15 @@ import { sendSuccess } from '../utils/apiResponse';
 
 export const getBanks = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const category = req.query.category as string | undefined;
-    const hasVitTieUp = req.query.hasVitTieUp !== undefined ? req.query.hasVitTieUp === 'true' : undefined;
-    const status = req.query.status as string | undefined;
-
-    const banks = await bankService.listBanks({ category, hasVitTieUp, status });
-    sendSuccess(res, banks, 200, undefined, { count: banks.length });
+    const result = await bankService.listBanks(req.query);
+    sendSuccess(
+      res,
+      result.banks,
+      200,
+      undefined,
+      { count: result.banks.length },
+      result.pagination
+    );
   } catch (err) {
     next(err);
   }

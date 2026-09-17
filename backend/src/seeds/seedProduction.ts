@@ -5,6 +5,7 @@ import { getProductionLoanSchemes } from './production/loanSchemes';
 import { productionGovernmentSchemes } from './production/governmentSchemes';
 import { productionInstitutions } from './production/institutions';
 import { productionDocuments } from './production/documents';
+import { productionFAQs } from './production/faqs';
 import {
   safeUpsertSource,
   safeUpsertBank,
@@ -12,6 +13,7 @@ import {
   safeUpsertGovernmentScheme,
   safeUpsertInstitution,
   safeUpsertDocument,
+  safeUpsertFAQ,
 } from '../services/safeUpsert.service';
 
 export const runProductionSeed = async () => {
@@ -28,6 +30,7 @@ export const runProductionSeed = async () => {
     governmentSchemes: { inserted: 0, updated: 0, skipped: 0 },
     institutions: { inserted: 0, updated: 0, skipped: 0 },
     documents: { inserted: 0, updated: 0, skipped: 0 },
+    faqs: { inserted: 0, updated: 0, skipped: 0 },
   };
 
   // 1. Ingest Primary Sources
@@ -105,6 +108,18 @@ export const runProductionSeed = async () => {
     `    Documents: ${stats.documents.inserted} inserted, ${stats.documents.updated} updated, ${stats.documents.skipped} skipped`
   );
 
+  // 7. Ingest Authoritative FAQs
+  console.log('--> Ingesting Authoritative FAQs...');
+  for (const faq of productionFAQs) {
+    const res = await safeUpsertFAQ(faq);
+    if (res.action === 'INSERTED') stats.faqs.inserted++;
+    else if (res.action === 'UPDATED') stats.faqs.updated++;
+    else stats.faqs.skipped++;
+  }
+  console.log(
+    `    FAQs: ${stats.faqs.inserted} inserted, ${stats.faqs.updated} updated, ${stats.faqs.skipped} skipped`
+  );
+
   console.log('\n====================================================');
   console.log('  PRODUCTION INGESTION SUMMARY');
   console.log('====================================================');
@@ -115,6 +130,7 @@ export const runProductionSeed = async () => {
   console.log(`- Government Schemes: ${stats.governmentSchemes.inserted + stats.governmentSchemes.updated}`);
   console.log(`- Institutions: ${stats.institutions.inserted + stats.institutions.updated}`);
   console.log(`- Documents: ${stats.documents.inserted + stats.documents.updated}`);
+  console.log(`- FAQs: ${stats.faqs.inserted + stats.faqs.updated}`);
   console.log('====================================================\n');
 
   return stats;

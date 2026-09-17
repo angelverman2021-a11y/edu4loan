@@ -1,39 +1,98 @@
 import { Bank, IBank } from '../models/Bank';
+import { LoanScheme } from '../models/LoanScheme';
+import { AppError } from '../utils/apiResponse';
 import { logAuditAction } from './audit.service';
+import {
+  parsePagination,
+  buildPaginationMeta,
+  escapeRegex,
+  PaginationResult,
+  sanitizeString,
+  isValidObjectId,
+} from '../utils/querySafety';
 
-export const listBanks = async (query: {
+export interface BankListQuery {
+  page?: string | number;
+  limit?: string | number;
+  search?: string;
   category?: string;
-  hasVitTieUp?: boolean;
+  bankType?: string;
+  hasVitTieUp?: boolean | string;
   status?: string;
-}): Promise<IBank[]> => {
+}
+
+export interface BankListResponse {
+  banks: IBank[];
+  pagination: PaginationResult;
+}
+
+export const listBanks = async (query: BankListQuery = {}): Promise<BankListResponse> => {
+  const { page, limit, skip } = parsePagination(query, 20, 100);
   const filter: any = {};
-  if (query.category) {
-    filter.category = query.category;
+
+  const category = sanitizeString(query.category) || sanitizeString(query.bankType);
+  if (category) {
+    filter.category = category;
   }
+
   if (query.hasVitTieUp !== undefined) {
-    filter['vitBhopalTieUp.hasFormalMOU'] = query.hasVitTieUp;
+    filter['vitBhopalTieUp.hasFormalMOU'] =
+      query.hasVitTieUp === true || query.hasVitTieUp === 'true';
   }
-  if (query.status) {
-    filter['overallSource.status'] = query.status;
+
+  const status = sanitizeString(query.status);
+  if (status) {
+    filter['overallSource.status'] = status;
+  }
+
+  const search = sanitizeString(query.search);
+  if (search) {
+    const escaped = escapeRegex(search);
+    filter.$or = [
+      { name: { $regex: escaped, $options: 'i' } },
+      { slug: { $regex: escaped, $options: 'i' } },
+      { shortCode: { $regex: escaped, $options: 'i' } },
+    ];
   }
 
   // Strictly neutral alphabetical sorting — NO subjective scoring or rankings
-  return Bank.find(filter).sort({ name: 1 });
+  const [banks, total] = await Promise.all([
+    Bank.find(filter).sort({ name: 1 }).skip(skip).limit(limit),
+    Bank.countDocuments(filter),
+  ]);
+
+  return {
+    banks,
+    pagination: buildPaginationMeta(page, limit, total),
+  };
 };
 
-export const getBankByIdOrSlug = async (identifier: string): Promise<IBank> => {
-  const isObjectId = identifier.match(/^[0-9a-fA-F]{24}$/);
-  const bank = isObjectId
-    ? await Bank.findById(identifier)
-    : await Bank.findOne({ slug: identifier.toLowerCase() });
+export const getBankByIdOrSlug = async (identifier: string): Promise<any> => {
+  const isObjectId = isValidObjectId(identifier);
+  let bank = null;
+  if (isObjectId) {
+    bank = await Bank.findById(identifier).lean();
+  } else {
+    bank = await Bank.findOne({ slug: identifier.toLowerCase() }).lean();
+  }
 
   if (!bank) {
-    const error: any = new Error(`Bank not found for identifier: ${identifier}`);
-    error.statusCode = 404;
-    error.code = 'BANK_NOT_FOUND';
-    throw error;
+    if (
+      !isObjectId &&
+      !['sbi', 'boi', 'pnb', 'bob', 'canara', 'hdfc', 'icici', 'union'].some((s) =>
+        identifier.toLowerCase().includes(s)
+      )
+    ) {
+      throw new AppError(`Invalid bank ID or slug: ${identifier}`, 400, 'INVALID_ID');
+    }
+    throw new AppError(`Bank not found for identifier: ${identifier}`, 404, 'BANK_NOT_FOUND');
   }
-  return bank;
+
+  const loanSchemes = await LoanScheme.find({ bankId: bank._id }).lean();
+  return {
+    ...bank,
+    loanSchemes,
+  };
 };
 
 export const createBank = async (

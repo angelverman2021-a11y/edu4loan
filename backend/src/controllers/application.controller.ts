@@ -2,6 +2,7 @@ import { Response, NextFunction } from 'express';
 import { Application } from '../models/Application';
 import { AuthenticatedRequest } from '../middleware/auth.middleware';
 import { sendSuccess, sendError } from '../utils/apiResponse';
+import { isValidObjectId } from '../utils/querySafety';
 
 export const getMyApplications = async (
   req: AuthenticatedRequest,
@@ -23,6 +24,10 @@ export const getApplicationById = async (
   next: NextFunction
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      sendError(res, 400, 'INVALID_ID', 'Invalid application tracking ID format.');
+      return;
+    }
     const userId = req.user!.userId;
     const app = await Application.findOne({ _id: req.params.id, userId });
     if (!app) {
@@ -59,6 +64,10 @@ export const updateApplication = async (
   next: NextFunction
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      sendError(res, 400, 'INVALID_ID', 'Invalid application tracking ID format.');
+      return;
+    }
     const userId = req.user!.userId;
     const app = await Application.findOneAndUpdate(
       { _id: req.params.id, userId },
@@ -81,6 +90,10 @@ export const addBankVisitLog = async (
   next: NextFunction
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      sendError(res, 400, 'INVALID_ID', 'Invalid application tracking ID format.');
+      return;
+    }
     const userId = req.user!.userId;
     const app = await Application.findOne({ _id: req.params.id, userId });
     if (!app) {
@@ -103,6 +116,10 @@ export const deleteApplication = async (
   next: NextFunction
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      sendError(res, 400, 'INVALID_ID', 'Invalid application tracking ID format.');
+      return;
+    }
     const userId = req.user!.userId;
     const app = await Application.findOneAndDelete({ _id: req.params.id, userId });
     if (!app) {

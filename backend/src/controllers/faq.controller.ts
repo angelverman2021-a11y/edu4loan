@@ -1,15 +1,36 @@
 import { Request, Response, NextFunction } from 'express';
 import { FAQ } from '../models/FAQ';
-import { sendSuccess } from '../utils/apiResponse';
+import { sendSuccess, sendError } from '../utils/apiResponse';
+import { escapeRegex, parsePagination, buildPaginationMeta } from '../utils/querySafety';
 
 export const getFAQs = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
+    const { page, limit, skip } = parsePagination(req.query);
     const category = req.query.category as string | undefined;
-    const filter: any = {};
+    const search = req.query.search as string | undefined;
+
+    const filter: Record<string, any> = {};
     if (category) filter.category = category;
 
-    const faqs = await FAQ.find(filter).sort({ isHighPriority: -1, createdAt: -1 });
-    sendSuccess(res, faqs, 200, undefined, { count: faqs.length });
+    if (search && search.trim()) {
+      const safePattern = new RegExp(escapeRegex(search.trim()), 'i');
+      filter.$or = [
+        { question: safePattern },
+        { answer: safePattern },
+        { tags: safePattern },
+      ];
+    }
+
+    const [faqs, total] = await Promise.all([
+      FAQ.find(filter).sort({ isHighPriority: -1, createdAt: -1 }).skip(skip).limit(limit).lean(),
+      FAQ.countDocuments(filter),
+    ]);
+
+    const pagination = buildPaginationMeta(page, limit, total);
+    sendSuccess(res, faqs, 200, undefined, {
+      count: faqs.length,
+      pagination,
+    });
   } catch (err) {
     next(err);
   }

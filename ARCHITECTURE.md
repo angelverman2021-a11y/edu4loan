@@ -175,3 +175,22 @@ Primary sources are strictly verified following the authoritative hierarchy:
 - **Data Quality Audit (`dataQuality.service.ts`):** Scans all collections for missing citations, bad interest rates (outside 0-35% bounds), duplicate slugs/keys, missing application URLs, and orphaned bank references.
 - **Demo Isolation & Safe Reset (`resetDemo.ts`):** Demo records are strictly quarantined with `isDemo: true`. The `resetDemo` engine purges demo records using `{ isDemo: true }` filters, strictly preserving production data, student applications, registered users, and audit logs.
 - **Admin Verification API:** Admin endpoints (`GET /api/admin/data-quality`, `POST /api/admin/scan-freshness`, `POST /api/admin/verify/:entity/:id`, `POST /api/admin/reset-demo`) enforce RBAC and record all manual verification transitions into the immutable `AuditLog` collection.
+
+---
+
+## 8. Production REST API & Financial Query Engine (Phase 4 Completed)
+
+### 8.1 Query Safety & Protection Engine (`querySafety.ts`)
+- **Safe Regex Sanitization:** `escapeRegex()` sanitizes all user input strings, neutralising ReDoS attacks and unintended wildcard evaluations.
+- **Strict Pagination Bounds:** `parsePagination()` normalizes page and limit parameters, capping responses at a maximum of 100 records per page.
+- **Hexadecimal ObjectId Validation:** `isValidObjectId()` prevents MongoDB `CastError` exceptions, returning clean HTTP 400 `INVALID_ID` responses for malformed parameters.
+
+### 8.2 Decision-Support Query Engines
+- **Factual Scheme Comparison Engine (`loanScheme.service.ts`):** Compares 2 to 4 loan schemes simultaneously. Returns a normalized attribute matrix covering interest benchmarks, collateral rules, margin money, moratoriums, fees, and primary sources. **Zero ranking:** Schemes are sorted alphabetically; no "winner" or "#1" is ever declared.
+- **Loan Finder Engine (`loanFinder.service.ts`):** Maps student questionnaire inputs to documented scheme maximum limits, RBI collateral thresholds (₹4L, ₹7.5L), margin requirements, and family income ceilings for Central Sector schemes (PM-Vidyalaxmi <= ₹8L, CSIS <= ₹4.5L). No approval probabilities or subjective scores are generated.
+- **EMI & Moratorium Calculator Engine (`calculator.service.ts`):** Computes simple interest during course duration and buffer period, accurately calculating post-moratorium capitalized loan balance vs monthly interest servicing. Supports 0% interest for full-subsidy scenarios, and provides multi-year amortization previews with explicit disclaimers.
+- **Personalized Document Checklist Engine (`document.controller.ts`):** Evaluates student loan amount, co-applicant profile (salaried vs self-employed), and collateral status to partition documents into Required, Optional, and Not Applicable tiers, supplemented by official verification tips.
+- **Multi-Collection Global Search Engine (`search.service.ts`):** Dispatches concurrent searches across 6 collections (Banks, Loan Schemes, Government Schemes, Institutions, Documents, FAQs), returning categorized matches and aggregate hit counts.
+- **Multi-Tenant Ownership Isolation (`application.controller.ts`):** Scopes all student tracker queries strictly to the authenticated `userId`. Attempts by other users to view, edit, or delete an application yield an immediate HTTP 404 `APPLICATION_NOT_FOUND`.
+- **Production API Documentation (`API.md`):** Complete OpenAPI-style documentation created at the repository root detailing all endpoints, request/response contracts, and error structures.
+

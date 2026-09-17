@@ -4,6 +4,7 @@ import { GovernmentScheme, IGovernmentScheme } from '../models/GovernmentScheme'
 import { DocumentModel, IDocumentItem } from '../models/Document';
 import { Institution, IInstitution } from '../models/Institution';
 import { Source, ISource } from '../models/Source';
+import { FAQ, IFAQ } from '../models/FAQ';
 import { logAuditAction } from './audit.service';
 
 export interface UpsertOptions {
@@ -327,4 +328,21 @@ export const safeUpsertInstitution = async (
 
   const newInst = await Institution.create(data);
   return { record: newInst, action: 'INSERTED' };
+};
+
+// 7. Safe Upsert FAQ
+export const safeUpsertFAQ = async (
+  data: any,
+  options: UpsertOptions = {}
+): Promise<{ record: IFAQ; action: 'INSERTED' | 'UPDATED' | 'SKIPPED' }> => {
+  const existing = await FAQ.findOne({ question: data.question });
+
+  if (existing) {
+    Object.assign(existing, data);
+    await existing.save();
+    return { record: existing, action: 'UPDATED' };
+  }
+
+  const newFaq = await FAQ.create(data);
+  return { record: newFaq, action: 'INSERTED' };
 };

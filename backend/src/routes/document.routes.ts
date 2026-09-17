@@ -8,6 +8,7 @@ const router = Router();
 // Public checklist & personalized generator endpoints
 router.get('/', documentController.getDocuments);
 router.post('/personalized', documentController.generatePersonalizedChecklist);
+router.get('/:id', documentController.getDocumentById);
 
 // Admin-only mutation endpoints
 router.post('/', authenticateJwt, requireRole('admin'), documentController.createDocument);

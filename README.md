@@ -88,17 +88,24 @@ edu4loan/
 
 ## 🚀 Getting Started
 
+### API Documentation
+Comprehensive OpenAPI-style documentation covering all request/response contracts, query parameters, calculator logic, and error formats is available in [`API.md`](API.md).
+
 ### Backend Execution & Testing
 ```bash
 cd backend
 npm install
 
-# Run automated test suites (28 tests total: 100% pass)
-npm test            # Phase 2 regression suite (13 tests)
-npm run test:phase3 # Phase 3 verification suite (15 tests)
+# Run automated test suites (58 tests total: 100% pass)
+npm test            # Phase 2 backend foundation suite (13 tests)
+npm run test:phase3 # Phase 3 data ingestion & seed engine suite (15 tests)
+npm run test:phase4 # Phase 4 REST API & financial query engine suite (30 tests)
+
+# TypeScript Compilation Check
+npm run build       # Validates 100% strict TypeScript types
 
 # Financial Data Ingestion & Data Quality Engine
-npm run seed:production  # Ingests authoritative production dataset
+npm run seed:production  # Ingests authoritative production dataset (Banks, Schemes, Gov, VIT, Docs, FAQs)
 npm run seed:demo        # Ingests isolated demo dataset (isDemo: true)
 npm run seed:documents   # Ingests document taxonomy
 npm run seed:government  # Ingests government schemes (PM-Vidyalaxmi, Vidya Lakshmi, CSIS)

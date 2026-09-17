@@ -12,6 +12,7 @@ router.get('/:id', appController.getApplicationById);
 router.post('/', appController.createApplication);
 router.put('/:id', appController.updateApplication);
 router.post('/:id/logs', appController.addBankVisitLog);
+router.post('/:id/bank-visits', appController.addBankVisitLog);
 router.delete('/:id', appController.deleteApplication);
 
 export default router;

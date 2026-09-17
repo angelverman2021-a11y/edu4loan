@@ -1,10 +1,18 @@
 import { Response } from 'express';
 
+export interface PaginationMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
 export interface SuccessResponse<T> {
   success: true;
   data: T;
   message?: string;
   meta?: Record<string, unknown>;
+  pagination?: PaginationMeta;
 }
 
 export interface ErrorResponse {
@@ -36,13 +44,21 @@ export const sendSuccess = <T>(
   data: T,
   statusCode = 200,
   message?: string,
-  meta?: Record<string, unknown>
+  meta?: Record<string, unknown>,
+  pagination?: PaginationMeta
 ): Response => {
+  const finalMeta = {
+    ...(meta || {}),
+    ...(pagination ? { pagination } : {}),
+  };
+  const hasMeta = Object.keys(finalMeta).length > 0;
+
   const payload: SuccessResponse<T> = {
     success: true,
     data,
     ...(message && { message }),
-    ...(meta && { meta }),
+    ...(hasMeta && { meta: finalMeta }),
+    ...(pagination && { pagination }),
   };
   return res.status(statusCode).json(payload);
 };

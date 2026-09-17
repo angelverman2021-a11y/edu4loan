@@ -9,6 +9,7 @@ const router = Router();
 
 // Public discovery endpoints
 router.get('/', schemeController.getLoanSchemes);
+router.get('/compare', schemeController.compareSchemes);
 router.get('/:id', schemeController.getLoanScheme);
 
 // Admin-only mutation endpoints
