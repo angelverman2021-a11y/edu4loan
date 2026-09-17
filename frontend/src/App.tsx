@@ -14,6 +14,8 @@ import { VitBhopalPage } from '@/pages/VitBhopalPage';
 import { FaqsPage } from '@/pages/FaqsPage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { ApplicationTrackerPage } from '@/pages/ApplicationTrackerPage';
+import { AdminPage } from '@/pages/AdminPage';
+import { EligibilityPage } from '@/pages/EligibilityPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { RegisterPage } from '@/pages/RegisterPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
@@ -28,6 +30,8 @@ export const App: React.FC = () => {
               <Route index element={<HomePage />} />
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="tracker" element={<ApplicationTrackerPage />} />
+              <Route path="admin" element={<AdminPage />} />
+              <Route path="eligibility" element={<EligibilityPage />} />
               <Route path="loans" element={<LoansPage />} />
               <Route path="loans/:id" element={<SchemeDetailPage />} />
               <Route path="finder" element={<LoansPage />} />

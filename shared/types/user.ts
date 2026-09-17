@@ -20,8 +20,9 @@ export interface AuditLogItem {
   id: string;
   userId: string;
   userEmail: string;
-  action: 'CREATE' | 'UPDATE' | 'DELETE' | 'VERIFY';
-  entityType: 'bank' | 'loanScheme' | 'governmentScheme' | 'document' | 'source';
+  userRole?: string;
+  action: 'CREATE' | 'UPDATE' | 'DELETE' | 'VERIFY' | 'STATUS_CHANGE' | 'FRESHNESS_SCAN' | 'RESET_DEMO';
+  entityType: 'bank' | 'loanScheme' | 'loanscheme' | 'governmentScheme' | 'governmentscheme' | 'document' | 'source' | 'faq' | 'user' | 'institution';
   entityId: string;
   fieldChanged?: string;
   oldValue?: unknown;

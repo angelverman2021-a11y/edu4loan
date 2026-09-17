@@ -17,6 +17,8 @@ import {
   HelpCircle,
   Layers,
   LayoutDashboard,
+  UserCheck,
+  Shield,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { useAuth } from '@/context/AuthContext';
@@ -53,6 +55,7 @@ export const Navbar: React.FC = () => {
     { name: 'Loan Discovery', path: '/loans', icon: Compass },
     { name: 'Compare Schemes', path: '/compare', icon: Building2 },
     { name: 'EMI Calculator', path: '/calculator', icon: Calculator },
+    { name: 'Eligibility', path: '/eligibility', icon: UserCheck },
     { name: 'Documents', path: '/documents', icon: FileCheck2 },
     { name: 'Tracker', path: '/tracker', icon: Layers },
     { name: 'Govt Schemes', path: '/schemes', icon: Landmark },
@@ -167,6 +170,15 @@ export const Navbar: React.FC = () => {
                         >
                           <Layers className="h-3.5 w-3.5 text-brand-700" />
                           <span>Loan Tracker</span>
+                        </Link>
+
+                        <Link
+                          to="/admin"
+                          onClick={() => setUserDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-50 transition-colors font-medium text-left"
+                        >
+                          <Shield className="h-3.5 w-3.5 text-emerald-600" />
+                          <span>Admin Console</span>
                         </Link>
 
                         <div className="my-1 border-t border-slate-100" />
