@@ -17,7 +17,10 @@ export class ApiError extends Error {
 const BASE_URL = '/api';
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
-  const token = localStorage.getItem('edu4loan_auth_token');
+  const token =
+    typeof window !== 'undefined' && typeof window.localStorage !== 'undefined'
+      ? localStorage.getItem('edu4loan_auth_token')
+      : null;
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
