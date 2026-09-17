@@ -1,6 +1,6 @@
 ![Edu4Loan - Smart Education Loan Decision Support](assets/banner.jpg)
 
-# Edu4Loan
+                                          # Edu4Loan
 
 > Smart Education Loan Guidance & Decision-Support Platform for VIT Bhopal Students
 
