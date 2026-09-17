@@ -55,6 +55,7 @@ export const registerUser = async (data: RegisterInput): Promise<AuthResult> => 
   const token = signToken({
     userId: user._id.toString(),
     role: user.role,
+    email: user.email,
   });
 
   return {
@@ -64,7 +65,7 @@ export const registerUser = async (data: RegisterInput): Promise<AuthResult> => 
 };
 
 export const loginUser = async (data: LoginInput): Promise<AuthResult> => {
-  const user = await User.findOne({ email: data.email }).select('+passwordHash');
+  const user = await User.findOne({ email: data.email.toLowerCase() }).select('+passwordHash');
   if (!user) {
     const error: any = new Error('Invalid email or password.');
     error.statusCode = 401;
@@ -83,6 +84,7 @@ export const loginUser = async (data: LoginInput): Promise<AuthResult> => {
   const token = signToken({
     userId: user._id.toString(),
     role: user.role,
+    email: user.email,
   });
 
   return {

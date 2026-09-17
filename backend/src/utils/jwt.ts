@@ -4,6 +4,7 @@ import { config } from '../config/env';
 export interface JwtPayload {
   userId: string;
   role: 'student' | 'admin';
+  email?: string;
 }
 
 export const signToken = (payload: JwtPayload): string => {

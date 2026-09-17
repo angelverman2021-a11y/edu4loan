@@ -9,7 +9,15 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "tsx src/test/verifyPhase2.ts",
-    "seed": "tsx src/seed/seedData.ts"
+    "test:phase3": "tsx src/test/verifyPhase3.ts",
+    "seed": "tsx src/seeds/seedProduction.ts",
+    "seed:production": "tsx src/seeds/seedProduction.ts",
+    "seed:demo": "tsx src/seeds/seedDemo.ts",
+    "seed:documents": "tsx src/seeds/seedDocuments.ts",
+    "seed:government": "tsx src/seeds/seedGovernment.ts",
+    "data:quality": "tsx src/scripts/runQualityAudit.ts",
+    "data:verify": "tsx src/test/verifyPhase3.ts",
+    "data:reset-demo": "tsx src/seeds/resetDemo.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

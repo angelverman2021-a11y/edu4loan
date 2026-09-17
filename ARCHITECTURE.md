@@ -156,3 +156,22 @@ backend/
     }
   }
   ```
+
+---
+
+## 7. Financial Data Ingestion & Integrity Engine (Phase 3 Completed)
+
+### 7.1 Authoritative Production Data Hierarchy
+Primary sources are strictly verified following the authoritative hierarchy:
+1. **Tier 1 — Government & Regulatory Authorities:** Ministry of Education (MoE), Reserve Bank of India (RBI), Department of Financial Services (DFS).
+2. **Tier 2 — Unified National Portals:** Official PM-Vidyalaxmi portal (`pmvidyalaxmi.gov.in`), Vidya Lakshmi CELFS portal (`vidyalakshmi.co.in`).
+3. **Tier 3 — Public Sector & Scheduled Commercial Banks:** Official bank loan circulars, master product circulars, and interest rate schedules (SBI, Bank of Baroda, PNB).
+4. **Tier 4 — Institutional Verification:** Official VIT Bhopal University admissions directives, finance section fee estimation certificates, and campus helpdesk directory.
+
+### 7.2 Data Integrity & Safeguard Systems
+- **Safe Upsert Protection (`safeUpsert.service.ts`):** Prevents accidental overwrites of verified production data by unverified or demo payloads. Rejects downgrading a verified record to `needs_verification` unless the `allowVerifiedDowngrade` flag is explicitly passed by an authorized administrator.
+- **Model Pre-Save Enforcement:** Pre-save hooks in `Bank`, `LoanScheme`, `GovernmentScheme`, `Institution`, `DocumentItem`, and `Source` models force `isDemo: true` records to status `needs_verification`. Production records without valid `http`/`https` source URLs cannot attain `verified` status.
+- **Data Freshness Engine (`dataFreshness.service.ts`):** Evaluates `lastVerified` against the configurable `DATA_REVIEW_DAYS` window (default 90 days). Stale records are flagged as `expired` with full audit logging; records are never deleted destructively due to age.
+- **Data Quality Audit (`dataQuality.service.ts`):** Scans all collections for missing citations, bad interest rates (outside 0-35% bounds), duplicate slugs/keys, missing application URLs, and orphaned bank references.
+- **Demo Isolation & Safe Reset (`resetDemo.ts`):** Demo records are strictly quarantined with `isDemo: true`. The `resetDemo` engine purges demo records using `{ isDemo: true }` filters, strictly preserving production data, student applications, registered users, and audit logs.
+- **Admin Verification API:** Admin endpoints (`GET /api/admin/data-quality`, `POST /api/admin/scan-freshness`, `POST /api/admin/verify/:entity/:id`, `POST /api/admin/reset-demo`) enforce RBAC and record all manual verification transitions into the immutable `AuditLog` collection.

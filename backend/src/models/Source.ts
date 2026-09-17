@@ -12,6 +12,7 @@ export interface ISource extends Document {
   status: 'verified' | 'needs_verification' | 'expired';
   expiryDate?: Date;
   notes?: string;
+  isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -33,13 +34,20 @@ const SourceSchema = new Schema<ISource>(
       type: String,
       required: [true, 'Source type is required'],
       enum: [
+        'government',
+        'ministry',
+        'official_portal',
+        'official_bank',
+        'official_bank_pdf',
+        'official_institution',
+        'other',
         'GOVERNMENT_PORTAL',
         'BANK_CIRCULAR_PDF',
         'BANK_OFFICIAL_WEBSITE',
         'VIT_BHOPAL_OFFICIAL',
         'RBI_NOTIFICATION',
       ],
-      default: 'BANK_OFFICIAL_WEBSITE',
+      default: 'official_bank',
     },
     issuingAuthority: {
       type: String,
@@ -75,6 +83,10 @@ const SourceSchema = new Schema<ISource>(
       type: String,
       trim: true,
     },
+    isDemo: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
@@ -84,10 +96,15 @@ const SourceSchema = new Schema<ISource>(
 // Indexes
 SourceSchema.index({ status: 1 });
 SourceSchema.index({ sourceUrl: 1 });
+SourceSchema.index({ isDemo: 1 });
 
-// Safety validation hook: A source cannot be 'verified' if sourceUrl is empty or invalid
+// Safety validation hook:
+// 1. A demo source can NEVER be marked verified.
+// 2. A production source cannot be 'verified' if sourceUrl is empty or invalid.
 SourceSchema.pre('save', function (next) {
-  if (this.status === 'verified' && (!this.sourceUrl || this.sourceUrl.trim() === '')) {
+  if (this.isDemo) {
+    this.status = 'needs_verification';
+  } else if (this.status === 'verified' && (!this.sourceUrl || !this.sourceUrl.startsWith('http'))) {
     return next(new Error('A source record cannot have "verified" status without a valid sourceUrl.'));
   }
   next();

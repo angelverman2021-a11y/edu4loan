@@ -25,6 +25,7 @@ export interface IDocumentItem extends Document {
     lastVerified: string;
     status: 'verified' | 'needs_verification' | 'expired';
   };
+  isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -68,6 +69,7 @@ const DocumentItemSchema = new Schema<IDocumentItem>(
         default: 'needs_verification',
       },
     },
+    isDemo: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -76,5 +78,17 @@ const DocumentItemSchema = new Schema<IDocumentItem>(
 
 DocumentItemSchema.index({ category: 1 });
 DocumentItemSchema.index({ isRequired: 1 });
+DocumentItemSchema.index({ isDemo: 1 });
+
+DocumentItemSchema.pre('save', function (next) {
+  if (this.isDemo) {
+    this.source.status = 'needs_verification';
+  } else if (this.source.status === 'verified') {
+    if (!this.source.sourceUrl || !this.source.sourceUrl.startsWith('http')) {
+      this.source.status = 'needs_verification';
+    }
+  }
+  next();
+});
 
 export const DocumentModel = model<IDocumentItem>('DocumentItem', DocumentItemSchema);

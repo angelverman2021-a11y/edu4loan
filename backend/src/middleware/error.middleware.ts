@@ -19,6 +19,12 @@ export const errorHandler = (
     stack: config.NODE_ENV === 'development' ? err.stack : undefined,
   });
 
+  // AppError or Custom Status Error
+  if (err.statusCode && err.statusCode < 500) {
+    sendError(res, err.statusCode, err.code || 'BAD_REQUEST', err.message, err.details);
+    return;
+  }
+
   // Zod Validation Error
   if (err instanceof ZodError) {
     const issues = err.errors.map((e) => ({

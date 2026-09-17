@@ -18,6 +18,7 @@ export interface IGovernmentScheme extends Document {
     lastVerified: string;
     status: 'verified' | 'needs_verification' | 'expired';
   };
+  isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -54,10 +55,24 @@ const GovernmentSchemeSchema = new Schema<IGovernmentScheme>(
         default: 'needs_verification',
       },
     },
+    isDemo: { type: Boolean, default: false },
   },
   {
     timestamps: true,
   }
 );
+
+GovernmentSchemeSchema.index({ isDemo: 1 });
+
+GovernmentSchemeSchema.pre('save', function (next) {
+  if (this.isDemo) {
+    this.source.status = 'needs_verification';
+  } else if (this.source.status === 'verified') {
+    if (!this.source.sourceUrl || !this.source.sourceUrl.startsWith('http')) {
+      this.source.status = 'needs_verification';
+    }
+  }
+  next();
+});
 
 export const GovernmentScheme = model<IGovernmentScheme>('GovernmentScheme', GovernmentSchemeSchema);

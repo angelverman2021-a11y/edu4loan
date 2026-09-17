@@ -88,4 +88,22 @@ edu4loan/
 
 ## 🚀 Getting Started
 
-Instructions for running the backend and frontend locally will be detailed as phases are completed. Follow the development log in [`PROJECT_PROGRESS.md`](PROJECT_PROGRESS.md).
+### Backend Execution & Testing
+```bash
+cd backend
+npm install
+
+# Run automated test suites (28 tests total: 100% pass)
+npm test            # Phase 2 regression suite (13 tests)
+npm run test:phase3 # Phase 3 verification suite (15 tests)
+
+# Financial Data Ingestion & Data Quality Engine
+npm run seed:production  # Ingests authoritative production dataset
+npm run seed:demo        # Ingests isolated demo dataset (isDemo: true)
+npm run seed:documents   # Ingests document taxonomy
+npm run seed:government  # Ingests government schemes (PM-Vidyalaxmi, Vidya Lakshmi, CSIS)
+npm run data:quality     # Generates structured data quality audit report
+npm run data:reset-demo  # Safely purges demo records without touching production data
+```
+
+Follow the live development log in [`PROJECT_PROGRESS.md`](PROJECT_PROGRESS.md).

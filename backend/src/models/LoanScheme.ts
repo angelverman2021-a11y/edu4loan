@@ -105,6 +105,7 @@ export interface ILoanScheme extends Document {
   };
   status: 'verified' | 'needs_verification' | 'expired';
   lastVerified: string;
+  isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -215,6 +216,7 @@ const LoanSchemeSchema = new Schema<ILoanScheme>(
       type: String,
       required: true,
     },
+    isDemo: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -226,17 +228,23 @@ LoanSchemeSchema.index({ schemeName: 1 });
 LoanSchemeSchema.index({ bankId: 1, status: 1 });
 LoanSchemeSchema.index({ 'interestRate.minRate.value': 1 });
 LoanSchemeSchema.index({ lastVerified: 1 });
+LoanSchemeSchema.index({ isDemo: 1 });
 
 // CRITICAL FINANCIAL DATA SAFETY GUARD:
-// Never allow loan scheme to be saved as 'verified' if source or official URLs are missing.
+// 1. Demo records can NEVER have status 'verified'.
+// 2. Production records cannot be 'verified' if source or official URLs are missing.
 LoanSchemeSchema.pre('save', function (next) {
-  if (this.status === 'verified') {
+  if (this.isDemo) {
+    this.status = 'needs_verification';
+    if (this.interestRate?.minRate) this.interestRate.minRate.status = 'needs_verification';
+    if (this.interestRate?.maxRate) this.interestRate.maxRate.status = 'needs_verification';
+  } else if (this.status === 'verified') {
     if (!this.source || !this.source.sourceUrl || !this.source.sourceUrl.startsWith('http')) {
       this.status = 'needs_verification';
     }
-    if (!this.interestRate.minRate.sourceUrl || !this.interestRate.maxRate.sourceUrl) {
-      this.interestRate.minRate.status = 'needs_verification';
-      this.interestRate.maxRate.status = 'needs_verification';
+    if (!this.interestRate?.minRate?.sourceUrl || !this.interestRate?.maxRate?.sourceUrl) {
+      if (this.interestRate?.minRate) this.interestRate.minRate.status = 'needs_verification';
+      if (this.interestRate?.maxRate) this.interestRate.maxRate.status = 'needs_verification';
       this.status = 'needs_verification';
     }
   }

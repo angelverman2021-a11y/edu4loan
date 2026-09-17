@@ -57,6 +57,7 @@ export interface IInstitution extends Document {
     turnaroundDays: string;
     officeResponsible: string;
   };
+  isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -139,10 +140,22 @@ const InstitutionSchema = new Schema<IInstitution>(
       turnaroundDays: { type: String, required: true },
       officeResponsible: { type: String, required: true },
     },
+    isDemo: { type: Boolean, default: false },
   },
   {
     timestamps: true,
   }
 );
+
+InstitutionSchema.index({ isDemo: 1 });
+
+InstitutionSchema.pre('save', function (next) {
+  if (this.isDemo) {
+    if (this.officialBankHelpdesk?.source) {
+      this.officialBankHelpdesk.source.status = 'needs_verification';
+    }
+  }
+  next();
+});
 
 export const Institution = model<IInstitution>('Institution', InstitutionSchema);

@@ -10,5 +10,9 @@ router.use(authenticateJwt, requireRole('admin'));
 
 router.get('/metrics', adminController.getDashboardMetrics);
 router.get('/audit-logs', adminController.getAuditLogs);
+router.get('/data-quality', adminController.getDataQuality);
+router.post('/scan-freshness', adminController.triggerFreshnessScan);
+router.post('/reset-demo', adminController.resetDemoData);
+router.post('/verify/:entity/:id', adminController.verifyEntity);
 
 export default router;

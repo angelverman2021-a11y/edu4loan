@@ -42,6 +42,7 @@ export interface IBank extends Document {
     lastVerified: string;
     status: 'verified' | 'needs_verification' | 'expired';
   };
+  isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -129,6 +130,7 @@ const BankSchema = new Schema<IBank>(
         default: 'needs_verification',
       },
     },
+    isDemo: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -139,5 +141,21 @@ const BankSchema = new Schema<IBank>(
 BankSchema.index({ name: 1 });
 BankSchema.index({ category: 1 });
 BankSchema.index({ 'overallSource.status': 1 });
+BankSchema.index({ isDemo: 1 });
+
+// Financial Data Safeguard Hook:
+BankSchema.pre('save', function (next) {
+  if (this.isDemo) {
+    this.overallSource.status = 'needs_verification';
+    if (this.vitBhopalTieUp) {
+      this.vitBhopalTieUp.status = 'needs_verification';
+    }
+  } else if (this.overallSource.status === 'verified') {
+    if (!this.overallSource.sourceUrl || !this.overallSource.sourceUrl.startsWith('http')) {
+      this.overallSource.status = 'needs_verification';
+    }
+  }
+  next();
+});
 
 export const Bank = model<IBank>('Bank', BankSchema);
