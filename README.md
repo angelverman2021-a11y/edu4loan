@@ -1,15 +1,21 @@
-![Edu4Loan - Smart Education Loan Decision Support](assets/banner.jpg)
+<div align="center">
 
-                                          # Edu4Loan
+<img src="assets/banner.jpg" alt="Edu4Loan - Smart Education Loan Decision Support" width="100%" />
 
-> Smart Education Loan Guidance & Decision-Support Platform for VIT Bhopal Students
+# Edu4Loan
 
-[![Platform Type](https://img.shields.io/badge/Platform%20Type-Decision%20Support-1D4ED8.svg)](#disclaimer--regulatory-boundary)
-[![Financial Neutrality](https://img.shields.io/badge/Neutrality-Zero%20Ranking-10B981.svg)](#core-principles)
-[![Institutional Focus](https://img.shields.io/badge/Focus-VIT%20Bhopal-6366F1.svg)](#real-world-issues-students-face)
-[![Automated Tests](https://img.shields.io/badge/Automated%20Tests-156%20Passing%20(100%25)-059669.svg)](#automated-testing-matrix)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict%20Mode-3178C6.svg)](#project-architecture)
-[![License](https://img.shields.io/badge/License-MIT-gray.svg)](LICENSE)
+### Smart Education Loan Guidance & Decision-Support Platform for VIT Bhopal Students
+
+<p align="center">
+  <a href="#disclaimer--regulatory-boundary"><img src="https://img.shields.io/badge/Platform%20Type-Decision%20Support-1D4ED8.svg" alt="Platform Type" /></a>
+  <a href="#core-principles"><img src="https://img.shields.io/badge/Neutrality-Zero%20Ranking-10B981.svg" alt="Financial Neutrality" /></a>
+  <a href="#real-world-issues-students-face"><img src="https://img.shields.io/badge/Focus-VIT%20Bhopal-6366F1.svg" alt="Institutional Focus" /></a>
+  <a href="#automated-testing-matrix"><img src="https://img.shields.io/badge/Automated%20Tests-156%20Passing%20(100%25)-059669.svg" alt="Automated Tests" /></a>
+  <a href="#project-architecture"><img src="https://img.shields.io/badge/TypeScript-Strict%20Mode-3178C6.svg" alt="TypeScript" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-gray.svg" alt="License" /></a>
+</p>
+
+</div>
 
 ---
 
