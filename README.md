@@ -282,7 +282,8 @@ Comprehensive production deployment instructions, environment setup, and trouble
 Pre-configured deployment manifests:
 - `frontend/vercel.json`: Handles client-side SPA routing rewrites.
 - `frontend/public/_redirects`: Netlify / Cloudflare Pages fallback routing.
-- `render.yaml`: Multi-service Infrastructure-as-Code blueprint.
+- `render.yaml`: Multi-service Infrastructure-as-Code blueprint (auto-injects Backend Host to Frontend seamlessly).
+- `package.json`: Explicit Node.js `>=18.0.0` engine declarations for guaranteed build stability on Render/Vercel.
 - `backend/Dockerfile` & `frontend/Dockerfile`: Multi-stage production container images.
 - `docker-compose.yml`: Full stack orchestration for MongoDB, API, and NGINX web client.
 
