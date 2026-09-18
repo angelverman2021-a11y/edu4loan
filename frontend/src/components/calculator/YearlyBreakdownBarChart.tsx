@@ -28,7 +28,7 @@ export const YearlyBreakdownBarChart: React.FC<YearlyBreakdownBarChartProps> = (
       const total = principal + interest;
 
       return (
-        <div className="bg-white p-3 rounded-lg shadow-lg border border-slate-200 text-xs space-y-1">
+        <div className="bg-white p-3 rounded-lg shadow-lg border border-slate-200 text-sm space-y-1">
           <p className="font-bold text-slate-800">{label}</p>
           <p className="text-brand-700">
             Principal Paid: {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(principal)}
@@ -67,7 +67,7 @@ export const YearlyBreakdownBarChart: React.FC<YearlyBreakdownBarChartProps> = (
             verticalAlign="bottom"
             height={36}
             formatter={(value) => (
-              <span className="text-xs text-slate-600 font-medium">
+              <span className="text-sm text-slate-600 font-medium">
                 {value === 'principalPaid' ? 'Principal Repaid' : 'Interest Paid'}
               </span>
             )}

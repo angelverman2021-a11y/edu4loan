@@ -60,18 +60,18 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
   };
 
   return (
-    <div className="space-y-4 text-xs">
+    <div className="space-y-4 text-sm">
       <div className="flex items-center justify-between">
         <div>
-          <h4 className="font-bold text-slate-900 text-sm">Bank Branch Visit & Follow-Up Logs</h4>
-          <p className="text-slate-500 text-[11px]">
+          <h4 className="font-bold text-slate-900 text-base">Bank Branch Visit & Follow-Up Logs</h4>
+          <p className="text-slate-500 text-xs">
             Keep a clear record of in-person interactions with loan officers and branch commitments.
           </p>
         </div>
         <Button
           size="sm"
           onClick={() => setShowAddForm(!showAddForm)}
-          className="bg-brand-700 hover:bg-brand-800 text-white text-xs flex items-center gap-1.5"
+          className="bg-brand-700 hover:bg-brand-800 text-white text-sm flex items-center gap-1.5"
         >
           <Plus className="h-3.5 w-3.5" />
           <span>{showAddForm ? 'Cancel' : 'Log New Visit'}</span>
@@ -82,7 +82,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
       {showAddForm && (
         <Card className="border-brand-200 bg-brand-50/20 shadow-sm">
           <CardHeader className="py-3 border-b border-brand-100">
-            <CardTitle className="text-xs font-bold text-slate-900">
+            <CardTitle className="text-sm font-bold text-slate-900">
               Record Branch Visit / Meeting
             </CardTitle>
           </CardHeader>
@@ -98,7 +98,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                     required
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                   />
                 </div>
 
@@ -112,7 +112,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                     placeholder="e.g. SBI Ashta Branch or Indian Bank Campus Branch"
                     value={branchName}
                     onChange={(e) => setBranchName(e.target.value)}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                   />
                 </div>
 
@@ -125,7 +125,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                     placeholder="e.g. Mr. R. K. Sharma"
                     value={officerName}
                     onChange={(e) => setOfficerName(e.target.value)}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                   />
                 </div>
 
@@ -138,7 +138,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                     placeholder="e.g. Chief Manager (Credit) / Loan Officer"
                     value={designation}
                     onChange={(e) => setDesignation(e.target.value)}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                   />
                 </div>
               </div>
@@ -153,7 +153,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                   placeholder="Key points discussed: interest rate confirmation, margin money requirements, collateral valuation status..."
                   value={discussion}
                   onChange={(e) => setDiscussion(e.target.value)}
-                  className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                  className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                 />
               </div>
 
@@ -167,7 +167,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                     placeholder="e.g. Bring stamped fee structure&#10;Parent IT return acknowledgement"
                     value={pendingTasks}
                     onChange={(e) => setPendingTasks(e.target.value)}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                   />
                 </div>
 
@@ -179,7 +179,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                     type="date"
                     value={followUpDate}
                     onChange={(e) => setFollowUpDate(e.target.value)}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                   />
                 </div>
               </div>
@@ -207,7 +207,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
         <div className="p-6 text-center bg-slate-50 rounded-xl border border-slate-200 space-y-2">
           <Calendar className="h-6 w-6 text-slate-400 mx-auto" />
           <p className="text-slate-600 font-medium">No branch visits recorded yet.</p>
-          <p className="text-slate-400 text-[11px]">
+          <p className="text-slate-400 text-xs">
             Record your interactions after meeting loan officers to keep bank commitments documented.
           </p>
         </div>
@@ -231,18 +231,18 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-2 text-slate-500 text-[11px]">
+                <div className="flex items-center gap-2 text-slate-500 text-xs">
                   <Clock className="h-3 w-3" />
                   <span>{log.date}</span>
                 </div>
               </div>
 
-              <p className="text-slate-600 leading-relaxed text-[11px]">
+              <p className="text-slate-600 leading-relaxed text-xs">
                 {log.discussionSummary}
               </p>
 
               {log.pendingRequirementsGiven && log.pendingRequirementsGiven.length > 0 && (
-                <div className="p-2.5 rounded bg-amber-50/70 border border-amber-200 text-amber-950 text-[11px] space-y-1">
+                <div className="p-2.5 rounded bg-amber-50/70 border border-amber-200 text-amber-950 text-xs space-y-1">
                   <span className="font-bold flex items-center gap-1 text-amber-900">
                     <AlertCircle className="h-3 w-3 text-amber-700" />
                     Pending Action Items:
@@ -256,7 +256,7 @@ export const BankVisitLogManager: React.FC<BankVisitLogManagerProps> = ({ logs, 
               )}
 
               {log.followUpDate && (
-                <div className="flex items-center justify-between pt-1 text-[11px]">
+                <div className="flex items-center justify-between pt-1 text-xs">
                   <span className="text-brand-700 font-semibold flex items-center gap-1">
                     <Calendar className="h-3 w-3" /> Next Follow-Up: {log.followUpDate}
                   </span>

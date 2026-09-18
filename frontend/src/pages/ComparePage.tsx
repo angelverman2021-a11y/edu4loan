@@ -103,13 +103,13 @@ export const ComparePage: React.FC = () => {
         </div>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-slate-900">Side-by-Side Scheme Comparison</h1>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
+          <p className="text-sm text-slate-500 max-w-md mx-auto">
             Please select at least 2 schemes (up to a maximum of 4) to view a factual side-by-side comparison of interest structures, collateral tiers, and moratorium terms.
           </p>
         </div>
 
         {selectedSchemes.length === 1 && (
-          <div className="inline-flex items-center gap-2 p-3 rounded-lg bg-blue-50/80 border border-blue-200 text-xs text-brand-900">
+          <div className="inline-flex items-center gap-2 p-3 rounded-lg bg-blue-50/80 border border-blue-200 text-sm text-brand-900">
             <span>Currently selected: <strong>{selectedSchemes[0].schemeName}</strong>. Select 1 more scheme to compare.</span>
           </div>
         )}
@@ -128,7 +128,7 @@ export const ComparePage: React.FC = () => {
   const schemesList = comparisonData?.schemes || [];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-16">
+    <div className="min-h-[calc(100vh-4rem)] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-16">
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
@@ -140,13 +140,13 @@ export const ComparePage: React.FC = () => {
             <Columns3 className="h-8 w-8 text-brand-700 shrink-0" />
             <span>Side-by-Side Loan Scheme Comparison</span>
           </h1>
-          <p className="text-xs text-slate-500 mt-1 max-w-2xl">
+          <p className="text-sm text-slate-500 mt-1 max-w-2xl">
             Strictly factual comparison between {schemesList.length} documented schemes. Terms and sanctions are solely at bank discretion.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <label className="flex items-center gap-2 text-xs text-slate-700 font-medium cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-slate-700 font-medium cursor-pointer">
             <input
               type="checkbox"
               checked={highlightDiffs}
@@ -165,7 +165,7 @@ export const ComparePage: React.FC = () => {
       </div>
 
       {/* Persistent Impartiality Disclosure */}
-      <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200 text-xs text-blue-950 flex items-center gap-2">
+      <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200 text-sm text-blue-950 flex items-center gap-2">
         <ShieldCheck className="h-4 w-4 text-brand-700 shrink-0" />
         <span>
           <strong>Strict Impartiality Rule:</strong> Edu4Loan presents values as documented in regulatory circulars. We do not score, rank, or declare any scheme as &ldquo;best&rdquo;.
@@ -187,11 +187,11 @@ export const ComparePage: React.FC = () => {
       {/* Main Comparison Table */}
       {!loading && !error && comparisonData && (
         <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-fintech">
-          <table className="w-full text-left border-collapse text-xs">
+          <table className="w-full text-left border-collapse text-sm">
             {/* Header: Bank & Scheme Names */}
             <thead>
               <tr className="bg-slate-50/80 border-b border-slate-200 divide-x divide-slate-100">
-                <th className="p-4 w-60 font-bold text-slate-400 uppercase text-[11px] align-top">
+                <th className="p-4 w-60 font-bold text-slate-400 uppercase text-xs align-top">
                   Comparison Parameter
                 </th>
                 {schemesList.map((scheme) => (
@@ -211,10 +211,10 @@ export const ComparePage: React.FC = () => {
                     </div>
 
                     <div>
-                      <span className="text-xs font-semibold text-brand-800 block">
+                      <span className="text-sm font-semibold text-brand-800 block">
                         {scheme.bank.name}
                       </span>
-                      <span className="text-sm font-bold text-slate-900 block leading-tight mt-0.5">
+                      <span className="text-base font-bold text-slate-900 block leading-tight mt-0.5">
                         {scheme.schemeName}
                       </span>
                     </div>
@@ -222,7 +222,6 @@ export const ComparePage: React.FC = () => {
                     <div className="pt-1">
                       <VerifiedBadge
                         status={scheme.verification.status}
-                        lastVerified={scheme.verification.lastVerified}
                         size="sm"
                       />
                     </div>
@@ -236,7 +235,7 @@ export const ComparePage: React.FC = () => {
               <tr className="bg-slate-50/50">
                 <td
                   colSpan={schemesList.length + 1}
-                  className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
+                  className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
                 >
                   A. Interest Rate Structure
                 </td>
@@ -255,7 +254,7 @@ export const ComparePage: React.FC = () => {
                 </td>
                 {schemesList.map((s) => (
                   <td key={s.id} className="p-3.5">
-                    <span className="font-extrabold text-sm text-brand-900 block">
+                    <span className="font-extrabold text-base text-brand-900 block">
                       {s.interestRate.minRate.value}% – {s.interestRate.maxRate.value}%
                     </span>
                     <span className="text-[10px] text-slate-400">Annual percentage</span>
@@ -296,7 +295,7 @@ export const ComparePage: React.FC = () => {
               <tr className="bg-slate-50/50">
                 <td
                   colSpan={schemesList.length + 1}
-                  className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
+                  className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
                 >
                   B. Loan Structure & Collateral Requirements
                 </td>
@@ -360,7 +359,7 @@ export const ComparePage: React.FC = () => {
               <tr className="bg-slate-50/50">
                 <td
                   colSpan={schemesList.length + 1}
-                  className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
+                  className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
                 >
                   C. Moratorium & Repayment
                 </td>
@@ -397,7 +396,7 @@ export const ComparePage: React.FC = () => {
               <tr className="bg-slate-50/50">
                 <td
                   colSpan={schemesList.length + 1}
-                  className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
+                  className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
                 >
                   D. Fees & Costs
                 </td>
@@ -425,7 +424,7 @@ export const ComparePage: React.FC = () => {
               <tr className="bg-slate-50/50">
                 <td
                   colSpan={schemesList.length + 1}
-                  className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
+                  className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 border-t border-slate-200"
                 >
                   E. Primary Sources & Detail Views
                 </td>

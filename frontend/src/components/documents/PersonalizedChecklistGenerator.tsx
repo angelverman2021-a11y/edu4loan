@@ -137,20 +137,20 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                 Customize Your Loan Document Checklist
               </CardTitle>
             </div>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-sm text-slate-500 font-medium">
               Adapts dynamically to your loan tier & co-borrower
             </span>
           </div>
         </CardHeader>
 
-        <CardContent className="p-6 space-y-6 text-xs">
+        <CardContent className="p-6 space-y-6 text-sm">
           {/* Preset Buttons & Loan Amount */}
           <div>
             <div className="flex justify-between items-center mb-2">
               <span className="font-bold text-slate-800 uppercase tracking-wider">
                 1. Loan Quantum (Principal Required)
               </span>
-              <span className="text-sm font-extrabold text-brand-700">
+              <span className="text-base font-extrabold text-brand-700">
                 {formatCurrency(params.estimatedLoanAmount)}
               </span>
             </div>
@@ -165,7 +165,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                   key={chip.val}
                   type="button"
                   onClick={() => setParams((prev) => ({ ...prev, estimatedLoanAmount: chip.val }))}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                     params.estimatedLoanAmount === chip.val
                       ? 'bg-brand-700 text-white shadow-sm ring-2 ring-brand-700 ring-offset-1'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -186,7 +186,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
               }
               className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-700"
             />
-            <div className="flex justify-between text-[11px] text-slate-400 mt-1">
+            <div className="flex justify-between text-xs text-slate-400 mt-1">
               <span>₹1 Lakh</span>
               <span>₹20 Lakhs</span>
               <span>₹40 Lakhs</span>
@@ -208,7 +208,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                     coApplicantType: e.target.value as any,
                   }))
                 }
-                className="w-full p-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
+                className="w-full p-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
               >
                 <option value="salaried">Salaried (MNC / Govt / Pvt)</option>
                 <option value="self_employed">Self-Employed / Business / Trade</option>
@@ -235,7 +235,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                     hasCollateral: e.target.value !== 'none',
                   }))
                 }
-                className="w-full p-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
+                className="w-full p-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
               >
                 <option value="none">None / Nil (Unsecured up to ₹7.5L)</option>
                 <option value="property">Immovable Real Estate (House / Flat)</option>
@@ -261,7 +261,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                     applyingThroughVidyaLakshmi: e.target.value === 'portal',
                   }))
                 }
-                className="w-full p-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
+                className="w-full p-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
               >
                 <option value="portal">Vidya Lakshmi / PM-Vidyalaxmi</option>
                 <option value="branch">Direct Bank Branch Application</option>
@@ -286,7 +286,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                     degreeLevel: e.target.value as any,
                   }))
                 }
-                className="w-full p-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
+                className="w-full p-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
               >
                 <option value="Undergraduate">Undergraduate (B.Tech 4-Yr)</option>
                 <option value="Postgraduate">Postgraduate (M.Tech / MCA / MBA)</option>
@@ -307,15 +307,15 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-brand-200">
+                <span className="text-sm font-semibold uppercase tracking-wider text-brand-200">
                   Dossier Readiness Score
                 </span>
                 {readiness.isReady ? (
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/40">
                     <CheckCircle2 className="h-3.5 w-3.5" /> 100% Branch Ready
                   </span>
                 ) : (
-                  <span className="text-xs text-brand-300 font-medium">
+                  <span className="text-sm text-brand-300 font-medium">
                     {readiness.totalRequired - readiness.completedCount} required documents pending
                   </span>
                 )}
@@ -323,7 +323,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
               <h3 className="text-2xl font-bold tracking-tight text-white">
                 {readiness.completedCount} of {readiness.totalRequired} Mandatory Documents Ready
               </h3>
-              <p className="text-xs text-brand-100/80 max-w-xl leading-relaxed">
+              <p className="text-sm text-brand-100/80 max-w-xl leading-relaxed">
                 {readiness.isReady
                   ? 'All mandatory requirements for your loan tier are checked! Proceed to print your physical dossier prep pack or export to CSV.'
                   : 'Gather the required items below. Keep original documents ready for bank officer verification and 2 self-attested photocopies.'}
@@ -351,7 +351,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
           </div>
 
           {/* Action Toolbar */}
-          <div className="mt-6 pt-4 border-t border-brand-800/60 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="mt-6 pt-4 border-t border-brand-800/60 flex flex-wrap items-center justify-between gap-3 text-sm">
             <div className="flex items-center gap-3">
               <Button
                 variant="outline"
@@ -392,7 +392,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
       {loading || !checklist ? (
         <div className="py-16 text-center space-y-3">
           <div className="h-8 w-8 rounded-full border-2 border-brand-600 border-t-transparent animate-spin mx-auto" />
-          <p className="text-xs text-slate-500">Generating personalized document checklist...</p>
+          <p className="text-sm text-slate-500">Generating personalized document checklist...</p>
         </div>
       ) : (
         <div className="space-y-6">
@@ -401,7 +401,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
             <CardHeader className="bg-emerald-50/60 border-b border-emerald-100 py-3.5 flex flex-row items-center justify-between">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-emerald-700" />
-                <CardTitle className="text-sm font-bold text-emerald-950">
+                <CardTitle className="text-base font-bold text-emerald-950">
                   Mandatory Required Documents ({checklist.requiredDocuments.length})
                 </CardTitle>
               </div>
@@ -410,7 +410,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
               </Badge>
             </CardHeader>
 
-            <CardContent className="p-0 divide-y divide-slate-100 text-xs">
+            <CardContent className="p-0 divide-y divide-slate-100 text-sm">
               {checklist.requiredDocuments.map((doc) => {
                 const isChecked = Boolean(checkedIds[doc._id]);
                 return (
@@ -435,20 +435,20 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                     <div className="flex-1 space-y-1">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <span
-                          className={`text-sm font-semibold ${
+                          className={`text-base font-semibold ${
                             isChecked ? 'line-through text-slate-400' : 'text-slate-900'
                           }`}
                         >
                           {doc.name}
                         </span>
-                        <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                        <span className="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
                           {doc.issuingAuthority}
                         </span>
                       </div>
 
-                      <p className="text-slate-600 text-xs leading-relaxed">{doc.description}</p>
+                      <p className="text-slate-600 text-sm leading-relaxed">{doc.description}</p>
 
-                      <div className="pt-1 flex flex-wrap items-center gap-2 text-[11px]">
+                      <div className="pt-1 flex flex-wrap items-center gap-2 text-xs">
                         <span className="text-emerald-700 font-medium flex items-center gap-1">
                           <CheckCircle2 className="h-3 w-3" /> Tip: {doc.verificationTip}
                         </span>
@@ -466,7 +466,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
               <CardHeader className="bg-slate-50 border-b border-slate-200 py-3.5 flex flex-row items-center justify-between">
                 <div className="flex items-center gap-2">
                   <FileText className="h-4 w-4 text-slate-700" />
-                  <CardTitle className="text-sm font-bold text-slate-900">
+                  <CardTitle className="text-base font-bold text-slate-900">
                     Conditional / Optional Documents ({checklist.optionalDocuments.length})
                   </CardTitle>
                 </div>
@@ -475,7 +475,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                 </Badge>
               </CardHeader>
 
-              <CardContent className="p-0 divide-y divide-slate-100 text-xs">
+              <CardContent className="p-0 divide-y divide-slate-100 text-sm">
                 {checklist.optionalDocuments.map((doc) => {
                   const isChecked = Boolean(checkedIds[doc._id]);
                   return (
@@ -498,18 +498,18 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                       <div className="flex-1 space-y-1">
                         <div className="flex flex-wrap items-center justify-between gap-2">
                           <span
-                            className={`text-sm font-semibold ${
+                            className={`text-base font-semibold ${
                               isChecked ? 'line-through text-slate-400' : 'text-slate-900'
                             }`}
                           >
                             {doc.name}
                           </span>
-                          <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                          <span className="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
                             {doc.issuingAuthority}
                           </span>
                         </div>
-                        <p className="text-slate-600 text-xs leading-relaxed">{doc.description}</p>
-                        <p className="text-slate-500 text-[11px]">
+                        <p className="text-slate-600 text-sm leading-relaxed">{doc.description}</p>
+                        <p className="text-slate-500 text-xs">
                           <strong>Applicability:</strong> {doc.applicableCondition}
                         </p>
                       </div>
@@ -530,10 +530,10 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
               >
                 <div className="flex items-center gap-2">
                   <AlertCircle className="h-4 w-4 text-slate-500" />
-                  <span className="text-xs font-bold text-slate-800">
+                  <span className="text-sm font-bold text-slate-800">
                     Exempted / Not Applicable Documents ({checklist.notApplicableDocuments.length})
                   </span>
-                  <span className="text-[11px] text-slate-500">
+                  <span className="text-xs text-slate-500">
                     — Documents not required for your selected profile
                   </span>
                 </div>
@@ -545,8 +545,8 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
               </button>
 
               {showNotApplicable && (
-                <div className="p-4 pt-0 border-t border-slate-200 space-y-2 text-xs">
-                  <p className="text-[11px] text-slate-500 mb-3 pt-2">
+                <div className="p-4 pt-0 border-t border-slate-200 space-y-2 text-sm">
+                  <p className="text-xs text-slate-500 mb-3 pt-2">
                     Based on your loan parameters ({formatCurrency(params.estimatedLoanAmount)},{' '}
                     {params.coApplicantType} co-borrower), you do not need to provide the following items:
                   </p>
@@ -562,7 +562,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
                             Exempted
                           </span>
                         </div>
-                        <p className="text-[11px] text-slate-500">{doc.applicableCondition}</p>
+                        <p className="text-xs text-slate-500">{doc.applicableCondition}</p>
                       </div>
                     ))}
                   </div>
@@ -572,7 +572,7 @@ export const PersonalizedChecklistGenerator: React.FC<PersonalizedChecklistGener
           )}
 
           {/* Statutory Disclaimer Banner */}
-          <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-blue-950 text-xs flex items-start gap-3">
+          <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-blue-950 text-sm flex items-start gap-3">
             <Info className="h-4 w-4 text-blue-700 shrink-0 mt-0.5" />
             <div className="leading-relaxed space-y-1">
               <span className="font-bold">Important Statutory Clarification</span>

@@ -95,7 +95,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
             <h3 className="font-bold text-slate-900 text-base">
               {initialData ? 'Edit Loan Application Tracker' : 'Track New Loan Application'}
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-sm text-slate-500">
               Record your education loan submission to track milestones and branch commitments.
             </p>
           </div>
@@ -108,7 +108,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 text-xs">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4 text-sm">
           {/* Bank Selection */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
@@ -118,7 +118,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
               <select
                 value={bankName}
                 onChange={(e) => setBankName(e.target.value)}
-                className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
               >
                 {COMMON_BANKS.map((b) => (
                   <option key={b} value={b}>
@@ -140,7 +140,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
                   placeholder="e.g. Bank of Maharashtra"
                   value={customBank}
                   onChange={(e) => setCustomBank(e.target.value)}
-                  className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                  className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                 />
               </div>
             )}
@@ -155,7 +155,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
                 placeholder="e.g. SBI Scholar Scheme, Baroda Vidya"
                 value={schemeName}
                 onChange={(e) => setSchemeName(e.target.value)}
-                className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
               />
             </div>
           </div>
@@ -174,7 +174,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
                 step={10000}
                 value={requestedAmount}
                 onChange={(e) => setRequestedAmount(Number(e.target.value))}
-                className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
               />
             </div>
 
@@ -185,7 +185,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as ApplicationStage)}
-                className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white font-medium"
+                className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white font-medium"
               >
                 <option value="draft">1. Draft Application</option>
                 <option value="submitted">2. Submitted to Portal / Branch</option>
@@ -208,7 +208,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
               <select
                 value={degreeProgram}
                 onChange={(e) => setDegreeProgram(e.target.value)}
-                className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
               >
                 {DEGREE_PROGRAMS.map((dp) => (
                   <option key={dp} value={dp}>
@@ -228,7 +228,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
                 max={2030}
                 value={admissionYear}
                 onChange={(e) => setAdmissionYear(Number(e.target.value))}
-                className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
               />
             </div>
           </div>
@@ -243,7 +243,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
               placeholder="e.g. CELFS-2026-VITB-0982"
               value={vlpId}
               onChange={(e) => setVlpId(e.target.value)}
-              className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white font-mono"
+              className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white font-mono"
             />
             <p className="text-[10px] text-slate-400 mt-1">
               Found on your Vidya Lakshmi Portal application dashboard after CELFS form submission.
@@ -260,7 +260,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
               placeholder="e.g. Submit original 10th/12th marksheets for OSV on Tuesday"
               value={nextAction}
               onChange={(e) => setNextAction(e.target.value)}
-              className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
             />
           </div>
 
@@ -274,7 +274,7 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
               placeholder="Notes on margin money discussion, co-borrower documents, or interest concessions..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
             />
           </div>
 

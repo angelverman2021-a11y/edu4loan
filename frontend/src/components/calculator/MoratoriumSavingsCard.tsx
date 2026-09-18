@@ -33,7 +33,7 @@ export const MoratoriumSavingsCard: React.FC<MoratoriumSavingsCardProps> = ({
             <span className="p-1.5 rounded-lg bg-emerald-600 text-white shadow-xs">
               <Sparkles className="h-4 w-4" />
             </span>
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-950">
+            <span className="text-sm font-bold uppercase tracking-wider text-emerald-950">
               Moratorium Interest Intelligence
             </span>
           </div>
@@ -43,22 +43,22 @@ export const MoratoriumSavingsCard: React.FC<MoratoriumSavingsCardProps> = ({
         <div>
           {isServicing ? (
             <div className="space-y-1">
-              <p className="text-sm font-bold text-emerald-900">
+              <p className="text-base font-bold text-emerald-900">
                 You are currently modeling monthly interest servicing during college.
               </p>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 By paying the simple interest monthly during your 4-year B.Tech, your loan principal will not capitalize, saving you thousands in compound interest over the repayment tenure.
               </p>
             </div>
           ) : (
             <div className="space-y-1">
-              <p className="text-xs text-slate-500 font-semibold uppercase">
+              <p className="text-sm text-slate-500 font-semibold uppercase">
                 Potential Savings by Servicing Simple Interest
               </p>
               <p className="text-2xl font-black text-emerald-800 tracking-tight">
                 {formatCurrency(savingsAmount)}
               </p>
-              <p className="text-xs text-slate-600 leading-relaxed pt-1">
+              <p className="text-sm text-slate-600 leading-relaxed pt-1">
                 If interest is not serviced monthly, {formatCurrency(moratoriumInterest)} will be capitalized into your principal at the start of repayment, causing your post-college EMI to be significantly higher.
               </p>
             </div>
@@ -69,7 +69,7 @@ export const MoratoriumSavingsCard: React.FC<MoratoriumSavingsCardProps> = ({
           <button
             type="button"
             onClick={onToggleServicing}
-            className="text-xs font-semibold text-emerald-800 hover:text-emerald-950 underline cursor-pointer"
+            className="text-sm font-semibold text-emerald-800 hover:text-emerald-950 underline cursor-pointer"
           >
             {isServicing
               ? 'Switch to Capitalized Interest Simulation'
@@ -79,7 +79,7 @@ export const MoratoriumSavingsCard: React.FC<MoratoriumSavingsCardProps> = ({
       </div>
 
       {/* CSIS Subsidy Reminder */}
-      <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs text-xs space-y-2">
+      <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs text-sm space-y-2">
         <div className="flex items-center gap-2 font-bold text-slate-900">
           <Landmark className="h-4 w-4 text-brand-700" />
           <span>Central Sector Interest Subsidy (CSIS) Eligibility</span>

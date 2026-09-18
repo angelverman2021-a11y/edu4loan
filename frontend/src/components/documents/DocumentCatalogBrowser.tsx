@@ -65,7 +65,7 @@ export const DocumentCatalogBrowser: React.FC = () => {
   }, [documents, selectedCategory, searchQuery]);
 
   return (
-    <div className="space-y-6 text-xs">
+    <div className="space-y-6 text-sm">
       {/* Search & Category Filter Rail */}
       <div className="space-y-3">
         <div className="flex flex-col sm:flex-row gap-3">
@@ -76,13 +76,13 @@ export const DocumentCatalogBrowser: React.FC = () => {
               placeholder="Search by document name, issuing authority, or verification keyword..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-300 bg-white text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
             />
           </div>
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="px-3 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors shrink-0"
+              className="px-3 py-2 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors shrink-0"
             >
               Clear Search
             </button>
@@ -95,7 +95,7 @@ export const DocumentCatalogBrowser: React.FC = () => {
             <button
               key={cat.key}
               onClick={() => setSelectedCategory(cat.key)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${
                 selectedCategory === cat.key
                   ? 'bg-brand-700 text-white shadow-sm'
                   : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
@@ -111,12 +111,12 @@ export const DocumentCatalogBrowser: React.FC = () => {
       {loading ? (
         <div className="py-20 text-center space-y-3">
           <div className="h-8 w-8 rounded-full border-2 border-brand-600 border-t-transparent animate-spin mx-auto" />
-          <p className="text-xs text-slate-500">Loading master document catalog...</p>
+          <p className="text-sm text-slate-500">Loading master document catalog...</p>
         </div>
       ) : filteredDocs.length === 0 ? (
         <div className="p-8 text-center bg-slate-50 rounded-xl border border-slate-200 space-y-2">
           <FileText className="h-8 w-8 text-slate-400 mx-auto" />
-          <h4 className="text-sm font-bold text-slate-800">No matching documents found</h4>
+          <h4 className="text-base font-bold text-slate-800">No matching documents found</h4>
           <p className="text-slate-500">Try adjusting your keyword search or category filter.</p>
         </div>
       ) : (
@@ -134,26 +134,26 @@ export const DocumentCatalogBrowser: React.FC = () => {
                   >
                     {doc.isRequired ? 'Compulsory' : 'Conditional'}
                   </Badge>
-                  <span className="text-[11px] font-medium text-slate-500 flex items-center gap-1">
+                  <span className="text-xs font-medium text-slate-500 flex items-center gap-1">
                     <Building2 className="h-3 w-3" />
                     {doc.issuingAuthority}
                   </span>
                 </div>
-                <CardTitle className="text-sm font-bold text-slate-900 mt-1.5 leading-snug">
+                <CardTitle className="text-base font-bold text-slate-900 mt-1.5 leading-snug">
                   {doc.name}
                 </CardTitle>
               </CardHeader>
 
               <CardContent className="space-y-3 flex-1 flex flex-col justify-between">
-                <p className="text-slate-600 text-xs leading-relaxed">{doc.description}</p>
+                <p className="text-slate-600 text-sm leading-relaxed">{doc.description}</p>
 
                 <div className="space-y-2 pt-2 border-t border-slate-100">
-                  <div className="p-2 rounded bg-slate-50 border border-slate-100 text-[11px] text-slate-700">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-100 text-xs text-slate-700">
                     <span className="font-bold text-slate-800 block mb-0.5">Applicability:</span>
                     <span>{doc.applicableCondition}</span>
                   </div>
 
-                  <div className="p-2 rounded bg-emerald-50/60 border border-emerald-100 text-[11px] text-emerald-900">
+                  <div className="p-2 rounded bg-emerald-50/60 border border-emerald-100 text-xs text-emerald-900">
                     <span className="font-bold flex items-center gap-1 text-emerald-800 mb-0.5">
                       <CheckCircle2 className="h-3 w-3" /> Verification Tip:
                     </span>

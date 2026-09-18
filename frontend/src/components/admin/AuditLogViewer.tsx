@@ -40,14 +40,14 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ logs }) => {
   };
 
   return (
-    <div className="space-y-4 text-xs">
+    <div className="space-y-4 text-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+          <h3 className="text-base font-bold text-slate-900 flex items-center gap-1.5">
             <Clock className="h-4 w-4 text-brand-700" />
             Immutable Administrative Audit Trail
           </h3>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-xs text-slate-500">
             Append-only historical ledger tracking every rate modification, status verification, and
             system maintenance event.
           </p>
@@ -57,7 +57,7 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ logs }) => {
           <select
             value={filterEntity}
             onChange={(e) => setFilterEntity(e.target.value)}
-            className="p-1.5 text-xs rounded-lg border border-slate-300 bg-white"
+            className="p-1.5 text-sm rounded-lg border border-slate-300 bg-white"
           >
             <option value="all">All Entities</option>
             <option value="loanscheme">Loan Schemes</option>
@@ -82,12 +82,12 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ logs }) => {
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     {getActionBadge(log.action)}
-                    <span className="font-mono font-bold text-slate-800 text-[11px]">
+                    <span className="font-mono font-bold text-slate-800 text-xs">
                       {log.entityType}::{log.entityId}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-3 text-slate-400 text-[11px]">
+                  <div className="flex items-center gap-3 text-slate-400 text-xs">
                     <span className="flex items-center gap-1">
                       <User className="h-3 w-3" /> {log.userEmail}
                     </span>
@@ -97,7 +97,7 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ logs }) => {
                 </div>
 
                 {log.fieldChanged && (
-                  <div className="flex items-center gap-2 text-[11px]">
+                  <div className="flex items-center gap-2 text-xs">
                     <span className="text-slate-500">Field: {log.fieldChanged}</span>
                     <span className="text-slate-400">—</span>
                     <span className="line-through text-slate-400">{String(log.oldValue ?? '')}</span>
@@ -107,7 +107,7 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ logs }) => {
                 )}
 
                 {log.reason && (
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200/60 text-[11px] text-slate-600">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200/60 text-xs text-slate-600">
                     <strong className="text-slate-700">Audit Justification:</strong> {log.reason}
                   </div>
                 )}

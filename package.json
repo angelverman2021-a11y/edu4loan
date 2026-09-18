@@ -22,5 +22,8 @@
     "pm-vidyalaxmi"
   ],
   "author": "Edu4Loan Team",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
 }

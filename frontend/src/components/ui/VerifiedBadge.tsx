@@ -33,7 +33,7 @@ export const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
 
   const config = {
     verified: {
-      label: 'Verified Data',
+      label: 'Estimated Data',
       bg: 'bg-emerald-50 text-emerald-800 border-emerald-200/90 hover:bg-emerald-100/70',
       icon: ShieldCheck,
       iconColor: 'text-emerald-600',
@@ -56,11 +56,11 @@ export const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
   const Icon = current.icon;
 
   const sizeStyles = {
-    sm: 'text-[11px] px-2 py-0.5 gap-1',
-    md: 'text-xs px-2.5 py-1 gap-1.5',
+    sm: 'text-xs px-2 py-0.5 gap-1',
+    md: 'text-sm px-2.5 py-1 gap-1.5',
   };
 
-  const hasPopover = Boolean(source || sourceUrl || lastVerified);
+  const hasPopover = Boolean(source || sourceUrl);
 
   return (
     <div className="relative inline-block text-left">
@@ -79,14 +79,13 @@ export const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
       >
         <Icon className={clsx('shrink-0', size === 'sm' ? 'h-3 w-3' : 'h-3.5 w-3.5', current.iconColor)} />
         <span>{current.label}</span>
-        {formattedDate && <span className="opacity-75 font-normal">({formattedDate})</span>}
       </button>
 
       {/* Popover showing authoritative citation */}
       {isOpen && hasPopover && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
-          <div className="absolute left-0 mt-1.5 z-50 w-72 rounded-lg bg-white p-3.5 shadow-lg border border-slate-200 text-xs text-slate-700 animate-in fade-in zoom-in-95 duration-100">
+          <div className="absolute left-0 mt-1.5 z-50 w-72 rounded-lg bg-white p-3.5 shadow-lg border border-slate-200 text-sm text-slate-700 animate-in fade-in zoom-in-95 duration-100">
             <div className="font-semibold text-slate-900 mb-1 flex items-center justify-between">
               <span>Source Provenance</span>
               <span
@@ -103,17 +102,6 @@ export const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
               <p className="text-slate-600 mb-1.5">
                 <span className="font-medium text-slate-800">Primary Source: </span>
                 {source}
-              </p>
-            )}
-
-            {lastVerified && (
-              <p className="text-slate-500 mb-2">
-                <span className="font-medium text-slate-700">Verified On: </span>
-                {new Date(lastVerified).toLocaleDateString('en-IN', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                })}
               </p>
             )}
 

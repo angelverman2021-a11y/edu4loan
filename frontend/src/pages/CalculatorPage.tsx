@@ -120,25 +120,20 @@ export const CalculatorPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="min-h-[calc(100vh-4rem)] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Header */}
       <div className="max-w-3xl space-y-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="info">Modules 5, 6 & 7 Financial Engine</Badge>
-          <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
-          <span className="text-xs text-slate-500 font-medium">RBI Model Scheme Compliant</span>
-        </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
           <Calculator className="h-9 w-9 text-brand-700 shrink-0" />
           <span>Interactive Education Loan & Repayment Hub</span>
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+        <p className="text-base sm:text-base text-slate-600 leading-relaxed">
           Accurately simulate your repayment schedule taking into account 4 years of study, 1-year moratorium, simple interest servicing versus capitalization, prepayment acceleration, benchmark interest rates, and statutory collateral rules.
         </p>
       </div>
 
       {/* Main Tab Navigation */}
-      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-sm font-semibold">
+      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-base font-semibold">
         <button
           onClick={() => setTab('simulator')}
           className={`px-5 py-3 rounded-t-xl transition-all border-b-2 whitespace-nowrap flex items-center gap-2 ${
@@ -189,13 +184,13 @@ export const CalculatorPage: React.FC = () => {
                     <CardTitle className="text-base font-bold text-slate-900">
                       Loan & Study Parameters
                     </CardTitle>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-sm text-slate-500 mt-0.5">
                       Adjust sliders or select presets to model your repayment
                     </p>
                   </div>
                   <button
                     onClick={resetDefaults}
-                    className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-brand-700 font-medium transition-colors"
+                    className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-brand-700 font-medium transition-colors"
                     title="Reset to default VIT B.Tech values"
                   >
                     <RotateCcw className="h-3.5 w-3.5" />
@@ -205,7 +200,7 @@ export const CalculatorPage: React.FC = () => {
                 <CardContent className="space-y-6 pt-5">
                   {/* Preset Amount Chips */}
                   <div>
-                    <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider block mb-2">
+                    <span className="text-sm font-semibold text-slate-600 uppercase tracking-wider block mb-2">
                       Popular VIT Loan Scenarios
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -220,7 +215,7 @@ export const CalculatorPage: React.FC = () => {
                           key={preset.val}
                           type="button"
                           onClick={() => setPrincipal(preset.val)}
-                          className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-all ${
+                          className={`px-2.5 py-1 text-sm font-semibold rounded-lg transition-all ${
                             principal === preset.val
                               ? 'bg-brand-700 text-white shadow-sm ring-2 ring-brand-700 ring-offset-1'
                               : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -235,7 +230,7 @@ export const CalculatorPage: React.FC = () => {
                   {/* Principal Slider */}
                   <div>
                     <div className="flex justify-between items-center mb-1.5">
-                      <label className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                      <label className="text-sm font-bold text-slate-800 uppercase tracking-wider">
                         Total Loan Amount (Principal)
                       </label>
                       <span className="text-base font-extrabold text-brand-700">
@@ -251,7 +246,7 @@ export const CalculatorPage: React.FC = () => {
                       onChange={(e) => setPrincipal(Number(e.target.value))}
                       className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-700"
                     />
-                    <div className="flex justify-between text-[11px] text-slate-400 mt-1 font-medium">
+                    <div className="flex justify-between text-xs text-slate-400 mt-1 font-medium">
                       <span>₹1 Lakh</span>
                       <span>₹12 Lakhs (Typical)</span>
                       <span>₹40 Lakhs</span>
@@ -262,11 +257,11 @@ export const CalculatorPage: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center mb-1.5">
                       <div>
-                        <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block">
+                        <label className="text-sm font-bold text-slate-800 uppercase tracking-wider block">
                           Base Annual Interest Rate (% p.a.)
                         </label>
                         {effectiveAnnualRate !== baseRate && (
-                          <span className="text-[11px] text-emerald-700 font-semibold">
+                          <span className="text-xs text-emerald-700 font-semibold">
                             Effective Rate with concessions: {effectiveAnnualRate.toFixed(2)}%
                           </span>
                         )}
@@ -284,14 +279,14 @@ export const CalculatorPage: React.FC = () => {
                       onChange={(e) => setBaseRate(Number(e.target.value))}
                       className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-700"
                     />
-                    <div className="flex justify-between text-[11px] text-slate-400 mt-1 font-medium">
+                    <div className="flex justify-between text-xs text-slate-400 mt-1 font-medium">
                       <span>7.0% (Premier Tier)</span>
                       <span>9.15% (Public Sector Standard)</span>
                       <span>15.0%</span>
                     </div>
 
                     {/* Concessions Section */}
-                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs">
+                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-sm">
                       <span className="font-bold text-slate-700 block">
                         Eligible Concession Discounts
                       </span>
@@ -307,7 +302,7 @@ export const CalculatorPage: React.FC = () => {
                             <span className="font-semibold text-slate-900 block">
                               Girl Student Concession
                             </span>
-                            <span className="text-[11px] text-emerald-700 font-medium">
+                            <span className="text-xs text-emerald-700 font-medium">
                               -0.50% interest discount
                             </span>
                           </div>
@@ -324,7 +319,7 @@ export const CalculatorPage: React.FC = () => {
                             <span className="font-semibold text-slate-900 block">
                               Prompt Servicing Rebate
                             </span>
-                            <span className="text-[11px] text-emerald-700 font-medium">
+                            <span className="text-xs text-emerald-700 font-medium">
                               -1.00% during moratorium
                             </span>
                           </div>
@@ -336,13 +331,13 @@ export const CalculatorPage: React.FC = () => {
                   {/* Course Duration & Moratorium Period */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
+                      <label className="text-sm font-bold text-slate-800 uppercase tracking-wider block mb-1">
                         Degree Duration
                       </label>
                       <select
                         value={courseYears}
                         onChange={(e) => setCourseYears(Number(e.target.value))}
-                        className="w-full p-2.5 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
+                        className="w-full p-2.5 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
                       >
                         <option value={2}>2 Years (M.Tech / MBA)</option>
                         <option value={3}>3 Years (MCA / BCA)</option>
@@ -352,13 +347,13 @@ export const CalculatorPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
+                      <label className="text-sm font-bold text-slate-800 uppercase tracking-wider block mb-1">
                         Moratorium Grace Period
                       </label>
                       <select
                         value={moratoriumMonths}
                         onChange={(e) => setMoratoriumMonths(Number(e.target.value))}
-                        className="w-full p-2.5 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
+                        className="w-full p-2.5 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
                       >
                         <option value={6}>6 Months post graduation</option>
                         <option value={12}>12 Months post graduation (Standard)</option>
@@ -370,7 +365,7 @@ export const CalculatorPage: React.FC = () => {
                   {/* Repayment Tenure Slider */}
                   <div>
                     <div className="flex justify-between items-center mb-1.5">
-                      <label className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                      <label className="text-sm font-bold text-slate-800 uppercase tracking-wider">
                         Repayment Tenure (Post Moratorium)
                       </label>
                       <span className="text-base font-extrabold text-brand-700">
@@ -386,7 +381,7 @@ export const CalculatorPage: React.FC = () => {
                       onChange={(e) => setTenureYears(Number(e.target.value))}
                       className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-700"
                     />
-                    <div className="flex justify-between text-[11px] text-slate-400 mt-1 font-medium">
+                    <div className="flex justify-between text-xs text-slate-400 mt-1 font-medium">
                       <span>5 Years (Lower Total Interest)</span>
                       <span>10 Years (Balanced)</span>
                       <span>15 Years (Lowest Monthly EMI)</span>
@@ -404,7 +399,7 @@ export const CalculatorPage: React.FC = () => {
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-slate-900">
+                        <span className="text-sm font-bold text-slate-900">
                           Service Simple Interest Monthly During Study?
                         </span>
                         {serviceInterestMonthly && (
@@ -413,7 +408,7 @@ export const CalculatorPage: React.FC = () => {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">
+                      <p className="text-xs text-slate-600 leading-relaxed">
                         If checked, you pay only simple interest (~
                         {formatCurrency(
                           Math.round((principal * (effectiveAnnualRate / 100)) / 12)
@@ -440,29 +435,29 @@ export const CalculatorPage: React.FC = () => {
               <Card className="border-2 border-brand-200 shadow-md overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-brand-900 to-brand-800 text-white p-6">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-brand-200">
+                    <span className="text-sm font-semibold uppercase tracking-wider text-brand-200">
                       Calculated Monthly Outflow
                     </span>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-brand-700 text-brand-100 font-medium">
+                    <span className="text-sm px-2.5 py-0.5 rounded-full bg-brand-700 text-brand-100 font-medium">
                       {calcResult.totalMoratoriumMonths} Mo Moratorium
                     </span>
                   </div>
                   <div className="mt-4">
-                    <p className="text-xs text-brand-200 font-medium">Post-Moratorium EMI</p>
+                    <p className="text-sm text-brand-200 font-medium">Post-Moratorium EMI</p>
                     <div className="flex items-baseline gap-2 mt-1">
                       <span className="text-4xl font-extrabold text-white tracking-tight">
                         {formatCurrency(calcResult.monthlyEMI)}
                       </span>
-                      <span className="text-sm font-medium text-brand-200">/ month</span>
+                      <span className="text-base font-medium text-brand-200">/ month</span>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-brand-700/60 flex items-center justify-between text-xs text-brand-100">
+                  <div className="mt-4 pt-4 border-t border-brand-700/60 flex items-center justify-between text-sm text-brand-100">
                     <span>Effective Rate: <strong>{effectiveAnnualRate.toFixed(2)}% p.a.</strong></span>
                     <span>Tenure: <strong>{tenureYears} Years ({tenureYears * 12} EMIs)</strong></span>
                   </div>
                 </CardHeader>
 
-                <CardContent className="p-6 space-y-4 text-xs">
+                <CardContent className="p-6 space-y-4 text-sm">
                   <div className="space-y-2.5">
                     <div className="flex justify-between py-1.5 border-b border-slate-100">
                       <span className="text-slate-600">Principal Borrowed:</span>
@@ -495,7 +490,7 @@ export const CalculatorPage: React.FC = () => {
                       </span>
                     </div>
 
-                    <div className="flex justify-between py-2 border-t-2 border-slate-200 text-sm">
+                    <div className="flex justify-between py-2 border-t-2 border-slate-200 text-base">
                       <span className="font-bold text-slate-900">Total Lifetime Outflow:</span>
                       <span className="font-extrabold text-brand-800">
                         {formatCurrency(calcResult.totalAmountPaid)}
@@ -504,7 +499,7 @@ export const CalculatorPage: React.FC = () => {
                   </div>
 
                   {/* Section 80E Tax Relief Quick Note */}
-                  <div className="p-3 bg-blue-50/70 border border-blue-200 rounded-lg text-[11px] text-blue-900 flex items-start gap-2">
+                  <div className="p-3 bg-blue-50/70 border border-blue-200 rounded-lg text-xs text-blue-900 flex items-start gap-2">
                     <Info className="h-4 w-4 text-blue-700 shrink-0 mt-0.5" />
                     <span>
                       <strong>Section 80E Tax Relief:</strong> 100% of the interest paid (₹
@@ -532,7 +527,7 @@ export const CalculatorPage: React.FC = () => {
                   <CardTitle className="text-base font-bold text-slate-900">
                     Visual Repayment Analytics
                   </CardTitle>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-sm text-slate-500 mt-0.5">
                     Interactive Recharts visualizations of loan structure and amortization
                   </p>
                 </div>
@@ -541,7 +536,7 @@ export const CalculatorPage: React.FC = () => {
                 <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
                   <button
                     onClick={() => setActiveChartView('donut')}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 text-sm font-semibold rounded-md transition-all flex items-center gap-1.5 ${
                       activeChartView === 'donut'
                         ? 'bg-white text-brand-700 shadow-sm'
                         : 'text-slate-600 hover:text-slate-900'
@@ -553,7 +548,7 @@ export const CalculatorPage: React.FC = () => {
 
                   <button
                     onClick={() => setActiveChartView('area')}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 text-sm font-semibold rounded-md transition-all flex items-center gap-1.5 ${
                       activeChartView === 'area'
                         ? 'bg-white text-brand-700 shadow-sm'
                         : 'text-slate-600 hover:text-slate-900'
@@ -565,7 +560,7 @@ export const CalculatorPage: React.FC = () => {
 
                   <button
                     onClick={() => setActiveChartView('bar')}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 text-sm font-semibold rounded-md transition-all flex items-center gap-1.5 ${
                       activeChartView === 'bar'
                         ? 'bg-white text-brand-700 shadow-sm'
                         : 'text-slate-600 hover:text-slate-900'
@@ -583,8 +578,8 @@ export const CalculatorPage: React.FC = () => {
                     <div className="md:col-span-7">
                       <RepaymentDonutChart data={donutData} totalAmount={calcResult.totalAmountPaid} />
                     </div>
-                    <div className="md:col-span-5 space-y-3 text-xs">
-                      <h4 className="text-sm font-bold text-slate-900">Total Outflow Distribution</h4>
+                    <div className="md:col-span-5 space-y-3 text-sm">
+                      <h4 className="text-base font-bold text-slate-900">Total Outflow Distribution</h4>
                       <p className="text-slate-600 leading-relaxed">
                         For a principal of <strong>{formatCurrency(principal)}</strong>, your total repayment over the {tenureYears}-year horizon amounts to{' '}
                         <strong>{formatCurrency(calcResult.totalAmountPaid)}</strong>.
@@ -606,8 +601,8 @@ export const CalculatorPage: React.FC = () => {
 
                 {activeChartView === 'area' && (
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center text-xs">
-                      <h4 className="text-sm font-bold text-slate-900">
+                    <div className="flex justify-between items-center text-sm">
+                      <h4 className="text-base font-bold text-slate-900">
                         Loan Balance Trajectory Over {courseYears + 1 + tenureYears} Total Years
                       </h4>
                       <span className="text-slate-500 font-medium">Study &rarr; Moratorium &rarr; ₹0 Debt</span>
@@ -618,8 +613,8 @@ export const CalculatorPage: React.FC = () => {
 
                 {activeChartView === 'bar' && (
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center text-xs">
-                      <h4 className="text-sm font-bold text-slate-900">
+                    <div className="flex justify-between items-center text-sm">
+                      <h4 className="text-base font-bold text-slate-900">
                         Yearly Principal vs Interest Split
                       </h4>
                       <span className="text-slate-500 font-medium">

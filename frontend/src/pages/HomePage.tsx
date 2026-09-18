@@ -47,16 +47,16 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-16 pb-16">
+    <div className="h-[calc(100vh-4rem)] overflow-y-auto snap-y snap-mandatory scroll-smooth">
       {/* 1. HERO SECTION: Royal Blue Background with restrained gradient */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-vit-navy via-vit-royal to-vit-blue text-white py-16 sm:py-24">
+      <section className="relative min-h-[calc(100vh-4rem)] snap-start flex flex-col justify-center overflow-hidden bg-gradient-to-b from-vit-navy via-vit-royal to-vit-blue text-white py-16 sm:py-24">
         {/* Subtle geometric pattern overlay */}
         <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-6">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 text-xs font-medium text-blue-100">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 text-sm font-medium text-blue-100">
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-300" />
               <span>Impartial & Non-Brokerage Guidance • For VIT Bhopal Students</span>
             </div>
@@ -103,7 +103,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Trust Metrics Strip */}
-            <div className="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+            <div className="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-emerald-400" />
                 <span className="text-blue-100">100% Neutral Comparison</span>
@@ -121,119 +121,8 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. THE 4 PILLARS OF DECISION SUPPORT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <Badge variant="info" className="mb-2">Core Capabilities</Badge>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-            Built Specifically For The VIT Bhopal Student Journey
-          </h2>
-          <p className="text-sm text-slate-600 mt-2">
-            Every feature is designed to demystify complex banking terminology and ensure you enter loan negotiations fully prepared.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Pillar 1: Bank Discovery */}
-          <Card interactive className="flex flex-col justify-between">
-            <CardContent className="space-y-4">
-              <div className="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 text-brand-700 flex items-center justify-center">
-                <Building2 className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-slate-900 text-base">Unbiased Bank Comparison</h3>
-                <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
-                  Factual breakdown of SBI, Canara, PNB, Union Bank, and leading private lenders with zero sponsored rankings or kickbacks.
-                </p>
-              </div>
-            </CardContent>
-            <div className="px-6 pb-5 pt-0">
-              <Link
-                to="/banks"
-                className="text-xs font-semibold text-brand-700 hover:text-brand-800 inline-flex items-center gap-1 group"
-              >
-                <span>Browse Banks</span>
-                <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
-          </Card>
-
-          {/* Pillar 2: Collateral & RBI Norms */}
-          <Card interactive className="flex flex-col justify-between">
-            <CardContent className="space-y-4">
-              <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center justify-center">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-slate-900 text-base">RBI Collateral Intelligence</h3>
-                <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
-                  Know your statutory rights: No collateral required up to ₹4 Lakhs, third-party guarantee up to ₹7.5 Lakhs, and tangible security above.
-                </p>
-              </div>
-            </CardContent>
-            <div className="px-6 pb-5 pt-0">
-              <Link
-                to="/finder"
-                className="text-xs font-semibold text-brand-700 hover:text-brand-800 inline-flex items-center gap-1 group"
-              >
-                <span>Check Your Tier</span>
-                <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
-          </Card>
-
-          {/* Pillar 3: Moratorium & EMI Calculator */}
-          <Card interactive className="flex flex-col justify-between">
-            <CardContent className="space-y-4">
-              <div className="h-10 w-10 rounded-xl bg-amber-50 border border-amber-100 text-amber-700 flex items-center justify-center">
-                <Calculator className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-slate-900 text-base">Moratorium & EMI Simulator</h3>
-                <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
-                  Understand how interest accrues during your 4 years of study and 1 year moratorium period, and see the huge impact of capitalization.
-                </p>
-              </div>
-            </CardContent>
-            <div className="px-6 pb-5 pt-0">
-              <Link
-                to="/calculator"
-                className="text-xs font-semibold text-brand-700 hover:text-brand-800 inline-flex items-center gap-1 group"
-              >
-                <span>Simulate Repayment</span>
-                <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
-          </Card>
-
-          {/* Pillar 4: Document Checklist */}
-          <Card interactive className="flex flex-col justify-between">
-            <CardContent className="space-y-4">
-              <div className="h-10 w-10 rounded-xl bg-purple-50 border border-purple-100 text-purple-700 flex items-center justify-center">
-                <FileCheck2 className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-slate-900 text-base">Personalized Checklist</h3>
-                <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
-                  Generate a customized dossier of KYC, academic records, co-applicant ITRs, and VIT Bhopal bonafide estimates required by branch managers.
-                </p>
-              </div>
-            </CardContent>
-            <div className="px-6 pb-5 pt-0">
-              <Link
-                to="/documents"
-                className="text-xs font-semibold text-brand-700 hover:text-brand-800 inline-flex items-center gap-1 group"
-              >
-                <span>Generate Checklist</span>
-                <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* 3. QUICK EMI PREVIEW & COMPARISON TOOL (Interactive Section) */}
-      <section className="fintech-section-subtle py-14">
+      {/* 2. QUICK EMI PREVIEW & COMPARISON TOOL (Interactive Section) */}
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex flex-col justify-center fintech-section-subtle py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Column: Sliders & Controls */}
@@ -243,7 +132,7 @@ export const HomePage: React.FC = () => {
                 <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
                   Instant Loan Repayment Snapshot
                 </h2>
-                <p className="text-xs text-slate-600 mt-1">
+                <p className="text-sm text-slate-600 mt-1">
                   Adjust the parameters below to see estimated monthly installments and interest commitments.
                 </p>
               </div>
@@ -252,10 +141,10 @@ export const HomePage: React.FC = () => {
                 {/* Loan Amount Slider */}
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
-                    <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                    <label className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
                       Loan Amount Required
                     </label>
-                    <span className="text-sm font-bold text-brand-700">
+                    <span className="text-base font-bold text-brand-700">
                       {formatCurrency(loanAmount)}
                     </span>
                   </div>
@@ -268,7 +157,7 @@ export const HomePage: React.FC = () => {
                     onChange={(e) => setLoanAmount(Number(e.target.value))}
                     className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-700"
                   />
-                  <div className="flex justify-between text-[11px] text-slate-400 mt-1">
+                  <div className="flex justify-between text-xs text-slate-400 mt-1">
                     <span>₹2 Lakhs (Subsidized)</span>
                     <span>₹15L (VIT Cat 3-5)</span>
                     <span>₹40 Lakhs (Max)</span>
@@ -278,10 +167,10 @@ export const HomePage: React.FC = () => {
                 {/* Interest Rate Slider */}
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
-                    <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                    <label className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
                       Estimated Interest Rate (p.a.)
                     </label>
-                    <span className="text-sm font-bold text-brand-700">{interestRate}%</span>
+                    <span className="text-base font-bold text-brand-700">{interestRate}%</span>
                   </div>
                   <input
                     type="range"
@@ -292,7 +181,7 @@ export const HomePage: React.FC = () => {
                     onChange={(e) => setInterestRate(Number(e.target.value))}
                     className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-700"
                   />
-                  <div className="flex justify-between text-[11px] text-slate-400 mt-1">
+                  <div className="flex justify-between text-xs text-slate-400 mt-1">
                     <span>7.5% (Concessional/Repo)</span>
                     <span>9.5% (Typical Public Bank)</span>
                     <span>14.0% (NBFC/Unsecured)</span>
@@ -302,10 +191,10 @@ export const HomePage: React.FC = () => {
                 {/* Repayment Tenure */}
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
-                    <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                    <label className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
                       Repayment Tenure (Post-Moratorium)
                     </label>
-                    <span className="text-sm font-bold text-brand-700">{tenureYears} Years ({totalMonths} Months)</span>
+                    <span className="text-base font-bold text-brand-700">{tenureYears} Years ({totalMonths} Months)</span>
                   </div>
                   <input
                     type="range"
@@ -316,7 +205,7 @@ export const HomePage: React.FC = () => {
                     onChange={(e) => setTenureYears(Number(e.target.value))}
                     className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-700"
                   />
-                  <div className="flex justify-between text-[11px] text-slate-400 mt-1">
+                  <div className="flex justify-between text-xs text-slate-400 mt-1">
                     <span>5 Years</span>
                     <span>10 Years</span>
                     <span>15 Years (RBI Cap)</span>
@@ -329,18 +218,18 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-5">
               <div className="bg-white rounded-2xl border-2 border-brand-100 shadow-fintech-md p-6 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-4">
-                  <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
+                  <Badge variant="outline" className="text-slate-400 border-slate-200">Estimated Data</Badge>
                 </div>
 
-                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-1">
                   Estimated Repayment
                 </h3>
                 <div className="text-3xl font-extrabold text-brand-800 tracking-tight">
                   {formatCurrency(emi)}
-                  <span className="text-xs font-normal text-slate-500 ml-1">/ month</span>
+                  <span className="text-sm font-normal text-slate-500 ml-1">/ month</span>
                 </div>
 
-                <div className="mt-6 pt-5 border-t border-slate-100 space-y-3 text-xs">
+                <div className="mt-6 pt-5 border-t border-slate-100 space-y-3 text-sm">
                   <div className="flex justify-between items-center py-1">
                     <span className="text-slate-500">Principal Borrowed:</span>
                     <span className="font-semibold text-slate-900">{formatCurrency(loanAmount)}</span>
@@ -356,7 +245,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Advisory Tip */}
-                <div className="mt-6 p-3.5 rounded-lg bg-blue-50/70 border border-blue-200/80 text-[11px] text-blue-900 flex items-start gap-2">
+                <div className="mt-6 p-3.5 rounded-lg bg-blue-50/70 border border-blue-200/80 text-xs text-blue-900 flex items-start gap-2">
                   <Info className="h-4 w-4 text-brand-600 shrink-0 mt-0.5" />
                   <p>
                     <strong>Moratorium Note:</strong> During your 4-year B.Tech + 1-year grace period, simple interest accrues. Servicing interest monthly can save up to ₹1.5L–₹3L in capitalized interest.
@@ -376,15 +265,15 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. VERIFIED BANK SCHEMES HIGHLIGHT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 3. VERIFIED BANK SCHEMES HIGHLIGHT */}
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex flex-col justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
             <Badge variant="verified" dot className="mb-2">Official Bank Schemes</Badge>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Prominent Education Loan Programs
             </h2>
-            <p className="text-xs text-slate-500 mt-1 max-w-xl">
+            <p className="text-sm text-slate-500 mt-1 max-w-xl">
               Factual, verified terms from public sector banks that actively serve VIT Bhopal students.
             </p>
           </div>
@@ -401,12 +290,11 @@ export const HomePage: React.FC = () => {
             <CardHeader>
               <div className="flex justify-between items-start">
                 <Badge variant="info">State Bank of India</Badge>
-                <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
               </div>
               <CardTitle className="text-base mt-2">SBI Scholar Scheme</CardTitle>
-              <p className="text-xs text-slate-500">For premier institutions & List B institutes</p>
+              <p className="text-sm text-slate-500">For premier institutions & List B institutes</p>
             </CardHeader>
-            <CardContent className="space-y-3 text-xs">
+            <CardContent className="space-y-3 text-sm">
               <div className="flex justify-between pb-2 border-b border-slate-100">
                 <span className="text-slate-500">Interest Rate:</span>
                 <span className="font-semibold text-slate-900">8.15% – 8.85% p.a.</span>
@@ -438,12 +326,11 @@ export const HomePage: React.FC = () => {
             <CardHeader>
               <div className="flex justify-between items-start">
                 <Badge variant="info">Canara Bank</Badge>
-                <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
               </div>
               <CardTitle className="text-base mt-2">Canara Vidya Turan</CardTitle>
-              <p className="text-xs text-slate-500">Special scheme for accredited technical universities</p>
+              <p className="text-sm text-slate-500">Special scheme for accredited technical universities</p>
             </CardHeader>
-            <CardContent className="space-y-3 text-xs">
+            <CardContent className="space-y-3 text-sm">
               <div className="flex justify-between pb-2 border-b border-slate-100">
                 <span className="text-slate-500">Interest Rate:</span>
                 <span className="font-semibold text-slate-900">8.60% – 9.25% p.a.</span>
@@ -475,12 +362,11 @@ export const HomePage: React.FC = () => {
             <CardHeader>
               <div className="flex justify-between items-start">
                 <Badge variant="info">Punjab National Bank</Badge>
-                <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
               </div>
               <CardTitle className="text-base mt-2">PNB Saraswati</CardTitle>
-              <p className="text-xs text-slate-500">General higher education scheme for engineering</p>
+              <p className="text-sm text-slate-500">General higher education scheme for engineering</p>
             </CardHeader>
-            <CardContent className="space-y-3 text-xs">
+            <CardContent className="space-y-3 text-sm">
               <div className="flex justify-between pb-2 border-b border-slate-100">
                 <span className="text-slate-500">Interest Rate:</span>
                 <span className="font-semibold text-slate-900">8.80% – 9.80% p.a.</span>
@@ -509,18 +395,18 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. GOVERNMENT INITIATIVES & SUBSIDIES BANNER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 4. GOVERNMENT INITIATIVES & SUBSIDIES BANNER */}
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex flex-col justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="rounded-2xl bg-gradient-to-r from-slate-900 via-navy-900 to-vit-navy p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10 max-w-2xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-amber-300 border border-white/20">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sm font-semibold text-amber-300 border border-white/20">
               <Landmark className="h-3.5 w-3.5" />
               <span>Central Government Subsidies</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
               Are You Eligible For Full Interest Subsidy Or PM-Vidyalaxmi?
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
               Students from families with gross annual income up to ₹4.5 Lakhs qualify for 100% interest waiver during moratorium under <strong>CSIS</strong>. Additionally, the new <strong>PM-Vidyalaxmi Scheme</strong> covers loans up to ₹10 Lakhs with 3% subvention for income up to ₹8 Lakhs.
             </p>
             <div className="pt-2 flex flex-wrap items-center gap-3">
@@ -536,49 +422,11 @@ export const HomePage: React.FC = () => {
                 href="https://pmvidyalaxmi.education.gov.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-slate-200 hover:text-white inline-flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
+                className="text-sm font-semibold text-slate-200 hover:text-white inline-flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
               >
                 <span>PM-Vidyalaxmi Portal</span>
                 <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. VIT BHOPAL ON-CAMPUS BANKING GUIDANCE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-xl border border-slate-200/90 shadow-fintech p-6 sm:p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-3">
-              <Badge variant="neutral">VIT Bhopal Specific SOP</Badge>
-              <h3 className="text-xl font-bold text-slate-900">
-                Getting Your Bonafide & Fee Estimate Letter From Finance Office
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Banks require an official institutional fee estimate detailing Tuition (Category 1–5), Specialization charges, Caution deposits, and Hostel/Mess fees. Learn how to generate this document through VTOP and submit it to the on-campus Indian Bank branch or SBI Ashta.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-2 text-xs text-slate-500">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                  <span>VTOP Letter Generation</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                  <span>On-Campus Helpdesk Contacts</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                  <span>Disbursement Demand Letters</span>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-4 flex lg:justify-end">
-              <Link to="/vit-bhopal">
-                <Button variant="secondary" size="md">
-                  View VIT Bhopal Campus Guide
-                </Button>
-              </Link>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ export const NotFoundPage: React.FC = () => {
         <FileQuestion className="h-8 w-8" />
       </div>
       <h1 className="text-2xl font-bold text-slate-900">Page Not Found</h1>
-      <p className="text-xs text-slate-500">
+      <p className="text-sm text-slate-500">
         The loan guidance section or resource you requested could not be located.
       </p>
       <div className="pt-4">

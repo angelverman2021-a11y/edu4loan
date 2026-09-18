@@ -45,7 +45,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 text-xs">
+    <div className="space-y-6 text-sm">
       {/* Input Card */}
       <Card className="border-slate-200 shadow-sm overflow-hidden">
         <CardHeader className="bg-slate-50 border-b border-slate-200 py-4">
@@ -56,7 +56,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
           <CardTitle className="text-base sm:text-lg font-bold text-slate-900 mt-1">
             Central Government Subsidy & Guarantee Checker
           </CardTitle>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-xs text-slate-500">
             Enter your family income and required loan quantum to evaluate matching central government schemes
           </p>
         </CardHeader>
@@ -68,7 +68,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
               <label className="font-bold text-slate-800 uppercase tracking-wider">
                 Gross Annual Family Income (From All Sources)
               </label>
-              <span className="text-sm font-extrabold text-brand-700">
+              <span className="text-base font-extrabold text-brand-700">
                 {formatCurrency(income)} / year
               </span>
             </div>
@@ -84,7 +84,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
                   key={chip.val}
                   type="button"
                   onClick={() => setIncome(chip.val)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                  className={`px-2.5 py-1 rounded-lg text-sm font-semibold transition-all ${
                     income === chip.val
                       ? 'bg-brand-700 text-white shadow-sm ring-2 ring-brand-700 ring-offset-1'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -121,7 +121,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
               <select
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
-                className="w-full p-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
+                className="w-full p-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
               >
                 <option value={400000}>₹4.0 Lakhs (Tier 1)</option>
                 <option value={750000}>₹7.5 Lakhs (Tier 2 / CGFSEL)</option>
@@ -139,7 +139,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
               <select
                 value={institutionType}
                 onChange={(e) => setInstitutionType(e.target.value as any)}
-                className="w-full p-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
+                className="w-full p-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
               >
                 <option value="nirf_top_100_200">Top NIRF 100/200 (VIT Bhopal Eligible)</option>
                 <option value="other">Other Higher Education Institutions</option>
@@ -154,7 +154,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
               <select
                 value={degreeLevel}
                 onChange={(e) => setDegreeLevel(e.target.value as any)}
-                className="w-full p-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
+                className="w-full p-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-brand-500"
               >
                 <option value="Undergraduate">Undergraduate (B.Tech)</option>
                 <option value="Postgraduate">Postgraduate (M.Tech / MCA / MBA)</option>
@@ -169,8 +169,8 @@ export const SubsidyEligibilityChecker: React.FC = () => {
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
           <Info className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <span className="font-bold text-slate-900 text-sm">Eligibility Assessment</span>
-            <p className="text-slate-600 leading-relaxed text-xs">{evaluation.explanation}</p>
+            <span className="font-bold text-slate-900 text-base">Eligibility Assessment</span>
+            <p className="text-slate-600 leading-relaxed text-sm">{evaluation.explanation}</p>
           </div>
         </div>
 
@@ -178,7 +178,7 @@ export const SubsidyEligibilityChecker: React.FC = () => {
         {evaluation.matchedSchemes.length === 0 ? (
           <div className="p-8 text-center bg-white rounded-xl border border-slate-200 space-y-2">
             <AlertCircle className="h-8 w-8 text-amber-500 mx-auto" />
-            <h4 className="text-sm font-bold text-slate-900">
+            <h4 className="text-base font-bold text-slate-900">
               No Central Subsidies Matched for Selected Income Tier
             </h4>
             <p className="text-slate-500 max-w-md mx-auto">
@@ -198,20 +198,20 @@ export const SubsidyEligibilityChecker: React.FC = () => {
                       Eligible
                     </span>
                   </div>
-                  <CardTitle className="text-sm font-bold text-slate-900 mt-2">
+                  <CardTitle className="text-base font-bold text-slate-900 mt-2">
                     {scheme.name}
                   </CardTitle>
                 </CardHeader>
 
-                <CardContent className="space-y-3 flex-1 text-xs">
+                <CardContent className="space-y-3 flex-1 text-sm">
                   <div className="p-2.5 rounded bg-slate-50 border border-slate-100 space-y-1">
-                    <span className="text-[11px] font-semibold text-slate-500 block">
+                    <span className="text-xs font-semibold text-slate-500 block">
                       Subsidy Benefit:
                     </span>
-                    <p className="text-slate-900 font-bold text-xs">{scheme.benefit}</p>
+                    <p className="text-slate-900 font-bold text-sm">{scheme.benefit}</p>
                   </div>
 
-                  <div className="space-y-1 text-[11px] text-slate-600">
+                  <div className="space-y-1 text-xs text-slate-600">
                     <p>
                       <strong>Income Cap:</strong> {scheme.incomeCeiling}
                     </p>

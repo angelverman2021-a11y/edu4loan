@@ -119,15 +119,15 @@ export const DashboardPage: React.FC = () => {
         <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-brand-500/10 to-transparent pointer-events-none" />
         <div className="relative z-10 max-w-2xl space-y-2">
           <div className="flex items-center gap-2">
-            <span className="bg-brand-700/80 text-brand-100 px-2.5 py-0.5 rounded text-[11px] font-bold tracking-wide uppercase">
+            <span className="bg-brand-700/80 text-brand-100 px-2.5 py-0.5 rounded text-xs font-bold tracking-wide uppercase">
               Student Loan Command Center
             </span>
-            <span className="text-brand-300 text-xs font-medium">VIT Bhopal Academic Portal</span>
+            <span className="text-brand-300 text-sm font-medium">VIT Bhopal Academic Portal</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
             Edu4Loan Student Workspace
           </h1>
-          <p className="text-xs sm:text-sm text-brand-100/80 leading-relaxed">
+          <p className="text-sm sm:text-base text-brand-100/80 leading-relaxed">
             Centralized hub for managing your bank loan applications, tracking branch verification
             milestones, monitoring document readiness, and keeping track of VIT Bhopal semester fee
             timelines.
@@ -137,14 +137,14 @@ export const DashboardPage: React.FC = () => {
         <div className="mt-5 flex flex-wrap gap-3 relative z-10">
           <Link
             to="/tracker"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-brand-900 text-xs font-bold shadow hover:bg-brand-50 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-brand-900 text-sm font-bold shadow hover:bg-brand-50 transition-colors"
           >
             <Layers className="h-4 w-4 text-brand-700" />
             <span>Open Application Tracker</span>
           </Link>
           <Link
             to="/documents"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-800/80 hover:bg-brand-800 text-white text-xs font-semibold border border-brand-700 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-800/80 hover:bg-brand-800 text-white text-sm font-semibold border border-brand-700 transition-colors"
           >
             <FileCheck2 className="h-4 w-4 text-brand-300" />
             <span>Document Dossier ({readinessScore}% Ready)</span>
@@ -158,7 +158,7 @@ export const DashboardPage: React.FC = () => {
         <Card className="border-slate-200 bg-white shadow-xs">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
                 Tracked Applications
               </span>
               <span className="text-2xl font-black text-slate-900 mt-1 block">
@@ -178,7 +178,7 @@ export const DashboardPage: React.FC = () => {
         <Card className="border-slate-200 bg-white shadow-xs">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
                 Total Quantum
               </span>
               <span className="text-xl sm:text-2xl font-black text-brand-800 mt-1 block">
@@ -198,7 +198,7 @@ export const DashboardPage: React.FC = () => {
         <Card className="border-slate-200 bg-white shadow-xs">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
                 Dossier Readiness
               </span>
               <span className="text-2xl font-black text-slate-900 mt-1 block">
@@ -218,10 +218,10 @@ export const DashboardPage: React.FC = () => {
         <Card className="border-slate-200 bg-white shadow-xs">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
                 Next Follow-Up
               </span>
-              <span className="text-sm font-bold text-slate-900 mt-1 block truncate max-w-[130px]">
+              <span className="text-base font-bold text-slate-900 mt-1 block truncate max-w-[130px]">
                 {summary?.nextFollowUp ? summary.nextFollowUp.date : 'No pending date'}
               </span>
               <span className="text-[10px] text-slate-400 mt-0.5 block truncate max-w-[130px]">
@@ -241,17 +241,17 @@ export const DashboardPage: React.FC = () => {
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
                 <Layers className="h-4 w-4 text-brand-700" />
                 Active Loan Applications
               </h3>
-              <p className="text-[11px] text-slate-500">
+              <p className="text-xs text-slate-500">
                 Current status and stage progression across submitting banks.
               </p>
             </div>
             <Link
               to="/tracker"
-              className="text-xs font-bold text-brand-700 hover:text-brand-800 flex items-center gap-1"
+              className="text-sm font-bold text-brand-700 hover:text-brand-800 flex items-center gap-1"
             >
               <span>View All Pipeline</span>
               <ChevronRight className="h-3.5 w-3.5" />
@@ -261,12 +261,12 @@ export const DashboardPage: React.FC = () => {
           {applications.length === 0 ? (
             <Card className="p-8 text-center border-slate-200 bg-white space-y-3">
               <Building2 className="h-8 w-8 text-slate-300 mx-auto" />
-              <p className="text-xs text-slate-600 font-medium">
+              <p className="text-sm text-slate-600 font-medium">
                 No active education loan applications logged.
               </p>
               <Link
                 to="/tracker"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:underline"
               >
                 <Plus className="h-3.5 w-3.5" /> Track a loan application
               </Link>
@@ -284,16 +284,16 @@ export const DashboardPage: React.FC = () => {
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <Building2 className="h-4 w-4 text-brand-700" />
-                          <span className="font-bold text-slate-900 text-sm">
+                          <span className="font-bold text-slate-900 text-base">
                             {app.targetBankName}
                           </span>
-                          <span className="text-xs text-slate-500 hidden sm:inline">
+                          <span className="text-sm text-slate-500 hidden sm:inline">
                             — {app.targetSchemeName}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
                           {getStageBadge(app.status)}
-                          <span className="font-bold text-brand-800 text-xs">
+                          <span className="font-bold text-brand-800 text-sm">
                             {formatCurrency(app.requestedAmount)}
                           </span>
                         </div>
@@ -325,14 +325,14 @@ export const DashboardPage: React.FC = () => {
                       </div>
 
                       {/* Immediate next action */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-1 gap-2 text-xs border-t border-slate-100">
-                        <div className="text-slate-600 text-[11px] truncate max-w-md">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-1 gap-2 text-sm border-t border-slate-100">
+                        <div className="text-slate-600 text-xs truncate max-w-md">
                           <strong className="text-slate-700">Next Action:</strong>{' '}
                           {app.nextAction || 'Continue document verification'}
                         </div>
                         <Link
                           to={`/tracker?id=${app._id}`}
-                          className="text-brand-700 hover:text-brand-800 font-bold text-[11px] flex items-center gap-1 self-end sm:self-auto"
+                          className="text-brand-700 hover:text-brand-800 font-bold text-xs flex items-center gap-1 self-end sm:self-auto"
                         >
                           <span>Manage Logs</span>
                           <ArrowRight className="h-3 w-3" />
@@ -353,14 +353,14 @@ export const DashboardPage: React.FC = () => {
                 <div className="h-8 w-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center">
                   <TrendingUp className="h-4 w-4" />
                 </div>
-                <h4 className="font-bold text-slate-900 text-xs">Scheme Comparison Engine</h4>
-                <p className="text-[11px] text-slate-500 leading-relaxed">
+                <h4 className="font-bold text-slate-900 text-sm">Scheme Comparison Engine</h4>
+                <p className="text-xs text-slate-500 leading-relaxed">
                   Evaluate interest margins, collateral rules, and repayment terms across SBI,
                   Indian Bank, PNB, and Bank of Baroda.
                 </p>
                 <Link
                   to="/compare"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-brand-700 hover:text-brand-800 pt-1"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-brand-700 hover:text-brand-800 pt-1"
                 >
                   <span>Launch Comparison</span>
                   <ArrowRight className="h-3 w-3" />
@@ -374,14 +374,14 @@ export const DashboardPage: React.FC = () => {
                 <div className="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
                   <Calculator className="h-4 w-4" />
                 </div>
-                <h4 className="font-bold text-slate-900 text-xs">Moratorium EMI Calculator</h4>
-                <p className="text-[11px] text-slate-500 leading-relaxed">
+                <h4 className="font-bold text-slate-900 text-sm">Moratorium EMI Calculator</h4>
+                <p className="text-xs text-slate-500 leading-relaxed">
                   Simulate monthly EMI with simple interest accrual during the 4-year study period
                   and calculate Section 80E tax deductions.
                 </p>
                 <Link
                   to="/calculator?amount=1200000"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-brand-700 hover:text-brand-800 pt-1"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-brand-700 hover:text-brand-800 pt-1"
                 >
                   <span>Simulate ₹12L Loan</span>
                   <ArrowRight className="h-3 w-3" />
@@ -396,15 +396,15 @@ export const DashboardPage: React.FC = () => {
           {/* VIT Bhopal Academic Disbursement Alert */}
           <Card className="border-brand-200 bg-brand-50/20 shadow-2xs">
             <CardHeader className="py-3.5 border-b border-brand-100">
-              <CardTitle className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+              <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
                 <GraduationCap className="h-4 w-4 text-brand-800" />
                 VIT Bhopal Disbursement Deadlines
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 space-y-3 text-xs">
+            <CardContent className="p-4 space-y-3 text-sm">
               <div className="space-y-2">
                 <div className="p-2.5 rounded-lg bg-white border border-brand-100 shadow-2xs">
-                  <div className="flex items-center justify-between text-[11px]">
+                  <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-slate-800">Fall Semester Fee Window</span>
                     <span className="text-brand-700 font-bold">July 10 – July 25</span>
                   </div>
@@ -415,7 +415,7 @@ export const DashboardPage: React.FC = () => {
                 </div>
 
                 <div className="p-2.5 rounded-lg bg-white border border-brand-100 shadow-2xs">
-                  <div className="flex items-center justify-between text-[11px]">
+                  <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-slate-800">Winter Semester Fee Window</span>
                     <span className="text-brand-700 font-bold">Dec 15 – Dec 30</span>
                   </div>
@@ -428,7 +428,7 @@ export const DashboardPage: React.FC = () => {
               <div className="pt-2 border-t border-brand-100/60">
                 <Link
                   to="/vit-bhopal"
-                  className="w-full flex items-center justify-between text-xs font-bold text-brand-800 hover:text-brand-900"
+                  className="w-full flex items-center justify-between text-sm font-bold text-brand-800 hover:text-brand-900"
                 >
                   <span>View Campus Bank Desks & SOP</span>
                   <ChevronRight className="h-3.5 w-3.5" />
@@ -440,19 +440,19 @@ export const DashboardPage: React.FC = () => {
           {/* Government Subvention Shortcut */}
           <Card className="border-slate-200 bg-white shadow-2xs">
             <CardHeader className="py-3.5 border-b border-slate-100">
-              <CardTitle className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+              <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
                 <Sparkles className="h-4 w-4 text-amber-500" />
                 Subsidy & Subvention Check
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 space-y-3 text-xs">
-              <p className="text-[11px] text-slate-600 leading-relaxed">
+            <CardContent className="p-4 space-y-3 text-sm">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Eligible students with parental income &le; ₹4.5L (CSIS) or &le; ₹8.0L (PM-Vidyalaxmi
                 2024) qualify for statutory interest waivers during study.
               </p>
               <Link
                 to="/govt-schemes?tab=checker"
-                className="inline-flex items-center justify-center w-full py-2 px-3 rounded-lg bg-slate-900 text-white font-medium text-xs hover:bg-slate-800 transition-colors gap-1.5"
+                className="inline-flex items-center justify-center w-full py-2 px-3 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition-colors gap-1.5"
               >
                 <span>Check Subvention Eligibility</span>
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -461,7 +461,7 @@ export const DashboardPage: React.FC = () => {
           </Card>
 
           {/* Compliance & Student Advisory */}
-          <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-[11px] text-slate-500 space-y-1">
+          <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-500 space-y-1">
             <span className="font-bold text-slate-700 block flex items-center gap-1">
               <ShieldCheck className="h-3.5 w-3.5 text-slate-400" />
               Institutional Transparency

@@ -17,7 +17,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-semibold uppercase tracking-wider text-slate-700">
+          <label htmlFor={inputId} className="block text-sm font-semibold uppercase tracking-wider text-slate-700">
             {label}
             {required && <span className="text-rose-500 ml-0.5">*</span>}
           </label>
@@ -35,7 +35,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             className={twMerge(
               clsx(
-                'block w-full rounded-lg border bg-white py-2 text-sm text-slate-900 placeholder:text-slate-400 transition-colors',
+                'block w-full rounded-lg border bg-white py-2 text-base text-slate-900 placeholder:text-slate-400 transition-colors',
                 'focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600',
                 leftAddon ? 'pl-9' : 'pl-3',
                 rightAddon ? 'pr-9' : 'pr-3',
@@ -54,8 +54,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
 
-        {error && <p className="text-xs text-rose-600 mt-1">{error}</p>}
-        {!error && helperText && <p className="text-xs text-slate-500 mt-1">{helperText}</p>}
+        {error && <p className="text-sm text-rose-600 mt-1">{error}</p>}
+        {!error && helperText && <p className="text-sm text-slate-500 mt-1">{helperText}</p>}
       </div>
     );
   }

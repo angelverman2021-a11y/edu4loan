@@ -16,11 +16,11 @@ import { Button } from '@/components/ui/Button';
 
 export const PmVidyalaxmiGuide: React.FC = () => {
   return (
-    <div className="space-y-6 text-xs">
+    <div className="space-y-6 text-sm">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-brand-900 to-brand-800 text-white rounded-xl p-6 shadow-md space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-700/60 text-xs font-semibold text-brand-100 border border-brand-600/40">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-700/60 text-sm font-semibold text-brand-100 border border-brand-600/40">
             <Sparkles className="h-3.5 w-3.5" />
             Module 10: 2024 Cabinet Approved
           </div>
@@ -28,7 +28,7 @@ export const PmVidyalaxmiGuide: React.FC = () => {
             href="https://pmvidyalaxmi.education.gov.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-brand-200 hover:text-white transition-colors"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-brand-200 hover:text-white transition-colors"
           >
             <span>Visit pmvidyalaxmi.education.gov.in</span>
             <ExternalLink className="h-3.5 w-3.5" />
@@ -37,7 +37,7 @@ export const PmVidyalaxmiGuide: React.FC = () => {
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
           PM-Vidyalaxmi Scheme (2024) Deep Dive
         </h2>
-        <p className="text-xs sm:text-sm text-brand-100/90 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-brand-100/90 max-w-3xl leading-relaxed">
           The landmark central sector scheme approved by the Union Cabinet in 2024 to provide 3% interest subvention for students with family income up to ₹8 Lakhs pursuing degrees in top NIRF institutions, alongside 75% credit guarantee coverage.
         </p>
       </div>
@@ -52,11 +52,11 @@ export const PmVidyalaxmiGuide: React.FC = () => {
               </Badge>
               <Award className="h-4 w-4 text-brand-600" />
             </div>
-            <CardTitle className="text-sm font-bold text-slate-900 mt-1">
+            <CardTitle className="text-base font-bold text-slate-900 mt-1">
               3.0% Annual Interest Subvention
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-slate-600 leading-relaxed text-[11px] space-y-2">
+          <CardContent className="text-slate-600 leading-relaxed text-xs space-y-2">
             <p>
               Students with annual family income up to <strong>₹8.0 Lakhs</strong> who are not receiving benefits under other government scholarships qualify for a 3% interest rate subvention on loan amounts up to <strong>₹10.0 Lakhs</strong>.
             </p>
@@ -74,11 +74,11 @@ export const PmVidyalaxmiGuide: React.FC = () => {
               </Badge>
               <ShieldCheck className="h-4 w-4 text-brand-600" />
             </div>
-            <CardTitle className="text-sm font-bold text-slate-900 mt-1">
+            <CardTitle className="text-base font-bold text-slate-900 mt-1">
               75% NCGTC Credit Guarantee
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-slate-600 leading-relaxed text-[11px] space-y-2">
+          <CardContent className="text-slate-600 leading-relaxed text-xs space-y-2">
             <p>
               For education loans up to <strong>₹7.5 Lakhs</strong>, the scheme provides a 75% credit guarantee to banks through the National Credit Guarantee Trustee Company (NCGTC).
             </p>
@@ -96,11 +96,11 @@ export const PmVidyalaxmiGuide: React.FC = () => {
               </Badge>
               <Building className="h-4 w-4 text-brand-600" />
             </div>
-            <CardTitle className="text-sm font-bold text-slate-900 mt-1">
+            <CardTitle className="text-base font-bold text-slate-900 mt-1">
               Top NIRF 100/200 Institutions
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-slate-600 leading-relaxed text-[11px] space-y-2">
+          <CardContent className="text-slate-600 leading-relaxed text-xs space-y-2">
             <p>
               Applies to Higher Education Institutions ranked in the top 100 overall / categories or ranks 101–200 in NIRF, covering state and central universities as well as premier private institutions like VIT.
             </p>
@@ -116,17 +116,17 @@ export const PmVidyalaxmiGuide: React.FC = () => {
         <CardHeader className="bg-slate-50 border-b border-slate-200 py-3.5">
           <div className="flex items-center gap-2">
             <Scale className="h-4 w-4 text-brand-700" />
-            <CardTitle className="text-sm font-bold text-slate-900">
+            <CardTitle className="text-base font-bold text-slate-900">
               Comparative Analysis: PM-Vidyalaxmi (2024) vs. CSIS (2009)
             </CardTitle>
           </div>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-xs text-slate-500">
             Understanding which central scheme provides greater financial relief for your income tier
           </p>
         </CardHeader>
 
         <CardContent className="p-0 overflow-x-auto">
-          <table className="w-full text-left border-collapse text-[11px]">
+          <table className="w-full text-left border-collapse text-xs">
             <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 uppercase font-semibold">
               <tr>
                 <th className="p-3">Feature</th>

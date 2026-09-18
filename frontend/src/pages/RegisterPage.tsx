@@ -44,7 +44,7 @@ export const RegisterPage: React.FC = () => {
           <GraduationCap className="h-6 w-6 text-blue-200" />
         </div>
         <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Create Student Account</h1>
-        <p className="text-xs text-slate-500">
+        <p className="text-sm text-slate-500">
           Sign up to personalize your loan checklists and track your application milestones.
         </p>
       </div>
@@ -101,7 +101,7 @@ export const RegisterPage: React.FC = () => {
               Create Student Account
             </Button>
 
-            <div className="pt-2 border-t border-slate-100 text-center text-xs">
+            <div className="pt-2 border-t border-slate-100 text-center text-sm">
               <Link to="/login" className="text-brand-700 hover:text-brand-800 font-medium">
                 Already have an account? Sign In
               </Link>

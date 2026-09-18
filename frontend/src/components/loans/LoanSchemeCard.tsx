@@ -66,7 +66,7 @@ export const LoanSchemeCard: React.FC<LoanSchemeCardProps> = ({ scheme }) => {
       <CardHeader className="pb-3 border-b border-slate-100">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+            <div className="flex items-center gap-1.5 text-sm text-slate-500 font-medium">
               <Building2 className="h-3.5 w-3.5 text-brand-600 shrink-0" />
               <span>{scheme.bankName}</span>
               <span className="text-slate-300">•</span>
@@ -81,32 +81,31 @@ export const LoanSchemeCard: React.FC<LoanSchemeCardProps> = ({ scheme }) => {
             status={scheme.status || 'verified'}
             source={scheme.source?.source}
             sourceUrl={scheme.source?.sourceUrl || scheme.officialCircularUrl}
-            lastVerified={scheme.lastVerified || scheme.source?.lastVerified}
             size="sm"
           />
         </div>
 
         {/* Overview snippet */}
         {scheme.overview && (
-          <p className="text-xs text-slate-500 line-clamp-2 mt-1.5 leading-relaxed">
+          <p className="text-sm text-slate-500 line-clamp-2 mt-1.5 leading-relaxed">
             {scheme.overview}
           </p>
         )}
       </CardHeader>
 
       {/* Main Financial Specs Grid */}
-      <CardContent className="space-y-3.5 py-4 text-xs">
+      <CardContent className="space-y-3.5 py-4 text-sm">
         {/* Interest Rate Presentation */}
         <div className="p-3 rounded-lg bg-blue-50/50 border border-blue-100/80 space-y-1">
           <div className="flex justify-between items-baseline">
-            <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-slate-600 uppercase tracking-wider">
               Documented Interest Rate
             </span>
-            <span className="text-sm font-extrabold text-brand-800 tracking-tight">
+            <span className="text-base font-extrabold text-brand-800 tracking-tight">
               {rateText}
             </span>
           </div>
-          <div className="flex items-center justify-between text-[11px] text-slate-500">
+          <div className="flex items-center justify-between text-xs text-slate-500">
             <span>
               Type: <strong className="text-slate-700">{scheme.interestRate?.benchmarkType || 'Benchmark-Linked'}</strong>
               {scheme.interestRate?.spreadPercentMin !== undefined && (
@@ -131,7 +130,7 @@ export const LoanSchemeCard: React.FC<LoanSchemeCardProps> = ({ scheme }) => {
             <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
               Max Domestic Loan
             </span>
-            <span className="text-xs font-bold text-slate-900 mt-0.5 block">
+            <span className="text-sm font-bold text-slate-900 mt-0.5 block">
               {formatCurrency(scheme.maxLoanAmountInland?.value)}
             </span>
             <span className="text-[10px] text-slate-500 block mt-0.5">
@@ -143,7 +142,7 @@ export const LoanSchemeCard: React.FC<LoanSchemeCardProps> = ({ scheme }) => {
             <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
               Margin Money
             </span>
-            <span className="text-xs font-bold text-slate-900 mt-0.5 block">
+            <span className="text-sm font-bold text-slate-900 mt-0.5 block">
               {scheme.marginMoney?.upTo4LakhsPercent || 0}% up to ₹4L
             </span>
             <span className="text-[10px] text-slate-500 block mt-0.5">
@@ -160,7 +159,7 @@ export const LoanSchemeCard: React.FC<LoanSchemeCardProps> = ({ scheme }) => {
               {scheme.collateral?.upTo4Lakhs || 'Nil up to ₹4 Lakhs as per RBI'}
             </span>
           </div>
-          <div className="flex items-start gap-1.5 text-[11px] text-slate-500">
+          <div className="flex items-start gap-1.5 text-xs text-slate-500">
             <span className="shrink-0">Above ₹7.5L:</span>
             <span className="line-clamp-1">
               {scheme.collateral?.above7point5Lakhs || 'Tangible collateral required'}
@@ -169,7 +168,7 @@ export const LoanSchemeCard: React.FC<LoanSchemeCardProps> = ({ scheme }) => {
         </div>
 
         {/* Repayment & Moratorium */}
-        <div className="text-[11px] text-slate-500 flex justify-between items-center pt-1 border-t border-slate-100">
+        <div className="text-xs text-slate-500 flex justify-between items-center pt-1 border-t border-slate-100">
           <span>
             Moratorium: <strong className="text-slate-700">Course + {scheme.moratorium?.moratoriumBufferMonths || 12} Mo</strong>
           </span>
@@ -180,7 +179,7 @@ export const LoanSchemeCard: React.FC<LoanSchemeCardProps> = ({ scheme }) => {
 
         {/* VIT Bhopal Eligibility Tag */}
         {scheme.vitBhopalEligible && (
-          <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-emerald-50 text-emerald-800 text-[11px] font-medium border border-emerald-200/80 w-full">
+          <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-medium border border-emerald-200/80 w-full">
             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
             <span className="truncate">Documented eligibility for VIT Bhopal campus</span>
           </div>

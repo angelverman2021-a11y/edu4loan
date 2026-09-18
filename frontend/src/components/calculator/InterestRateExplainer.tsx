@@ -8,14 +8,14 @@ export const InterestRateExplainer: React.FC = () => {
     <div className="space-y-6 text-slate-800">
       {/* Header Banner */}
       <div className="p-6 rounded-2xl bg-gradient-to-r from-vit-navy to-vit-blue text-white space-y-2 shadow-fintech">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-xs font-semibold text-blue-200">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-sm font-semibold text-blue-200">
           <Percent className="h-3.5 w-3.5" />
           <span>Financial Literacy • Module 5</span>
         </div>
         <h2 className="text-2xl font-bold tracking-tight text-white">
           Understanding Education Loan Interest Rates
         </h2>
-        <p className="text-xs sm:text-sm text-blue-100 max-w-2xl leading-relaxed">
+        <p className="text-sm sm:text-base text-blue-100 max-w-2xl leading-relaxed">
           How the Reserve Bank of India (RBI) sets benchmark lending rates, why your loan interest rate is determined by a spread, and how concessions reduce your overall debt.
         </p>
       </div>
@@ -31,7 +31,7 @@ export const InterestRateExplainer: React.FC = () => {
             </div>
             <CardTitle className="text-base mt-2">External Benchmark Lending Rate (EBLR)</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2.5 text-xs text-slate-600 leading-relaxed">
+          <CardContent className="space-y-2.5 text-sm text-slate-600 leading-relaxed">
             <p>
               Since October 2019, the RBI has required all scheduled commercial banks to link retail loans (including education loans) to an external benchmark, most commonly the <strong>RBI Policy Repo Rate</strong>. This system is known as <strong>EBLR</strong> (or <strong>RLLR</strong> in state-owned banks).
             </p>
@@ -47,8 +47,8 @@ export const InterestRateExplainer: React.FC = () => {
             <Badge variant="verified">The Rate Formula</Badge>
             <CardTitle className="text-base mt-2">How Banks Calculate Your Interest Rate</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2.5 text-xs text-slate-600 leading-relaxed">
-            <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 font-mono text-center text-xs text-brand-900 font-bold">
+          <CardContent className="space-y-2.5 text-sm text-slate-600 leading-relaxed">
+            <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 font-mono text-center text-sm text-brand-900 font-bold">
               Your Interest Rate = External Benchmark (Repo) + Bank Spread
             </div>
             <p>
@@ -66,7 +66,7 @@ export const InterestRateExplainer: React.FC = () => {
             <Badge variant="neutral">Market Mechanics</Badge>
             <CardTitle className="text-base mt-2">Fixed vs Floating Rates in Education Loans</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2.5 text-xs text-slate-600 leading-relaxed">
+          <CardContent className="space-y-2.5 text-sm text-slate-600 leading-relaxed">
             <p>
               Over <strong>98% of education loans in India are floating-rate loans</strong>. This means your interest rate will automatically adjust whenever the RBI changes the Policy Repo Rate.
             </p>
@@ -85,7 +85,7 @@ export const InterestRateExplainer: React.FC = () => {
             <Badge variant="verified">Standard Concessions</Badge>
             <CardTitle className="text-base mt-2">Statutory Discounts & Concessions</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2.5 text-xs text-slate-600 leading-relaxed">
+          <CardContent className="space-y-2.5 text-sm text-slate-600 leading-relaxed">
             <div className="space-y-2">
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
@@ -109,8 +109,8 @@ export const InterestRateExplainer: React.FC = () => {
 
       {/* Section 80E Tax Deduction */}
       <Card className="bg-slate-50 border-slate-200">
-        <CardContent className="p-5 space-y-2 text-xs text-slate-600">
-          <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
+        <CardContent className="p-5 space-y-2 text-sm text-slate-600">
+          <div className="flex items-center gap-2 text-base font-bold text-slate-900">
             <Info className="h-4 w-4 text-brand-700" />
             <span>Income Tax Relief under Section 80E</span>
           </div>

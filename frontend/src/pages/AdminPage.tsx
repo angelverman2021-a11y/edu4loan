@@ -114,14 +114,14 @@ export const AdminPage: React.FC = () => {
             <Badge variant="info" size="sm">
               Phase 11 — Modules 18 & 19
             </Badge>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-sm text-slate-500 font-medium">
               Administrative & Data Governance Console
             </span>
           </div>
           <h1 className="text-2xl font-black text-slate-900 tracking-tight">
             Edu4Loan Data Administration & Provenance Engine
           </h1>
-          <p className="text-xs text-slate-600 max-w-2xl mt-1">
+          <p className="text-sm text-slate-600 max-w-2xl mt-1">
             Ensure regulatory fidelity across all financial citations. Review source documents,
             monitor data quality, trigger freshness audits, and verify institutional circulars.
           </p>
@@ -132,7 +132,7 @@ export const AdminPage: React.FC = () => {
             size="sm"
             variant="outline"
             onClick={loadAdminData}
-            className="text-xs flex items-center gap-1.5"
+            className="text-sm flex items-center gap-1.5"
           >
             <RefreshCw className={`h-3.5 w-3.5 ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh Console</span>
@@ -142,7 +142,7 @@ export const AdminPage: React.FC = () => {
 
       {/* Notification banner */}
       {notification && (
-        <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs flex items-center gap-2 animate-in fade-in">
+        <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm flex items-center gap-2 animate-in fade-in">
           <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
           <span>{notification}</span>
         </div>
@@ -165,7 +165,7 @@ export const AdminPage: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setSearchParams({ tab: tab.id })}
-              className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
                 isActive
                   ? 'border-brand-700 text-brand-800 bg-brand-50/40 rounded-t-lg'
                   : 'border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-300'
@@ -185,13 +185,13 @@ export const AdminPage: React.FC = () => {
             {/* Quick Verification Queue Snapshot */}
             <Card className="border-slate-200 bg-white shadow-2xs">
               <CardHeader className="py-3.5 border-b border-slate-100 flex flex-row items-center justify-between">
-                <CardTitle className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
                   <ShieldCheck className="h-4 w-4 text-brand-700" />
                   Pending Source Verifications
                 </CardTitle>
                 <button
                   onClick={() => setSearchParams({ tab: 'verification' })}
-                  className="text-[11px] font-bold text-brand-700 hover:underline"
+                  className="text-xs font-bold text-brand-700 hover:underline"
                 >
                   View Queue
                 </button>
@@ -200,7 +200,7 @@ export const AdminPage: React.FC = () => {
                 {queueItems.slice(0, 3).map((item) => (
                   <div
                     key={item.id}
-                    className="p-3 rounded-lg border border-slate-100 bg-slate-50/50 flex items-center justify-between gap-2 text-xs"
+                    className="p-3 rounded-lg border border-slate-100 bg-slate-50/50 flex items-center justify-between gap-2 text-sm"
                   >
                     <div>
                       <span className="font-bold text-slate-800 block">{item.title}</span>
@@ -220,18 +220,18 @@ export const AdminPage: React.FC = () => {
             {/* Quick Data Quality Snapshot */}
             <Card className="border-slate-200 bg-white shadow-2xs">
               <CardHeader className="py-3.5 border-b border-slate-100 flex flex-row items-center justify-between">
-                <CardTitle className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
                   <FileCheck2 className="h-4 w-4 text-emerald-700" />
                   System Health & Integrity
                 </CardTitle>
                 <button
                   onClick={() => setSearchParams({ tab: 'quality' })}
-                  className="text-[11px] font-bold text-brand-700 hover:underline"
+                  className="text-xs font-bold text-brand-700 hover:underline"
                 >
                   Detailed Report
                 </button>
               </CardHeader>
-              <CardContent className="p-4 space-y-3 text-xs">
+              <CardContent className="p-4 space-y-3 text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Total Records Checked:</span>
                   <strong className="text-slate-900">{qualityReport?.totalRecordsChecked || 48}</strong>

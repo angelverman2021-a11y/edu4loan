@@ -78,9 +78,9 @@ export const ApplicationStageStepper: React.FC<ApplicationStageStepperProps> = (
   const isRejected = currentStage === 'rejected';
 
   return (
-    <div className="space-y-4 text-xs">
+    <div className="space-y-4 text-sm">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-        <span className="font-bold text-slate-800 uppercase tracking-wider text-[11px]">
+        <span className="font-bold text-slate-800 uppercase tracking-wider text-xs">
           Application Progression Pipeline
         </span>
         {isRejected ? (
@@ -88,7 +88,7 @@ export const ApplicationStageStepper: React.FC<ApplicationStageStepperProps> = (
             Application Rejected by Bank
           </Badge>
         ) : (
-          <span className="text-[11px] text-slate-500 font-medium">
+          <span className="text-xs text-slate-500 font-medium">
             Stage {currentStageIndex + 1} of {stages.length}
           </span>
         )}
@@ -135,7 +135,7 @@ export const ApplicationStageStepper: React.FC<ApplicationStageStepperProps> = (
                 </div>
 
                 <span
-                  className={`mt-2 font-bold text-[11px] leading-tight ${
+                  className={`mt-2 font-bold text-xs leading-tight ${
                     isCurrent
                       ? 'text-brand-800'
                       : isCompleted

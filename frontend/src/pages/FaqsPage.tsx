@@ -207,7 +207,7 @@ export const FaqsPage: React.FC = () => {
           <HelpCircle className="h-8 w-8 text-brand-700" />
           <span>Education Loan Knowledge Base & FAQs</span>
         </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
           Comprehensive, authoritative answers regarding RBI education loan directives, CGFSEL
           collateral exemptions, PM-Vidyalaxmi 2024 subventions, and VIT Bhopal administrative
           workflows.
@@ -221,7 +221,7 @@ export const FaqsPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search FAQs (e.g. collateral, moratorium, 80E, CSIS)..."
-            className="w-full pl-10 pr-4 py-2 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 shadow-xs"
+            className="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 shadow-xs"
           />
         </div>
 
@@ -231,7 +231,7 @@ export const FaqsPage: React.FC = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+              className={`px-3 py-1 rounded-full text-sm font-semibold transition-all ${
                 selectedCategory === cat
                   ? 'bg-brand-700 text-white shadow-2xs'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -247,7 +247,7 @@ export const FaqsPage: React.FC = () => {
       {filteredFaqs.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-xl border border-slate-200 p-6 space-y-2">
           <HelpCircle className="h-8 w-8 text-slate-300 mx-auto" />
-          <p className="text-xs text-slate-500 font-medium">
+          <p className="text-sm text-slate-500 font-medium">
             No questions found matching &ldquo;{search}&rdquo; in category &ldquo;{selectedCategory}&rdquo;.
           </p>
         </div>
@@ -266,7 +266,7 @@ export const FaqsPage: React.FC = () => {
                     <span className="text-[10px] font-bold text-brand-700 uppercase tracking-wider block">
                       {faq.category}
                     </span>
-                    <span className="font-bold text-slate-900 text-sm block">{faq.question}</span>
+                    <span className="font-bold text-slate-900 text-base block">{faq.question}</span>
                   </div>
                   <span className="text-slate-400 shrink-0">
                     {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
@@ -274,14 +274,14 @@ export const FaqsPage: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <CardContent className="pt-0 px-4.5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/30 space-y-3">
+                  <CardContent className="pt-0 px-4.5 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/30 space-y-3">
                     <p className="mt-3">{faq.answer}</p>
 
                     {faq.relatedLink && (
                       <div className="pt-2 border-t border-slate-200/60">
                         <Link
                           to={faq.relatedLink.url}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-800"
+                          className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800"
                         >
                           <span>{faq.relatedLink.label}</span>
                           <ExternalLink className="h-3 w-3" />
@@ -297,13 +297,13 @@ export const FaqsPage: React.FC = () => {
       )}
 
       {/* Disclaimers & Neutrality Notice */}
-      <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 text-xs flex items-start gap-3">
+      <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 text-sm flex items-start gap-3">
         <ShieldCheck className="h-5 w-5 text-slate-400 flex-shrink-0 mt-0.5" />
         <div className="space-y-1">
           <span className="font-bold text-slate-700 block">
             Regulatory Knowledge Neutrality Statement
           </span>
-          <p className="text-[11px] leading-relaxed">
+          <p className="text-xs leading-relaxed">
             Answers provided in the Edu4Loan Knowledge Base are compiled from the Reserve Bank of India
             (RBI) Master Directions, Indian Banks Association (IBA) Model Education Loan Scheme,
             Ministry of Education (MoE) operational manuals, and VIT Bhopal University directives.
