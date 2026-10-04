@@ -49,10 +49,15 @@ export interface SearchResponseData {
   results: {
     banks: any[];
     loanSchemes: any[];
+    bankSchemes?: any[];
     governmentSchemes: any[];
     documents: any[];
     institutions: any[];
     faqs: any[];
     whatIfScenarios?: any[];
+    whatIfAnswers?: any[];
+    sources?: any[];
+    officialSources?: any[];
+    chatbotAnswers?: any[];
   };
 }

@@ -42,6 +42,10 @@ export interface IBank extends Document {
     lastVerified: string;
     status: 'verified' | 'needs_verification' | 'expired';
   };
+  source?: string;
+  sourceUrl?: string;
+  lastVerifiedAt?: string;
+  verificationStatus?: 'VERIFIED' | 'NEEDS_REVIEW' | 'OUTDATED' | 'UNAVAILABLE' | 'verified' | 'needs_verification' | 'expired';
   isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -130,6 +134,14 @@ const BankSchema = new Schema<IBank>(
         default: 'needs_verification',
       },
     },
+    source: { type: String, trim: true },
+    sourceUrl: { type: String, trim: true },
+    lastVerifiedAt: { type: String, trim: true },
+    verificationStatus: {
+      type: String,
+      enum: ['VERIFIED', 'NEEDS_REVIEW', 'OUTDATED', 'UNAVAILABLE', 'verified', 'needs_verification', 'expired'],
+      default: 'VERIFIED',
+    },
     isDemo: { type: Boolean, default: false },
   },
   {
@@ -141,18 +153,30 @@ const BankSchema = new Schema<IBank>(
 BankSchema.index({ name: 1 });
 BankSchema.index({ category: 1 });
 BankSchema.index({ 'overallSource.status': 1 });
+BankSchema.index({ verificationStatus: 1 });
 BankSchema.index({ isDemo: 1 });
 
 // Financial Data Safeguard Hook:
 BankSchema.pre('save', function (next) {
+  if (this.overallSource) {
+    if (!this.source) this.source = this.overallSource.source;
+    if (!this.sourceUrl) this.sourceUrl = this.overallSource.sourceUrl;
+    if (!this.lastVerifiedAt) this.lastVerifiedAt = this.overallSource.lastVerified;
+    if (!this.verificationStatus) {
+      this.verificationStatus = this.overallSource.status === 'verified' ? 'VERIFIED' : 'NEEDS_REVIEW';
+    }
+  }
+
   if (this.isDemo) {
     this.overallSource.status = 'needs_verification';
+    this.verificationStatus = 'NEEDS_REVIEW';
     if (this.vitBhopalTieUp) {
       this.vitBhopalTieUp.status = 'needs_verification';
     }
-  } else if (this.overallSource.status === 'verified') {
+  } else if (this.overallSource.status === 'verified' || this.verificationStatus === 'VERIFIED') {
     if (!this.overallSource.sourceUrl || !this.overallSource.sourceUrl.startsWith('http')) {
       this.overallSource.status = 'needs_verification';
+      this.verificationStatus = 'NEEDS_REVIEW';
     }
   }
   next();

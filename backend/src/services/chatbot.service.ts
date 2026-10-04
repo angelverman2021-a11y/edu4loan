@@ -40,6 +40,7 @@ export const queryChatbot = async (
 ): Promise<ChatbotQueryResult> => {
   const query = (rawQuestion || "").trim().toLowerCase();
 
+  // 1. Identify user context
   const recognizedContext: Partial<ChatbotQueryContext> = { ...userContext };
   if (!recognizedContext.university) {
     if (query.includes("vit") || query.includes("bhopal")) {
@@ -47,7 +48,56 @@ export const queryChatbot = async (
     }
   }
 
-  // 1. Direct match in ChatbotKnowledge by aliases or canonical question
+  // Identify loan amount mentioned in query
+  if (!recognizedContext.loanAmount) {
+    const lakhMatch = query.match(/(\d+(\.\d+)?)\s*(lakh|lakhs|lac|lacs|l)\b/i);
+    if (lakhMatch) {
+      recognizedContext.loanAmount = parseFloat(lakhMatch[1]) * 100000;
+    }
+  }
+
+  // Identify income type mentioned in query
+  if (!recognizedContext.incomeType) {
+    if (query.includes("self employ") || query.includes("business")) {
+      recognizedContext.incomeType = "Self-Employed / Business";
+    } else if (query.includes("farmer") || query.includes("kisan") || query.includes("agriculture")) {
+      recognizedContext.incomeType = "Agriculture / Farmer";
+    } else if (query.includes("pension")) {
+      recognizedContext.incomeType = "Pensioner";
+    } else if (query.includes("salary") || query.includes("salaried")) {
+      recognizedContext.incomeType = "Salaried";
+    }
+  }
+
+  // 2. Identify selected bank / scheme
+  if (!recognizedContext.selectedBankSlug) {
+    if (query.includes("sbi") || query.includes("state bank")) {
+      recognizedContext.selectedBankSlug = "sbi";
+      recognizedContext.selectedSchemeCode = "SBI_STUDENT_LOAN";
+    } else if (query.includes("canara")) {
+      recognizedContext.selectedBankSlug = "canara-bank";
+      recognizedContext.selectedSchemeCode = "CANARA_VIDYA_TURAN";
+    } else if (query.includes("pnb") || query.includes("punjab national")) {
+      recognizedContext.selectedBankSlug = "punjab-national-bank";
+      recognizedContext.selectedSchemeCode = "PNB_SARASWATI";
+    } else if (query.includes("union")) {
+      recognizedContext.selectedBankSlug = "union-bank";
+      recognizedContext.selectedSchemeCode = "UNION_EDUCATION";
+    }
+  }
+
+  // Helper to append verification advisory warning if citation status is not verified
+  const attachVerificationWarningIfNeeded = (answer: string, citations: ChatbotSourceCitation[]): string => {
+    const hasUnverified = citations.some(
+      (c) => c.status === "needs_verification" || (c.status as string) === "NEEDS_REVIEW" || (c.status as string) === "OUTDATED" || (c.status as string) === "UNAVAILABLE" || c.status === "expired"
+    );
+    if (hasUnverified) {
+      return answer + "\n\n[Verification Advisory]: Verification required against the latest official bank circular or university notice.";
+    }
+    return answer;
+  };
+
+  // 3. Search verified database: ChatbotKnowledge
   const knowledgeMatches = await ChatbotKnowledge.find();
   for (const item of knowledgeMatches) {
     const isDirectMatch =
@@ -63,14 +113,14 @@ export const queryChatbot = async (
       ) {
         if (recognizedContext.loanAmount <= 750000) {
           contextualNote =
-            "\\n\\n[Context Note]: Based on your loan requirement of ₹" +
+            "\n\n[Context Note]: Based on your loan requirement of Rs. " +
             (recognizedContext.loanAmount / 100000).toFixed(1) +
-            " Lakhs, your loan falls under the statutory collateral-free bracket (<= ₹7.5L).";
+            " Lakhs, your loan falls under the statutory collateral-free bracket (<= Rs. 7.5L).";
         } else {
           contextualNote =
-            "\\n\\n[Context Note]: Because your loan requirement is ₹" +
+            "\n\n[Context Note]: Because your loan requirement is Rs. " +
             (recognizedContext.loanAmount / 100000).toFixed(1) +
-            " Lakhs (> ₹7.5L), banks may legally request suitable tangible collateral or third-party guarantee.";
+            " Lakhs (> Rs. 7.5L), banks may legally request suitable tangible collateral or third-party guarantee.";
         }
       }
 
@@ -79,26 +129,30 @@ export const queryChatbot = async (
         item.topicKey === "SALARY_SLIP_UNAVAILABLE"
       ) {
         contextualNote =
-          "\\n\\n[Context Note]: Because your co-applicant is listed as " +
+          "\n\n[Context Note]: Because your co-applicant is listed as " +
           recognizedContext.incomeType +
           ", focus on providing 2-3 years ITR with computation sheet or official revenue income certificates.";
       }
 
+      const citations: ChatbotSourceCitation[] = [
+        {
+          title: item.topicKey,
+          source: item.sourceTitle,
+          sourceUrl: item.sourceUrl,
+          lastVerified: item.lastVerified,
+          status: item.verificationStatus,
+        },
+      ];
+
+      const baseAnswer =
+        item.answerSummary +
+        "\n\nKey points to know:\n" +
+        item.detailedPoints.map((p) => "• " + p).join("\n") +
+        contextualNote;
+
       return {
-        answer:
-          item.answerSummary +
-          "\\n\\nKey points to know:\\n" +
-          item.detailedPoints.map((p) => "• " + p).join("\\n") +
-          contextualNote,
-        citations: [
-          {
-            title: item.topicKey,
-            source: item.sourceTitle,
-            sourceUrl: item.sourceUrl,
-            lastVerified: item.lastVerified,
-            status: item.verificationStatus,
-          },
-        ],
+        answer: attachVerificationWarningIfNeeded(baseAnswer, citations),
+        citations,
         relevantUrl:
           item.topicKey === "SALARY_SLIP_UNAVAILABLE"
             ? "/practical-help?tab=salary-slip"
@@ -115,7 +169,7 @@ export const queryChatbot = async (
     }
   }
 
-  // 2. Search in What-If Scenarios
+  // 4. Search in What-If Scenarios
   const whatIfMatches = await WhatIfScenario.find();
   for (const scenario of whatIfMatches) {
     if (
@@ -123,22 +177,26 @@ export const queryChatbot = async (
       scenario.title.toLowerCase().includes(query) ||
       query.includes(scenario.title.toLowerCase())
     ) {
+      const citations: ChatbotSourceCitation[] = [
+        {
+          title: scenario.title,
+          source: scenario.officialSource.source,
+          sourceUrl: scenario.officialSource.sourceUrl,
+          lastVerified: scenario.officialSource.lastVerified,
+          status: scenario.officialSource.status,
+        },
+      ];
+
+      const baseAnswer =
+        scenario.summary +
+        "\n\n" +
+        scenario.problemExplanation +
+        "\n\nActionable Steps:\n" +
+        scenario.practicalGuidance.map((g) => "• " + g).join("\n");
+
       return {
-        answer:
-          scenario.summary +
-          "\\n\\n" +
-          scenario.problemExplanation +
-          "\\n\\nActionable Steps:\\n" +
-          scenario.practicalGuidance.map((g) => "• " + g).join("\\n"),
-        citations: [
-          {
-            title: scenario.title,
-            source: scenario.officialSource.source,
-            sourceUrl: scenario.officialSource.sourceUrl,
-            lastVerified: scenario.officialSource.lastVerified,
-            status: scenario.officialSource.status,
-          },
-        ],
+        answer: attachVerificationWarningIfNeeded(baseAnswer, citations),
+        citations,
         relevantUrl: scenario.officialActionLink,
         suggestedPrompts: [
           "What documents are required for this scenario?",
@@ -150,7 +208,7 @@ export const queryChatbot = async (
     }
   }
 
-  // 3. Search in FAQs
+  // 5. Search in FAQs
   const faqMatch = await FAQ.findOne({
     $or: [
       { question: { $regex: query, $options: "i" } },
@@ -160,17 +218,19 @@ export const queryChatbot = async (
   });
 
   if (faqMatch) {
+    const citations: ChatbotSourceCitation[] = [
+      {
+        title: faqMatch.question,
+        source: faqMatch.officialReference || "Edu4Loan Verified FAQ Knowledge Base",
+        sourceUrl: faqMatch.officialReferenceUrl,
+        lastVerified: "2026-08-20",
+        status: "verified",
+      },
+    ];
+
     return {
-      answer: faqMatch.answer,
-      citations: [
-        {
-          title: faqMatch.question,
-          source: faqMatch.officialReference || "Edu4Loan Verified FAQ Knowledge Base",
-          sourceUrl: faqMatch.officialReferenceUrl,
-          lastVerified: "2026-08-20",
-          status: "verified",
-        },
-      ],
+      answer: attachVerificationWarningIfNeeded(faqMatch.answer, citations),
+      citations,
       relevantUrl: "/faqs",
       suggestedPrompts: [
         "What are the collateral rules?",
@@ -181,44 +241,50 @@ export const queryChatbot = async (
     };
   }
 
-  // 4. Search in Loan Schemes
+  // 6. Search in Loan Schemes & Banks
   const schemeMatch = await LoanScheme.findOne({
     $or: [
       { schemeName: { $regex: query, $options: "i" } },
       { bankName: { $regex: query, $options: "i" } },
+      { schemeCode: { $regex: query, $options: "i" } },
     ],
   });
 
   if (schemeMatch) {
+    const citations: ChatbotSourceCitation[] = [
+      {
+        title: schemeMatch.schemeName,
+        source: schemeMatch.source.source,
+        sourceUrl: schemeMatch.source.sourceUrl,
+        lastVerified: schemeMatch.source.lastVerified,
+        status: schemeMatch.status,
+      },
+    ];
+
+    const baseAnswer =
+      schemeMatch.schemeName +
+      " offered by " +
+      schemeMatch.bankName +
+      ":\n• Interest Rate: " +
+      schemeMatch.interestRate.minRate.value +
+      "% to " +
+      schemeMatch.interestRate.maxRate.value +
+      "% (" +
+      schemeMatch.interestRate.benchmarkType +
+      " linked)\n• Max Inland Loan: Rs. " +
+      (schemeMatch.maxLoanAmountInland.value / 100000).toFixed(1) +
+      " Lakhs\n• Collateral: " +
+      schemeMatch.collateral.upTo4Lakhs +
+      " (<= Rs. 4L); " +
+      schemeMatch.collateral.from4To7point5Lakhs +
+      " (Rs. 4L - Rs. 7.5L)\n• Processing Fee: " +
+      schemeMatch.processingFee.value +
+      (schemeMatch.publishedProcessingTime ? "\n• Published Processing Window: " + schemeMatch.publishedProcessingTime : "") +
+      "\n\nFinal sanction terms are determined by the bank upon formal underwriting and institutional verification.";
+
     return {
-      answer:
-        schemeMatch.schemeName +
-        " offered by " +
-        schemeMatch.bankName +
-        ":\\n• Interest Rate: " +
-        schemeMatch.interestRate.minRate.value +
-        "% to " +
-        schemeMatch.interestRate.maxRate.value +
-        "% (" +
-        schemeMatch.interestRate.benchmarkType +
-        " linked)\\n• Max Inland Loan: ₹" +
-        (schemeMatch.maxLoanAmountInland.value / 100000).toFixed(1) +
-        " Lakhs\\n• Collateral: " +
-        schemeMatch.collateral.upTo4Lakhs +
-        " (<= ₹4L); " +
-        schemeMatch.collateral.from4To7point5Lakhs +
-        " (₹4L-₹7.5L)\\n• Processing Fee: " +
-        schemeMatch.processingFee.value +
-        "\\n\\nFinal sanction terms are determined by the bank upon formal application.",
-      citations: [
-        {
-          title: schemeMatch.schemeName,
-          source: schemeMatch.source.source,
-          sourceUrl: schemeMatch.source.sourceUrl,
-          lastVerified: schemeMatch.source.lastVerified,
-          status: schemeMatch.status,
-        },
-      ],
+      answer: attachVerificationWarningIfNeeded(baseAnswer, citations),
+      citations,
       relevantUrl: "/loans",
       suggestedPrompts: [
         "Compare " + schemeMatch.bankName + " with other banks",
@@ -229,14 +295,14 @@ export const queryChatbot = async (
     };
   }
 
-  // 5. Grounded Fallback (No Hallucination)
+  // 7. Grounded Fallback: Section 20 strict fallback string
   return {
     answer:
-      "Information is not currently verified for this query in our authoritative database. Please consult official university notices or check the official bank scheme circular.\\n\\nEdu4Loan only provides information grounded in verified official sources (RBI, IBA, Ministry of Education, and VIT Bhopal desks).",
+      "Information not currently verified. Edu4Loan only provides information grounded in verified official sources (RBI, IBA, Ministry of Education, and VIT Bhopal facilitation desks). Please consult official university notices or check the official bank scheme circular.",
     citations: [],
     suggestedPrompts: [
       "What if my parent has no salary slip?",
-      "Is collateral required up to ₹7.5 Lakhs?",
+      "Is collateral required up to Rs. 7.5 Lakhs?",
       "How do I apply for VIT Bhopal education loan?",
       "What is PM-Vidyalaxmi 2024?",
     ],

@@ -20,6 +20,7 @@ import { DashboardPage } from '@/pages/DashboardPage';
 import { ApplicationTrackerPage } from '@/pages/ApplicationTrackerPage';
 import { AdminPage } from '@/pages/AdminPage';
 import { EligibilityPage } from '@/pages/EligibilityPage';
+import { StudentJourneyPage } from '@/pages/StudentJourneyPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { RegisterPage } from '@/pages/RegisterPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
@@ -37,9 +38,10 @@ export const App: React.FC = () => {
                 <Route path="tracker" element={<ApplicationTrackerPage />} />
                 <Route path="admin" element={<AdminPage />} />
                 <Route path="eligibility" element={<EligibilityPage />} />
+                <Route path="journey" element={<StudentJourneyPage />} />
+                <Route path="finder" element={<StudentJourneyPage />} />
                 <Route path="loans" element={<LoansPage />} />
                 <Route path="loans/:id" element={<SchemeDetailPage />} />
-                <Route path="finder" element={<LoansPage />} />
                 <Route path="compare" element={<ComparePage />} />
                 <Route path="banks" element={<LoansPage />} />
                 <Route path="statistics" element={<BankStatisticsPage />} />

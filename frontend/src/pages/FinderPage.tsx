@@ -1,6 +1,6 @@
 import React from 'react';
-import { LoansPage } from './LoansPage';
+import { StudentJourneyPage } from './StudentJourneyPage';
 
 export const FinderPage: React.FC = () => {
-  return <LoansPage />;
+  return <StudentJourneyPage />;
 };

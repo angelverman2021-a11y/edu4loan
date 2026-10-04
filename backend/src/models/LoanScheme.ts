@@ -119,6 +119,9 @@ export interface ILoanScheme extends Document {
   };
   status: 'verified' | 'needs_verification' | 'expired';
   lastVerified: string;
+  sourceUrl?: string;
+  lastVerifiedAt?: string;
+  verificationStatus?: 'VERIFIED' | 'NEEDS_REVIEW' | 'OUTDATED' | 'UNAVAILABLE' | 'verified' | 'needs_verification' | 'expired';
   isDemo?: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -246,6 +249,13 @@ const LoanSchemeSchema = new Schema<ILoanScheme>(
       type: String,
       required: true,
     },
+    sourceUrl: { type: String, trim: true },
+    lastVerifiedAt: { type: String, trim: true },
+    verificationStatus: {
+      type: String,
+      enum: ['VERIFIED', 'NEEDS_REVIEW', 'OUTDATED', 'UNAVAILABLE', 'verified', 'needs_verification', 'expired'],
+      default: 'VERIFIED',
+    },
     isDemo: { type: Boolean, default: false },
   },
   {
@@ -258,24 +268,36 @@ LoanSchemeSchema.index({ schemeName: 1 });
 LoanSchemeSchema.index({ bankId: 1, status: 1 });
 LoanSchemeSchema.index({ 'interestRate.minRate.value': 1 });
 LoanSchemeSchema.index({ lastVerified: 1 });
+LoanSchemeSchema.index({ verificationStatus: 1 });
 LoanSchemeSchema.index({ isDemo: 1 });
 
 // CRITICAL FINANCIAL DATA SAFETY GUARD:
 // 1. Demo records can NEVER have status 'verified'.
 // 2. Production records cannot be 'verified' if source or official URLs are missing.
 LoanSchemeSchema.pre('save', function (next) {
+  if (this.source) {
+    if (!this.sourceUrl) this.sourceUrl = this.source.sourceUrl;
+    if (!this.lastVerifiedAt) this.lastVerifiedAt = this.lastVerified || this.source.lastVerified;
+    if (!this.verificationStatus) {
+      this.verificationStatus = this.status === 'verified' ? 'VERIFIED' : 'NEEDS_REVIEW';
+    }
+  }
+
   if (this.isDemo) {
     this.status = 'needs_verification';
+    this.verificationStatus = 'NEEDS_REVIEW';
     if (this.interestRate?.minRate) this.interestRate.minRate.status = 'needs_verification';
     if (this.interestRate?.maxRate) this.interestRate.maxRate.status = 'needs_verification';
-  } else if (this.status === 'verified') {
+  } else if (this.status === 'verified' || this.verificationStatus === 'VERIFIED') {
     if (!this.source || !this.source.sourceUrl || !this.source.sourceUrl.startsWith('http')) {
       this.status = 'needs_verification';
+      this.verificationStatus = 'NEEDS_REVIEW';
     }
     if (!this.interestRate?.minRate?.sourceUrl || !this.interestRate?.maxRate?.sourceUrl) {
       if (this.interestRate?.minRate) this.interestRate.minRate.status = 'needs_verification';
       if (this.interestRate?.maxRate) this.interestRate.maxRate.status = 'needs_verification';
       this.status = 'needs_verification';
+      this.verificationStatus = 'NEEDS_REVIEW';
     }
   }
   next();

@@ -270,4 +270,45 @@ export const adminService = {
       };
     }
   },
+
+  /**
+   * Retrieve catalog entities for administration
+   */
+  getCatalog: async (entity: string): Promise<any[]> => {
+    try {
+      const res = await api.get<any[]>(`/admin/catalog/${entity}`);
+      return res.data || [];
+    } catch {
+      return [];
+    }
+  },
+
+  /**
+   * Update verification status, date, and source for an entity
+   */
+  updateStatus: async (
+    entity: string,
+    id: string,
+    payload: {
+      status: string;
+      verificationDate?: string;
+      source?: string;
+      sourceUrl?: string;
+      reason?: string;
+    }
+  ): Promise<{ success: boolean; message: string; record?: any }> => {
+    try {
+      const res = await api.post<any>(`/admin/status/${entity}/${id}`, payload);
+      return {
+        success: true,
+        message: (res as any).message || `Status updated to ${payload.status}`,
+        record: res.data,
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        message: err.message || 'Failed to update status',
+      };
+    }
+  },
 };

@@ -14,5 +14,7 @@ router.get('/data-quality', adminController.getDataQuality);
 router.post('/scan-freshness', adminController.triggerFreshnessScan);
 router.post('/reset-demo', adminController.resetDemoData);
 router.post('/verify/:entity/:id', adminController.verifyEntity);
+router.get('/catalog/:entity', adminController.getCatalogEntities);
+router.post('/status/:entity/:id', adminController.updateEntityStatus);
 
 export default router;

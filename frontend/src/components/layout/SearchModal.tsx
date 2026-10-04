@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Building2, BookOpen, FileText, Landmark, HelpCircle, Loader2, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, Building2, BookOpen, FileText, Landmark, HelpCircle, Loader2, ArrowRight, Sparkles, Link2, ExternalLink, MessageSquare } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { searchService } from '@/services/searchService';
 import { SearchResponseData } from '@/types';
@@ -62,7 +62,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
       data.results.documents.length > 0 ||
       data.results.institutions.length > 0 ||
       data.results.faqs.length > 0 ||
-      (data.results.whatIfScenarios && data.results.whatIfScenarios.length > 0));
+      (data.results.whatIfScenarios && data.results.whatIfScenarios.length > 0) ||
+      (data.results.sources && data.results.sources.length > 0) ||
+      (data.results.chatbotAnswers && data.results.chatbotAnswers.length > 0));
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg" className="p-0 overflow-hidden">
@@ -284,7 +286,67 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                           {w.title}
                         </div>
                         <div className="text-xs text-slate-500 line-clamp-1">
-                          {w.solution || w.problem}
+                          {w.summary || w.problemExplanation || w.solution}
+                        </div>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-colors" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Official Sources */}
+            {data.results.sources && data.results.sources.length > 0 && (
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                  <Link2 className="h-3.5 w-3.5 text-brand-700" />
+                  <span>Official Regulatory Sources ({data.results.sources.length})</span>
+                </h4>
+                <div className="space-y-1">
+                  {data.results.sources.map((s: any, idx: number) => (
+                    <a
+                      key={s._id || idx}
+                      href={s.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-brand-50/70 transition-colors flex items-center justify-between group"
+                    >
+                      <div>
+                        <div className="text-sm font-medium text-slate-900 group-hover:text-brand-700 line-clamp-1">
+                          {s.sourceName}
+                        </div>
+                        <div className="text-xs text-slate-500">
+                          {s.issuingAuthority} • Status: {s.status?.toUpperCase() || 'VERIFIED'}
+                        </div>
+                      </div>
+                      <ExternalLink className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-colors" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Relevant Chatbot Knowledge Answers */}
+            {data.results.chatbotAnswers && data.results.chatbotAnswers.length > 0 && (
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                  <MessageSquare className="h-3.5 w-3.5 text-brand-700" />
+                  <span>Verified Chatbot Knowledge ({data.results.chatbotAnswers.length})</span>
+                </h4>
+                <div className="space-y-1">
+                  {data.results.chatbotAnswers.map((c: any, idx: number) => (
+                    <button
+                      key={c._id || idx}
+                      onClick={() => handleSelect(`/practical-help?q=${encodeURIComponent(c.questionCanonical || '')}`)}
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-brand-50/70 transition-colors flex items-center justify-between group"
+                    >
+                      <div>
+                        <div className="text-sm font-medium text-slate-900 group-hover:text-brand-700 line-clamp-1">
+                          {c.questionCanonical}
+                        </div>
+                        <div className="text-xs text-slate-500 line-clamp-1">
+                          {c.answerSummary}
                         </div>
                       </div>
                       <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-colors" />

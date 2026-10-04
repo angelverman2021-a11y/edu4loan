@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import app from "../app";
 import { runProductionSeed } from "../seeds/seedProduction";
+import { Bank } from "../models/Bank";
+import { LoanScheme as LoanSchemeModel } from "../models/LoanScheme";
+import { signToken } from "../utils/jwt";
 
 const runEnhancementTests = async () => {
   console.log("====================================================");
@@ -141,12 +144,149 @@ const runEnhancementTests = async () => {
       "SBI scheme includes termsAndConditions with plain explanations"
     );
 
-    // 5. Multilingual Search Expansion
+    // 5. Section 20 Source-Based Answer Engine Fallback Verification
+    const unverifiedChatRes = await apiCall({
+      method: "POST",
+      path: "/api/chatbot/ask",
+      body: {
+        question: "Can I get an unverified loan from an unknown foreign private lender?",
+      },
+    });
+    assert(unverifiedChatRes.status === 200, "POST /api/chatbot/ask fallback returns 200 OK");
+    assert(
+      unverifiedChatRes.body.data.answer.startsWith("Information not currently verified."),
+      "Unverified query strictly begins with 'Information not currently verified.'"
+    );
+
+    // 6. Section 21 Multilingual & Conversational Global Search Upgrades
     const searchRes = await apiCall({ method: "GET", path: "/api/search?q=salary" });
     assert(searchRes.status === 200, "GET /api/search?q=salary returns 200");
     assert(
       searchRes.body.data.whatIfScenarios.length >= 1,
       "Search resolves query to What-If scenarios"
+    );
+    assert(
+      Array.isArray(searchRes.body.data.sources) && Array.isArray(searchRes.body.data.chatbotAnswers),
+      "Search returns sources and chatbotAnswers collections (Section 21)"
+    );
+
+    // Test specific target queries from Section 21
+    const testQueries = [
+      "Salary slip nahi hai to kya kare?",
+      "Parent is self employed",
+      "No collateral",
+      "Documents required",
+      "Minimum documents for VIT Bhopal",
+      "Compare banks",
+      "Which banks published processing time?",
+      "How does bank verify student information?",
+      "Loan approval statistics",
+      "Parents ke liye simple explanation",
+      "ગુજરાતીમાં લોનની માહિતી",
+    ];
+
+    for (const tq of testQueries) {
+      const qRes = await apiCall({
+        method: "GET",
+        path: `/api/search?q=${encodeURIComponent(tq)}`,
+      });
+      assert(
+        qRes.status === 200 && qRes.body.data.totalMatches > 0,
+        `Section 21 Search resolves '${tq}' (matches: ${qRes.body.data?.totalMatches})`
+      );
+    }
+
+    // 7. Section 23 Data Model Extension (source, sourceUrl, lastVerifiedAt, verificationStatus)
+    const sampleBank = await Bank.findOne();
+    assert(Boolean(sampleBank), "Database has at least one bank record");
+    assert(
+      typeof sampleBank?.source !== "undefined" || typeof sampleBank?.overallSource?.source !== "undefined",
+      "Bank supports source field"
+    );
+    assert(
+      typeof sampleBank?.verificationStatus !== "undefined" || typeof sampleBank?.overallSource?.status !== "undefined",
+      "Bank supports verificationStatus"
+    );
+
+    const sampleScheme = await LoanSchemeModel.findOne();
+    assert(Boolean(sampleScheme), "Database has at least one loan scheme record");
+    assert(
+      typeof sampleScheme?.sourceUrl !== "undefined" || typeof sampleScheme?.source?.sourceUrl !== "undefined",
+      "LoanScheme supports sourceUrl"
+    );
+    assert(
+      typeof sampleScheme?.verificationStatus !== "undefined" || typeof sampleScheme?.status !== "undefined",
+      "LoanScheme supports verificationStatus"
+    );
+
+    // 8. Section 24 Admin Catalog & Status Management
+    const adminToken = signToken({
+      userId: "admin_test_id",
+      email: "admin@edu4loan.org",
+      role: "admin",
+    });
+
+    const adminCatalogRes = await new Promise<{ status: number; body: any }>((resolve, reject) => {
+      const address = server.address() as any;
+      const req = http.request(
+        {
+          hostname: "127.0.0.1",
+          port: address.port,
+          path: "/api/admin/catalog/bank",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        },
+        (res) => {
+          let data = "";
+          res.on("data", (chunk) => (data += chunk));
+          res.on("end", () => resolve({ status: res.statusCode || 500, body: JSON.parse(data) }));
+        }
+      );
+      req.on("error", reject);
+      req.end();
+    });
+
+    assert(adminCatalogRes.status === 200, "GET /api/admin/catalog/bank returns 200 for admin");
+    assert(adminCatalogRes.body.data.length >= 3, "Admin catalog returns bank records");
+
+    // Test Admin Status Update: POST /api/admin/status/bank/:id
+    const targetBank = sampleBank!;
+    const adminStatusRes = await new Promise<{ status: number; body: any }>((resolve, reject) => {
+      const address = server.address() as any;
+      const postData = JSON.stringify({
+        status: "VERIFIED",
+        verificationDate: "2026-10-04",
+        reason: "Section 24 automated test status update",
+      });
+      const req = http.request(
+        {
+          hostname: "127.0.0.1",
+          port: address.port,
+          path: `/api/admin/status/bank/${targetBank._id}`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Content-Length": Buffer.byteLength(postData).toString(),
+            Authorization: `Bearer ${adminToken}`,
+          },
+        },
+        (res) => {
+          let data = "";
+          res.on("data", (chunk) => (data += chunk));
+          res.on("end", () => resolve({ status: res.statusCode || 500, body: JSON.parse(data) }));
+        }
+      );
+      req.on("error", reject);
+      req.write(postData);
+      req.end();
+    });
+
+    assert(adminStatusRes.status === 200, "POST /api/admin/status/bank/:id returns 200 OK");
+    assert(
+      adminStatusRes.body.data.verificationStatus === "VERIFIED",
+      "Bank status successfully updated to VERIFIED"
     );
 
     console.log("\n====================================================");

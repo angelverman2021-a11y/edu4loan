@@ -166,6 +166,60 @@ assert(
   '10. AskEdu4LoanChatbot implements floating assistant with verified source citations'
 );
 
+// Section 22: Guided Student Journey Verification
+const studentJourneyPath = path.resolve(__dirname, '../pages/StudentJourneyPage.tsx');
+const studentJourneyContent = fs.readFileSync(studentJourneyPath, 'utf-8');
+
+assert(
+  studentJourneyContent.includes('Complete Guided Student Loan Journey') &&
+  studentJourneyContent.includes('VIT Bhopal University') &&
+  studentJourneyContent.includes('Step 1 of 6') &&
+  studentJourneyContent.includes('Step 2 of 6') &&
+  studentJourneyContent.includes('Step 3 of 6') &&
+  studentJourneyContent.includes('Step 4 of 6') &&
+  studentJourneyContent.includes('Step 5 of 6') &&
+  studentJourneyContent.includes('Step 6 of 6'),
+  '11. StudentJourneyPage implements full multi-step journey (Section 22)'
+);
+
+assert(
+  studentJourneyContent.includes('SBI Scholar Scheme') &&
+  studentJourneyContent.includes('Canara Vidya Turan') &&
+  studentJourneyContent.includes('Vidya Lakshmi Portal') &&
+  studentJourneyContent.includes('PM-Vidyalaxmi Scheme (2024)'),
+  '12. StudentJourneyPage provides scheme comparisons and official government portal links'
+);
+
+assert(
+  studentJourneyContent.includes('PARENT_TEXTS') &&
+  studentJourneyContent.includes('ગુજરાતી') &&
+  studentJourneyContent.includes('বাংলা') &&
+  studentJourneyContent.includes('हिंदी'),
+  '13. StudentJourneyPage includes multilingual Parent Review Hub (Hindi, Gujarati, Bengali)'
+);
+
+// Section 21: SearchModal Verification
+const searchModalPath = path.resolve(__dirname, '../components/layout/SearchModal.tsx');
+const searchModalContent = fs.readFileSync(searchModalPath, 'utf-8');
+
+assert(
+  searchModalContent.includes('Official Regulatory Sources') &&
+  searchModalContent.includes('Verified Chatbot Knowledge'),
+  '14. SearchModal displays Official Sources and Verified Chatbot Answers (Section 21)'
+);
+
+// Section 24: AdminPage Data Catalog Verification
+const adminPagePath = path.resolve(__dirname, '../pages/AdminPage.tsx');
+const adminPageContent = fs.readFileSync(adminPagePath, 'utf-8');
+
+assert(
+  adminPageContent.includes('Platform Data Catalog Management') &&
+  adminPageContent.includes('selectedEntity') &&
+  adminPageContent.includes('VERIFIED') &&
+  adminPageContent.includes('OUTDATED'),
+  '15. AdminPage implements Data Catalog Management with VERIFIED, NEEDS_REVIEW, OUTDATED, UNAVAILABLE statuses (Section 24)'
+);
+
 // 6. Check Zero Emoji Constraint across newly created pages
 const newFiles = [
   comparePagePath,
@@ -173,6 +227,9 @@ const newFiles = [
   practicalHelpPath,
   parentModePath,
   chatbotPath,
+  studentJourneyPath,
+  searchModalPath,
+  adminPagePath,
   path.resolve(__dirname, '../services/whatIfService.ts'),
   path.resolve(__dirname, '../services/chatbotService.ts'),
   path.resolve(__dirname, '../services/bankStatisticsService.ts'),
@@ -191,7 +248,7 @@ for (const file of newFiles) {
 
 assert(
   emojiViolations.length === 0,
-  '11. Zero Unicode emojis in newly added frontend code and UI files',
+  '16. Zero Unicode emojis in newly added frontend code and UI files',
   emojiViolations.length > 0 ? `Violations found in: ${emojiViolations.join(', ')}` : undefined
 );
 
