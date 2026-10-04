@@ -53,5 +53,6 @@ export interface SearchResponseData {
     documents: any[];
     institutions: any[];
     faqs: any[];
+    whatIfScenarios?: any[];
   };
 }

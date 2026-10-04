@@ -8,3 +8,5 @@ export { Institution, IInstitution } from './Institution';
 export { Application, IApplication } from './Application';
 export { FAQ, IFAQ } from './FAQ';
 export { AuditLog, IAuditLog } from './AuditLog';
+export { WhatIfScenario, IWhatIfScenario } from './WhatIfScenario';
+export { ChatbotKnowledge, IChatbotKnowledge } from './ChatbotKnowledge';

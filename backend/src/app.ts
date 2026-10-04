@@ -19,6 +19,9 @@ import adminRoutes from './routes/admin.routes';
 import loanFinderRoutes from './routes/loanFinder.routes';
 import calculatorRoutes from './routes/calculator.routes';
 import searchRoutes from './routes/search.routes';
+import whatIfRoutes from './routes/whatIf.routes';
+import chatbotRoutes from './routes/chatbot.routes';
+import bankStatisticsRoutes from './routes/bankStatistics.routes';
 
 const app = express();
 
@@ -76,6 +79,9 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/loan-finder', loanFinderRoutes);
 app.use('/api/calculator', calculatorRoutes);
 app.use('/api/search', searchRoutes);
+app.use('/api/what-if', whatIfRoutes);
+app.use('/api/chatbot', chatbotRoutes);
+app.use('/api/bank-statistics', bankStatisticsRoutes);
 
 // 404 Route Handler
 app.use((req: Request, res: Response) => {

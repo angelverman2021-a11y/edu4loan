@@ -151,6 +151,72 @@ const AUTHORITATIVE_FAQS: FAQItem[] = [
       url: '/calculator',
     },
   },
+  {
+    id: 'faq_12',
+    category: 'Documents & Verification',
+    question: 'What if my parent or co-borrower does not have formal monthly salary slips?',
+    answer:
+      'Commercial banks accept verified alternative documentation: 2-3 years ITR-V with computation of income, Form 16, Revenue Authority / Tahsildar certified income certificates (for agricultural or informal income), and past 6–12 months active bank statements reflecting consistent business or household credits.',
+    relatedLink: {
+      label: 'Use Salary Slip Alternatives Decision Guide',
+      url: '/practical-help?tab=salary-slip',
+    },
+  },
+  {
+    id: 'faq_13',
+    category: 'Documents & Verification',
+    question: 'Does the lending bank retain original academic mark sheets or property deeds?',
+    answer:
+      'For academic documents (10th/12th/degree marksheets), bank officers inspect originals for physical sighting and return them immediately. For loans exceeding Rs 7.5 Lakhs requiring tangible collateral, original property title deeds and chain documents are deposited under registered equitable mortgage in the bank vault until full loan closure.',
+    relatedLink: {
+      label: 'View Minimum Documents Engine',
+      url: '/practical-help?tab=min-documents',
+    },
+  },
+  {
+    id: 'faq_14',
+    category: 'Repayment & Prepayment',
+    question: 'Is there any penalty for paying off an education loan before the scheduled tenure?',
+    answer:
+      'No. Under binding Reserve Bank of India (RBI) regulations, banks and NBFCs are strictly prohibited from levying any prepayment penalty, foreclosure fee, or early-settlement charge on floating-rate education loans sanctioned to individual borrowers. You may make lump-sum payments at any time.',
+    relatedLink: {
+      label: 'Explore Early Repayment Rules',
+      url: '/practical-help?tab=terms',
+    },
+  },
+  {
+    id: 'faq_15',
+    category: 'Repayment & Prepayment',
+    question: 'When exactly does EMI repayment start after graduating from VIT Bhopal?',
+    answer:
+      'Repayment begins strictly after the completion of the statutory moratorium period: standard course duration (4 years for B.Tech) plus a 1-year buffer period, or 6 months after securing employment, whichever occurs earlier. Monthly simple interest can, however, be serviced optionally during college.',
+    relatedLink: {
+      label: 'Inspect 9-Stage Application Timeline',
+      url: '/practical-help?tab=timeline',
+    },
+  },
+  {
+    id: 'faq_16',
+    category: 'What-If & Special Scenarios',
+    question: 'Can I secure an education loan if I have a drop year between 12th standard and college?',
+    answer:
+      'Yes. A study gap or drop year taken for competitive examination preparation (JEE / NEET / VITEEE) does not disqualify an applicant under the IBA Model Scheme. Lenders require a self-attested affidavit or gap certificate explaining the preparatory interval along with entrance scorecards.',
+    relatedLink: {
+      label: 'View Drop Year Resolution in What-If Hub',
+      url: '/practical-help?tab=what-if',
+    },
+  },
+  {
+    id: 'faq_17',
+    category: 'What-If & Special Scenarios',
+    question: 'Can two siblings take education loans simultaneously with the same parent co-borrower?',
+    answer:
+      'Yes. IBA guidelines permit education loans for multiple children within the same family. If the co-borrower parent has adequate debt servicing capacity (FOIR), both loans are sanctioned. Alternatively, a second earning family member or grandparent can be onboarded as co-obligant.',
+    relatedLink: {
+      label: 'Explore Multiple Sibling Scenarios',
+      url: '/practical-help?tab=what-if',
+    },
+  },
 ];
 
 const CATEGORIES = [
@@ -160,6 +226,9 @@ const CATEGORIES = [
   'Government Subsidies',
   'VIT Bhopal Guides',
   'Eligibility & Co-Borrower',
+  'Documents & Verification',
+  'Repayment & Prepayment',
+  'What-If & Special Scenarios',
 ];
 
 export const FaqsPage: React.FC = () => {

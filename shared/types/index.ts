@@ -8,3 +8,6 @@ export * from './calculator';
 export * from './application';
 export * from './faq';
 export * from './user';
+export * from './whatIf';
+export * from './parentMode';
+export * from './chatbot';

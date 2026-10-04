@@ -56,7 +56,20 @@ export interface LoanScheme {
   prepaymentPenalty: VerifiedDataPoint<string>; // e.g. "Nil for floating rate loans as per RBI norms"
   section80ETaxBenefitApplicable: boolean;
   vitBhopalEligible: boolean;
-  vitBhopalCategoryNote?: string;
+  guaranteeRequirement?: string;
+  coApplicantRequirement?: string;
+  insuranceRequirement?: string;
+  eligibleExpenses?: string[];
+  requiredDocuments?: string[];
+  applicationProcess?: string[];
+  publishedProcessingTime?: string;
+  termsAndConditions?: Array<{
+    term: string;
+    simpleExplanation: string;
+    whyItMatters: string;
+    officialWording: string;
+    sourceUrl?: string;
+  }>;
   officialCircularUrl: string;
   officialApplicationUrl: string;
   source: VerifiedDataPoint<string>;

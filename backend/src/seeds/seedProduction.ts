@@ -6,6 +6,8 @@ import { productionGovernmentSchemes } from './production/governmentSchemes';
 import { productionInstitutions } from './production/institutions';
 import { productionDocuments } from './production/documents';
 import { productionFAQs } from './production/faqs';
+import { productionWhatIfScenarios } from './production/whatIfScenarios';
+import { productionChatbotKnowledge } from './production/chatbotKnowledge';
 import {
   safeUpsertSource,
   safeUpsertBank,
@@ -14,6 +16,8 @@ import {
   safeUpsertInstitution,
   safeUpsertDocument,
   safeUpsertFAQ,
+  safeUpsertWhatIf,
+  safeUpsertChatbotKnowledge,
 } from '../services/safeUpsert.service';
 
 export const runProductionSeed = async () => {
@@ -31,6 +35,8 @@ export const runProductionSeed = async () => {
     institutions: { inserted: 0, updated: 0, skipped: 0 },
     documents: { inserted: 0, updated: 0, skipped: 0 },
     faqs: { inserted: 0, updated: 0, skipped: 0 },
+    whatIfScenarios: { inserted: 0, updated: 0, skipped: 0 },
+    chatbotKnowledge: { inserted: 0, updated: 0, skipped: 0 },
   };
 
   // 1. Ingest Primary Sources
@@ -120,6 +126,30 @@ export const runProductionSeed = async () => {
     `    FAQs: ${stats.faqs.inserted} inserted, ${stats.faqs.updated} updated, ${stats.faqs.skipped} skipped`
   );
 
+  // 8. Ingest What-If Scenarios
+  console.log('--> Ingesting Practical What-If Scenarios...');
+  for (const scenario of productionWhatIfScenarios) {
+    const res = await safeUpsertWhatIf(scenario);
+    if (res.action === 'INSERTED') stats.whatIfScenarios.inserted++;
+    else if (res.action === 'UPDATED') stats.whatIfScenarios.updated++;
+    else stats.whatIfScenarios.skipped++;
+  }
+  console.log(
+    `    What-If Scenarios: ${stats.whatIfScenarios.inserted} inserted, ${stats.whatIfScenarios.updated} updated, ${stats.whatIfScenarios.skipped} skipped`
+  );
+
+  // 9. Ingest Chatbot Domain Knowledge
+  console.log('--> Ingesting Chatbot Domain Knowledge...');
+  for (const knowledge of productionChatbotKnowledge) {
+    const res = await safeUpsertChatbotKnowledge(knowledge);
+    if (res.action === 'INSERTED') stats.chatbotKnowledge.inserted++;
+    else if (res.action === 'UPDATED') stats.chatbotKnowledge.updated++;
+    else stats.chatbotKnowledge.skipped++;
+  }
+  console.log(
+    `    Chatbot Knowledge: ${stats.chatbotKnowledge.inserted} inserted, ${stats.chatbotKnowledge.updated} updated, ${stats.chatbotKnowledge.skipped} skipped`
+  );
+
   console.log('\n====================================================');
   console.log('  PRODUCTION INGESTION SUMMARY');
   console.log('====================================================');
@@ -131,6 +161,8 @@ export const runProductionSeed = async () => {
   console.log(`- Institutions: ${stats.institutions.inserted + stats.institutions.updated}`);
   console.log(`- Documents: ${stats.documents.inserted + stats.documents.updated}`);
   console.log(`- FAQs: ${stats.faqs.inserted + stats.faqs.updated}`);
+  console.log(`- What-If Scenarios: ${stats.whatIfScenarios.inserted + stats.whatIfScenarios.updated}`);
+  console.log(`- Chatbot Knowledge: ${stats.chatbotKnowledge.inserted + stats.chatbotKnowledge.updated}`);
   console.log('====================================================\n');
 
   return stats;

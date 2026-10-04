@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Building2, BookOpen, FileText, Landmark, HelpCircle, Loader2, ArrowRight } from 'lucide-react';
+import { Search, Building2, BookOpen, FileText, Landmark, HelpCircle, Loader2, ArrowRight, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { searchService } from '@/services/searchService';
 import { SearchResponseData } from '@/types';
@@ -61,7 +61,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
       data.results.governmentSchemes.length > 0 ||
       data.results.documents.length > 0 ||
       data.results.institutions.length > 0 ||
-      data.results.faqs.length > 0);
+      data.results.faqs.length > 0 ||
+      (data.results.whatIfScenarios && data.results.whatIfScenarios.length > 0));
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg" className="p-0 overflow-hidden">
@@ -256,6 +257,35 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                           {f.question}
                         </div>
                         <div className="text-xs text-slate-500">{f.category}</div>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-colors" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Practical What-If Scenarios */}
+            {data.results.whatIfScenarios && data.results.whatIfScenarios.length > 0 && (
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5 text-brand-700" />
+                  <span>Practical What-If Solutions ({data.results.whatIfScenarios.length})</span>
+                </h4>
+                <div className="space-y-1">
+                  {data.results.whatIfScenarios.map((w: any) => (
+                    <button
+                      key={w._id || w.code}
+                      onClick={() => handleSelect(`/practical-help?tab=what-if`)}
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-brand-50/70 transition-colors flex items-center justify-between group"
+                    >
+                      <div>
+                        <div className="text-sm font-medium text-slate-900 group-hover:text-brand-700 line-clamp-1">
+                          {w.title}
+                        </div>
+                        <div className="text-xs text-slate-500 line-clamp-1">
+                          {w.solution || w.problem}
+                        </div>
                       </div>
                       <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-colors" />
                     </button>

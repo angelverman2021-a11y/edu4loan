@@ -129,6 +129,20 @@ export interface LoanSchemeItem {
   section80ETaxBenefitApplicable: boolean;
   vitBhopalEligible: boolean;
   vitBhopalCategoryNote?: string;
+  guaranteeRequirement?: string;
+  coApplicantRequirement?: string;
+  insuranceRequirement?: string;
+  eligibleExpenses?: string[];
+  requiredDocuments?: string[];
+  applicationProcess?: string[];
+  publishedProcessingTime?: string;
+  termsAndConditions?: Array<{
+    term: string;
+    simpleExplanation: string;
+    whyItMatters: string;
+    officialWording: string;
+    sourceUrl?: string;
+  }>;
   officialCircularUrl: string;
   officialApplicationUrl: string;
   source: {
@@ -212,6 +226,22 @@ export interface ComparisonSchemeData {
     status: 'verified' | 'needs_verification' | 'expired';
     lastVerified: string;
   };
+  requirements?: {
+    guarantee: string;
+    coApplicant: string;
+    insurance: string;
+    publishedProcessingTime: string;
+    eligibleExpenses: string[];
+    requiredDocuments: string[];
+    applicationProcess: string[];
+  };
+  termsAndConditions?: Array<{
+    term: string;
+    simpleExplanation: string;
+    whyItMatters: string;
+    officialWording: string;
+    sourceUrl?: string;
+  }>;
 }
 
 export interface ComparisonResult {

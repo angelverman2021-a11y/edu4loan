@@ -19,6 +19,9 @@ import {
   LayoutDashboard,
   UserCheck,
   Shield,
+  BarChart3,
+  Users,
+  Sparkles,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { useAuth } from '@/context/AuthContext';
@@ -52,14 +55,15 @@ export const Navbar: React.FC = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Loan Discovery', path: '/loans', icon: Compass },
-    { name: 'Compare Schemes', path: '/compare', icon: Building2 },
-    { name: 'EMI Calculator', path: '/calculator', icon: Calculator },
+    { name: 'Loans', path: '/loans', icon: Compass },
+    { name: 'Compare', path: '/compare', icon: Building2 },
+    { name: 'Practical Help', path: '/practical-help', icon: Sparkles },
+    { name: 'Bank Stats', path: '/statistics', icon: BarChart3 },
+    { name: 'Parent Mode', path: '/parent-mode', icon: Users },
+    { name: 'Calculator', path: '/calculator', icon: Calculator },
     { name: 'Eligibility', path: '/eligibility', icon: UserCheck },
     { name: 'Documents', path: '/documents', icon: FileCheck2 },
-    { name: 'Tracker', path: '/tracker', icon: Layers },
-    { name: 'Govt Schemes', path: '/schemes', icon: Landmark },
-    { name: 'VIT Bhopal Guide', path: '/vit-bhopal', icon: BookOpen },
+    { name: 'VIT Guide', path: '/vit-bhopal', icon: BookOpen },
     { name: 'FAQs', path: '/faqs', icon: HelpCircle },
   ];
 

@@ -242,6 +242,17 @@ export const compareLoanSchemes = async (ids: string[]) => {
         status: s.status,
         lastVerified: s.lastVerified,
       },
+      rateType: s.interestRate.benchmarkType === 'Fixed' ? 'Fixed' : 'Floating (External Benchmark Linked)',
+      requirements: {
+        guarantee: s.guaranteeRequirement || 'Not mandated by circular for eligible limits',
+        coApplicant: s.coApplicantRequirement || 'Parent / Legal Guardian mandatory co-borrower',
+        insurance: s.insuranceRequirement || 'Optional life coverage recommended',
+        publishedProcessingTime: s.publishedProcessingTime || 'No statutory SLA published in circular',
+        eligibleExpenses: s.eligibleExpenses || [],
+        requiredDocuments: s.requiredDocuments || [],
+        applicationProcess: s.applicationProcess || [],
+      },
+      termsAndConditions: s.termsAndConditions || [],
     };
   });
 

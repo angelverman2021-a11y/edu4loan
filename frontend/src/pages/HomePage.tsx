@@ -15,6 +15,8 @@ import {
   ExternalLink,
   ChevronRight,
   Info,
+  Users,
+  BarChart3,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
@@ -229,6 +231,87 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
           </Card>
+        </div>
+      </section>
+
+      {/* NEW: PRACTICAL ASSISTANCE & PARENT GUIDANCE SPOTLIGHT */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-2xl border border-blue-200/80 bg-gradient-to-br from-blue-50/60 via-white to-slate-50 p-6 sm:p-8 shadow-fintech space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-blue-100 pb-5">
+            <div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <Badge variant="verified">New Student Tools</Badge>
+                <Badge variant="neutral">Verified Circular Support</Badge>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+                Practical Resolution Center & Parent Mode
+              </h2>
+              <p className="text-xs text-slate-600 mt-1 max-w-2xl">
+                Tackle real application hurdles: informal income alternatives, minimum documentation sets, 9-stage bank timelines, and multilingual parent summaries.
+              </p>
+            </div>
+            <Link to="/practical-help">
+              <Button variant="primary" size="sm" rightIcon={<ArrowRight className="h-3.5 w-3.5" />}>
+                Launch Help Hub
+              </Button>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Tool 1 */}
+            <div className="bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors space-y-2.5">
+              <div className="h-9 w-9 rounded-lg bg-blue-50 text-brand-700 flex items-center justify-center">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm">Practical Loan Help (7 Tools)</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Interactive Salary Slip alternatives, Minimum Documents Engine, 9-stage processing timeline, and 10 What-If scenario cards.
+              </p>
+              <Link
+                to="/practical-help"
+                className="text-xs font-semibold text-brand-700 hover:underline inline-flex items-center gap-1 pt-1"
+              >
+                <span>Explore 7 Tools</span>
+                <ChevronRight className="h-3 w-3" />
+              </Link>
+            </div>
+
+            {/* Tool 2 */}
+            <div className="bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors space-y-2.5">
+              <div className="h-9 w-9 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <Users className="h-4 w-4" />
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm">Parent Guidance Mode</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Simplified, jargon-free explanations in Hindi, Gujarati, and Bengali with an interactive 12-point preparation progress bar.
+              </p>
+              <Link
+                to="/parent-mode"
+                className="text-xs font-semibold text-brand-700 hover:underline inline-flex items-center gap-1 pt-1"
+              >
+                <span>Switch to Parent Mode</span>
+                <ChevronRight className="h-3 w-3" />
+              </Link>
+            </div>
+
+            {/* Tool 3 */}
+            <div className="bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors space-y-2.5">
+              <div className="h-9 w-9 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
+                <BarChart3 className="h-4 w-4" />
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm">Bank Statistics & Spreads</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Objective circular statistics: EBLR repo benchmarks, margin money distributions, and verified turnaround SLAs. Zero fake approval odds.
+              </p>
+              <Link
+                to="/statistics"
+                className="text-xs font-semibold text-brand-700 hover:underline inline-flex items-center gap-1 pt-1"
+              >
+                <span>View Bank Metrics</span>
+                <ChevronRight className="h-3 w-3" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

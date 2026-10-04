@@ -5,6 +5,8 @@ import { DocumentModel, IDocumentItem } from '../models/Document';
 import { Institution, IInstitution } from '../models/Institution';
 import { Source, ISource } from '../models/Source';
 import { FAQ, IFAQ } from '../models/FAQ';
+import { WhatIfScenario, IWhatIfScenario } from '../models/WhatIfScenario';
+import { ChatbotKnowledge, IChatbotKnowledge } from '../models/ChatbotKnowledge';
 import { logAuditAction } from './audit.service';
 
 export interface UpsertOptions {
@@ -346,3 +348,38 @@ export const safeUpsertFAQ = async (
   const newFaq = await FAQ.create(data);
   return { record: newFaq, action: 'INSERTED' };
 };
+
+// 8. Safe Upsert What-If Scenario
+export const safeUpsertWhatIf = async (
+  data: any,
+  options: UpsertOptions = {}
+): Promise<{ record: IWhatIfScenario; action: 'INSERTED' | 'UPDATED' | 'SKIPPED' }> => {
+  const existing = await WhatIfScenario.findOne({ scenarioCode: data.scenarioCode });
+
+  if (existing) {
+    Object.assign(existing, data);
+    await existing.save();
+    return { record: existing, action: 'UPDATED' };
+  }
+
+  const newScenario = await WhatIfScenario.create(data);
+  return { record: newScenario, action: 'INSERTED' };
+};
+
+// 9. Safe Upsert Chatbot Knowledge
+export const safeUpsertChatbotKnowledge = async (
+  data: any,
+  options: UpsertOptions = {}
+): Promise<{ record: IChatbotKnowledge; action: 'INSERTED' | 'UPDATED' | 'SKIPPED' }> => {
+  const existing = await ChatbotKnowledge.findOne({ topicKey: data.topicKey });
+
+  if (existing) {
+    Object.assign(existing, data);
+    await existing.save();
+    return { record: existing, action: 'UPDATED' };
+  }
+
+  const newKnowledge = await ChatbotKnowledge.create(data);
+  return { record: newKnowledge, action: 'INSERTED' };
+};
+

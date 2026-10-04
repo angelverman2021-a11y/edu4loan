@@ -94,6 +94,20 @@ export interface ILoanScheme extends Document {
   section80ETaxBenefitApplicable: boolean;
   vitBhopalEligible: boolean;
   vitBhopalCategoryNote?: string;
+  guaranteeRequirement?: string;
+  coApplicantRequirement?: string;
+  insuranceRequirement?: string;
+  eligibleExpenses?: string[];
+  requiredDocuments?: string[];
+  applicationProcess?: string[];
+  publishedProcessingTime?: string;
+  termsAndConditions?: Array<{
+    term: string;
+    simpleExplanation: string;
+    whyItMatters: string;
+    officialWording: string;
+    sourceUrl?: string;
+  }>;
   officialCircularUrl: string;
   officialApplicationUrl: string;
   source: {
@@ -204,6 +218,22 @@ const LoanSchemeSchema = new Schema<ILoanScheme>(
     section80ETaxBenefitApplicable: { type: Boolean, default: true },
     vitBhopalEligible: { type: Boolean, default: true },
     vitBhopalCategoryNote: { type: String },
+    guaranteeRequirement: { type: String },
+    coApplicantRequirement: { type: String },
+    insuranceRequirement: { type: String },
+    eligibleExpenses: { type: [String], default: [] },
+    requiredDocuments: { type: [String], default: [] },
+    applicationProcess: { type: [String], default: [] },
+    publishedProcessingTime: { type: String },
+    termsAndConditions: [
+      {
+        term: { type: String },
+        simpleExplanation: { type: String },
+        whyItMatters: { type: String },
+        officialWording: { type: String },
+        sourceUrl: { type: String },
+      },
+    ],
     officialCircularUrl: { type: String, required: true },
     officialApplicationUrl: { type: String, required: true },
     source: { type: VerifiedStringSchema, required: true },
