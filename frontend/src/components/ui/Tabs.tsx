@@ -27,7 +27,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, activeTab, onChange, className
               key={tab.id}
               onClick={() => onChange(tab.id)}
               className={clsx(
-                'group inline-flex items-center gap-2 border-b-2 py-3 px-1 text-sm font-medium transition-colors whitespace-nowrap',
+                'group inline-flex items-center gap-2 border-b-2 py-3 px-1 text-base font-medium transition-colors whitespace-nowrap',
                 isActive
                   ? 'border-brand-700 text-brand-700'
                   : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700'
@@ -39,7 +39,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, activeTab, onChange, className
               {tab.badge !== undefined && (
                 <span
                   className={clsx(
-                    'rounded-full px-2 py-0.5 text-xs font-semibold',
+                    'rounded-full px-2 py-0.5 text-sm font-semibold',
                     isActive ? 'bg-brand-100 text-brand-800' : 'bg-slate-100 text-slate-600'
                   )}
                 >

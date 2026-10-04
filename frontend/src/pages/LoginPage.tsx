@@ -42,7 +42,7 @@ export const LoginPage: React.FC = () => {
           <GraduationCap className="h-6 w-6 text-blue-200" />
         </div>
         <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Student Portal Sign In</h1>
-        <p className="text-xs text-slate-500">
+        <p className="text-sm text-slate-500">
           Save your loan comparisons, track branch visits, and export checklists.
         </p>
       </div>
@@ -80,7 +80,7 @@ export const LoginPage: React.FC = () => {
               Sign In to Student Portal
             </Button>
 
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-sm">
               <button
                 type="button"
                 onClick={handleFillDemo}

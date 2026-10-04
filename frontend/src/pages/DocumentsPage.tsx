@@ -36,20 +36,20 @@ export const DocumentsPage: React.FC = () => {
       <div className="max-w-3xl space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="info">Modules 8 & 14 Document Engine</Badge>
-          <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
-          <span className="text-xs text-slate-500 font-medium">Bank Branch Ready</span>
+          <VerifiedBadge status="verified" size="sm" />
+          <span className="text-sm text-slate-500 font-medium">Bank Branch Ready</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
           <FileText className="h-9 w-9 text-brand-700 shrink-0" />
           <span>Education Loan Document & Dossier Hub</span>
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+        <p className="text-base sm:text-base text-slate-600 leading-relaxed">
           Generate a tailored document checklist matched to your loan quantum and co-borrower profile, explore the complete bank document taxonomy, review VIT Bhopal institutional certificate workflows, and organize your physical dossier binder.
         </p>
       </div>
 
       {/* Main Tab Navigation */}
-      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-sm font-semibold">
+      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-base font-semibold">
         <button
           onClick={() => setTab('personalized')}
           className={`px-5 py-3 rounded-t-xl transition-all border-b-2 whitespace-nowrap flex items-center gap-2 ${

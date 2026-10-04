@@ -49,7 +49,7 @@ export const Alert: React.FC<AlertProps> = ({
       role="alert"
       className={twMerge(
         clsx(
-          'relative flex items-start gap-3 rounded-lg border p-4 text-sm leading-relaxed shadow-xs',
+          'relative flex items-start gap-3 rounded-lg border p-4 text-base leading-relaxed shadow-xs',
           current.container,
           className
         )

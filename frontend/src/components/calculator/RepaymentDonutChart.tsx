@@ -21,7 +21,7 @@ export const RepaymentDonutChart: React.FC<RepaymentDonutChartProps> = ({ data, 
       const item = payload[0];
       const percent = ((item.value / totalAmount) * 100).toFixed(1);
       return (
-        <div className="bg-white p-3 rounded-lg shadow-lg border border-slate-200 text-xs">
+        <div className="bg-white p-3 rounded-lg shadow-lg border border-slate-200 text-sm">
           <p className="font-semibold text-slate-800">{item.name}</p>
           <p className="text-brand-700 font-bold mt-0.5">
             {formatCurrency(item.value)} ({percent}%)
@@ -54,7 +54,7 @@ export const RepaymentDonutChart: React.FC<RepaymentDonutChartProps> = ({ data, 
             verticalAlign="bottom"
             height={36}
             formatter={(value, entry: any) => (
-              <span className="text-xs text-slate-600 font-medium">
+              <span className="text-sm text-slate-600 font-medium">
                 {value}: {formatCurrency(entry.payload.value)}
               </span>
             )}

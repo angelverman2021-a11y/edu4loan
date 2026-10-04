@@ -88,7 +88,7 @@ export const Navbar: React.FC = () => {
                       VIT Bhopal
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 font-medium hidden sm:block">
+                  <p className="text-xs text-slate-500 font-medium hidden sm:block">
                     Smart Education Loan Decision Support
                   </p>
                 </div>
@@ -103,7 +103,7 @@ export const Navbar: React.FC = () => {
                       key={item.path}
                       to={item.path}
                       className={clsx(
-                        'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
+                        'px-3 py-1.5 rounded-lg text-base font-medium transition-colors',
                         isActive
                           ? 'bg-blue-50/80 text-brand-800 font-semibold'
                           : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
@@ -122,7 +122,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-600 text-xs font-medium transition-colors border border-slate-200/70"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-600 text-sm font-medium transition-colors border border-slate-200/70"
                 aria-label="Open search dialog"
               >
                 <Search className="h-3.5 w-3.5 text-slate-500" />
@@ -138,7 +138,7 @@ export const Navbar: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 text-xs font-medium transition-colors"
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 text-sm font-medium transition-colors"
                   >
                     <User className="h-3.5 w-3.5 text-brand-600" />
                     <span className="max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
@@ -148,7 +148,7 @@ export const Navbar: React.FC = () => {
                   {userDropdownOpen && (
                     <>
                       <div className="fixed inset-0 z-30" onClick={() => setUserDropdownOpen(false)} />
-                      <div className="absolute right-0 mt-2 z-40 w-48 rounded-xl bg-white p-1.5 shadow-lg border border-slate-200 text-xs">
+                      <div className="absolute right-0 mt-2 z-40 w-48 rounded-xl bg-white p-1.5 shadow-lg border border-slate-200 text-sm">
                         <div className="px-3 py-2 border-b border-slate-100 mb-1">
                           <p className="font-semibold text-slate-900 truncate">{user.name}</p>
                           <p className="text-slate-500 truncate">{user.email}</p>
@@ -236,7 +236,7 @@ export const Navbar: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   className={clsx(
-                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-base font-medium transition-colors',
                     isActive
                       ? 'bg-blue-50 text-brand-800 font-semibold'
                       : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'

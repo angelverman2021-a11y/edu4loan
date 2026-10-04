@@ -176,21 +176,21 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-brand-900 to-brand-800 text-white rounded-xl p-6 sm:p-8 shadow-md">
         <div className="max-w-3xl space-y-3">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-700/60 text-xs font-semibold tracking-wide uppercase text-brand-100 border border-brand-600/40">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-700/60 text-sm font-semibold tracking-wide uppercase text-brand-100 border border-brand-600/40">
             <Shield className="h-3.5 w-3.5" />
             Module 7: Statutory Collateral & Security Explainer
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
             Collateral, Guarantees & Security Demystified
           </h2>
-          <p className="text-sm sm:text-base text-brand-100/90 leading-relaxed">
+          <p className="text-base sm:text-base text-brand-100/90 leading-relaxed">
             Understand RBI Model Educational Loan Scheme rules, why loans up to ₹4 Lakhs need no collateral, how CGFSEL protects loans up to ₹7.5 Lakhs, and the exact legal process for pledging immovable property.
           </p>
         </div>
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-sm font-medium">
+      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-base font-medium">
         <button
           onClick={() => setActiveTab('tiers')}
           className={`px-4 py-2.5 rounded-t-lg transition-colors border-b-2 whitespace-nowrap flex items-center gap-2 ${
@@ -245,7 +245,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
                 Interactive Tier Selector
               </p>
               <h3 className="text-base font-semibold text-slate-900">
@@ -264,7 +264,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
                     setSelectedLoanTier(item.tierId);
                     if (onSelectAmount) onSelectAmount(item.amt);
                   }}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                  className={`px-3 py-1.5 text-sm font-semibold rounded-lg transition-all ${
                     selectedLoanTier === item.tierId
                       ? 'bg-brand-700 text-white shadow-sm ring-2 ring-brand-700 ring-offset-1'
                       : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-100'
@@ -294,7 +294,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
                         {tier.badgeText}
                       </Badge>
                       {isSelected && (
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-700">
+                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
                           <CheckCircle2 className="h-3.5 w-3.5" /> Selected
                         </span>
                       )}
@@ -302,9 +302,9 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
                     <CardTitle className="text-lg font-bold text-slate-900">
                       {tier.name}
                     </CardTitle>
-                    <p className="text-xs text-slate-500 font-medium">{tier.subtitle}</p>
+                    <p className="text-sm text-slate-500 font-medium">{tier.subtitle}</p>
                   </CardHeader>
-                  <CardContent className="pt-4 space-y-4 text-xs">
+                  <CardContent className="pt-4 space-y-4 text-sm">
                     <div>
                       <span className="font-semibold text-slate-700 block mb-0.5">
                         Security Requirement:
@@ -316,13 +316,13 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
 
                     <div className="grid grid-cols-2 gap-2">
                       <div className="bg-slate-50 p-2 rounded border border-slate-100">
-                        <span className="text-[11px] font-medium text-slate-500 block">
+                        <span className="text-xs font-medium text-slate-500 block">
                           Domestic Margin
                         </span>
                         <span className="font-bold text-slate-900">{tier.margin}</span>
                       </div>
                       <div className="bg-slate-50 p-2 rounded border border-slate-100">
-                        <span className="text-[11px] font-medium text-slate-500 block">
+                        <span className="text-xs font-medium text-slate-500 block">
                           Co-Borrower
                         </span>
                         <span className="font-semibold text-slate-800">Parents/Guardian</span>
@@ -345,7 +345,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
             })}
           </div>
 
-          <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-blue-950 text-xs sm:text-sm flex items-start gap-3">
+          <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-blue-950 text-sm sm:text-base flex items-start gap-3">
             <Info className="h-5 w-5 text-blue-700 shrink-0 mt-0.5" />
             <div className="space-y-1 leading-relaxed">
               <span className="font-bold">Did you know? (RBI / IBA Circular Compliance)</span>
@@ -363,10 +363,10 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
           <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
             <div className="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-bold text-slate-900">
+                <h3 className="text-base font-bold text-slate-900">
                   Approved vs Unacceptable Asset Classes for Education Loans
                 </h3>
-                <p className="text-xs text-slate-500">
+                <p className="text-sm text-slate-500">
                   Collateral assets must be easily marketable, free of encumbrances, and legally enforceable under SARFAESI.
                 </p>
               </div>
@@ -377,11 +377,11 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
                 <div key={idx} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-start gap-4">
                   <div className="shrink-0 mt-1">
                     {asset.eligible ? (
-                      <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+                      <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-base">
                         ✓
                       </div>
                     ) : (
-                      <div className="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center text-red-700 font-bold text-sm">
+                      <div className="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center text-red-700 font-bold text-base">
                         ✕
                       </div>
                     )}
@@ -389,15 +389,15 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
 
                   <div className="flex-1 space-y-1.5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm font-bold text-slate-900">{asset.type}</span>
+                      <span className="text-base font-bold text-slate-900">{asset.type}</span>
                       <Badge variant={asset.eligible ? 'verified' : 'error'} size="sm">
                         {asset.status}
                       </Badge>
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                      <span className="text-sm font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
                         {asset.ltv}
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                       {asset.notes}
                     </p>
                   </div>
@@ -407,7 +407,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
           </div>
 
           {/* SARFAESI Alert */}
-          <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs sm:text-sm flex items-start gap-3">
+          <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-sm sm:text-base flex items-start gap-3">
             <AlertTriangle className="h-5 w-5 text-amber-700 shrink-0 mt-0.5" />
             <div className="space-y-1 leading-relaxed">
               <span className="font-bold">Crucial Legal Caveat: Agricultural Land</span>
@@ -426,7 +426,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
             <h3 className="text-base font-bold text-slate-900 mb-2">
               Property Verification & Legal Mortgage Lifecycle (SOP)
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mb-6">
+            <p className="text-sm sm:text-base text-slate-600 mb-6">
               When pledging immovable property for loans &gt; ₹7.5 Lakhs, banks follow a rigorous legal protocol to ensure undisputed title ownership and fair valuation.
             </p>
 
@@ -434,17 +434,17 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
               {sopSteps.map((s) => (
                 <div key={s.step} className="relative group">
                   {/* Step Bubble */}
-                  <div className="absolute -left-6 sm:-left-8 top-0 h-6 w-6 sm:h-7 sm:w-7 rounded-full bg-brand-700 text-white font-bold text-xs flex items-center justify-center ring-4 ring-white shadow-sm">
+                  <div className="absolute -left-6 sm:-left-8 top-0 h-6 w-6 sm:h-7 sm:w-7 rounded-full bg-brand-700 text-white font-bold text-sm flex items-center justify-center ring-4 ring-white shadow-sm">
                     {s.step}
                   </div>
                   <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 transition-all hover:bg-white hover:border-brand-300 hover:shadow-sm">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                      <span className="text-sm font-bold text-slate-900">{s.title}</span>
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200">
+                      <span className="text-base font-bold text-slate-900">{s.title}</span>
+                      <span className="text-sm font-semibold px-2 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200">
                         {s.duration}
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                       {s.description}
                     </p>
                   </div>
@@ -456,12 +456,12 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-slate-200">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <CardTitle className="text-base font-bold text-slate-900 flex items-center gap-2">
                   <FileText className="h-4 w-4 text-brand-600" />
                   What is a Title Search Report (TSR)?
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-slate-600 space-y-2 leading-relaxed">
+              <CardContent className="text-sm text-slate-600 space-y-2 leading-relaxed">
                 <p>
                   A TSR is a certified legal opinion provided by an advocate on the bank's panel. The advocate traces the property's sale and inheritance chain back 13 to 30 years at the local registrar office.
                 </p>
@@ -473,12 +473,12 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
 
             <Card className="border-slate-200">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <CardTitle className="text-base font-bold text-slate-900 flex items-center gap-2">
                   <Building2 className="h-4 w-4 text-brand-600" />
                   What is Property Valuation?
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-slate-600 space-y-2 leading-relaxed">
+              <CardContent className="text-sm text-slate-600 space-y-2 leading-relaxed">
                 <p>
                   An empanelled structural engineer / valuer calculates two numbers:
                 </p>
@@ -506,7 +506,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
                   Margin Money Rules
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-4 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <CardContent className="pt-4 space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed">
                 <p>
                   <strong>Margin Money</strong> represents the proportion of total educational expenses that the student / family must fund from their own pocket before the bank disburses each semester tranche.
                 </p>
@@ -528,7 +528,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
                     <Badge variant="verified">Often 0% Margin</Badge>
                   </div>
                 </div>
-                <p className="text-xs text-slate-500 pt-2">
+                <p className="text-sm text-slate-500 pt-2">
                   * Note: Scholarships and fee concessions awarded to the student are treated as margin money by banks.
                 </p>
               </CardContent>
@@ -541,7 +541,7 @@ export const CollateralExplainer: React.FC<CollateralExplainerProps> = ({
                   Co-Borrower & Co-Obligant Mandate
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-4 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <CardContent className="pt-4 space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed">
                 <p>
                   Because full-time college students do not have independent verified income during their 4-year degree, the loan is granted jointly with a co-borrower.
                 </p>

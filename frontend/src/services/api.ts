@@ -14,11 +14,16 @@ export class ApiError extends Error {
   }
 }
 
-const BASE_URL = (
+let rawApiUrl =
   (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_API_URL) ||
   (typeof process !== 'undefined' && process.env?.VITE_API_URL) ||
-  '/api'
-).replace(/\/$/, '');
+  '/api';
+
+if (rawApiUrl && !rawApiUrl.startsWith('http') && !rawApiUrl.startsWith('/')) {
+  // Gracefully handle Render's "host" property (e.g. backend.onrender.com)
+  rawApiUrl = `https://${rawApiUrl}/api`;
+}
+const BASE_URL = rawApiUrl.replace(/\/$/, '');
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
   const token =

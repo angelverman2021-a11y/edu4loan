@@ -132,7 +132,7 @@ export const LoansPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    <div className="min-h-[calc(100vh-4rem)] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       {/* 1. Header Section */}
       <div className="space-y-2">
         <div className="flex items-center gap-2">
@@ -143,13 +143,13 @@ export const LoansPage: React.FC = () => {
           <Compass className="h-8 w-8 text-brand-700 shrink-0" />
           <span>Find Education Loan Options</span>
         </h1>
-        <p className="text-sm text-slate-600 max-w-3xl leading-relaxed">
+        <p className="text-base text-slate-600 max-w-3xl leading-relaxed">
           Explore education loan schemes using documented terms, eligibility information and official sources. Results are presented neutrally with zero sponsored rankings or approval guarantees.
         </p>
       </div>
 
       {/* 2. VIT Bhopal Context Banner */}
-      <div className="bg-gradient-to-r from-blue-50/90 to-slate-50 p-4 rounded-xl border border-blue-200/70 text-xs flex items-center justify-between gap-4">
+      <div className="bg-gradient-to-r from-blue-50/90 to-slate-50 p-4 rounded-xl border border-blue-200/70 text-sm flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="h-8 w-8 rounded-lg bg-brand-700 text-white flex items-center justify-center shrink-0 font-bold">
             <BookOpen className="h-4 w-4" />
@@ -172,14 +172,14 @@ export const LoansPage: React.FC = () => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search banks or loan schemes (e.g. SBI Scholar, Canara, PNB)..."
-            className="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 shadow-xs"
+            className="w-full pl-10 pr-4 py-2 text-base rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 shadow-xs"
           />
         </div>
 
         <button
           type="button"
           onClick={() => setMobileFilterOpen(true)}
-          className="lg:hidden inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 shadow-xs shrink-0"
+          className="lg:hidden inline-flex items-center gap-2 px-3.5 py-2 text-base font-medium rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 shadow-xs shrink-0"
         >
           <SlidersHorizontal className="h-4 w-4 text-brand-700" />
           <span>Filters</span>
@@ -202,7 +202,7 @@ export const LoansPage: React.FC = () => {
         {/* Right Content Area */}
         <div className="flex-1 min-w-0 space-y-6">
           {/* Results Header Status */}
-          <div className="flex items-center justify-between text-xs text-slate-500 pb-2 border-b border-slate-100">
+          <div className="flex items-center justify-between text-sm text-slate-500 pb-2 border-b border-slate-100">
             <span>
               Showing <strong className="text-slate-800">{schemes.length}</strong> of{' '}
               <strong className="text-slate-800">{paginationMeta?.total || schemes.length}</strong> documented schemes
@@ -255,7 +255,7 @@ export const LoansPage: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-base font-bold text-slate-900">No loan schemes match these filters</h3>
-                <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+                <p className="text-sm text-slate-500 mt-1 max-w-sm mx-auto">
                   Try removing a filter, increasing the requested loan amount coverage, or broadening your search terms.
                 </p>
               </div>
@@ -276,7 +276,7 @@ export const LoansPage: React.FC = () => {
 
           {/* Pagination Controls */}
           {!loading && paginationMeta && paginationMeta.totalPages > 1 && (
-            <div className="pt-6 border-t border-slate-200 flex items-center justify-between text-xs">
+            <div className="pt-6 border-t border-slate-200 flex items-center justify-between text-sm">
               <Button
                 variant="secondary"
                 size="sm"

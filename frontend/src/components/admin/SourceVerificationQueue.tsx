@@ -71,14 +71,14 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
   };
 
   return (
-    <div className="space-y-4 text-xs">
+    <div className="space-y-4 text-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+          <h3 className="text-base font-bold text-slate-900 flex items-center gap-1.5">
             <ShieldCheck className="h-4 w-4 text-brand-700" />
             Source Verification Queue & Provenance Workflow
           </h3>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-xs text-slate-500">
             Review primary regulatory circulars and update verified stamps with mandatory audit logging.
           </p>
         </div>
@@ -88,7 +88,7 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="p-1.5 text-xs rounded-lg border border-slate-300 bg-white"
+            className="p-1.5 text-sm rounded-lg border border-slate-300 bg-white"
           >
             <option value="all">All Statuses</option>
             <option value="needs_verification">Needs Verification</option>
@@ -115,13 +115,13 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-slate-900 text-sm">{item.title}</span>
+                      <span className="font-bold text-slate-900 text-base">{item.title}</span>
                       {getStatusBadge(item.status)}
                     </div>
-                    <span className="text-slate-500 text-[11px] block">{item.category}</span>
+                    <span className="text-slate-500 text-xs block">{item.category}</span>
                   </div>
 
-                  <div className="text-right text-[11px] text-slate-400">
+                  <div className="text-right text-xs text-slate-400">
                     Last Verified: <strong className="text-slate-600">{item.lastVerified}</strong>
                   </div>
                 </div>
@@ -132,7 +132,7 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                       Primary Source Citation:
                     </span>
-                    <span className="text-slate-700 font-medium text-[11px]">
+                    <span className="text-slate-700 font-medium text-xs">
                       {item.sourceName}
                     </span>
                   </div>
@@ -142,7 +142,7 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
                       href={item.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-brand-700 hover:text-brand-800 font-semibold text-[11px] whitespace-nowrap self-start sm:self-auto"
+                      className="inline-flex items-center gap-1 text-brand-700 hover:text-brand-800 font-semibold text-xs whitespace-nowrap self-start sm:self-auto"
                     >
                       <span>Check Official URL</span>
                       <ExternalLink className="h-3 w-3" />
@@ -157,7 +157,7 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
                 {/* Verification Action Drawer / Form */}
                 {isSelectedForVerify ? (
                   <div className="pt-2 border-t border-brand-100 space-y-2">
-                    <label className="font-bold text-slate-700 block text-[11px]">
+                    <label className="font-bold text-slate-700 block text-xs">
                       Mandatory Audit Verification Note:
                     </label>
                     <input
@@ -165,7 +165,7 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
                       value={reason}
                       onChange={(e) => setReason(e.target.value)}
                       placeholder="e.g. Cross-referenced with official bank portal rate schedule"
-                      className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white"
+                      className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white"
                     />
                     <div className="flex justify-end gap-2 pt-1">
                       <Button
@@ -194,7 +194,7 @@ export const SourceVerificationQueue: React.FC<SourceVerificationQueueProps> = (
                         setVerifyingId(item.id);
                         setReason('Verified against official master circular.');
                       }}
-                      className="text-slate-700 hover:text-brand-700 border-slate-300 text-xs flex items-center gap-1"
+                      className="text-slate-700 hover:text-brand-700 border-slate-300 text-sm flex items-center gap-1"
                     >
                       <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
                       <span>{item.status === 'verified' ? 'Re-Verify Record' : 'Verify Citation'}</span>

@@ -25,12 +25,12 @@ export const AmortizationAreaChart: React.FC<AmortizationAreaChartProps> = ({ da
     if (active && payload && payload.length) {
       const point = payload[0].payload as ChartAreaPoint;
       return (
-        <div className="bg-white p-3 rounded-lg shadow-lg border border-slate-200 text-xs space-y-1">
+        <div className="bg-white p-3 rounded-lg shadow-lg border border-slate-200 text-sm space-y-1">
           <p className="font-bold text-slate-800">{point.period}</p>
           <p className="text-slate-500">
             Phase: <span className="font-semibold capitalize text-slate-700">{point.phase}</span>
           </p>
-          <p className="text-brand-800 font-extrabold text-sm">
+          <p className="text-brand-800 font-extrabold text-base">
             Balance: {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(point.balance)}
           </p>
         </div>

@@ -53,25 +53,20 @@ export const GovtSchemesPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="min-h-[calc(100vh-4rem)] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Header */}
       <div className="max-w-3xl space-y-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="verified">Official Government Portals</Badge>
-          <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
-          <span className="text-xs text-slate-500 font-medium">Cabinet Approved</span>
-        </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
           <Landmark className="h-9 w-9 text-brand-700 shrink-0" />
-          <span>Government Subsidies & Central Schemes</span>
+          <span>Government Subsidies & Schemes</span>
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-          Statutory interest subsidies, credit guarantee programs, and official application portals established by the Government of India for higher education.
+        <p className="text-base sm:text-base text-slate-600 leading-relaxed">
+          Statutory interest subsidies, credit guarantee programs, and official application portals established by the Government of India.
         </p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-sm font-semibold">
+      <div className="flex border-b border-slate-200 gap-2 overflow-x-auto pb-1 text-base font-semibold">
         <button
           onClick={() => setTab('catalog')}
           className={`px-5 py-3 rounded-t-xl transition-all border-b-2 whitespace-nowrap flex items-center gap-2 ${
@@ -127,7 +122,7 @@ export const GovtSchemesPage: React.FC = () => {
           {loading ? (
             <div className="py-20 text-center space-y-3">
               <div className="h-8 w-8 rounded-full border-2 border-brand-600 border-t-transparent animate-spin mx-auto" />
-              <p className="text-xs text-slate-500">Loading government schemes catalog...</p>
+              <p className="text-sm text-slate-500">Loading government schemes catalog...</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -141,25 +136,24 @@ export const GovtSchemesPage: React.FC = () => {
                       <Badge variant="info">{scheme.code}</Badge>
                       <VerifiedBadge
                         status="verified"
-                        lastVerified={scheme.lastVerified || '2026-09-01'}
                         size="sm"
                       />
                     </div>
                     <CardTitle className="text-base font-bold text-slate-900 mt-2">
                       {scheme.name}
                     </CardTitle>
-                    <p className="text-xs text-slate-500 font-medium">{scheme.nodalMinistry}</p>
+                    <p className="text-sm text-slate-500 font-medium">{scheme.nodalMinistry}</p>
                   </CardHeader>
 
-                  <CardContent className="space-y-4 text-xs flex-1">
+                  <CardContent className="space-y-4 text-sm flex-1">
                     <p className="text-slate-600 leading-relaxed">{scheme.description}</p>
 
                     {scheme.keyFeatures && (
                       <div className="space-y-1.5 pt-1">
-                        <span className="font-bold text-slate-800 text-[11px] block">
+                        <span className="font-bold text-slate-800 text-xs block">
                           Key Provisions:
                         </span>
-                        <ul className="space-y-1 text-slate-600 text-[11px] list-disc list-inside">
+                        <ul className="space-y-1 text-slate-600 text-xs list-disc list-inside">
                           {scheme.keyFeatures.map((kf, i) => (
                             <li key={i} className="leading-relaxed">
                               {kf}
@@ -169,7 +163,7 @@ export const GovtSchemesPage: React.FC = () => {
                       </div>
                     )}
 
-                    <div className="p-2.5 rounded bg-slate-50 border border-slate-200/80 text-[11px] space-y-1">
+                    <div className="p-2.5 rounded bg-slate-50 border border-slate-200/80 text-xs space-y-1">
                       <span className="font-bold text-slate-800">Target Beneficiaries:</span>
                       <p className="text-slate-600">
                         {scheme.targetBeneficiaries || 'Check official guidelines.'}
@@ -188,7 +182,7 @@ export const GovtSchemesPage: React.FC = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="w-full text-xs"
+                          className="w-full text-sm"
                           rightIcon={<ExternalLink className="h-3.5 w-3.5" />}
                         >
                           Visit Official Portal

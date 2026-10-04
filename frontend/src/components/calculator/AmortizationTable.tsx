@@ -45,7 +45,7 @@ export const AmortizationTable: React.FC<AmortizationTableProps> = ({ result }) 
             <Table className="h-4 w-4 text-brand-700" />
             <span>Detailed Repayment Amortization Schedule</span>
           </CardTitle>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-sm text-slate-500 mt-0.5">
             Year-by-year breakdown of principal recovery and interest servicing commitments.
           </p>
         </div>
@@ -72,7 +72,7 @@ export const AmortizationTable: React.FC<AmortizationTableProps> = ({ result }) 
 
       <CardContent className="p-0 overflow-x-auto">
         {!showMonthly ? (
-          <table className="w-full text-xs text-left border-collapse">
+          <table className="w-full text-sm text-left border-collapse">
             <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 uppercase font-semibold">
               <tr>
                 <th className="p-3">Period</th>
@@ -132,7 +132,7 @@ export const AmortizationTable: React.FC<AmortizationTableProps> = ({ result }) 
             </tbody>
           </table>
         ) : (
-          <table className="w-full text-xs text-left border-collapse">
+          <table className="w-full text-sm text-left border-collapse">
             <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 uppercase font-semibold">
               <tr>
                 <th className="p-3">Month</th>

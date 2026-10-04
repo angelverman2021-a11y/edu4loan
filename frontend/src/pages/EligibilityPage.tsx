@@ -107,12 +107,12 @@ export const EligibilityPage: React.FC = () => {
           <Badge variant="info" size="sm">
             Phase 12 — Module 15
           </Badge>
-          <span className="text-xs text-slate-500 font-medium">Educational Credit Guide</span>
+          <span className="text-sm text-slate-500 font-medium">Educational Credit Guide</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
           Education Loan Eligibility & Underwriting Explainer
         </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mt-1">
+        <p className="text-sm sm:text-base text-slate-600 max-w-2xl mt-1">
           Understand the exact criteria nationalized and private banks evaluate during credit
           appraisal — CIBIL thresholds, co-borrower FOIR benchmarks, course accreditation, and
           statutory margin money rules.
@@ -127,8 +127,8 @@ export const EligibilityPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-blue-50 text-brand-700 flex items-center justify-center">
               <CreditCard className="h-4 w-4" />
             </div>
-            <h3 className="font-bold text-slate-900 text-xs">1. CIBIL & Credit History</h3>
-            <p className="text-[11px] text-slate-600 leading-relaxed">
+            <h3 className="font-bold text-slate-900 text-sm">1. CIBIL & Credit History</h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
               Banks require co-borrower CIBIL &ge; 700. Even with zero student credit history,
               parental repayment discipline directly impacts interest spreads and sanctions.
             </p>
@@ -141,8 +141,8 @@ export const EligibilityPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center">
               <UserCheck className="h-4 w-4" />
             </div>
-            <h3 className="font-bold text-slate-900 text-xs">2. Co-Borrower FOIR</h3>
-            <p className="text-[11px] text-slate-600 leading-relaxed">
+            <h3 className="font-bold text-slate-900 text-sm">2. Co-Borrower FOIR</h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
               Fixed Obligation to Income Ratio (FOIR) must typically stay below 50–60% of net monthly
               salary or business cashflow after factoring in the proposed new loan EMI.
             </p>
@@ -155,8 +155,8 @@ export const EligibilityPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
               <Building2 className="h-4 w-4" />
             </div>
-            <h3 className="font-bold text-slate-900 text-xs">3. Institutional Standing</h3>
-            <p className="text-[11px] text-slate-600 leading-relaxed">
+            <h3 className="font-bold text-slate-900 text-sm">3. Institutional Standing</h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
               VIT Bhopal qualifies under premier institution classifications (NIRF ranked),
               enabling preferential interest concessions and higher collateral-free thresholds.
             </p>
@@ -169,8 +169,8 @@ export const EligibilityPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
               <Percent className="h-4 w-4" />
             </div>
-            <h3 className="font-bold text-slate-900 text-xs">4. RBI Margin Money Norms</h3>
-            <p className="text-[11px] text-slate-600 leading-relaxed">
+            <h3 className="font-bold text-slate-900 text-sm">4. RBI Margin Money Norms</h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
               Statutory 0% margin up to ₹4.0 Lakhs; strictly 5% for studies within India above ₹4.0
               Lakhs. Scholarships can be credited towards meeting margin obligations.
             </p>
@@ -181,7 +181,7 @@ export const EligibilityPage: React.FC = () => {
       {/* Interactive Self-Assessment Simulator */}
       <Card className="border-brand-200 bg-white shadow-xs overflow-hidden">
         <CardHeader className="py-4 border-b border-brand-100 bg-brand-50/20">
-          <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-2">
+          <CardTitle className="text-base font-bold text-slate-900 flex items-center gap-2">
             <Calculator className="h-4.5 w-4.5 text-brand-800" />
             Interactive Credit Underwriting & FOIR Self-Assessment Simulator
           </CardTitle>
@@ -189,7 +189,7 @@ export const EligibilityPage: React.FC = () => {
         <CardContent className="p-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Form Inputs (7 cols) */}
-            <div className="lg:col-span-7 space-y-4 text-xs">
+            <div className="lg:col-span-7 space-y-4 text-sm">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="font-bold text-slate-700 block mb-1">
@@ -202,7 +202,7 @@ export const EligibilityPage: React.FC = () => {
                     max={4000000}
                     value={loanAmount}
                     onChange={(e) => setLoanAmount(Number(e.target.value))}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white font-medium"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white font-medium"
                   />
                   <span className="text-[10px] text-slate-400 mt-0.5 block">
                     {formatCurrency(loanAmount)} (VIT Cat 1-5 Tuition + Hostel)
@@ -220,7 +220,7 @@ export const EligibilityPage: React.FC = () => {
                     max={500000}
                     value={monthlyIncome}
                     onChange={(e) => setMonthlyIncome(Number(e.target.value))}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white font-medium"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white font-medium"
                   />
                   <span className="text-[10px] text-slate-400 mt-0.5 block">
                     Net in-hand take-home salary or certified business drawings
@@ -240,7 +240,7 @@ export const EligibilityPage: React.FC = () => {
                     max={200000}
                     value={existingEmis}
                     onChange={(e) => setExistingEmis(Number(e.target.value))}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white font-medium"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white font-medium"
                   />
                   <span className="text-[10px] text-slate-400 mt-0.5 block">
                     Ongoing home, car, or personal loan EMIs
@@ -254,7 +254,7 @@ export const EligibilityPage: React.FC = () => {
                   <select
                     value={cibilScore}
                     onChange={(e) => setCibilScore(e.target.value)}
-                    className="w-full p-2 text-xs rounded-lg border border-slate-300 bg-white font-medium"
+                    className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white font-medium"
                   >
                     <option value="750_plus">750+ (Excellent Credit)</option>
                     <option value="700_749">700 – 749 (Standard Preferred)</option>
@@ -267,7 +267,7 @@ export const EligibilityPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200/80 text-[11px] text-slate-600 space-y-1">
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200/80 text-xs text-slate-600 space-y-1">
                 <span className="font-bold text-slate-800 flex items-center gap-1">
                   <Info className="h-3.5 w-3.5 text-brand-700" />
                   What is FOIR?
@@ -284,24 +284,24 @@ export const EligibilityPage: React.FC = () => {
             <div className="lg:col-span-5 bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4 flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-700">Readiness Category</span>
+                  <span className="text-sm font-bold text-slate-700">Readiness Category</span>
                   <Badge variant={assessmentResult.variant} size="sm">
                     {assessmentResult.tier}
                   </Badge>
                 </div>
 
-                <div className="p-3 rounded-lg bg-white border border-slate-200 space-y-2 text-xs">
-                  <div className="flex justify-between items-center text-[11px]">
+                <div className="p-3 rounded-lg bg-white border border-slate-200 space-y-2 text-sm">
+                  <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500">Estimated Post-Study EMI:</span>
                     <strong className="text-slate-900">{formatCurrency(projectedEmi)} /mo</strong>
                   </div>
 
-                  <div className="flex justify-between items-center text-[11px]">
+                  <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500">Estimated Total Monthly Debt:</span>
                     <strong className="text-slate-900">{formatCurrency(totalObligations)} /mo</strong>
                   </div>
 
-                  <div className="flex justify-between items-center text-[11px] pt-1 border-t border-slate-100">
+                  <div className="flex justify-between items-center text-xs pt-1 border-t border-slate-100">
                     <span className="text-slate-700 font-bold">Estimated FOIR:</span>
                     <span
                       className={`font-black ${
@@ -316,17 +316,17 @@ export const EligibilityPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center text-[11px] pt-1 border-t border-slate-100">
+                  <div className="flex justify-between items-center text-xs pt-1 border-t border-slate-100">
                     <span className="text-slate-700 font-bold">Required Margin Money:</span>
                     <strong className="text-brand-800">{formatCurrency(marginMoney)}</strong>
                   </div>
                 </div>
 
-                <p className="text-[11px] text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {assessmentResult.summary}
                 </p>
 
-                <div className="space-y-1 text-[11px]">
+                <div className="space-y-1 text-xs">
                   <span className="font-bold text-slate-800 block">Guidance & Next Steps:</span>
                   <ul className="space-y-1">
                     {assessmentResult.recommendations.map((rec, i) => (
@@ -342,7 +342,7 @@ export const EligibilityPage: React.FC = () => {
               <div className="pt-2 border-t border-slate-200">
                 <Link
                   to="/documents"
-                  className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-brand-700 text-white font-bold text-xs hover:bg-brand-800 transition-colors shadow-2xs"
+                  className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-brand-700 text-white font-bold text-sm hover:bg-brand-800 transition-colors shadow-2xs"
                 >
                   <span>Build Co-Borrower Document Dossier</span>
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -354,11 +354,11 @@ export const EligibilityPage: React.FC = () => {
       </Card>
 
       {/* Disclaimers & Statutory Compliance */}
-      <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 text-xs flex items-start gap-3">
+      <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 text-sm flex items-start gap-3">
         <ShieldCheck className="h-5 w-5 text-slate-400 flex-shrink-0 mt-0.5" />
         <div className="space-y-1">
           <span className="font-bold text-slate-700 block">Regulatory Compliance Notice</span>
-          <p className="text-[11px] leading-relaxed">
+          <p className="text-xs leading-relaxed">
             Edu4Loan provides objective analytical models based on Indian Banks Association (IBA)
             guidelines and Reserve Bank of India Master Directions. We do not provide credit scores,
             guarantee loan approvals, or act as an intermediary or direct selling agent (DSA). Actual

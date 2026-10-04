@@ -231,14 +231,14 @@ export const ApplicationTrackerPage: React.FC = () => {
             <Badge variant="info" size="sm">
               Phase 10 — Module 16
             </Badge>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-sm text-slate-500 font-medium">
               Student Application Pipeline
             </span>
           </div>
           <h1 className="text-2xl font-black text-slate-900 tracking-tight">
             Education Loan Application Tracker
           </h1>
-          <p className="text-xs text-slate-600 max-w-2xl mt-1">
+          <p className="text-sm text-slate-600 max-w-2xl mt-1">
             Maintain complete transparency over your loan applications across banks and Vidya Lakshmi
             Portal. Track stage milestones, OSV visits, and branch follow-ups.
           </p>
@@ -251,7 +251,7 @@ export const ApplicationTrackerPage: React.FC = () => {
               setEditingApp(null);
               setIsModalOpen(true);
             }}
-            className="bg-brand-700 hover:bg-brand-800 text-white flex items-center gap-1.5 shadow-sm text-xs"
+            className="bg-brand-700 hover:bg-brand-800 text-white flex items-center gap-1.5 shadow-sm text-sm"
           >
             <Plus className="h-4 w-4" />
             <span>Track New Application</span>
@@ -262,7 +262,7 @@ export const ApplicationTrackerPage: React.FC = () => {
       {/* Applications Tabs Switcher */}
       {applications.length > 0 && (
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider whitespace-nowrap mr-1">
+          <span className="text-sm font-bold text-slate-400 uppercase tracking-wider whitespace-nowrap mr-1">
             Applications:
           </span>
           {applications.map((app) => {
@@ -274,7 +274,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                   setActiveAppId(app._id);
                   setSearchParams({ id: app._id });
                 }}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium border transition-all whitespace-nowrap ${
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium border transition-all whitespace-nowrap ${
                   isActive
                     ? 'bg-brand-50 border-brand-300 text-brand-900 shadow-sm ring-1 ring-brand-300 font-bold'
                     : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
@@ -306,7 +306,7 @@ export const ApplicationTrackerPage: React.FC = () => {
         <div className="text-center py-16 bg-slate-50 rounded-2xl border border-slate-200 p-8 space-y-4">
           <Building2 className="h-10 w-10 text-slate-300 mx-auto" />
           <h3 className="text-base font-bold text-slate-800">No Applications Tracked Yet</h3>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
+          <p className="text-sm text-slate-500 max-w-md mx-auto">
             Add your education loan application details to start tracking branch follow-ups,
             document submissions, and milestone progression.
           </p>
@@ -315,7 +315,7 @@ export const ApplicationTrackerPage: React.FC = () => {
               setEditingApp(null);
               setIsModalOpen(true);
             }}
-            className="bg-brand-700 hover:bg-brand-800 text-white text-xs inline-flex items-center gap-2"
+            className="bg-brand-700 hover:bg-brand-800 text-white text-sm inline-flex items-center gap-2"
           >
             <Plus className="h-4 w-4" /> Track First Application
           </Button>
@@ -331,7 +331,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                     <Building2 className="h-5 w-5 text-brand-700" />
                     {activeApp.targetBankName}
                   </h2>
-                  <span className="text-xs font-semibold text-slate-500">
+                  <span className="text-sm font-semibold text-slate-500">
                     — {activeApp.targetSchemeName}
                   </span>
                   {activeApp.vidyaLakshmiApplicationId && (
@@ -340,7 +340,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                     </Badge>
                   )}
                 </div>
-                <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
                   <span>{activeApp.degreeProgram}</span>
                   <span>•</span>
                   <span>Admitted Year: {activeApp.admissionYear}</span>
@@ -367,7 +367,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                       setEditingApp(activeApp);
                       setIsModalOpen(true);
                     }}
-                    className="text-xs p-2 text-slate-600 hover:text-slate-900"
+                    className="text-sm p-2 text-slate-600 hover:text-slate-900"
                     title="Edit Details"
                   >
                     <Edit className="h-3.5 w-3.5" />
@@ -376,7 +376,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => handleDeleteApplication(activeApp._id)}
-                    className="text-xs p-2 text-rose-600 hover:text-rose-800 hover:border-rose-300"
+                    className="text-sm p-2 text-rose-600 hover:text-rose-800 hover:border-rose-300"
                     title="Delete Entry"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
@@ -401,23 +401,23 @@ export const ApplicationTrackerPage: React.FC = () => {
             {/* Stage Guidance & Next Action Box */}
             <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-50/30">
               <div className="md:col-span-2 space-y-2">
-                <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
                   <Info className="h-3.5 w-3.5 text-brand-700" />
                   {getStageGuidance(activeApp.status).title}
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {getStageGuidance(activeApp.status).guidance}
                 </p>
 
                 <div className="mt-3 space-y-1">
-                  <span className="text-[11px] font-bold text-slate-700 block">
+                  <span className="text-xs font-bold text-slate-700 block">
                     Recommended Checklist for this stage:
                   </span>
                   <ul className="space-y-1">
                     {getStageGuidance(activeApp.status).nextSteps.map((step, idx) => (
                       <li
                         key={idx}
-                        className="text-xs text-slate-600 flex items-start gap-2"
+                        className="text-sm text-slate-600 flex items-start gap-2"
                       >
                         <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
                         <span>{step}</span>
@@ -433,7 +433,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                   <span className="text-[10px] font-bold text-brand-800 uppercase tracking-wider block mb-1">
                     Current Priority Action
                   </span>
-                  <p className="text-xs font-medium text-slate-800 leading-snug">
+                  <p className="text-sm font-medium text-slate-800 leading-snug">
                     {activeApp.nextAction || 'Visit branch for initial document submission.'}
                   </p>
                 </div>
@@ -441,7 +441,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                 <div className="space-y-2 pt-2 border-t border-brand-100/60">
                   <Link
                     to="/documents"
-                    className="w-full flex items-center justify-between p-2 rounded-lg bg-white border border-brand-200 text-xs font-semibold text-brand-800 hover:bg-brand-50 transition-colors shadow-2xs"
+                    className="w-full flex items-center justify-between p-2 rounded-lg bg-white border border-brand-200 text-sm font-semibold text-brand-800 hover:bg-brand-50 transition-colors shadow-2xs"
                   >
                     <span className="flex items-center gap-1.5">
                       <FileCheck2 className="h-3.5 w-3.5 text-brand-700" />
@@ -452,7 +452,7 @@ export const ApplicationTrackerPage: React.FC = () => {
 
                   <Link
                     to="/vit-bhopal"
-                    className="w-full flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
+                    className="w-full flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
                   >
                     <span className="flex items-center gap-1.5">
                       <Building2 className="h-3.5 w-3.5 text-slate-500" />
@@ -474,13 +474,13 @@ export const ApplicationTrackerPage: React.FC = () => {
       )}
 
       {/* Statutory Guidance / Non-Brokering Notice */}
-      <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 text-xs flex items-start gap-3">
+      <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 text-sm flex items-start gap-3">
         <ShieldCheck className="h-5 w-5 text-slate-400 flex-shrink-0 mt-0.5" />
         <div className="space-y-1">
           <span className="font-bold text-slate-700 block">
             Independent Student Self-Tracking Notice
           </span>
-          <p className="text-[11px] leading-relaxed">
+          <p className="text-xs leading-relaxed">
             Edu4Loan is an informational tracking utility engineered to assist VIT Bhopal students in
             organizing their education loan paperwork and bank branch commitments. Edu4Loan does not
             act as a loan agent, broker, direct selling agent (DSA), or underwriter. Application

@@ -73,17 +73,17 @@ export const VitBhopalDocGuide: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6 text-xs">
+    <div className="space-y-6 text-sm">
       {/* Banner */}
       <div className="bg-gradient-to-r from-brand-900 to-brand-800 text-white rounded-xl p-6 shadow-md space-y-3">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-700/60 text-xs font-semibold text-brand-100 border border-brand-600/40">
+        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-700/60 text-sm font-semibold text-brand-100 border border-brand-600/40">
           <GraduationCap className="h-3.5 w-3.5" />
           Campus Document SOP
         </div>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
           Securing Official VIT Bhopal University Documents
         </h2>
-        <p className="text-xs sm:text-sm text-brand-100/90 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-brand-100/90 max-w-3xl leading-relaxed">
           Step-by-step guidance on obtaining bonafide certificates, fee estimates, entrance rank cards, and hostel receipts required for bank underwriting.
         </p>
       </div>
@@ -95,19 +95,19 @@ export const VitBhopalDocGuide: React.FC = () => {
             <CardHeader className="pb-3 border-b border-slate-100 bg-slate-50/50">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex items-center gap-2.5">
-                  <div className="h-6 w-6 rounded-full bg-brand-700 text-white font-bold text-xs flex items-center justify-center">
+                  <div className="h-6 w-6 rounded-full bg-brand-700 text-white font-bold text-sm flex items-center justify-center">
                     {s.stepNumber}
                   </div>
-                  <CardTitle className="text-sm font-bold text-slate-900">{s.title}</CardTitle>
+                  <CardTitle className="text-base font-bold text-slate-900">{s.title}</CardTitle>
                 </div>
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200 flex items-center gap-1">
+                <span className="text-xs font-semibold px-2 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200 flex items-center gap-1">
                   <Building2 className="h-3 w-3" />
                   {s.office}
                 </span>
               </div>
             </CardHeader>
             <CardContent className="pt-4 space-y-3">
-              <p className="text-slate-600 leading-relaxed text-xs">{s.description}</p>
+              <p className="text-slate-600 leading-relaxed text-sm">{s.description}</p>
 
               <div>
                 <span className="font-bold text-slate-800 block mb-1">Procedure:</span>
@@ -120,7 +120,7 @@ export const VitBhopalDocGuide: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="p-2.5 rounded bg-blue-50/70 border border-blue-200 text-blue-900 text-[11px] flex items-start gap-2">
+              <div className="p-2.5 rounded bg-blue-50/70 border border-blue-200 text-blue-900 text-xs flex items-start gap-2">
                 <Shield className="h-3.5 w-3.5 text-blue-700 shrink-0 mt-0.5" />
                 <span>
                   <strong>Advisory:</strong> {s.tip}
@@ -132,7 +132,7 @@ export const VitBhopalDocGuide: React.FC = () => {
       </div>
 
       {/* Critical Caution on Timelines */}
-      <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs flex items-start gap-3">
+      <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-sm flex items-start gap-3">
         <AlertTriangle className="h-5 w-5 text-amber-700 shrink-0 mt-0.5" />
         <div className="space-y-1 leading-relaxed">
           <span className="font-bold">Avoid Semester Payment Deadline Penalties</span>

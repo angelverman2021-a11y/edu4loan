@@ -112,12 +112,12 @@ export const SchemeDetailPage: React.FC = () => {
       : 'Rate not verified';
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-16">
+    <div className="min-h-[calc(100vh-4rem)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-16">
       {/* Back Link */}
       <div>
         <Link
           to="/loans"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:text-brand-900 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900 transition-colors"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           <span>Back to All Schemes</span>
@@ -135,14 +135,13 @@ export const SchemeDetailPage: React.FC = () => {
                 status={scheme.status || 'verified'}
                 source={scheme.source?.source}
                 sourceUrl={scheme.source?.sourceUrl || scheme.officialCircularUrl}
-                lastVerified={scheme.lastVerified || scheme.source?.lastVerified}
               />
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               {scheme.schemeName}
             </h1>
-            <p className="text-sm font-semibold text-slate-600 flex items-center gap-1.5">
+            <p className="text-base font-semibold text-slate-600 flex items-center gap-1.5">
               <Building2 className="h-4 w-4 text-brand-700" />
               <span>{scheme.bankName}</span>
             </p>
@@ -174,7 +173,7 @@ export const SchemeDetailPage: React.FC = () => {
         </div>
 
         {scheme.overview && (
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
             {scheme.overview}
           </p>
         )}
@@ -184,16 +183,16 @@ export const SchemeDetailPage: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">1. Documented Financial Overview</CardTitle>
-          <p className="text-xs text-slate-500">
+          <p className="text-sm text-slate-500">
             All values carry verified source provenance from official regulatory circulars.
           </p>
         </CardHeader>
-        <CardContent className="space-y-4 text-xs">
+        <CardContent className="space-y-4 text-sm">
           {/* Interest Rate Breakdown */}
           <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                <span className="block text-xs font-bold uppercase tracking-wider text-slate-500">
                   Interest Rate Structure
                 </span>
                 <span className="text-xl font-black text-brand-900 tracking-tight">
@@ -201,10 +200,10 @@ export const SchemeDetailPage: React.FC = () => {
                 </span>
               </div>
               <div className="text-right">
-                <span className="block text-xs font-semibold text-slate-700">
+                <span className="block text-sm font-semibold text-slate-700">
                   Benchmark: {scheme.interestRate?.benchmarkType || 'EBLR'}
                 </span>
-                <span className="text-[11px] text-slate-500">
+                <span className="text-xs text-slate-500">
                   Benchmark Base: {scheme.interestRate?.benchmarkRatePercent || 6.50}% + Spread: {scheme.interestRate?.spreadPercentMin}%–{scheme.interestRate?.spreadPercentMax}%
                 </span>
               </div>
@@ -219,7 +218,7 @@ export const SchemeDetailPage: React.FC = () => {
               </div>
             ) : null}
 
-            <div className="flex items-center gap-1.5 text-[11px] text-slate-500 pt-1">
+            <div className="flex items-center gap-1.5 text-xs text-slate-500 pt-1">
               <Info className="h-3.5 w-3.5 text-slate-400 shrink-0" />
               <span>Interest rates may vary based on benchmark, spread, borrower profile and bank terms.</span>
             </div>
@@ -231,20 +230,20 @@ export const SchemeDetailPage: React.FC = () => {
               <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 Max Inland Loan Amount
               </span>
-              <span className="text-sm font-bold text-slate-900">
+              <span className="text-base font-bold text-slate-900">
                 {formatCurrency(scheme.maxLoanAmountInland?.value)}
               </span>
-              <span className="block text-[11px] text-slate-500">Documented cap</span>
+              <span className="block text-xs text-slate-500">Documented cap</span>
             </div>
 
             <div className="p-3.5 rounded-lg border border-slate-200 space-y-1">
               <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 Margin Money (Student Contribution)
               </span>
-              <span className="text-sm font-bold text-slate-900">
+              <span className="text-base font-bold text-slate-900">
                 {scheme.marginMoney?.upTo4LakhsPercent || 0}% &le; ₹4L • {scheme.marginMoney?.above4LakhsIndiaPercent || 5}% &gt; ₹4L
               </span>
-              <span className="block text-[11px] text-slate-500">
+              <span className="block text-xs text-slate-500">
                 Scholarship adjustable: {scheme.marginMoney?.scholarshipAdjustmentAllowed ? 'Yes' : 'No'}
               </span>
             </div>
@@ -253,10 +252,10 @@ export const SchemeDetailPage: React.FC = () => {
               <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 Processing Fee & Charges
               </span>
-              <span className="text-sm font-bold text-slate-900">
+              <span className="text-base font-bold text-slate-900">
                 {scheme.processingFee?.value || 'Nil for India'}
               </span>
-              <span className="block text-[11px] text-slate-500">
+              <span className="block text-xs text-slate-500">
                 Prepayment penalty: {scheme.prepaymentPenalty?.value || 'Nil (RBI rules)'}
               </span>
             </div>
@@ -268,24 +267,24 @@ export const SchemeDetailPage: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">2. Documented Collateral & Security Tiers</CardTitle>
-          <p className="text-xs text-slate-500">
+          <p className="text-sm text-slate-500">
             Categorized strictly according to RBI Model Scheme guidelines.
           </p>
         </CardHeader>
-        <CardContent className="space-y-3 text-xs">
+        <CardContent className="space-y-3 text-sm">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
-              <span className="font-bold text-slate-800 block text-xs">Up to ₹4.0 Lakhs</span>
+              <span className="font-bold text-slate-800 block text-sm">Up to ₹4.0 Lakhs</span>
               <p className="text-slate-600">{scheme.collateral?.upTo4Lakhs || 'Nil. No third party guarantee required.'}</p>
             </div>
 
             <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
-              <span className="font-bold text-slate-800 block text-xs">₹4.0L to ₹7.5 Lakhs</span>
+              <span className="font-bold text-slate-800 block text-sm">₹4.0L to ₹7.5 Lakhs</span>
               <p className="text-slate-600">{scheme.collateral?.from4To7point5Lakhs || 'Third-party guarantee or CGFSEL guarantee cover.'}</p>
             </div>
 
             <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
-              <span className="font-bold text-slate-800 block text-xs">Above ₹7.5 Lakhs</span>
+              <span className="font-bold text-slate-800 block text-sm">Above ₹7.5 Lakhs</span>
               <p className="text-slate-600">{scheme.collateral?.above7point5Lakhs || 'Tangible collateral security of suitable value.'}</p>
             </div>
           </div>
@@ -303,27 +302,27 @@ export const SchemeDetailPage: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">3. Moratorium & Repayment Schedule</CardTitle>
-          <p className="text-xs text-slate-500">
+          <p className="text-sm text-slate-500">
             Terms governing interest accrual during study and post-graduation repayment.
           </p>
         </CardHeader>
-        <CardContent className="space-y-3 text-xs text-slate-600 leading-relaxed">
+        <CardContent className="space-y-3 text-sm text-slate-600 leading-relaxed">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="p-3 rounded-lg border border-slate-200">
               <span className="block text-slate-400 font-bold uppercase text-[10px]">Study Duration</span>
-              <span className="text-sm font-bold text-slate-900 mt-1 block">
+              <span className="text-base font-bold text-slate-900 mt-1 block">
                 {scheme.moratorium?.courseDurationYears || 4} Years (Standard)
               </span>
             </div>
             <div className="p-3 rounded-lg border border-slate-200">
               <span className="block text-slate-400 font-bold uppercase text-[10px]">Grace Buffer</span>
-              <span className="text-sm font-bold text-slate-900 mt-1 block">
+              <span className="text-base font-bold text-slate-900 mt-1 block">
                 {scheme.moratorium?.moratoriumBufferMonths || 12} Months post-course
               </span>
             </div>
             <div className="p-3 rounded-lg border border-slate-200">
               <span className="block text-slate-400 font-bold uppercase text-[10px]">Max Repayment Tenure</span>
-              <span className="text-sm font-bold text-slate-900 mt-1 block">
+              <span className="text-base font-bold text-slate-900 mt-1 block">
                 Up to {scheme.moratorium?.repaymentTenureMaxYears || 15} Years
               </span>
             </div>
@@ -350,11 +349,11 @@ export const SchemeDetailPage: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">4. Documented Scheme Criteria</CardTitle>
-          <p className="text-xs text-slate-500">
+          <p className="text-sm text-slate-500">
             Final eligibility is determined exclusively by the bank.
           </p>
         </CardHeader>
-        <CardContent className="space-y-3 text-xs">
+        <CardContent className="space-y-3 text-sm">
           <ul className="space-y-2">
             {scheme.eligibilityCriteria && scheme.eligibilityCriteria.length > 0 ? (
               scheme.eligibilityCriteria.map((c, idx) => (
@@ -369,7 +368,7 @@ export const SchemeDetailPage: React.FC = () => {
           </ul>
 
           {scheme.vitBhopalCategoryNote && (
-            <div className="p-3 rounded-lg bg-blue-50 border border-blue-200 text-blue-900 text-xs">
+            <div className="p-3 rounded-lg bg-blue-50 border border-blue-200 text-blue-900 text-sm">
               <strong className="block mb-0.5">VIT Bhopal Note:</strong>
               <span>{scheme.vitBhopalCategoryNote}</span>
             </div>
@@ -381,11 +380,11 @@ export const SchemeDetailPage: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">5. Authoritative Source Provenance</CardTitle>
-          <p className="text-xs text-slate-500">
+          <p className="text-sm text-slate-500">
             Edu4Loan links directly to primary sources and public notifications.
           </p>
         </CardHeader>
-        <CardContent className="space-y-3 text-xs">
+        <CardContent className="space-y-3 text-sm">
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
             <div className="flex justify-between items-center">
               <span className="font-semibold text-slate-900">Primary Bank Document:</span>

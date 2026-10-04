@@ -162,18 +162,18 @@ export const DocumentPrepPack: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 text-xs">
+    <div className="space-y-6 text-sm">
       {/* Header & Print Action */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-xl bg-slate-50 border border-slate-200">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Badge variant="verified">Bank Branch Ready</Badge>
-            <span className="text-slate-500 font-medium text-xs">IBA Dossier Standard</span>
+            <span className="text-slate-500 font-medium text-sm">IBA Dossier Standard</span>
           </div>
           <h3 className="text-base sm:text-lg font-bold text-slate-900">
             Physical Dossier Binder Assembly Order
           </h3>
-          <p className="text-slate-600 text-xs">
+          <p className="text-slate-600 text-sm">
             Organize your documents in the exact 6-tab order preferred by bank credit appraisal officers.
           </p>
         </div>
@@ -191,36 +191,36 @@ export const DocumentPrepPack: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="border-slate-200">
           <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+            <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-600" />
               1. Two Duplicate Sets
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-slate-600 leading-relaxed text-[11px]">
+          <CardContent className="text-slate-600 leading-relaxed text-xs">
             Always prepare 2 identical spiral or clip binders. One set stays with the branch loan officer; the second set is forwarded to the bank's Central Processing Center (CPC).
           </CardContent>
         </Card>
 
         <Card className="border-slate-200">
           <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+            <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
               <FileCheck className="h-4 w-4 text-brand-600" />
               2. OSV Physical Sight
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-slate-600 leading-relaxed text-[11px]">
+          <CardContent className="text-slate-600 leading-relaxed text-xs">
             Carry all originals in a separate folder. The bank officer must physically verify each photocopy against the original and affix an "Original Seen & Verified" (OSV) stamp.
           </CardContent>
         </Card>
 
         <Card className="border-slate-200">
           <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+            <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
               <AlertOctagon className="h-4 w-4 text-amber-600" />
               3. Never Surrender Marksheets
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-slate-600 leading-relaxed text-[11px]">
+          <CardContent className="text-slate-600 leading-relaxed text-xs">
             Under Indian Banks Association guidelines, banks cannot retain original Class 10/12 marksheets. Only original property title deeds are held for loans requiring collateral.
           </CardContent>
         </Card>
@@ -235,20 +235,20 @@ export const DocumentPrepPack: React.FC = () => {
           >
             <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div>
-                <h4 className="text-sm font-bold text-slate-900">{sec.tabTitle}</h4>
-                <p className="text-[11px] text-slate-500">{sec.subtitle}</p>
+                <h4 className="text-base font-bold text-slate-900">{sec.tabTitle}</h4>
+                <p className="text-xs text-slate-500">{sec.subtitle}</p>
               </div>
-              <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
                 Tab {sec.tabNumber}
               </span>
             </div>
 
-            <div className="divide-y divide-slate-100 text-xs">
+            <div className="divide-y divide-slate-100 text-sm">
               {sec.documents.map((doc, i) => (
                 <div key={i} className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="space-y-0.5">
                     <span className="font-semibold text-slate-800">{doc.name}</span>
-                    <p className="text-[11px] text-slate-500">{doc.tip}</p>
+                    <p className="text-xs text-slate-500">{doc.tip}</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">

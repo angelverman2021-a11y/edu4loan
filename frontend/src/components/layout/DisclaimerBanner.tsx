@@ -7,14 +7,14 @@ export const DisclaimerBanner: React.FC = () => {
 
   if (minimized) {
     return (
-      <div className="bg-navy-900 text-slate-300 text-xs py-1 px-4 flex items-center justify-between border-b border-navy-800">
+      <div className="bg-navy-900 text-slate-300 text-sm py-1 px-4 flex items-center justify-between border-b border-navy-800">
         <span className="flex items-center gap-1.5 font-medium">
           <ShieldAlert className="h-3.5 w-3.5 text-amber-400" />
           <span>Independent Advisory Notice</span>
         </span>
         <button
           onClick={() => setMinimized(false)}
-          className="text-slate-400 hover:text-white underline text-[11px]"
+          className="text-slate-400 hover:text-white underline text-xs"
         >
           Show Regulatory Disclosure
         </button>
@@ -23,7 +23,7 @@ export const DisclaimerBanner: React.FC = () => {
   }
 
   return (
-    <aside aria-label="Regulatory Disclaimer" className="bg-navy-950 text-slate-200 border-b border-navy-800/80 px-4 py-2 text-xs relative">
+    <aside aria-label="Regulatory Disclaimer" className="bg-navy-950 text-slate-200 border-b border-navy-800/80 px-4 py-2 text-sm relative">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
         <div className="flex items-start sm:items-center gap-2">
           <span className="inline-flex p-1 rounded bg-navy-800 text-amber-400 shrink-0 mt-0.5 sm:mt-0">
@@ -34,7 +34,7 @@ export const DisclaimerBanner: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto text-[11px]">
+        <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto text-xs">
           <Link
             to="/faqs"
             className="inline-flex items-center gap-0.5 text-brand-300 hover:text-white font-medium hover:underline"

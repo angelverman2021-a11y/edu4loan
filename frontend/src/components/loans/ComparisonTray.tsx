@@ -29,7 +29,7 @@ export const ComparisonTray: React.FC = () => {
       <div className="max-w-4xl mx-auto space-y-2 pointer-events-auto">
         {/* Warning Toast */}
         {warningMessage && (
-          <div className="flex items-center justify-between p-3 rounded-xl bg-amber-500 text-white shadow-lg text-xs font-medium animate-in fade-in slide-in-from-bottom-2">
+          <div className="flex items-center justify-between p-3 rounded-xl bg-amber-500 text-white shadow-lg text-sm font-medium animate-in fade-in slide-in-from-bottom-2">
             <div className="flex items-center gap-2">
               <AlertCircle className="h-4 w-4 shrink-0" />
               <span>{warningMessage}</span>
@@ -50,7 +50,7 @@ export const ComparisonTray: React.FC = () => {
             <div className="flex items-center gap-2.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
               <div className="flex items-center gap-1.5 shrink-0 pr-2 border-r border-slate-200">
                 <Columns3 className="h-4 w-4 text-brand-700" />
-                <span className="text-xs font-bold text-slate-900 whitespace-nowrap">
+                <span className="text-sm font-bold text-slate-900 whitespace-nowrap">
                   Compare ({selectedSchemes.length}/4)
                 </span>
               </div>
@@ -60,7 +60,7 @@ export const ComparisonTray: React.FC = () => {
                 {selectedSchemes.map((scheme) => (
                   <div
                     key={scheme.id}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50/80 border border-blue-200/70 text-xs text-brand-900 shrink-0"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50/80 border border-blue-200/70 text-sm text-brand-900 shrink-0"
                   >
                     <span className="font-semibold max-w-[130px] truncate">
                       {scheme.bankName}: {scheme.schemeName}
@@ -84,7 +84,7 @@ export const ComparisonTray: React.FC = () => {
               <button
                 type="button"
                 onClick={clearComparison}
-                className="text-xs font-medium text-slate-500 hover:text-slate-800 px-2.5 py-1.5 transition-colors"
+                className="text-sm font-medium text-slate-500 hover:text-slate-800 px-2.5 py-1.5 transition-colors"
               >
                 Clear all
               </button>

@@ -41,9 +41,9 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
       <div className="flex items-center justify-between pb-3 border-b border-slate-200">
         <div className="flex items-center gap-2">
           <Filter className="h-4 w-4 text-brand-700" />
-          <h3 className="font-bold text-slate-900 text-sm">Factual Scheme Filters</h3>
+          <h3 className="font-bold text-slate-900 text-base">Factual Scheme Filters</h3>
           {activeCount > 0 && (
-            <span className="px-1.5 py-0.5 rounded-full bg-brand-100 text-brand-800 text-[11px] font-bold">
+            <span className="px-1.5 py-0.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold">
               {activeCount}
             </span>
           )}
@@ -52,7 +52,7 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
           <button
             type="button"
             onClick={onReset}
-            className="text-xs text-brand-700 hover:text-brand-900 hover:underline flex items-center gap-1 font-medium"
+            className="text-sm text-brand-700 hover:text-brand-900 hover:underline flex items-center gap-1 font-medium"
           >
             <RotateCcw className="h-3 w-3" />
             <span>Reset</span>
@@ -62,11 +62,11 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
 
       {/* 1. Loan Amount Funding Requirement */}
       <div className="space-y-1.5">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
           How much funding do you need?
         </label>
         <div className="relative rounded-lg shadow-xs">
-          <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 font-semibold text-sm">
+          <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 font-semibold text-base">
             ₹
           </span>
           <input
@@ -82,23 +82,23 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
               })
             }
             placeholder="e.g. 1500000"
-            className="w-full pl-8 pr-3 py-2 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
+            className="w-full pl-8 pr-3 py-2 text-base rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
           />
         </div>
-        <p className="text-[11px] text-slate-500 leading-snug">
+        <p className="text-xs text-slate-500 leading-snug">
           These schemes have documented loan structures that may cover the amount entered. (Does not guarantee approval).
         </p>
       </div>
 
       {/* 2. Bank Filter */}
       <div className="space-y-1.5">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
           Bank / Institution
         </label>
         <select
           value={filters.bank || 'all'}
           onChange={(e) => onChange({ ...filters, bank: e.target.value, page: 1 })}
-          className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
+          className="w-full p-2 text-base rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
         >
           <option value="all">All Participating Banks</option>
           {banks.map((b) => (
@@ -111,10 +111,10 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
 
       {/* 3. Collateral Filter */}
       <div className="space-y-1.5">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
           Documented Collateral Terms
         </label>
-        <div className="space-y-1 text-xs text-slate-700">
+        <div className="space-y-1 text-sm text-slate-700">
           {[
             { value: 'all', label: 'All Collateral Types' },
             { value: 'free', label: 'Collateral-free (Documented Nil / CGFSEL)' },
@@ -137,13 +137,13 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
 
       {/* 4. Degree Level */}
       <div className="space-y-1.5">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
           Degree Program
         </label>
         <select
           value={filters.degreeLevel || 'all'}
           onChange={(e) => onChange({ ...filters, degreeLevel: e.target.value, page: 1 })}
-          className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
+          className="w-full p-2 text-base rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
         >
           <option value="all">All Degree Levels</option>
           <option value="Undergraduate">Undergraduate (B.Tech / BCA / BBA)</option>
@@ -154,13 +154,13 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
 
       {/* 5. Concessions & Category */}
       <div className="space-y-1.5">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
           Student Concession
         </label>
         <select
           value={filters.studentCategory || 'all'}
           onChange={(e) => onChange({ ...filters, studentCategory: e.target.value, page: 1 })}
-          className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
+          className="w-full p-2 text-base rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
         >
           <option value="all">Standard Terms</option>
           <option value="girl_child">Girl Student (0.50% Interest Discount)</option>
@@ -169,10 +169,10 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
 
       {/* 6. Central Subsidies Linkage */}
       <div className="space-y-2 pt-1 border-t border-slate-100">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
           Government Integration
         </label>
-        <div className="space-y-2 text-xs text-slate-700">
+        <div className="space-y-2 text-sm text-slate-700">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
@@ -196,13 +196,13 @@ export const LoanFilterSidebar: React.FC<LoanFilterSidebarProps> = ({
 
       {/* 7. Verification Status */}
       <div className="space-y-1.5 pt-1 border-t border-slate-100">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
           Verification Status
         </label>
         <select
           value={filters.status || 'all'}
           onChange={(e) => onChange({ ...filters, status: e.target.value === 'all' ? undefined : e.target.value, page: 1 })}
-          className="w-full p-2 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
+          className="w-full p-2 text-base rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
         >
           <option value="all">All Documented Schemes</option>
           <option value="verified">Verified Circulars Only</option>
