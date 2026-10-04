@@ -171,11 +171,18 @@ export const queryChatbot = async (
 
   // 4. Search in What-If Scenarios
   const whatIfMatches = await WhatIfScenario.find();
+  const strippedQuery = query.replace(/^what if (my |i |we )?/i, "").replace(/\?+$/, "").trim();
   for (const scenario of whatIfMatches) {
+    const titleLower = scenario.title.toLowerCase();
+    const summaryLower = scenario.summary.toLowerCase();
+    const codeWords = scenario.scenarioCode.toLowerCase().split("_");
+    const isCodeMatch = codeWords.length >= 2 && codeWords.filter((w) => w.length > 2).every((w) => query.includes(w));
     if (
       query.includes(scenario.scenarioCode.toLowerCase()) ||
-      scenario.title.toLowerCase().includes(query) ||
-      query.includes(scenario.title.toLowerCase())
+      titleLower.includes(query) ||
+      query.includes(titleLower) ||
+      isCodeMatch ||
+      (strippedQuery.length > 5 && (titleLower.includes(strippedQuery) || summaryLower.includes(strippedQuery)))
     ) {
       const citations: ChatbotSourceCitation[] = [
         {

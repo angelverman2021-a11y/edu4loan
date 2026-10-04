@@ -6,10 +6,12 @@ export type WhatIfCategory =
   | "credit_history"
   | "course_and_institution"
   | "application_and_portal"
-  | "expenses_and_fees";
+  | "expenses_and_fees"
+  | "repayment_and_interest"
+  | "decision_and_guidance";
 
 export interface WhatIfScenario {
-  id: string;
+  id?: string;
   scenarioCode: string;
   title: string;
   category: WhatIfCategory;

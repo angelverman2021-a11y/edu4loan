@@ -1126,6 +1126,8 @@ const WhatIfScenariosTab: React.FC = () => {
           <option value="course_and_institution">Course & Institution</option>
           <option value="application_and_portal">Application & Portal</option>
           <option value="expenses_and_fees">Expenses & Fees</option>
+          <option value="repayment_and_interest">Repayment & Interest</option>
+          <option value="decision_and_guidance">Decisions & Guidance</option>
         </select>
       </div>
 

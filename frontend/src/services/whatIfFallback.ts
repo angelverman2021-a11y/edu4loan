@@ -1,10 +1,6 @@
-/**
- * Authoritative Production What-If Scenarios for Edu4Loan
- * Answers real-world situations students and parents encounter before approaching banks.
- * Covers 35+ practical scenarios across 8 financial categories.
- */
+import { WhatIfScenario } from "@/types";
 
-export const productionWhatIfScenarios = [
+export const fallbackWhatIfScenarios: WhatIfScenario[] = [
   {
     "scenarioCode": "NO_FORM_16",
     "title": "Parent or Co-Applicant Does Not Have Form 16",
@@ -47,7 +43,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=salary-slip",
     "actionText": "Explore Salary Slip Alternatives",
-    "status": "verified"
+    "status": "verified",
+    "id": "no_form_16"
   },
   {
     "scenarioCode": "NO_SALARY_SLIP",
@@ -92,7 +89,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=salary-slip",
     "actionText": "Explore Salary Slip Alternatives Tool",
-    "status": "verified"
+    "status": "verified",
+    "id": "no_salary_slip"
   },
   {
     "scenarioCode": "SELF_EMPLOYED_PARENT",
@@ -136,7 +134,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=min-documents",
     "actionText": "Check Self-Employed Documents",
-    "status": "verified"
+    "status": "verified",
+    "id": "self_employed_parent"
   },
   {
     "scenarioCode": "NO_ITR_FILED",
@@ -180,7 +179,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/schemes",
     "actionText": "Check CSIS Subsidy Guidelines",
-    "status": "verified"
+    "status": "verified",
+    "id": "no_itr_filed"
   },
   {
     "scenarioCode": "NO_COLLATERAL",
@@ -223,7 +223,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Check Collateral Threshold Calculator",
-    "status": "verified"
+    "status": "verified",
+    "id": "no_collateral"
   },
   {
     "scenarioCode": "PROPERTY_DOCUMENTS_INCOMPLETE",
@@ -267,7 +268,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Explore Collateral Explainer",
-    "status": "verified"
+    "status": "verified",
+    "id": "property_documents_incomplete"
   },
   {
     "scenarioCode": "PARENT_EXISTING_LOAN_FOIR",
@@ -310,7 +312,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Simulate Moratorium & EMI",
-    "status": "verified"
+    "status": "verified",
+    "id": "parent_existing_loan_foir"
   },
   {
     "scenarioCode": "LOW_PARENTAL_INCOME",
@@ -353,7 +356,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/schemes",
     "actionText": "View CSIS & PM-Vidyalaxmi Schemes",
-    "status": "verified"
+    "status": "verified",
+    "id": "low_parental_income"
   },
   {
     "scenarioCode": "COAPPLICANT_NO_INCOME_PROOF",
@@ -397,7 +401,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=salary-slip",
     "actionText": "Check Informal Income Alternatives",
-    "status": "verified"
+    "status": "verified",
+    "id": "coapplicant_no_income_proof"
   },
   {
     "scenarioCode": "FIRST_YEAR_STUDENT",
@@ -441,7 +446,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=verification",
     "actionText": "View Student Verification Guide",
-    "status": "verified"
+    "status": "verified",
+    "id": "first_year_student"
   },
   {
     "scenarioCode": "PROVISIONAL_ADMISSION_OFFER",
@@ -485,7 +491,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/journey",
     "actionText": "Start Student Journey",
-    "status": "verified"
+    "status": "verified",
+    "id": "provisional_admission_offer"
   },
   {
     "scenarioCode": "STUDY_GAP_YEAR_AFFIDAVIT",
@@ -528,7 +535,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=what-if",
     "actionText": "View Academic Edge-Cases",
-    "status": "verified"
+    "status": "verified",
+    "id": "study_gap_year_affidavit"
   },
   {
     "scenarioCode": "LOW_ACADEMIC_MARKS_ENTRANCE",
@@ -571,7 +579,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=approval-factors",
     "actionText": "Review Approval Factors",
-    "status": "verified"
+    "status": "verified",
+    "id": "low_academic_marks_entrance"
   },
   {
     "scenarioCode": "SCHOLARSHIP_MARGIN_MONEY_OFFSET",
@@ -614,7 +623,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/compare",
     "actionText": "Compare Margin Money Terms",
-    "status": "verified"
+    "status": "verified",
+    "id": "scholarship_margin_money_offset"
   },
   {
     "scenarioCode": "HOSTEL_EXPENSES_INCLUSION",
@@ -657,7 +667,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=min-documents",
     "actionText": "Check Document Requirements",
-    "status": "verified"
+    "status": "verified",
+    "id": "hostel_expenses_inclusion"
   },
   {
     "scenarioCode": "LAPTOP_COMPUTER_EQUIPMENT_EXPENSE",
@@ -699,7 +710,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Calculate Total Loan Costs",
-    "status": "verified"
+    "status": "verified",
+    "id": "laptop_computer_equipment_expense"
   },
   {
     "scenarioCode": "FIFTEEN_LAKH_REQUIREMENT",
@@ -743,7 +755,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/compare",
     "actionText": "Compare Bank Quantum Limits",
-    "status": "verified"
+    "status": "verified",
+    "id": "fifteen_lakh_requirement"
   },
   {
     "scenarioCode": "FLOATING_INTEREST_RATE_CHANGES",
@@ -785,7 +798,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Simulate Interest Accrual",
-    "status": "verified"
+    "status": "verified",
+    "id": "floating_interest_rate_changes"
   },
   {
     "scenarioCode": "MORATORIUM_REPAYMENT_HOLIDAY",
@@ -827,7 +841,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Explore Moratorium Savings",
-    "status": "verified"
+    "status": "verified",
+    "id": "moratorium_repayment_holiday"
   },
   {
     "scenarioCode": "EARLY_PREPAYMENT_ZERO_PENALTY",
@@ -869,7 +884,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Simulate Early Prepayment",
-    "status": "verified"
+    "status": "verified",
+    "id": "early_prepayment_zero_penalty"
   },
   {
     "scenarioCode": "IDENTICAL_INTEREST_RATES_SELECTION",
@@ -911,7 +927,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/compare",
     "actionText": "Compare 20+ Bank Parameters",
-    "status": "verified"
+    "status": "verified",
+    "id": "identical_interest_rates_selection"
   },
   {
     "scenarioCode": "LOWER_RATE_HIGHER_FEES_APR",
@@ -953,7 +970,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Simulate Total Repayment Cost",
-    "status": "verified"
+    "status": "verified",
+    "id": "lower_rate_higher_fees_apr"
   },
   {
     "scenarioCode": "ADDITIONAL_DOCUMENTS_REQUESTED",
@@ -996,7 +1014,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=min-documents",
     "actionText": "Verify Required Document List",
-    "status": "verified"
+    "status": "verified",
+    "id": "additional_documents_requested"
   },
   {
     "scenarioCode": "APPLICATION_RETURNED_CORRECTION",
@@ -1039,7 +1058,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/schemes",
     "actionText": "View Portal Guide",
-    "status": "verified"
+    "status": "verified",
+    "id": "application_returned_correction"
   },
   {
     "scenarioCode": "APPLICATION_REJECTED_REMEDIES",
@@ -1082,7 +1102,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=approval-factors",
     "actionText": "Review Approval Factors",
-    "status": "verified"
+    "status": "verified",
+    "id": "application_rejected_remedies"
   },
   {
     "scenarioCode": "DIFFERENT_TERMS_RISK_PRICING",
@@ -1125,7 +1146,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/compare",
     "actionText": "Compare Master Circular Terms",
-    "status": "verified"
+    "status": "verified",
+    "id": "different_terms_risk_pricing"
   },
   {
     "scenarioCode": "SCHEME_NOT_ON_VIDYA_LAKSHMI",
@@ -1167,7 +1189,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/schemes",
     "actionText": "View Portal Mapping Guide",
-    "status": "verified"
+    "status": "verified",
+    "id": "scheme_not_on_vidya_lakshmi"
   },
   {
     "scenarioCode": "VIDYA_LAKSHMI_APPLICATION_STALLED",
@@ -1210,7 +1233,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/tracker",
     "actionText": "Use Application Pipeline Tracker",
-    "status": "verified"
+    "status": "verified",
+    "id": "vidya_lakshmi_application_stalled"
   },
   {
     "scenarioCode": "INFORMATION_DIFFERENCE_BANK_WEBSITE",
@@ -1248,7 +1272,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/statistics",
     "actionText": "Inspect Verified Spreads & SLAs",
-    "status": "verified"
+    "status": "verified",
+    "id": "information_difference_bank_website"
   },
   {
     "scenarioCode": "FEE_DEADLINE_APPROACHING_URGENCY",
@@ -1291,7 +1316,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=timeline",
     "actionText": "View 9-Stage Processing Timeline",
-    "status": "verified"
+    "status": "verified",
+    "id": "fee_deadline_approaching_urgency"
   },
   {
     "scenarioCode": "PARENT_DOESNT_UNDERSTAND_AGREEMENT",
@@ -1325,7 +1351,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/parent-mode",
     "actionText": "Switch to Parent Mode",
-    "status": "verified"
+    "status": "verified",
+    "id": "parent_doesnt_understand_agreement"
   },
   {
     "scenarioCode": "WHAT_IS_COLLATERAL_EXPLAINER",
@@ -1364,7 +1391,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Check Collateral Rules",
-    "status": "verified"
+    "status": "verified",
+    "id": "what_is_collateral_explainer"
   },
   {
     "scenarioCode": "WHAT_IS_MORATORIUM_EXPLAINER",
@@ -1406,7 +1434,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/calculator",
     "actionText": "Launch Moratorium Calculator",
-    "status": "verified"
+    "status": "verified",
+    "id": "what_is_moratorium_explainer"
   },
   {
     "scenarioCode": "DONT_KNOW_WHICH_DOCUMENTS_NEEDED",
@@ -1441,7 +1470,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/documents",
     "actionText": "Generate Personalized Checklist",
-    "status": "verified"
+    "status": "verified",
+    "id": "dont_know_which_documents_needed"
   },
   {
     "scenarioCode": "DONT_KNOW_WHICH_SCHEME_APPLIES",
@@ -1476,7 +1506,8 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/journey",
     "actionText": "Start Guided Student Journey",
-    "status": "verified"
+    "status": "verified",
+    "id": "dont_know_which_scheme_applies"
   },
   {
     "scenarioCode": "NO_CREDIT_HISTORY",
@@ -1519,6 +1550,7 @@ export const productionWhatIfScenarios = [
     },
     "officialActionLink": "/practical-help?tab=approval-factors",
     "actionText": "Understand Credit Underwriting",
-    "status": "verified"
+    "status": "verified",
+    "id": "no_credit_history"
   }
 ];
