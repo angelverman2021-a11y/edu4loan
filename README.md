@@ -67,6 +67,45 @@ Navigating education loans in India is often fraught with administrative hurdles
 
 ---
 
+## Guided Student Journey (6-Phase Roadmap)
+
+To eliminate the confusion of university branch requirements and bureaucratic delays, Edu4Loan orchestrates a transparent 6-phase roadmap tailored for students at VIT Bhopal University:
+
+<p align="center">
+  <img src="assets/student_journey_flow.jpg" alt="Edu4Loan 6-Phase Guided Student Journey for VIT Bhopal" width="100%" />
+</p>
+
+1. **Student Context & Profile**: Select VIT Bhopal campus, degree program (e.g. B.Tech Computer Science), fee structure breakdown (tuition, hostel, mess, exam fees), and family financial baseline.
+2. **Bank & Scheme Compare**: Evaluate 20+ factual parameters (EBLR vs. MCLR rates, processing fees, margin percentages, and repayment terms) with zero sponsored bias or algorithmic rankings.
+3. **Practical Loan Q&A (36 What-If Scenarios)**: Resolve real-world constraints such as missing salary slips, self-employed parents, absence of Form 16, low CIBIL scores, and gap years with RBI-compliant workarounds.
+4. **Multilingual Parent Review Mode**: Dedicated bilingual interface (Hindi, Gujarati, Bengali, English) explaining post-moratorium EMI, interest accrual, and borrower responsibilities in accessible language without financial jargon.
+5. **Personalized 12-Item Document Checklist**: Generate a tailor-made document dossier matching the exact format requirements of SBI, Canara Bank, and PNB RACPC hubs.
+6. **Official Application Routing**: Step-by-step guidance for Vidya Lakshmi Portal (CELFS ID generation) and PM-Vidyalaxmi 2024 interest subvention with direct links to official bank portals.
+
+---
+
+## Statutory Framework: Collateral Tiers & Moratorium Mechanics
+
+A primary driver of student loan distress is misinformation regarding collateral requirements and the cost of moratorium periods. Edu4Loan embeds authoritative Reserve Bank of India (RBI) and National Credit Guarantee Trustee Company (NCGTC / CGFSEL) regulatory rules directly into all comparison tools:
+
+<p align="center">
+  <img src="assets/collateral_moratorium_guide.jpg" alt="Collateral Tiers and Moratorium Interest Mechanics" width="100%" />
+</p>
+
+### Collateral Security Tiers (RBI / CGFSEL Guidelines)
+- **Tier 1 (Up to INR 4.00 Lakhs)**: Zero collateral security and zero third-party guarantee. Parents or legal guardians act as co-borrowers.
+- **Tier 2 (INR 4.00 Lakhs to INR 7.50 Lakhs)**: Zero collateral security under the Credit Guarantee Fund Scheme for Education Loans (CGFSEL). The fund provides 75% sovereign credit guarantee to lending banks, making demands for physical property unlawful.
+- **Tier 3 (Above INR 7.50 Lakhs)**: Tangible collateral security (land, residential property, fixed deposits, LIC policies) acceptable to the bank along with co-obligation of parents.
+
+### Moratorium Period & Interest Dynamics
+- **Duration**: Course duration (4 years for B.Tech) plus statutory grace period (1 year or 6 months post-employment, whichever is earlier).
+- **Simple Interest Accrual**: During the moratorium period, banks charge simple interest. Servicing simple interest monthly during college reduces post-graduation repayment burden.
+- **Capitalization**: If unpaid during study, accumulated simple interest is added (capitalized) to the principal upon moratorium completion, increasing the starting EMI balance.
+- **Central Sector Interest Subsidy (CSIS)**: 100% interest waiver during moratorium for students from economically weaker sections (annual family income up to INR 4.50 Lakhs) pursuing technical/professional courses.
+- **PM-Vidyalaxmi 2024**: Up to 3% interest subvention during moratorium for annual family income up to INR 8.00 Lakhs admitted to top 860 NIRF-ranked institutions.
+
+---
+
 ## Project Architecture
 
 Edu4Loan is engineered as an enterprise-grade TypeScript monorepo with clean separation between financial domain contracts, query engines, and presentation layers.
@@ -133,6 +172,21 @@ flowchart TD
 
 ---
 
+## Decision Support Tools & Platform Capabilities
+
+Edu4Loan provides an integrated suite of financial simulation, objective comparison, and multi-lingual guidance tools engineered for complete clarity:
+
+<p align="center">
+  <img src="assets/platform_decision_tools.jpg" alt="Edu4Loan Platform Capabilities and Decision Support Tools" width="100%" />
+</p>
+
+- **20+ Parameter Objective Comparison Matrix**: Side-by-side comparative table evaluating Repo-linked EBLR benchmarks, bank spread, maximum sanction limit, margin money ratios, processing charges, prepayment penalties, and turnaround SLAs.
+- **Moratorium & Amortization Simulator**: Month-by-month interactive amortization projections visualizing the exact rupee cost of interest capitalization vs. monthly simple interest servicing.
+- **36 Authoritative What-If Scenarios**: Searchable, verified problem-solving directory covering parent occupation edge cases, co-borrower credit issues, academic criteria, fee components, and institutional document matching.
+- **Multilingual Parent Review Hub**: Plain-language financial summary translated into Hindi, Gujarati, Bengali, and English, allowing students and parents to make joint, confident financial decisions.
+
+---
+
 ## Monorepo Layout
 
 ```
@@ -141,7 +195,10 @@ edu4loan/
 ├── PROJECT_PROGRESS.md      # Phase-by-phase implementation record (Phases 0-12)
 ├── API.md                   # REST API contracts, endpoints, and error formats
 ├── assets/
-│   └── banner.jpg           # Slim platform header banner (1376x420)
+│   ├── banner.jpg                     # Slim platform header banner (1376x420)
+│   ├── student_journey_flow.jpg       # 6-Phase guided journey infographic
+│   ├── collateral_moratorium_guide.jpg # Collateral tiers & moratorium mechanics
+│   └── platform_decision_tools.jpg    # Decision support suite & feature overview
 ├── shared/                  # Shared domain contracts & regulatory constants
 │   ├── types/               # Bank, Scheme, Document, Application, Calculator types
 │   └── constants/           # CGFSEL thresholds, document taxonomy, PSL limits
