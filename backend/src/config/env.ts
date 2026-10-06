@@ -15,7 +15,7 @@ export interface AppConfig {
 
 const getEnv = (): AppConfig => {
   const NODE_ENV = process.env.NODE_ENV || 'development';
-  const PORT = parseInt(process.env.PORT || '5000', 10);
+  const PORT = parseInt(process.env.PORT || '5001', 10);
   const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/edu4loan';
   const JWT_SECRET = process.env.JWT_SECRET;
   const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';

@@ -26,6 +26,8 @@ export const AskEdu4LoanChatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [showTooltip, setShowTooltip] = useState<boolean>(false);
+  const [animationClass, setAnimationClass] = useState<string>('');
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
@@ -55,8 +57,52 @@ export const AskEdu4LoanChatbot: React.FC = () => {
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
+      setShowTooltip(false);
     }
   }, [messages, isOpen]);
+
+  // Robot animation and tooltip logic
+  useEffect(() => {
+    if (isOpen) return;
+
+    // Show tooltip initially after 2s
+    const initialTooltip = setTimeout(() => {
+      setShowTooltip(true);
+      setTimeout(() => setShowTooltip(false), 3000);
+    }, 2000);
+
+    // Show tooltip every 12 seconds for 3 seconds
+    const tooltipInterval = setInterval(() => {
+      setShowTooltip(true);
+      setTimeout(() => setShowTooltip(false), 3000);
+    }, 12000);
+
+    // Random robot animations every 3.5 seconds
+    const animations = [
+      '-rotate-12',
+      'rotate-12',
+      'scale-110',
+      'scale-90 -translate-y-1',
+      '-rotate-6 scale-110',
+      'rotate-6 scale-110',
+      '-translate-x-1 rotate-3',
+      'translate-x-1 -rotate-3',
+    ];
+
+    const animationInterval = setInterval(() => {
+      const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+      setAnimationClass(randomAnim);
+      
+      // Return to normal quickly
+      setTimeout(() => setAnimationClass(''), 500);
+    }, 3500);
+
+    return () => {
+      clearTimeout(initialTooltip);
+      clearInterval(tooltipInterval);
+      clearInterval(animationInterval);
+    };
+  }, [isOpen]);
 
   const handleSend = async (questionText?: string) => {
     const textToSend = questionText || input;
@@ -117,19 +163,26 @@ export const AskEdu4LoanChatbot: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-50">
       {/* Floating Trigger Button */}
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2.5 px-4 py-3 bg-brand-900 hover:bg-brand-950 text-white rounded-full shadow-lg hover:shadow-xl transition-all border border-brand-700/50 group"
-          aria-label="Open Ask Edu4Loan Chat"
-        >
-          <div className="h-6 w-6 rounded-full bg-brand-800 flex items-center justify-center">
-            <Bot className="h-4 w-4 text-white" />
-          </div>
-          <div className="text-left">
-            <span className="text-xs font-bold block leading-tight">Ask EDU4LOAN</span>
-            <span className="text-[10px] text-blue-200 block font-medium">Verified RAG AI</span>
-          </div>
-        </button>
+        <div className="relative flex flex-col items-end">
+          {/* Periodic Ask Tooltip */}
+          {showTooltip && (
+            <div className="absolute -top-12 right-1 bg-brand-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-lg border border-brand-800 animate-in fade-in zoom-in duration-200">
+              Ask?
+              {/* Tooltip triangle */}
+              <div className="absolute -bottom-1 right-5 w-2.5 h-2.5 bg-brand-900 border-r border-b border-brand-800 rotate-45" />
+            </div>
+          )}
+          
+          <button
+            onClick={() => setIsOpen(true)}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+            className="flex items-center justify-center h-14 w-14 bg-brand-900 hover:bg-brand-950 text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-all duration-300 border border-brand-700/50 group hover:scale-105"
+            aria-label="Open Ask Edu4Loan Chat"
+          >
+            <Bot className={`h-6 w-6 text-blue-100 transition-all duration-200 ${animationClass}`} />
+          </button>
+        </div>
       )}
 
       {/* Slide-over / Modal Chat Window */}

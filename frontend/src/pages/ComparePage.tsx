@@ -1,783 +1,756 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
-  Columns3,
-  X,
-  Plus,
-  ExternalLink,
-  ShieldCheck,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+  LineChart,
+  Line,
+} from 'recharts';
+import {
   Building2,
-  FileText,
+  CheckCircle2,
+  X,
+  TrendingDown,
+  ShieldCheck,
   Clock,
-  LayoutGrid,
-  Table,
+  Banknote,
+  ChevronDown,
+  Star,
+  AlertCircle,
+  ExternalLink,
+  BarChart3,
+  Sparkles,
 } from 'lucide-react';
-import { loanSchemeService } from '@/services/loanSchemeService';
-import { ComparisonResult, ComparisonSchemeData } from '@/types';
-import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import { VerifiedBadge } from '@/components/ui/VerifiedBadge';
-import { DifferenceBadge } from '@/components/loans/DifferenceBadge';
-import { Alert } from '@/components/ui/Alert';
-import { Skeleton } from '@/components/ui/Skeleton';
-import { useComparison } from '@/context/ComparisonContext';
+import { clsx } from 'clsx';
 
-export const ComparePage: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { selectedSchemes, removeScheme } = useComparison();
+/* ─── Static bank dataset ─────────────────────────────────────────────────── */
+interface BankData {
+  id: string;
+  bank: string;
+  scheme: string;
+  shortName: string;
+  color: string;
+  hexColor: string;
+  minRate: number;
+  maxRate: number;
+  maxLoanLakh: number;   // in lakhs (0 = need-based)
+  collateralFreeUptoLakh: number;
+  marginPercent: number;
+  moratoriumMonths: number; // course + post
+  maxTenureYears: number;
+  processingFeePct: number;
+  girlConcessionBps: number; // basis points (50 = 0.5%)
+  cgfselCover: boolean;
+  pmVidyalaxmi: boolean;
+  sectionEighty: boolean;
+  prepaymentPenalty: boolean;
+  processingDayMin: number;
+  processingDayMax: number;
+  officialUrl: string;
+  note: string;
+}
 
-  const [comparisonData, setComparisonData] = useState<ComparisonResult | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [highlightDiffs, setHighlightDiffs] = useState<boolean>(false);
-  const [viewMode, setViewMode] = useState<'table' | 'cards'>('table');
-
-  // Extract scheme IDs from URL parameter or fallback to Context
-  const idsParam = searchParams.get('ids');
-  const schemeIds = idsParam
-    ? idsParam.split(',').map((id) => id.trim()).filter(Boolean)
-    : selectedSchemes.map((s) => s.id);
-
-  useEffect(() => {
-    if (idsParam !== schemeIds.join(',') && schemeIds.length > 0) {
-      setSearchParams({ ids: schemeIds.join(',') }, { replace: true });
-    }
-  }, [schemeIds, idsParam, setSearchParams]);
-
-  useEffect(() => {
-    const fetchComparison = async () => {
-      if (schemeIds.length < 2) {
-        setComparisonData(null);
-        setLoading(false);
-        return;
-      }
-
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await loanSchemeService.compareLoanSchemes(schemeIds.slice(0, 4));
-        setComparisonData(data);
-      } catch (err: any) {
-        setError(err.message || 'Unable to load comparison data.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchComparison();
-  }, [idsParam]);
-
-  const handleRemoveScheme = (id: string) => {
-    removeScheme(id);
-    const remaining = schemeIds.filter((item) => item !== id);
-    if (remaining.length > 0) {
-      setSearchParams({ ids: remaining.join(',') });
-    } else {
-      setSearchParams({});
-    }
-  };
-
-  const formatCurrency = (val?: number) => {
-    if (!val) return 'Need-based';
-    if (val >= 10000000) {
-      return `Rs ${(val / 10000000).toFixed(2)} Cr`;
-    }
-    return `Rs ${(val / 100000).toFixed(1)} Lakhs`;
-  };
-
-  const isDifferent = (values: any[]) => {
-    if (!values || values.length <= 1) return false;
-    const first = JSON.stringify(values[0]);
-    return values.some((v) => JSON.stringify(v) !== first);
-  };
-
-  // Empty state if <2 schemes are selected
-  if (schemeIds.length < 2) {
-    return (
-      <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-6">
-        <div className="h-16 w-16 rounded-2xl bg-blue-50 text-brand-700 flex items-center justify-center mx-auto">
-          <Columns3 className="h-8 w-8" />
-        </div>
-        <div className="space-y-2">
-          <h1 className="text-2xl font-bold text-slate-900">Side-by-Side Scheme Comparison</h1>
-          <p className="text-sm text-slate-500 max-w-md mx-auto">
-            Please select at least 2 schemes (up to a maximum of 4) to view an objective side-by-side comparison of interest structures, collateral tiers, and documented conditions.
-          </p>
-        </div>
-
-        {selectedSchemes.length === 1 && (
-          <div className="inline-flex items-center gap-2 p-3 rounded-lg bg-blue-50/80 border border-blue-200 text-xs text-brand-900">
-            <span>Currently selected: <strong>{selectedSchemes[0].schemeName}</strong>. Select 1 more scheme to compare.</span>
-          </div>
-        )}
-
-        <div>
-          <Link to="/loans">
-            <Button variant="primary" size="md">
-              Browse & Select Schemes
-            </Button>
-          </Link>
-        </div>
-      </div>
-    );
+const BANKS: BankData[] = [
+  {
+    id: 'sbi',
+    bank: 'State Bank of India',
+    scheme: 'SBI Scholar Scheme',
+    shortName: 'SBI',
+    color: 'blue',
+    hexColor: '#1D4ED8',
+    minRate: 8.15, maxRate: 8.85,
+    maxLoanLakh: 20,
+    collateralFreeUptoLakh: 7.5,
+    marginPercent: 5,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 0,
+    girlConcessionBps: 50,
+    cgfselCover: true,
+    pmVidyalaxmi: true,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 14, processingDayMax: 21,
+    officialUrl: 'https://sbi.co.in/web/personal-banking/loans/education-loans',
+    note: 'No collateral up to ₹20L for listed institutions',
+  },
+  {
+    id: 'canara',
+    bank: 'Canara Bank',
+    scheme: 'Canara Vidya Turan',
+    shortName: 'Canara',
+    color: 'emerald',
+    hexColor: '#059669',
+    minRate: 8.40, maxRate: 9.25,
+    maxLoanLakh: 30,
+    collateralFreeUptoLakh: 7.5,
+    marginPercent: 5,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 0,
+    girlConcessionBps: 50,
+    cgfselCover: true,
+    pmVidyalaxmi: true,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 7, processingDayMax: 15,
+    officialUrl: 'https://canarabank.com/User_page.aspx?othlink=375',
+    note: 'CSIS nodal bank — fastest subsidy processing',
+  },
+  {
+    id: 'pnb',
+    bank: 'Punjab National Bank',
+    scheme: 'PNB Saraswati',
+    shortName: 'PNB',
+    color: 'amber',
+    hexColor: '#D97706',
+    minRate: 8.55, maxRate: 9.80,
+    maxLoanLakh: 0,
+    collateralFreeUptoLakh: 7.5,
+    marginPercent: 5,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 0,
+    girlConcessionBps: 50,
+    cgfselCover: true,
+    pmVidyalaxmi: true,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 10, processingDayMax: 14,
+    officialUrl: 'https://www.pnbindia.in/education-loan.html',
+    note: 'Need-based maximum, strong rural branch network',
+  },
+  {
+    id: 'union',
+    bank: 'Union Bank of India',
+    scheme: 'Union Education Loan',
+    shortName: 'Union',
+    color: 'purple',
+    hexColor: '#7C3AED',
+    minRate: 8.60, maxRate: 9.30,
+    maxLoanLakh: 30,
+    collateralFreeUptoLakh: 7.5,
+    marginPercent: 5,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 0,
+    girlConcessionBps: 50,
+    cgfselCover: true,
+    pmVidyalaxmi: true,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 10, processingDayMax: 20,
+    officialUrl: 'https://www.unionbankofindia.co.in/english/Education-Loan.aspx',
+    note: 'Strong presence in Madhya Pradesh region',
+  },
+  {
+    id: 'bob',
+    bank: 'Bank of Baroda',
+    scheme: 'Baroda Scholar',
+    shortName: 'BoB',
+    color: 'orange',
+    hexColor: '#EA580C',
+    minRate: 8.70, maxRate: 10.20,
+    maxLoanLakh: 80,
+    collateralFreeUptoLakh: 7.5,
+    marginPercent: 5,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 0.5,
+    girlConcessionBps: 0,
+    cgfselCover: true,
+    pmVidyalaxmi: false,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 14, processingDayMax: 21,
+    officialUrl: 'https://www.bankofbaroda.in/personal-banking/loans/education-loan',
+    note: 'Highest max loan limit at ₹80L for abroad studies',
+  },
+  {
+    id: 'axis',
+    bank: 'Axis Bank',
+    scheme: 'Axis Bank Education Loan',
+    shortName: 'Axis',
+    color: 'rose',
+    hexColor: '#E11D48',
+    minRate: 11.00, maxRate: 14.00,
+    maxLoanLakh: 75,
+    collateralFreeUptoLakh: 7.5,
+    marginPercent: 15,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 1,
+    girlConcessionBps: 0,
+    cgfselCover: false,
+    pmVidyalaxmi: false,
+    sectionEighty: true,
+    prepaymentPenalty: true,
+    processingDayMin: 7, processingDayMax: 10,
+    officialUrl: 'https://www.axisbank.com/retail/loans/education-loan',
+    note: 'Private bank, higher rates but faster approval',
+  },
+  {
+    id: 'hdfc',
+    bank: 'HDFC Bank',
+    scheme: 'HDFC Education Loan',
+    shortName: 'HDFC',
+    color: 'blue',
+    hexColor: '#1d4ed8',
+    minRate: 10.50, maxRate: 12.50,
+    maxLoanLakh: 50,
+    collateralFreeUptoLakh: 7.5,
+    marginPercent: 5,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 1,
+    girlConcessionBps: 0,
+    cgfselCover: false,
+    pmVidyalaxmi: false,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 5, processingDayMax: 10,
+    officialUrl: 'https://www.hdfcbank.com/personal/borrow/popular-loans/educational-loan',
+    note: 'Fast processing, door-step service',
+  },
+  {
+    id: 'icici',
+    bank: 'ICICI Bank',
+    scheme: 'ICICI Education Loan',
+    shortName: 'ICICI',
+    color: 'orange',
+    hexColor: '#f97316',
+    minRate: 8.50, maxRate: 13.00,
+    maxLoanLakh: 100,
+    collateralFreeUptoLakh: 20,
+    marginPercent: 15,
+    moratoriumMonths: 60,
+    maxTenureYears: 12,
+    processingFeePct: 1,
+    girlConcessionBps: 0,
+    cgfselCover: false,
+    pmVidyalaxmi: false,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 7, processingDayMax: 12,
+    officialUrl: 'https://www.icicibank.com/personal-banking/loans/education-loan',
+    note: 'High unsecured loans for premier institutes',
+  },
+  {
+    id: 'idfc',
+    bank: 'IDFC FIRST Bank',
+    scheme: 'IDFC FIRST Education Loan',
+    shortName: 'IDFC',
+    color: 'rose',
+    hexColor: '#be123c',
+    minRate: 9.50, maxRate: 11.50,
+    maxLoanLakh: 50,
+    collateralFreeUptoLakh: 40,
+    marginPercent: 0,
+    moratoriumMonths: 60,
+    maxTenureYears: 15,
+    processingFeePct: 1,
+    girlConcessionBps: 0,
+    cgfselCover: false,
+    pmVidyalaxmi: false,
+    sectionEighty: true,
+    prepaymentPenalty: false,
+    processingDayMin: 3, processingDayMax: 7,
+    officialUrl: 'https://www.idfcfirstbank.com/personal-banking/loans/education-loan',
+    note: 'Zero margin money, highest unsecured limit for elite colleges',
   }
+];
 
-  const schemesList = comparisonData?.schemes || [];
+/* ─── Helpers ─────────────────────────────────────────────────────────────── */
+const fmt = (v: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(v);
+const fmtLakh = (v: number) => v === 0 ? 'Need-based' : `₹${v}L`;
+const avg = (min: number, max: number) => +((min + max) / 2).toFixed(2);
+
+const EMI_LOAN = 1200000; // ₹12L for EMI comparison
+const EMI_TENURE = 120;   // 10 years post moratorium
+
+const calcEMI = (p: number, ratePercent: number, n: number) => {
+  const r = ratePercent / 12 / 100;
+  return r === 0 ? p / n : (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+};
+
+/* ─── Custom tooltip ──────────────────────────────────────────────────────── */
+const CustomBarTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="bg-white border border-slate-200 rounded-xl shadow-xl p-3 text-xs space-y-1 min-w-[160px]">
+      <p className="font-bold text-slate-800 mb-1.5">{label}</p>
+      {payload.map((p: any) => (
+        <div key={p.dataKey} className="flex justify-between gap-4">
+          <span style={{ color: p.color }} className="font-medium">{p.name}</span>
+          <span className="font-bold text-slate-900">{typeof p.value === 'number' ? `${p.value}%` : p.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const CustomEMITooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="bg-white border border-slate-200 rounded-xl shadow-xl p-3 text-xs space-y-1.5 min-w-[180px]">
+      <p className="font-bold text-slate-800 mb-1">{label}</p>
+      {payload.map((p: any) => (
+        <div key={p.dataKey} className="flex justify-between gap-4">
+          <span style={{ color: p.color }} className="font-medium">{p.name}</span>
+          <span className="font-bold text-slate-900">{fmt(p.value)}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+export const ComparePage: React.FC = () => {
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, []);
+
+  const [selected, setSelected] = useState<Set<string>>(new Set(['sbi', 'canara', 'pnb']));
+
+  const toggleBank = (id: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        if (next.size <= 2) return prev; // keep minimum 2
+        next.delete(id);
+      } else {
+        if (next.size >= 5) return prev; // max 5
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const activeBanks = useMemo(() => BANKS.filter((b) => selected.has(b.id)), [selected]);
+
+  /* ── Chart data ── */
+  const rateChartData = useMemo(() =>
+    activeBanks.map((b) => ({
+      name: b.shortName,
+      'Min Rate': b.minRate,
+      'Max Rate': b.maxRate,
+      'Avg Rate': avg(b.minRate, b.maxRate),
+    })),
+    [activeBanks]
+  );
+
+  const emiChartData = useMemo(() =>
+    activeBanks.map((b) => {
+      const emiMin = calcEMI(EMI_LOAN, b.minRate, EMI_TENURE);
+      const emiMax = calcEMI(EMI_LOAN, b.maxRate, EMI_TENURE);
+      return { name: b.shortName, 'Min Rate EMI': Math.round(emiMin), 'Max Rate EMI': Math.round(emiMax) };
+    }),
+    [activeBanks]
+  );
+
+  const radarData = useMemo(() => {
+    const metrics = [
+      { label: 'Low Rate', fn: (b: BankData) => Math.max(0, 100 - (b.minRate - 7) * 10) },
+      { label: 'Max Loan', fn: (b: BankData) => Math.min(100, (b.maxLoanLakh / 80) * 100) },
+      { label: 'Speed', fn: (b: BankData) => Math.max(0, 100 - b.processingDayMax * 2) },
+      { label: 'Zero Fee', fn: (b: BankData) => b.processingFeePct === 0 ? 100 : 40 },
+      { label: 'Girl Discount', fn: (b: BankData) => b.girlConcessionBps > 0 ? 100 : 0 },
+      { label: 'CGFSEL', fn: (b: BankData) => b.cgfselCover ? 100 : 0 },
+    ];
+    return metrics.map((m) => {
+      const obj: Record<string, any> = { metric: m.label };
+      activeBanks.forEach((b) => { obj[b.shortName] = Math.round(m.fn(b)); });
+      return obj;
+    });
+  }, [activeBanks]);
+
+  /* ── Table rows ── */
+  const tableRows = [
+    { label: 'Bank', icon: Building2, render: (b: BankData) => <span className="font-semibold text-slate-900">{b.bank}</span> },
+    { label: 'Scheme Name', icon: Star, render: (b: BankData) => <span className="text-slate-700">{b.scheme}</span> },
+    { label: 'Interest Rate (p.a.)', icon: TrendingDown, render: (b: BankData) => (
+      <div>
+        <span className="font-bold text-slate-900">{b.minRate}%</span>
+        <span className="text-slate-400 mx-1">–</span>
+        <span className="font-bold text-slate-900">{b.maxRate}%</span>
+        {b.minRate === Math.min(...activeBanks.map(x => x.minRate)) && (
+          <span className="ml-1.5 text-[10px] font-bold px-1.5 py-0.5 bg-emerald-100 text-emerald-700 rounded-full">LOWEST</span>
+        )}
+      </div>
+    )},
+    { label: 'Max Loan Amount', icon: Banknote, render: (b: BankData) => (
+      <span className={clsx('font-semibold', b.maxLoanLakh === Math.max(...activeBanks.map(x => x.maxLoanLakh)) && 'text-brand-700')}>
+        {fmtLakh(b.maxLoanLakh)}
+      </span>
+    )},
+    { label: 'Collateral Free Upto', icon: ShieldCheck, render: (b: BankData) => (
+      <span className="font-semibold text-emerald-700">₹{b.collateralFreeUptoLakh}L</span>
+    )},
+    { label: 'Margin Money (above ₹4L)', icon: Banknote, render: (b: BankData) => (
+      <span className={clsx('font-semibold', b.marginPercent === 0 ? 'text-emerald-700' : 'text-slate-700')}>{b.marginPercent}%</span>
+    )},
+    { label: 'Moratorium Period', icon: Clock, render: (b: BankData) => `Course + 1 year` },
+    { label: 'Max Repayment Tenure', icon: Clock, render: (b: BankData) => `${b.maxTenureYears} years` },
+    { label: 'Processing Fee', icon: Banknote, render: (b: BankData) => (
+      <span className={clsx('font-semibold', b.processingFeePct === 0 ? 'text-emerald-700' : 'text-amber-700')}>
+        {b.processingFeePct === 0 ? 'Nil' : `${b.processingFeePct}%`}
+      </span>
+    )},
+    { label: 'Girl Student Discount', icon: Star, render: (b: BankData) => (
+      b.girlConcessionBps > 0
+        ? <span className="flex items-center gap-1 text-emerald-700 font-semibold"><CheckCircle2 className="h-3.5 w-3.5" />−{b.girlConcessionBps / 100}% p.a.</span>
+        : <span className="text-slate-400">—</span>
+    )},
+    { label: 'CGFSEL Cover', icon: ShieldCheck, render: (b: BankData) => (
+      b.cgfselCover
+        ? <span className="flex items-center gap-1 text-emerald-700 font-semibold"><CheckCircle2 className="h-3.5 w-3.5" />Yes</span>
+        : <span className="flex items-center gap-1 text-rose-600"><X className="h-3.5 w-3.5" />No</span>
+    )},
+    { label: 'PM-Vidyalaxmi', icon: Sparkles, render: (b: BankData) => (
+      b.pmVidyalaxmi
+        ? <span className="flex items-center gap-1 text-emerald-700 font-semibold"><CheckCircle2 className="h-3.5 w-3.5" />Eligible</span>
+        : <span className="flex items-center gap-1 text-slate-400"><X className="h-3.5 w-3.5" />Not listed</span>
+    )},
+    { label: 'Sec 80E Tax Benefit', icon: CheckCircle2, render: (b: BankData) => (
+      <span className="flex items-center gap-1 text-emerald-700 font-semibold"><CheckCircle2 className="h-3.5 w-3.5" />Yes</span>
+    )},
+    { label: 'Prepayment Penalty', icon: AlertCircle, render: (b: BankData) => (
+      b.prepaymentPenalty
+        ? <span className="flex items-center gap-1 text-amber-700"><AlertCircle className="h-3.5 w-3.5" />Applicable</span>
+        : <span className="flex items-center gap-1 text-emerald-700 font-semibold"><CheckCircle2 className="h-3.5 w-3.5" />None</span>
+    )},
+    { label: 'Avg Processing Time', icon: Clock, render: (b: BankData) => (
+      <span className={clsx('font-semibold', b.processingDayMax === Math.min(...activeBanks.map(x => x.processingDayMax)) && 'text-brand-700')}>
+        {b.processingDayMin}–{b.processingDayMax} days
+      </span>
+    )},
+    { label: 'EMI on ₹12L / 10yr (min rate)', icon: TrendingDown, render: (b: BankData) => (
+      <span className="font-bold text-slate-900">{fmt(calcEMI(EMI_LOAN, b.minRate, EMI_TENURE))}/mo</span>
+    )},
+  ];
+
+  const BANK_COLORS = ['#1D4ED8', '#059669', '#D97706', '#7C3AED', '#EA580C', '#E11D48'];
+  const colorFor = (i: number) => BANK_COLORS[i % BANK_COLORS.length];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-16">
-      {/* Top Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <Badge variant="verified">100% Neutral Matrix</Badge>
-            <Badge variant="neutral">Strictly Non-Ranked</Badge>
-            <Badge variant="neutral">20+ Parameters</Badge>
+    <div className="min-h-screen bg-[#F8FAFC]">
+
+      {/* ── Header ── */}
+      <div className="bg-gradient-to-br from-vit-navy via-[#0d3166] to-vit-blue text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-3">
+          <div className="flex items-center gap-2">
+            <Badge variant="verified">100% Impartial</Badge>
+            <Badge variant="neutral">Verified Circulars</Badge>
           </div>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
-            <Columns3 className="h-8 w-8 text-brand-700 shrink-0" />
-            <span>Comprehensive Scheme Comparison</span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
+            <Building2 className="h-9 w-9 text-blue-300 shrink-0" />
+            Bank Comparison Center
           </h1>
-          <p className="text-sm text-slate-500 mt-1 max-w-2xl">
-            Strictly factual parameter comparison between {schemesList.length} documented bank schemes. Sanction, processing fee waivers, and rate margins are subject to formal bank evaluation.
+          <p className="text-blue-100/80 text-base max-w-2xl leading-relaxed">
+            Select 2–5 banks below to see verified interest rates, EMI projections, feature grids, and a full comparison table. All data sourced from official bank circulars.
           </p>
         </div>
+      </div>
 
-        <div className="flex flex-wrap items-center gap-3">
-          {/* Mobile/Desktop View Mode Switch */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200">
-            <button
-              onClick={() => setViewMode('table')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
-                viewMode === 'table'
-                  ? 'bg-white text-brand-900 shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              <Table className="h-3.5 w-3.5" />
-              <span>Table</span>
-            </button>
-            <button
-              onClick={() => setViewMode('cards')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
-                viewMode === 'cards'
-                  ? 'bg-white text-brand-900 shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              <LayoutGrid className="h-3.5 w-3.5" />
-              <span>Cards</span>
-            </button>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+        {/* ════════════════════════════════════════════════════════════════
+            STEP 1: BANK SELECTOR
+        ════════════════════════════════════════════════════════════════ */}
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-extrabold text-slate-900">Select Banks to Compare</h2>
+              <p className="text-sm text-slate-500 mt-0.5">Choose 2–5 banks · {selected.size} selected</p>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-slate-400 bg-white border border-slate-200 rounded-lg px-3 py-1.5">
+              <AlertCircle className="h-3.5 w-3.5 text-amber-500" />
+              Min 2, max 5
+            </div>
           </div>
 
-          <label className="flex items-center gap-2 text-xs text-slate-700 font-medium cursor-pointer bg-white px-3 py-1.5 rounded-lg border border-slate-200">
-            <input
-              type="checkbox"
-              checked={highlightDiffs}
-              onChange={(e) => setHighlightDiffs(e.target.checked)}
-              className="rounded text-brand-700 focus:ring-brand-600"
-            />
-            <span>Highlight Differences</span>
-          </label>
-
-          <Link to="/loans">
-            <Button variant="outline" size="sm" leftIcon={<Plus className="h-3.5 w-3.5" />}>
-              Add More
-            </Button>
-          </Link>
-        </div>
-      </div>
-
-      {/* Persistent Impartiality Disclosure */}
-      <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-xs text-blue-950 flex items-start sm:items-center gap-3">
-        <ShieldCheck className="h-5 w-5 text-brand-700 shrink-0 mt-0.5 sm:mt-0" />
-        <span className="leading-relaxed">
-          <strong>Strict Impartiality Rule:</strong> Edu4Loan presents values as documented in official regulatory circulars. We do not score, rank, declare any scheme as &ldquo;best&rdquo;, or accept sponsorship for placement.
-        </span>
-      </div>
-
-      {/* Loading Skeleton */}
-      {loading && (
-        <div className="space-y-4">
-          <Skeleton className="h-16 w-full" />
-          <Skeleton className="h-64 w-full" />
-          <Skeleton className="h-48 w-full" />
-        </div>
-      )}
-
-      {/* Error state */}
-      {error && <Alert variant="error">{error}</Alert>}
-
-      {/* TABLE VIEW (Optimal for Desktop) */}
-      {!loading && !error && comparisonData && viewMode === 'table' && (
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-fintech">
-          <table className="w-full text-left border-collapse text-xs">
-            {/* Header: Bank & Scheme Names */}
-            <thead>
-              <tr className="bg-slate-50/80 border-b border-slate-200 divide-x divide-slate-100">
-                <th className="p-4 w-64 font-bold text-slate-500 uppercase text-[11px] align-top bg-slate-50">
-                  Parameter (20+ Verified Metrics)
-                </th>
-                {schemesList.map((scheme) => (
-                  <th key={scheme.id} className="p-4 min-w-[260px] max-w-[300px] align-top space-y-2">
-                    <div className="flex justify-between items-start">
-                      <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
-                        {scheme.bank.category} Bank
-                      </span>
-                      <button
-                        onClick={() => handleRemoveScheme(scheme.id)}
-                        className="text-slate-400 hover:text-rose-600 p-1 rounded transition-colors"
-                        title="Remove scheme from comparison"
-                        aria-label={`Remove ${scheme.schemeName}`}
-                      >
-                        <X className="h-3.5 w-3.5" />
-                      </button>
-                    </div>
-
-                    <div>
-                      <span className="text-xs font-semibold text-brand-800 block">
-                        {scheme.bank.name}
-                      </span>
-                      <span className="text-sm font-bold text-slate-900 block leading-tight mt-0.5">
-                        {scheme.schemeName}
-                      </span>
-                    </div>
-
-                    <div className="pt-1 flex items-center justify-between">
-                      <VerifiedBadge
-                        status={scheme.verification.status}
-                        lastVerified={scheme.verification.lastVerified}
-                        size="sm"
-                      />
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-
-            <tbody className="divide-y divide-slate-100">
-              {/* SECTION A: INTEREST RATE & PRICING STRUCTURE */}
-              <tr className="bg-blue-50/40">
-                <td
-                  colSpan={schemesList.length + 1}
-                  className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-brand-900 border-t border-slate-200"
-                >
-                  Section 1: Interest Rate & Pricing Structure
-                </td>
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">
-                  <div className="flex items-center justify-between">
-                    <span>Documented Interest Rate</span>
-                    {highlightDiffs && (
-                      <DifferenceBadge
-                        status={isDifferent(schemesList.map((s) => s.interestRate.minRate.value)) ? 'different' : 'same'}
-                      />
-                    )}
-                  </div>
-                </td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5">
-                    <span className="font-extrabold text-sm text-brand-900 block">
-                      {s.interestRate.minRate.value}% – {s.interestRate.maxRate.value}%
-                    </span>
-                    <span className="text-[10px] text-slate-400">Annual percentage</span>
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Rate Structure Type</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-800 font-medium">
-                    {(s as any).rateType || 'Floating (Benchmark Linked)'}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">External Benchmark Reference</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-800 font-medium">
-                    {s.interestRate.benchmarkType} (Repo Base: {s.interestRate.benchmarkRatePercent}%)
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Documented Spread Range</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700">
-                    +{s.interestRate.spreadPercentMin}% to +{s.interestRate.spreadPercentMax}% over benchmark
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Girl Student Concession</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-emerald-800 font-medium">
-                    {s.interestRate.girlChildConcessionPercent?.value
-                      ? `${s.interestRate.girlChildConcessionPercent.value}% interest rebate`
-                      : 'Not documented'}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Prompt Servicing Concession</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700">
-                    {s.interestRate.promptServicingConcessionPercent?.value
-                      ? `${s.interestRate.promptServicingConcessionPercent.value}% during moratorium`
-                      : 'Not documented in circular'}
-                  </td>
-                ))}
-              </tr>
-
-              {/* SECTION B: QUANTUM & MARGIN MONEY */}
-              <tr className="bg-blue-50/40">
-                <td
-                  colSpan={schemesList.length + 1}
-                  className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-brand-900 border-t border-slate-200"
-                >
-                  Section 2: Quantum, Limits & Margin Money
-                </td>
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">
-                  <div className="flex items-center justify-between">
-                    <span>Max Inland Limit</span>
-                    {highlightDiffs && (
-                      <DifferenceBadge
-                        status={isDifferent(schemesList.map((s) => s.loanAmount.inlandMax.value)) ? 'different' : 'same'}
-                      />
-                    )}
-                  </div>
-                </td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 font-bold text-slate-900">
-                    {formatCurrency(s.loanAmount.inlandMax.value)}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Margin Money (Up to Rs 4 Lakhs)</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700 font-medium">
-                    {s.marginMoney.upTo4LakhsPercent === 0 ? 'Nil (0%)' : `${s.marginMoney.upTo4LakhsPercent}%`}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Margin Money (Above Rs 4 Lakhs)</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700 font-medium">
-                    {s.marginMoney.above4LakhsIndiaPercent}% of eligible course cost
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Scholarship Margin Adjustment</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700">
-                    {s.marginMoney.scholarshipAdjustmentAllowed
-                      ? 'Allowed (Scholarship can count towards margin money)'
-                      : 'Subject to branch discretion'}
-                  </td>
-                ))}
-              </tr>
-
-              {/* SECTION C: COLLATERAL, SECURITY & GUARANTEES */}
-              <tr className="bg-blue-50/40">
-                <td
-                  colSpan={schemesList.length + 1}
-                  className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-brand-900 border-t border-slate-200"
-                >
-                  Section 3: Collateral, Security & Guarantees
-                </td>
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Up to Rs 4.0 Lakhs</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-600">
-                    {s.collateral.upTo4Lakhs}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Rs 4.0L to Rs 7.5 Lakhs</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-600">
-                    {s.collateral.from4To7point5Lakhs}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Above Rs 7.5 Lakhs</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-600">
-                    {s.collateral.above7point5Lakhs}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Third-Party Guarantee Requirement</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700">
-                    {s.requirements?.guarantee || 'Not mandated for loans covered under credit guarantee / clean limits'}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Co-Applicant Mandate</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700 font-medium">
-                    {s.requirements?.coApplicant || 'Parent / Legal Guardian mandatory co-borrower'}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Insurance Requirement</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700">
-                    {s.requirements?.insurance || 'Optional life coverage recommended by circular'}
-                  </td>
-                ))}
-              </tr>
-
-              {/* SECTION D: REPAYMENT & MORATORIUM */}
-              <tr className="bg-blue-50/40">
-                <td
-                  colSpan={schemesList.length + 1}
-                  className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-brand-900 border-t border-slate-200"
-                >
-                  Section 4: Moratorium & Repayment Tenures
-                </td>
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Moratorium Grace Window</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700 font-medium">
-                    Course Duration + {s.moratorium.moratoriumBufferMonths} Months
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Max Repayment Tenure</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700 font-medium">
-                    Up to {s.moratorium.repaymentTenureMaxYears} Years post-moratorium
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Interest Accrual During Study</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-600">
-                    {s.moratorium.explanation}
-                  </td>
-                ))}
-              </tr>
-
-              {/* SECTION E: FEES, CHARGES & TAX */}
-              <tr className="bg-blue-50/40">
-                <td
-                  colSpan={schemesList.length + 1}
-                  className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-brand-900 border-t border-slate-200"
-                >
-                  Section 5: Fees, Penalties & Tax Relief
-                </td>
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Processing Fee</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-800 font-medium">
-                    {s.feesAndCharges.processingFee.value}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Prepayment / Foreclosure Penalty</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-800 font-medium">
-                    {s.feesAndCharges.prepaymentPenalty.value}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Section 80E Tax Deduction</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-emerald-800 font-medium">
-                    {s.taxBenefit.section80EApplicable
-                      ? 'Applicable (Full interest deduction for up to 8 years)'
-                      : 'Subject to eligibility'}
-                  </td>
-                ))}
-              </tr>
-
-              {/* SECTION F: PROCESS, TIMELINES & DOCUMENTATION */}
-              <tr className="bg-blue-50/40">
-                <td
-                  colSpan={schemesList.length + 1}
-                  className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-brand-900 border-t border-slate-200"
-                >
-                  Section 6: Process, Timelines & Documentation
-                </td>
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Published Processing Window</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700">
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                      <span>{s.requirements?.publishedProcessingTime || 'No statutory SLA announced in circular'}</span>
-                    </div>
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Eligible Expense Coverage</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-600">
-                    {s.requirements?.eligibleExpenses && s.requirements.eligibleExpenses.length > 0 ? (
-                      <ul className="list-disc pl-4 space-y-1">
-                        {s.requirements.eligibleExpenses.slice(0, 3).map((item, idx) => (
-                          <li key={idx}>{item}</li>
-                        ))}
-                        {s.requirements.eligibleExpenses.length > 3 && (
-                          <li className="text-[10px] text-slate-400">+{s.requirements.eligibleExpenses.length - 3} additional expense items</li>
-                        )}
-                      </ul>
-                    ) : (
-                      'College tuition, hostel fees, books, exam fees'
-                    )}
-                  </td>
-                ))}
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Application Channels</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 text-slate-700">
-                    {s.requirements?.applicationProcess && s.requirements.applicationProcess.length > 0 ? (
-                      <ol className="list-decimal pl-4 space-y-1">
-                        {s.requirements.applicationProcess.slice(0, 3).map((step, idx) => (
-                          <li key={idx}>{step}</li>
-                        ))}
-                      </ol>
-                    ) : (
-                      'Vidya Lakshmi Portal, Bank Net Banking, or Nearest Branch'
-                    )}
-                  </td>
-                ))}
-              </tr>
-
-              {/* SECTION G: OFFICIAL PRIMARY SOURCES & ACTIONS */}
-              <tr className="bg-blue-50/40">
-                <td
-                  colSpan={schemesList.length + 1}
-                  className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-brand-900 border-t border-slate-200"
-                >
-                  Section 7: Primary Sources & Official Actions
-                </td>
-              </tr>
-
-              <tr className="divide-x divide-slate-100 hover:bg-slate-50/40">
-                <td className="p-3.5 font-semibold text-slate-700">Official Circular & Portal</td>
-                {schemesList.map((s) => (
-                  <td key={s.id} className="p-3.5 space-y-2">
-                    {s.officialPortals?.circularUrl ? (
-                      <a
-                        href={s.officialPortals.circularUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 text-brand-800 text-xs font-semibold hover:bg-blue-100 border border-blue-200 transition-colors w-full justify-center"
-                      >
-                        <span>View Official Source</span>
-                        <ExternalLink className="h-3.5 w-3.5 shrink-0" />
-                      </a>
-                    ) : (
-                      <span className="text-slate-400 block text-center">Available on bank portal</span>
-                    )}
-
-                    <div>
-                      <Link to={`/loans/${s.id}`}>
-                        <Button variant="outline" size="sm" className="w-full">
-                          Full Scheme Breakdown
-                        </Button>
-                      </Link>
-                    </div>
-                  </td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* CARDS VIEW (Responsive & Mobile-Friendly) */}
-      {!loading && !error && comparisonData && viewMode === 'cards' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {schemesList.map((scheme) => (
-            <Card key={scheme.id} className="border-slate-200 shadow-sm flex flex-col justify-between">
-              <CardHeader className="bg-slate-50/80 border-b border-slate-100 pb-4">
-                <div className="flex items-start justify-between">
-                  <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
-                    {scheme.bank.category} Bank
-                  </span>
-                  <button
-                    onClick={() => handleRemoveScheme(scheme.id)}
-                    className="text-slate-400 hover:text-rose-600 p-1 rounded transition-colors"
-                    title="Remove scheme from comparison"
-                    aria-label={`Remove ${scheme.schemeName}`}
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </div>
-                <CardTitle className="text-base font-bold text-slate-900 mt-1">
-                  {scheme.bank.name}
-                </CardTitle>
-                <p className="text-sm font-semibold text-brand-800">{scheme.schemeName}</p>
-                <div className="pt-2">
-                  <VerifiedBadge
-                    status={scheme.verification.status}
-                    lastVerified={scheme.verification.lastVerified}
-                    size="sm"
-                  />
-                </div>
-              </CardHeader>
-
-              <CardContent className="p-4 space-y-4 text-xs divide-y divide-slate-100">
-                {/* Interest Rate */}
-                <div className="pt-2 space-y-1">
-                  <span className="text-slate-500 font-medium block">Interest Rate Range:</span>
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-base font-extrabold text-brand-900">
-                      {scheme.interestRate.minRate.value}% – {scheme.interestRate.maxRate.value}%
-                    </span>
-                    <span className="text-slate-500 text-[11px]">
-                      {scheme.interestRate.benchmarkType} linked
-                    </span>
-                  </div>
-                  <p className="text-slate-500 text-[11px]">
-                    Spread: +{scheme.interestRate.spreadPercentMin}% to +{scheme.interestRate.spreadPercentMax}% over repo ({scheme.interestRate.benchmarkRatePercent}%)
-                  </p>
-                </div>
-
-                {/* Quantum & Margin */}
-                <div className="pt-3 space-y-1.5">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Max Inland Limit:</span>
-                    <span className="font-bold text-slate-900">{formatCurrency(scheme.loanAmount.inlandMax.value)}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Margin (&le; Rs 4L):</span>
-                    <span className="font-semibold text-slate-800">
-                      {scheme.marginMoney.upTo4LakhsPercent === 0 ? 'Nil' : `${scheme.marginMoney.upTo4LakhsPercent}%`}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Margin (&gt; Rs 4L):</span>
-                    <span className="font-semibold text-slate-800">{scheme.marginMoney.above4LakhsIndiaPercent}%</span>
-                  </div>
-                </div>
-
-                {/* Collateral Tiers */}
-                <div className="pt-3 space-y-1">
-                  <span className="text-slate-500 font-medium block">Collateral Framework:</span>
-                  <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100 space-y-1 text-[11px]">
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">&le; Rs 4L:</span>
-                      <span className="text-slate-800 font-medium">{scheme.collateral.upTo4Lakhs}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Rs 4L - 7.5L:</span>
-                      <span className="text-slate-800 font-medium">{scheme.collateral.from4To7point5Lakhs}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">&gt; Rs 7.5L:</span>
-                      <span className="text-slate-800 font-medium">{scheme.collateral.above7point5Lakhs}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Moratorium & Tenure */}
-                <div className="pt-3 space-y-1.5">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Moratorium:</span>
-                    <span className="font-medium text-slate-800">Course + {scheme.moratorium.moratoriumBufferMonths} Mos</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Max Tenure:</span>
-                    <span className="font-medium text-slate-800">Up to {scheme.moratorium.repaymentTenureMaxYears} Years</span>
-                  </div>
-                </div>
-
-                {/* Requirements & Fees */}
-                <div className="pt-3 space-y-1.5">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Processing Fee:</span>
-                    <span className="font-medium text-slate-800">{scheme.feesAndCharges.processingFee.value}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Prepayment Penalty:</span>
-                    <span className="font-medium text-slate-800">{scheme.feesAndCharges.prepaymentPenalty.value}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Co-Applicant:</span>
-                    <span className="font-medium text-slate-800">{scheme.requirements?.coApplicant || 'Parent / Legal Guardian'}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Turnaround / SLA:</span>
-                    <span className="font-medium text-slate-800">{scheme.requirements?.publishedProcessingTime || 'Not announced'}</span>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="pt-4 space-y-2">
-                  {scheme.officialPortals?.circularUrl && (
-                    <a
-                      href={scheme.officialPortals.circularUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-blue-50 text-brand-800 font-semibold border border-blue-200 hover:bg-blue-100 transition-colors"
-                    >
-                      <span>View Official Source</span>
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {BANKS.map((b) => {
+              const isSelected = selected.has(b.id);
+              return (
+                <button
+                  key={b.id}
+                  onClick={() => toggleBank(b.id)}
+                  className={clsx(
+                    'relative flex flex-col items-center gap-3 p-4 rounded-2xl border-2 text-center transition-all duration-200',
+                    isSelected
+                      ? 'border-brand-600 bg-brand-50 shadow-md scale-[1.02]'
+                      : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm'
                   )}
-                  <Link to={`/loans/${scheme.id}`} className="block">
-                    <Button variant="outline" size="sm" className="w-full">
-                      Full Scheme Breakdown
-                    </Button>
-                  </Link>
+                >
+                  {/* Color dot */}
+                  <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white font-extrabold text-sm shadow-sm"
+                    style={{ backgroundColor: b.hexColor }}>
+                    {b.shortName.slice(0, 2)}
+                  </div>
+                  <div>
+                    <p className={clsx('text-xs font-bold leading-tight', isSelected ? 'text-brand-800' : 'text-slate-800')}>
+                      {b.shortName}
+                    </p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">{b.minRate}%–{b.maxRate}%</p>
+                  </div>
+                  {/* Checkmark */}
+                  {isSelected && (
+                    <div className="absolute top-2 right-2 h-5 w-5 rounded-full bg-brand-600 flex items-center justify-center">
+                      <CheckCircle2 className="h-3 w-3 text-white" />
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════════
+            STEP 2: INTEREST RATE BAR CHART
+        ════════════════════════════════════════════════════════════════ */}
+        <section className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <BarChart3 className="h-5 w-5 text-brand-700" />
+                <h2 className="text-lg font-extrabold text-slate-900">Interest Rate Comparison</h2>
+              </div>
+              <p className="text-sm text-slate-500">Annual percentage rate (p.a.) — lower is better</p>
+            </div>
+            <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
+          </div>
+
+          <div className="h-72">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={rateChartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }} barGap={4} barCategoryGap="30%">
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+                <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748B', fontWeight: 600 }} tickLine={false} axisLine={{ stroke: '#CBD5E1' }} />
+                <YAxis domain={[7, 15]} tickFormatter={(v) => `${v}%`} tick={{ fontSize: 11, fill: '#94A3B8' }} tickLine={false} axisLine={false} />
+                <Tooltip content={<CustomBarTooltip />} />
+                <Legend verticalAlign="top" height={36} formatter={(v) => <span className="text-xs font-medium text-slate-600">{v}</span>} />
+                <Bar dataKey="Min Rate" name="Min Rate" fill="#1D4ED8" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                <Bar dataKey="Max Rate" name="Max Rate" fill="#93C5FD" radius={[4, 4, 0, 0]} maxBarSize={40} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Rate summary chips */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {activeBanks.map((b) => (
+              <div key={b.id} className="text-center p-3 rounded-xl border border-slate-100 bg-slate-50">
+                <div className="h-2.5 w-2.5 rounded-full mx-auto mb-1.5" style={{ backgroundColor: b.hexColor }} />
+                <p className="text-xs font-bold text-slate-700">{b.shortName}</p>
+                <p className="text-sm font-extrabold text-slate-900 mt-0.5">{avg(b.minRate, b.maxRate)}%</p>
+                <p className="text-[10px] text-slate-400">avg</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════════
+            STEP 3: EMI COMPARISON LINE CHART
+        ════════════════════════════════════════════════════════════════ */}
+        <section className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <TrendingDown className="h-5 w-5 text-amber-600" />
+              <h2 className="text-lg font-extrabold text-slate-900">Monthly EMI Comparison</h2>
+            </div>
+            <p className="text-sm text-slate-500">Based on ₹12 Lakh loan · 10-year repayment tenure · post-moratorium EMI</p>
+          </div>
+
+          <div className="h-72">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={emiChartData} margin={{ top: 10, right: 20, left: 10, bottom: 0 }} barGap={4} barCategoryGap="30%">
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+                <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748B', fontWeight: 600 }} tickLine={false} axisLine={{ stroke: '#CBD5E1' }} />
+                <YAxis tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}K`} tick={{ fontSize: 11, fill: '#94A3B8' }} tickLine={false} axisLine={false} />
+                <Tooltip content={<CustomEMITooltip />} />
+                <Legend verticalAlign="top" height={36} formatter={(v) => <span className="text-xs font-medium text-slate-600">{v}</span>} />
+                <Bar dataKey="Min Rate EMI" name="EMI at Min Rate" fill="#059669" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                <Bar dataKey="Max Rate EMI" name="EMI at Max Rate" fill="#FCA5A5" radius={[4, 4, 0, 0]} maxBarSize={40} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-800 flex items-start gap-2">
+            <AlertCircle className="h-4 w-4 shrink-0 mt-0.5 text-amber-600" />
+            <p><strong>Note:</strong> EMIs shown are post-moratorium repayment only. During your B.Tech + 1-year grace period, simple interest accrues on the outstanding principal. Servicing this interest monthly can save ₹1.5–3L in capitalized interest.</p>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════════
+            STEP 4: RADAR CHART — OVERALL SCORE
+        ════════════════════════════════════════════════════════════════ */}
+        <section className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <Sparkles className="h-5 w-5 text-purple-600" />
+              <h2 className="text-lg font-extrabold text-slate-900">Multi-Dimension Score Card</h2>
+            </div>
+            <p className="text-sm text-slate-500">Composite score across 6 dimensions — higher area = better overall offering</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <RadarChart data={radarData} margin={{ top: 10, right: 30, left: 30, bottom: 10 }}>
+                  <PolarGrid stroke="#E2E8F0" />
+                  <PolarAngleAxis dataKey="metric" tick={{ fontSize: 11, fill: '#64748B', fontWeight: 600 }} />
+                  <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 9, fill: '#94A3B8' }} />
+                  {activeBanks.map((b, i) => (
+                    <Radar key={b.id} name={b.shortName} dataKey={b.shortName}
+                      stroke={colorFor(i)} fill={colorFor(i)} fillOpacity={0.12} strokeWidth={2} />
+                  ))}
+                  <Legend formatter={(v) => <span className="text-xs font-medium text-slate-600">{v}</span>} />
+                  <Tooltip formatter={(v: any) => [`${v}/100`, '']} />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Dimension legend */}
+            <div className="space-y-3">
+              {[
+                { label: 'Low Rate', desc: 'Lower interest rate = higher score' },
+                { label: 'Max Loan', desc: 'Higher loan ceiling = higher score' },
+                { label: 'Speed', desc: 'Faster processing = higher score' },
+                { label: 'Zero Fee', desc: 'No processing fee = 100' },
+                { label: 'Girl Discount', desc: '0.5% girl concession = 100' },
+                { label: 'CGFSEL', desc: 'Credit guarantee cover = 100' },
+              ].map(({ label, desc }) => (
+                <div key={label} className="flex items-start gap-2.5">
+                  <div className="h-5 w-5 rounded-md bg-brand-50 border border-brand-200 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-3 w-3 text-brand-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-800">{label}</p>
+                    <p className="text-[11px] text-slate-400">{desc}</p>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════════
+            STEP 5: FULL COMPARISON TABLE
+        ════════════════════════════════════════════════════════════════ */}
+        <section className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="px-6 sm:px-8 py-5 border-b border-slate-100 flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-extrabold text-slate-900">Detailed Comparison Table</h2>
+              <p className="text-sm text-slate-500 mt-0.5">All terms verified from official bank circulars · <span className="text-brand-700 font-semibold">Green</span> = best in category</p>
+            </div>
+            <VerifiedBadge status="verified" lastVerified="2026-09-01" size="sm" />
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200">
+                  <th className="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider w-44">Parameter</th>
+                  {activeBanks.map((b, i) => (
+                    <th key={b.id} className="text-center px-4 py-3 min-w-[140px]">
+                      <div className="flex flex-col items-center gap-1.5">
+                        <div className="h-7 w-7 rounded-lg flex items-center justify-center text-white text-[10px] font-extrabold"
+                          style={{ backgroundColor: b.hexColor }}>
+                          {b.shortName.slice(0, 2)}
+                        </div>
+                        <span className="text-xs font-bold text-slate-800">{b.shortName}</span>
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {tableRows.map((row, rowIdx) => {
+                  const Icon = row.icon;
+                  return (
+                    <tr key={row.label} className={clsx('border-b border-slate-100', rowIdx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50')}>
+                      <td className="px-5 py-3.5 text-xs font-semibold text-slate-600 flex items-center gap-2">
+                        <Icon className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                        {row.label}
+                      </td>
+                      {activeBanks.map((b) => (
+                        <td key={b.id} className="px-4 py-3.5 text-center text-xs">
+                          {row.render(b)}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Official links row */}
+          <div className="px-6 sm:px-8 py-5 border-t border-slate-100 bg-slate-50">
+            <div className="flex flex-wrap gap-3">
+              {activeBanks.map((b) => (
+                <a key={b.id} href={b.officialUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:text-brand-900 hover:underline">
+                  <ExternalLink className="h-3 w-3" />
+                  {b.shortName} Official Circular
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════════
+            STEP 6: BANK NOTES + CTA
+        ════════════════════════════════════════════════════════════════ */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {activeBanks.map((b, i) => (
+            <div key={b.id} className="bg-white rounded-2xl border border-slate-200 p-5 space-y-3 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2.5">
+                <div className="h-8 w-8 rounded-lg flex items-center justify-center text-white text-xs font-extrabold" style={{ backgroundColor: b.hexColor }}>
+                  {b.shortName.slice(0, 2)}
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-900">{b.bank}</p>
+                  <p className="text-xs text-slate-400">{b.scheme}</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {b.cgfselCover && <span className="text-[10px] font-bold px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">CGFSEL ✓</span>}
+                {b.pmVidyalaxmi && <span className="text-[10px] font-bold px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full border border-blue-200">PM-VL ✓</span>}
+                {b.processingFeePct === 0 && <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full border border-slate-200">Zero Fee</span>}
+                {b.girlConcessionBps > 0 && <span className="text-[10px] font-bold px-2 py-0.5 bg-pink-50 text-pink-700 rounded-full border border-pink-200">Girl −0.5%</span>}
+              </div>
+              <p className="text-xs text-slate-500 leading-relaxed">{b.note}</p>
+              <a href={b.officialUrl} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm" className="w-full" rightIcon={<ExternalLink className="h-3 w-3" />}>
+                  Official Details
+                </Button>
+              </a>
+            </div>
           ))}
+        </section>
+
+        {/* Bottom CTA */}
+        <div className="text-center space-y-4 py-4">
+          <p className="text-sm text-slate-500">Ready to apply? Use the guided finder to get matched to the best scheme for your profile.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link to="/journey"><Button variant="primary" rightIcon={<Building2 className="h-4 w-4" />}>Launch Loan Finder</Button></Link>
+            <Link to="/calculator"><Button variant="secondary" rightIcon={<ChevronDown className="h-4 w-4" />}>Open EMI Calculator</Button></Link>
+          </div>
         </div>
-      )}
+
+      </div>
     </div>
   );
 };

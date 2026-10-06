@@ -21,10 +21,10 @@ services:
     container_name: edu4loan-backend
     restart: unless-stopped
     ports:
-      - "5000:5000"
+      - "5001:5001"
     environment:
       - NODE_ENV=production
-      - PORT=5000
+      - PORT=5001
       - MONGODB_URI=mongodb://mongodb:27017/edu4loan
       - FRONTEND_URL=http://localhost:80,http://localhost:5173,http://localhost
       - JWT_SECRET=production_docker_jwt_secret_key_83749182374918274

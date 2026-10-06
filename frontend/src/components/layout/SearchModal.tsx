@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Building2, BookOpen, FileText, Landmark, HelpCircle, Loader2, ArrowRight, Sparkles, Link2, ExternalLink, MessageSquare } from 'lucide-react';
+import { Search, Building2, BookOpen, FileText, Landmark, HelpCircle, Loader2, ArrowRight, Sparkles, Link2, ExternalLink, MessageSquare, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { searchService } from '@/services/searchService';
 import { SearchResponseData } from '@/types';
-import { Modal } from '@/components/ui/Modal';
 
 export interface SearchModalProps {
   isOpen: boolean;
@@ -66,29 +65,47 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
       (data.results.sources && data.results.sources.length > 0) ||
       (data.results.chatbotAnswers && data.results.chatbotAnswers.length > 0));
 
+  if (!isOpen) return null;
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="lg" className="p-0 overflow-hidden">
-      {/* Search Input Bar */}
-      <div className="flex items-center px-4 py-3.5 border-b border-slate-200">
-        <Search className="h-5 w-5 text-slate-400 shrink-0 mr-3" />
-        <input
-          ref={inputRef}
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search banks, loan schemes, subsidies, documents, or VIT fees..."
-          className="w-full bg-transparent text-base text-slate-900 placeholder:text-slate-400 focus:outline-none"
-        />
-        {loading && <Loader2 className="h-4 w-4 animate-spin text-brand-600 shrink-0 ml-2" />}
-        <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-slate-400 bg-slate-100 rounded border border-slate-200 ml-2">
-          ESC
-        </kbd>
+    <div className="fixed inset-0 z-[60] flex flex-col">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onClick={onClose} />
+      
+      {/* Full Width Search Header */}
+      <div className="relative w-full bg-white border-b border-slate-200 shadow-sm flex items-center justify-center animate-in slide-in-from-top-2 duration-200">
+        <div className="w-full h-16 px-4 sm:px-6 lg:px-8 flex items-center">
+          <Search className="h-5 w-5 text-brand-600 shrink-0 mr-3" />
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search banks, loan schemes, subsidies, documents, or VIT fees..."
+            className="flex-1 bg-transparent text-base text-slate-900 placeholder:text-slate-400 focus:outline-none"
+          />
+          {loading && <Loader2 className="h-4 w-4 animate-spin text-brand-600 shrink-0 ml-2" />}
+          
+          <div className="flex items-center gap-2 ml-4 border-l border-slate-200 pl-4">
+            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-slate-400 bg-slate-100 rounded border border-slate-200">
+              ESC
+            </kbd>
+            <button
+              onClick={onClose}
+              className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+              aria-label="Close search"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Results or Quick Suggestions */}
-      <div className="max-h-[60vh] overflow-y-auto p-4 space-y-4">
-        {!query && (
-          <div>
+      {/* Results Dropdown */}
+      <div className="relative w-full max-h-[70vh] bg-white overflow-y-auto shadow-xl border-b border-slate-200">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto space-y-4">
+          {!query && (
+            <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">
               Popular Searches for VIT Bhopal
             </p>
@@ -357,7 +374,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
             )}
           </div>
         )}
+        </div>
       </div>
-    </Modal>
+    </div>
   );
 };

@@ -167,6 +167,7 @@ export const StudentJourneyPage: React.FC = () => {
   const [collateralOption, setCollateralOption] = useState<string>('no_collateral');
   const [academicScore, setAcademicScore] = useState<string>('85');
   const [viteeeRank, setViteeeRank] = useState<string>('18500');
+  const [showReqs, setShowReqs] = useState<boolean>(false);
 
   // Step 3: Interactive Practical Q&A state
   const [chatQuestion, setChatQuestion] = useState<string>('Salary slip nahi hai to kya kare?');
@@ -306,169 +307,209 @@ export const StudentJourneyPage: React.FC = () => {
             </p>
           </CardHeader>
 
-          <CardContent className="p-5 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Institution */}
-              <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
-                  1. Target University
-                </label>
-                <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-800 flex items-center justify-between">
-                  <span>VIT Bhopal University (Kothrikalan, Sehore, MP)</span>
-                  <Badge variant="verified" size="sm">
-                    Desk Active
-                  </Badge>
-                </div>
-                <span className="text-[10px] text-slate-500 mt-1 block">
-                  Eligible for SBI Scholar (List-B), Canara Vidya Turan, and PM-Vidyalaxmi.
-                </span>
-              </div>
-
-              {/* Course Selection */}
-              <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
-                  2. Enrolled Academic Course
-                </label>
-                <select
-                  value={course}
-                  onChange={(e) => setCourse(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
+          <CardContent className="p-5">
+            {showReqs ? (
+              <div className="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
+                <button
+                  onClick={() => setShowReqs(false)}
+                  className="flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-md w-fit"
                 >
-                  <option value="B.Tech Computer Science & Engineering">B.Tech Computer Science & Engineering (4 Years)</option>
-                  <option value="B.Tech Electronics & Communication">B.Tech Electronics & Communication Engineering (4 Years)</option>
-                  <option value="B.Tech Mechanical / Aerospace">B.Tech Mechanical / Aerospace Engineering (4 Years)</option>
-                  <option value="Integrated M.Tech (Software Engineering)">Integrated M.Tech (5 Years)</option>
-                  <option value="Master of Computer Applications (MCA)">Master of Computer Applications (MCA - 2 Years)</option>
-                </select>
-              </div>
-
-              {/* Loan Quantum Slider */}
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="text-xs font-bold text-slate-800">
-                    3. Total Loan Requirement
-                  </label>
-                  <span className="text-xs font-black text-brand-700">
-                    Rs. {(loanAmount / 100000).toFixed(1)} Lakhs
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min={200000}
-                  max={2500000}
-                  step={50000}
-                  value={loanAmount}
-                  onChange={(e) => setLoanAmount(Number(e.target.value))}
-                  className="w-full accent-brand-700 cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400 mt-0.5 font-mono">
-                  <span>Rs. 2L</span>
-                  <span>Rs. 7.5L (CGFSEL Limit)</span>
-                  <span>Rs. 25L</span>
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Profile Form
+                </button>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
+                  <h3 className="text-sm font-bold text-blue-900 mb-3 flex items-center gap-2">
+                    <FileCheck2 className="h-4 w-4" /> Why are these documents compulsory? (RBI & IBA Guidelines)
+                  </h3>
+                  <ul className="list-disc pl-5 text-sm text-blue-800 space-y-3">
+                    <li><strong>KYC Documents (PAN & Aadhaar):</strong> Mandatory under the <span className="font-semibold">RBI Master Direction - KYC Guidelines, 2016</span>. Prevents identity fraud and ensures valid credit reporting to bureaus like CIBIL.</li>
+                    <li><strong>Admission Letter:</strong> Essential to prove the purpose of the loan, verify the institution's credibility, and estimate the total fee structure under <span className="font-semibold">IBA Model Education Loan Scheme</span> guidelines.</li>
+                    <li><strong>Income Proof (Co-Applicant):</strong> Required to evaluate repayment capacity (FOIR - Fixed Obligation to Income Ratio), a standard risk assessment metric enforced by banks to prevent sub-prime lending.</li>
+                  </ul>
+                  <a href="https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=11566" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 mt-5 text-blue-700 font-semibold text-xs hover:underline bg-white px-3 py-1.5 rounded border border-blue-200 shadow-xs">
+                    View RBI Master Direction Source <ExternalLink className="h-3 w-3" />
+                  </a>
                 </div>
               </div>
+            ) : (
+              <div className="space-y-6">
+                <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-800 mb-1">Compulsory Requirements before starting:</h4>
+                    <p className="text-xs text-slate-600">KYC (PAN & Aadhaar), Valid Admission Letter, and Co-Applicant Income Proof.</p>
+                  </div>
+                  <button 
+                    onClick={() => setShowReqs(true)}
+                    className="text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1 whitespace-nowrap bg-blue-100/50 px-3 py-1.5 rounded-md"
+                  >
+                    Why required?
+                  </button>
+                </div>
 
-              {/* Family Income Tier */}
-              <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
-                  4. Gross Annual Family Income
-                </label>
-                <select
-                  value={familyIncome}
-                  onChange={(e) => setFamilyIncome(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
-                >
-                  <option value="below_4.5L">Up to Rs. 4.5 Lakhs (Eligible for CSIS 100% Interest Subsidy)</option>
-                  <option value="4.5L_to_8L">Rs. 4.5 Lakhs to Rs. 8.0 Lakhs (Eligible for PM-Vidyalaxmi 3% Subvention)</option>
-                  <option value="above_8L">Above Rs. 8.0 Lakhs (Standard IBA Commercial Rates)</option>
-                </select>
-              </div>
+                <div className="flex flex-col gap-5">
+                  {/* Institution */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-900 mb-1.5">
+                      1. Target University
+                    </label>
+                    <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-sm font-semibold text-slate-800 flex items-center justify-between">
+                      <span>VIT Bhopal University</span>
+                      <Badge variant="verified" size="sm">
+                        Desk Active
+                      </Badge>
+                    </div>
+                    <span className="text-[10px] text-slate-500 mt-1 block">
+                      Eligible for SBI Scholar (List-B), Canara Vidya Turan, and PM-Vidyalaxmi.
+                    </span>
+                  </div>
 
-              {/* Income Type */}
-              <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
-                  5. Co-Applicant Income Nature
-                </label>
-                <select
-                  value={incomeType}
-                  onChange={(e) => setIncomeType(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
-                >
-                  <option value="Salaried">Salaried (Has Form 16 & Monthly Salary Slips)</option>
-                  <option value="Self-Employed">Self-Employed Professional / Business (Files ITR)</option>
-                  <option value="Farmer">Farmer / Agriculture (Revenue Income Proof)</option>
-                  <option value="Pensioner">Pensioner (Has Pension Payment Order PPO)</option>
-                  <option value="Informal">Informal / Cash Earner (No Monthly Payslip)</option>
-                </select>
-              </div>
+                  {/* Course Selection */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-900 mb-1.5">
+                      2. Enrolled Academic Course
+                    </label>
+                    <select
+                      value={course}
+                      onChange={(e) => setCourse(e.target.value)}
+                      className="w-full text-sm p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
+                    >
+                      <option value="B.Tech Computer Science & Engineering">B.Tech Computer Science & Engineering</option>
+                      <option value="B.Tech Electronics & Communication">B.Tech Electronics & Communication Engineering</option>
+                      <option value="B.Tech Mechanical / Aerospace">B.Tech Mechanical / Aerospace Engineering</option>
+                      <option value="Integrated M.Tech (Software Engineering)">Integrated M.Tech</option>
+                      <option value="Master of Computer Applications (MCA)">Master of Computer Applications (MCA)</option>
+                    </select>
+                  </div>
 
-              {/* Co-Applicant Selection */}
-              <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
-                  6. Primary Co-Applicant
-                </label>
-                <select
-                  value={coApplicant}
-                  onChange={(e) => setCoApplicant(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
-                >
-                  <option value="Father">Father (Mandatory Primary Co-Borrower)</option>
-                  <option value="Mother">Mother</option>
-                  <option value="Both Parents">Both Parents Jointly (Recommended for FOIR)</option>
-                  <option value="Legal Guardian">Legal Guardian</option>
-                  <option value="Earning Sibling">Earning Brother / Sister</option>
-                </select>
-              </div>
+                  {/* Loan Quantum Slider */}
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-base font-bold text-slate-900">
+                        3. Total Loan Requirement
+                      </label>
+                      <span className="text-base font-black text-brand-700">
+                        Rs. {(loanAmount / 100000).toFixed(1)} Lakhs
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min={200000}
+                      max={2500000}
+                      step={50000}
+                      value={loanAmount}
+                      onChange={(e) => setLoanAmount(Number(e.target.value))}
+                      className="w-full accent-brand-700 cursor-pointer"
+                    />
+                    <div className="flex justify-between text-[10px] text-slate-400 mt-0.5 font-mono">
+                      <span>Rs. 2L</span>
+                      <span>Rs. 7.5L (CGFSEL Limit)</span>
+                      <span>Rs. 25L</span>
+                    </div>
+                  </div>
 
-              {/* Collateral Availability */}
-              <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
-                  7. Collateral Availability
-                </label>
-                <select
-                  value={collateralOption}
-                  onChange={(e) => setCollateralOption(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
-                >
-                  <option value="no_collateral">No Collateral (Eligible up to Rs. 7.5L under CGFSEL)</option>
-                  <option value="property">Tangible Residential Property / Land</option>
-                  <option value="fixed_deposit">Bank Fixed Deposit / LIC Surrender Value / NSC</option>
-                </select>
-              </div>
+                  {/* Family Income Tier */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-900 mb-1.5">
+                      4. Gross Annual Family Income
+                    </label>
+                    <select
+                      value={familyIncome}
+                      onChange={(e) => setFamilyIncome(e.target.value)}
+                      className="w-full text-sm p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
+                    >
+                      <option value="below_4.5L">Up to Rs. 4.5 Lakhs</option>
+                      <option value="4.5L_to_8L">Rs. 4.5 Lakhs to Rs. 8.0 Lakhs</option>
+                      <option value="above_8L">Above Rs. 8.0 Lakhs</option>
+                    </select>
+                  </div>
 
-              {/* Academic Performance */}
-              <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
-                  8. 12th Board Score & VITEEE Rank
-                </label>
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    type="text"
-                    placeholder="12th % (e.g. 85%)"
-                    value={academicScore}
-                    onChange={(e) => setAcademicScore(e.target.value)}
-                    className="text-xs p-2 rounded-lg border border-slate-200 bg-white"
-                  />
-                  <input
-                    type="text"
-                    placeholder="VITEEE Rank (e.g. 18500)"
-                    value={viteeeRank}
-                    onChange={(e) => setViteeeRank(e.target.value)}
-                    className="text-xs p-2 rounded-lg border border-slate-200 bg-white"
-                  />
+                  {/* Income Type */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-900 mb-1.5">
+                      5. Co-Applicant Income Nature
+                    </label>
+                    <select
+                      value={incomeType}
+                      onChange={(e) => setIncomeType(e.target.value)}
+                      className="w-full text-sm p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
+                    >
+                      <option value="Salaried">Salaried</option>
+                      <option value="Self-Employed">Self-Employed Professional / Business</option>
+                      <option value="Farmer">Farmer / Agriculture</option>
+                      <option value="Pensioner">Pensioner</option>
+                      <option value="Informal">Informal / Cash Earner</option>
+                    </select>
+                  </div>
+
+                  {/* Co-Applicant Selection */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-900 mb-1.5">
+                      6. Primary Co-Applicant
+                    </label>
+                    <select
+                      value={coApplicant}
+                      onChange={(e) => setCoApplicant(e.target.value)}
+                      className="w-full text-sm p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
+                    >
+                      <option value="Father">Father</option>
+                      <option value="Mother">Mother</option>
+                      <option value="Both Parents">Both Parents Jointly</option>
+                      <option value="Legal Guardian">Legal Guardian</option>
+                      <option value="Earning Sibling">Earning Brother / Sister</option>
+                    </select>
+                  </div>
+
+                  {/* Collateral Availability */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-900 mb-1.5">
+                      7. Collateral Availability
+                    </label>
+                    <select
+                      value={collateralOption}
+                      onChange={(e) => setCollateralOption(e.target.value)}
+                      className="w-full text-sm p-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-brand-600"
+                    >
+                      <option value="no_collateral">No Collateral</option>
+                      <option value="property">Tangible Residential Property / Land</option>
+                      <option value="fixed_deposit">Bank Fixed Deposit / LIC Surrender Value / NSC</option>
+                    </select>
+                  </div>
+
+                  {/* Academic Performance */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-900 mb-1.5">
+                      8. 12th Board Score & VITEEE Rank
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        placeholder="12th % (e.g. 85%)"
+                        value={academicScore}
+                        onChange={(e) => setAcademicScore(e.target.value)}
+                        className="text-sm p-2.5 rounded-lg border border-slate-200 bg-white"
+                      />
+                      <input
+                        type="text"
+                        placeholder="VITEEE Rank (e.g. 18500)"
+                        value={viteeeRank}
+                        onChange={(e) => setViteeeRank(e.target.value)}
+                        className="text-sm p-2.5 rounded-lg border border-slate-200 bg-white"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 flex justify-end">
+                  <Button
+                    onClick={() => setCurrentStep(2)}
+                    className="text-xs font-bold flex items-center gap-2"
+                  >
+                    <span>Identify Matching Schemes & Compare Banks</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
-            </div>
-
-            <div className="pt-4 border-t border-slate-100 flex justify-end">
-              <Button
-                onClick={() => setCurrentStep(2)}
-                className="text-xs font-bold flex items-center gap-2"
-              >
-                <span>Identify Matching Schemes & Compare Banks</span>
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
+            )}
           </CardContent>
         </Card>
       )}
