@@ -35,6 +35,7 @@ const DRAWER_SECTIONS = [
   {
     label: 'Core Tools',
     items: [
+      { name: 'VIT Bhopal Campus Guide', path: '/vit-bhopal', icon: BookOpen, desc: 'Fee tiers, VTOP SOP, contacts' },
       { name: 'Student Loan Finder', path: '/journey', icon: Compass, desc: 'Step-by-step scheme matching' },
       { name: 'Bank & Scheme Explorer', path: '/loans', icon: Building2, desc: 'Browse all loan schemes' },
       { name: 'EMI & Moratorium Calculator', path: '/calculator', icon: Calculator, desc: 'Full repayment simulator' },
@@ -53,7 +54,6 @@ const DRAWER_SECTIONS = [
     label: 'Reference & Guidance',
     items: [
       { name: 'Govt Subsidies & Schemes', path: '/schemes', icon: Landmark, desc: 'CSIS, PM-Vidyalaxmi, Vidya Lakshmi' },
-      { name: 'VIT Bhopal Campus Guide', path: '/vit-bhopal', icon: BookOpen, desc: 'Fee tiers, VTOP SOP, contacts' },
       { name: 'Practical Help Hub', path: '/practical-help', icon: Sparkles, desc: '7 real-world loan tools' },
       { name: 'Bank Statistics', path: '/statistics', icon: BarChart3, desc: 'EBLR rates & SLA data' },
       { name: 'Parent Mode', path: '/parent-mode', icon: Users, desc: 'Multilingual parent guide' },
@@ -67,6 +67,7 @@ const PRIMARY_LINKS = [
   { name: 'Compare Banks', path: '/compare', icon: Building2 },
   { name: 'Loan Finder', path: '/journey', icon: Compass },
   { name: 'Calculator', path: '/calculator', icon: Calculator },
+  { name: 'Tracker', path: '/tracker', icon: Layers },
   { name: 'Schemes', path: '/schemes', icon: Landmark },
 ];
 
@@ -149,7 +150,7 @@ export const Navbar: React.FC = () => {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-lg font-extrabold text-slate-950 tracking-tight">
+                    <span className="text-xl font-heading font-extrabold text-slate-950 tracking-tight">
                       Edu<span className="text-brand-700">4</span>Loan
                     </span>
                     <span className="hidden sm:inline text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 tracking-wide uppercase">

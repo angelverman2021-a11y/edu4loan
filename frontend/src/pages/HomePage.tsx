@@ -103,7 +103,7 @@ export const HomePage: React.FC = () => {
               Impartial · Non-Brokerage · VIT Bhopal Specific
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.05]">
+            <h1 className="text-4xl sm:text-6xl font-heading font-extrabold tracking-tighter text-white leading-[1.05]">
               Navigate Your <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300">
                 Education Loan
@@ -111,7 +111,7 @@ export const HomePage: React.FC = () => {
               <br />With Clarity.
             </h1>
 
-            <p className="text-base sm:text-lg text-blue-100/80 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
+            <p className="text-base sm:text-lg text-blue-100/90 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
               Compare verified bank schemes, simulate moratorium interest, check RBI collateral limits,
               and review VIT Bhopal fee tiers — all before stepping into a branch.
             </p>
@@ -227,12 +227,12 @@ export const HomePage: React.FC = () => {
       ════════════════════════════════════════════════════════════════════ */}
       <section className="py-24 bg-white" id="features">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
-            <Badge variant="info">Core Capabilities</Badge>
+          <div className="text-center mb-16 space-y-4">
+            <Badge variant="info" className="mb-2">Core Capabilities</Badge>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Built Specifically For VIT Bhopal Students
             </h2>
-            <p className="text-slate-500 max-w-2xl mx-auto text-base">
+            <p className="text-slate-500 max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
               Every tool is designed to demystify banking jargon and ensure you enter loan negotiations fully prepared.
             </p>
           </div>
@@ -350,10 +350,10 @@ export const HomePage: React.FC = () => {
       ════════════════════════════════════════════════════════════════════ */}
       <section className="py-24 bg-white" id="tools">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 space-y-4">
             <Badge variant="neutral" className="mb-2">Everything You Need</Badge>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Practical Resolution Center</h2>
-            <p className="text-slate-500 mt-2 max-w-2xl mx-auto text-base">
+            <p className="text-slate-500 max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
               From informal income alternatives to 9-stage bank timelines — every real-world challenge covered.
             </p>
           </div>
@@ -523,9 +523,9 @@ export const HomePage: React.FC = () => {
       ════════════════════════════════════════════════════════════════════ */}
       <section className="py-24 bg-white" id="trust">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Why Edu4Loan?</h2>
-            <p className="text-slate-500 mt-2 max-w-xl mx-auto">Built on principles that put students first — always.</p>
+            <p className="text-slate-500 max-w-xl mx-auto text-base lg:text-lg leading-relaxed">Built on principles that put students first — always.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[

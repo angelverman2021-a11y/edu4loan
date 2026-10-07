@@ -9,7 +9,15 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased selection:bg-brand-600 selection:text-white;
+    @apply bg-slate-50 text-slate-700 font-sans antialiased selection:bg-brand-600 selection:text-white leading-relaxed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-slate-900 tracking-tight leading-tight;
+  }
+
+  p {
+    @apply mb-4 last:mb-0 leading-relaxed tracking-normal;
   }
 
   /* Accessible focus outline */
