@@ -1,7 +1,26 @@
 branch_id,bank_id,branch_name,ifsc_code,address,city,state,pincode,contact_number,email,data_status
-BR_SBI_01,SBI001,Mumbai Main,SBIN0000001,Mumbai,Mumbai,Maharashtra,400001,1234567890,mumbai@sbi.co.in,sample
-BR_HDFC_01,HDFC001,Delhi CP,HDFC0000002,Connaught Place,New Delhi,Delhi,110001,1234567891,cp@hdfcbank.com,sample
-BR_ICICI_01,ICICI001,Bangalore MG Road,ICIC0000003,MG Road,Bangalore,Karnataka,560001,1234567892,mgroad@icicibank.com,sample
-BR_PNB_01,PNB001,Chennai Mount Road,PUNB0000004,Mount Road,Chennai,Tamil Nadu,600002,1234567893,mountroad@pnb.co.in,sample
-BR_KOTAK_01,KOTAK001,Mumbai BKC,KKBK0000005,BKC,Mumbai,Maharashtra,400051,1234567894,bkc@kotak.com,sample
-BR_IDFC_01,IDFC001,Pune Main,IDFB0000006,Shivaji Nagar,Pune,Maharashtra,411005,1234567895,pune@idfcfirst.com,sample
+BR_SBI_0,SBI001,Mumbai Main,SBI0001000,Mumbai,Mumbai,State,400000,1234567800,contact@sbi.com,sample
+BR_HDFC_1,HDFC001,Delhi Main,HDFC0001001,Delhi,Delhi,State,400001,1234567801,contact@hdfc.com,sample
+BR_ICICI_2,ICICI001,Bangalore Main,ICICI0001002,Bangalore,Bangalore,State,400002,1234567802,contact@icici.com,sample
+BR_PNB_3,PNB001,Chennai Main,PNB0001003,Chennai,Chennai,State,400003,1234567803,contact@pnb.com,sample
+BR_AXIS_4,AXIS001,Kolkata Main,AXIS0001004,Kolkata,Kolkata,State,400004,1234567804,contact@axis.com,sample
+BR_BOB_5,BOB001,Hyderabad Main,BOB0001005,Hyderabad,Hyderabad,State,400005,1234567805,contact@bob.com,sample
+BR_KOTAK_6,KOTAK001,Pune Main,KOTAK0001006,Pune,Pune,State,400006,1234567806,contact@kotak.com,sample
+BR_IDFC_7,IDFC001,Ahmedabad Main,IDFC0001007,Ahmedabad,Ahmedabad,State,400007,1234567807,contact@idfc.com,sample
+BR_UBI_8,UBI001,Jaipur Main,UBI0001008,Jaipur,Jaipur,State,400008,1234567808,contact@ubi.com,sample
+BR_YES_9,YES001,Surat Main,YES0001009,Surat,Surat,State,400009,1234567809,contact@yes.com,sample
+BR_INDUS_10,INDUS001,Lucknow Main,INDUS0001010,Lucknow,Lucknow,State,400010,1234567810,contact@indus.com,sample
+BR_CANARA_11,CANARA001,Kanpur Main,CANARA0001011,Kanpur,Kanpur,State,400011,1234567811,contact@canara.com,sample
+BR_BOI_12,BOI001,Nagpur Main,BOI0001012,Nagpur,Nagpur,State,400012,1234567812,contact@boi.com,sample
+BR_FEDERAL_13,FEDERAL001,Indore Main,FEDERAL0001013,Indore,Indore,State,400013,1234567813,contact@federal.com,sample
+BR_SIB_14,SIB001,Thane Main,SIB0001014,Thane,Thane,State,400014,1234567814,contact@sib.com,sample
+BR_RBL_15,RBL001,Bhopal Main,RBL0001015,Bhopal,Bhopal,State,400015,1234567815,contact@rbl.com,sample
+BR_IDBI_16,IDBI001,Visakhapatnam Main,IDBI0001016,Visakhapatnam,Visakhapatnam,State,400016,1234567816,contact@idbi.com,sample
+BR_CBI_17,CBI001,Pimpri-Chinchwad Main,CBI0001017,Pimpri-Chinchwad,Pimpri-Chinchwad,State,400017,1234567817,contact@cbi.com,sample
+BR_INDIAN_18,INDIAN001,Patna Main,INDIAN0001018,Patna,Patna,State,400018,1234567818,contact@indian.com,sample
+BR_UCO_19,UCO001,Vadodara Main,UCO0001019,Vadodara,Vadodara,State,400019,1234567819,contact@uco.com,sample
+BR_PSB_20,PSB001,Mumbai Main,PSB0001020,Mumbai,Mumbai,State,400020,1234567820,contact@psb.com,sample
+BR_SBI_21,SBI001,Delhi Main,SBI0001021,Delhi,Delhi,State,400021,1234567821,contact@sbi.com,sample
+BR_HDFC_22,HDFC001,Bangalore Main,HDFC0001022,Bangalore,Bangalore,State,400022,1234567822,contact@hdfc.com,sample
+BR_ICICI_23,ICICI001,Chennai Main,ICICI0001023,Chennai,Chennai,State,400023,1234567823,contact@icici.com,sample
+BR_PNB_24,PNB001,Kolkata Main,PNB0001024,Kolkata,Kolkata,State,400024,1234567824,contact@pnb.com,sample

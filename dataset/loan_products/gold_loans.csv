@@ -1,6 +1,26 @@
 loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,gold_purity,LTV,repayment_method,data_status
-SBI_GL_001,SBI001,GOLD,SBI Gold Loan,20000,5000000,3,36,Fixed,0.5,true,18-24k,75,"Bullet, EMI",sample
-BOB_GL_001,BOB001,GOLD,BOB Gold Loan,10000,2500000,6,12,Fixed,0.25,true,22k,75,Bullet,sample
-HDFC_GL_001,HDFC001,GOLD,HDFC Gold Loan,25000,5000000,3,24,Fixed,1.0,true,18-24k,75,"Bullet, EMI",sample
-ICICI_GL_001,ICICI001,GOLD,ICICI Insta Gold,10000,10000000,6,12,Fixed,1.0,true,18-24k,75,Bullet,sample
-UBI_GL_001,UBI001,GOLD,Union Gold,20000,2500000,3,12,Fixed,0.5,true,18-24k,75,"Bullet, EMI",sample
+SBI_GL_000,SBI001,GOLD,SBI Gold Loan,10000,2500000,3,24,Fixed,0.5,true,18-24k,75,Bullet,sample
+HDFC_GL_001,HDFC001,GOLD,HDFC Gold Loan,20000,2600000,3,24,Fixed,0.55,true,18-24k,75,Bullet,sample
+ICICI_GL_002,ICICI001,GOLD,ICICI Gold Loan,30000,2700000,3,24,Fixed,0.6,true,18-24k,75,Bullet,sample
+PNB_GL_003,PNB001,GOLD,PNB Gold Loan,40000,2800000,3,24,Fixed,0.65,true,18-24k,75,Bullet,sample
+AXIS_GL_004,AXIS001,GOLD,AXIS Gold Loan,50000,2900000,3,24,Fixed,0.7,true,18-24k,75,Bullet,sample
+BOB_GL_005,BOB001,GOLD,BOB Gold Loan,60000,3000000,3,24,Fixed,0.75,true,18-24k,75,Bullet,sample
+KOTAK_GL_006,KOTAK001,GOLD,KOTAK Gold Loan,70000,3100000,3,24,Fixed,0.8,true,18-24k,75,Bullet,sample
+IDFC_GL_007,IDFC001,GOLD,IDFC Gold Loan,80000,3200000,3,24,Fixed,0.8500000000000001,true,18-24k,75,Bullet,sample
+UBI_GL_008,UBI001,GOLD,UBI Gold Loan,90000,3300000,3,24,Fixed,0.9,true,18-24k,75,Bullet,sample
+YES_GL_009,YES001,GOLD,YES Gold Loan,100000,3400000,3,24,Fixed,0.95,true,18-24k,75,Bullet,sample
+INDUS_GL_010,INDUS001,GOLD,INDUS Gold Loan,110000,3500000,3,24,Fixed,1.0,true,18-24k,75,Bullet,sample
+CANARA_GL_011,CANARA001,GOLD,CANARA Gold Loan,120000,3600000,3,24,Fixed,1.05,true,18-24k,75,Bullet,sample
+BOI_GL_012,BOI001,GOLD,BOI Gold Loan,130000,3700000,3,24,Fixed,1.1,true,18-24k,75,Bullet,sample
+FEDERAL_GL_013,FEDERAL001,GOLD,FEDERAL Gold Loan,140000,3800000,3,24,Fixed,1.15,true,18-24k,75,Bullet,sample
+SIB_GL_014,SIB001,GOLD,SIB Gold Loan,150000,3900000,3,24,Fixed,1.2000000000000002,true,18-24k,75,Bullet,sample
+RBL_GL_015,RBL001,GOLD,RBL Gold Loan,160000,4000000,3,24,Fixed,1.25,true,18-24k,75,Bullet,sample
+IDBI_GL_016,IDBI001,GOLD,IDBI Gold Loan,170000,4100000,3,24,Fixed,1.3,true,18-24k,75,Bullet,sample
+CBI_GL_017,CBI001,GOLD,CBI Gold Loan,180000,4200000,3,24,Fixed,1.35,true,18-24k,75,Bullet,sample
+INDIAN_GL_018,INDIAN001,GOLD,INDIAN Gold Loan,190000,4300000,3,24,Fixed,1.4,true,18-24k,75,Bullet,sample
+UCO_GL_019,UCO001,GOLD,UCO Gold Loan,200000,4400000,3,24,Fixed,1.4500000000000002,true,18-24k,75,Bullet,sample
+PSB_GL_020,PSB001,GOLD,PSB Gold Loan,210000,4500000,3,24,Fixed,1.5,true,18-24k,75,Bullet,sample
+SBI_GL_021,SBI001,GOLD,SBI Gold Loan,220000,4600000,3,24,Fixed,1.55,true,18-24k,75,Bullet,sample
+HDFC_GL_022,HDFC001,GOLD,HDFC Gold Loan,230000,4700000,3,24,Fixed,1.6,true,18-24k,75,Bullet,sample
+ICICI_GL_023,ICICI001,GOLD,ICICI Gold Loan,240000,4800000,3,24,Fixed,1.6500000000000001,true,18-24k,75,Bullet,sample
+PNB_GL_024,PNB001,GOLD,PNB Gold Loan,250000,4900000,3,24,Fixed,1.7000000000000002,true,18-24k,75,Bullet,sample

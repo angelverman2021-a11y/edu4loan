@@ -1,3 +1,7 @@
 type_id,type_name,data_status
 SALARIED,Salaried,verified
 SELF_EMPLOYED,Self Employed,verified
+BUSINESS,Business Owner,verified
+PROFESSIONAL,Independent Professional,verified
+PENSIONER,Pensioner,verified
+STUDENT,Student,verified

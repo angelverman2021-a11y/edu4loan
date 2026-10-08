@@ -1,6 +1,26 @@
 loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,property_type,property_location,LTV,data_status
-SBI_HL_001,SBI001,HOME,SBI Regular Home Loan,100000,50000000,12,360,Floating,0.35,true,All,India,90,sample
-HDFC_HL_001,HDFC001,HOME,HDFC Home Loan,100000,100000000,12,360,Floating,0.5,true,All,India,85,sample
-PNB_HL_001,PNB001,HOME,PNB Max Saver,50000,30000000,12,360,Floating,0.25,true,All,India,80,sample
-ICICI_HL_001,ICICI001,HOME,ICICI Home Loan,500000,50000000,12,360,Floating,0.5,true,All,India,85,sample
-BOB_HL_001,BOB001,HOME,BOB Home Loan,100000,50000000,12,360,Floating,0.25,true,All,India,90,sample
+SBI_HL_000,SBI001,HOME,SBI Home Loan,100000,50000000,12,360,Floating,0.2,true,All,India,80,sample
+HDFC_HL_001,HDFC001,HOME,HDFC Home Loan,200000,51000000,12,360,Floating,0.25,true,All,India,81,sample
+ICICI_HL_002,ICICI001,HOME,ICICI Home Loan,300000,52000000,12,360,Floating,0.30000000000000004,true,All,India,82,sample
+PNB_HL_003,PNB001,HOME,PNB Home Loan,400000,53000000,12,360,Floating,0.35000000000000003,true,All,India,83,sample
+AXIS_HL_004,AXIS001,HOME,AXIS Home Loan,500000,54000000,12,360,Floating,0.4,true,All,India,84,sample
+BOB_HL_005,BOB001,HOME,BOB Home Loan,600000,55000000,12,360,Floating,0.45,true,All,India,85,sample
+KOTAK_HL_006,KOTAK001,HOME,KOTAK Home Loan,700000,56000000,12,360,Floating,0.5,true,All,India,86,sample
+IDFC_HL_007,IDFC001,HOME,IDFC Home Loan,800000,57000000,12,360,Floating,0.55,true,All,India,87,sample
+UBI_HL_008,UBI001,HOME,UBI Home Loan,900000,58000000,12,360,Floating,0.6000000000000001,true,All,India,88,sample
+YES_HL_009,YES001,HOME,YES Home Loan,1000000,59000000,12,360,Floating,0.65,true,All,India,89,sample
+INDUS_HL_010,INDUS001,HOME,INDUS Home Loan,1100000,60000000,12,360,Floating,0.7,true,All,India,90,sample
+CANARA_HL_011,CANARA001,HOME,CANARA Home Loan,1200000,61000000,12,360,Floating,0.75,true,All,India,91,sample
+BOI_HL_012,BOI001,HOME,BOI Home Loan,1300000,62000000,12,360,Floating,0.8,true,All,India,92,sample
+FEDERAL_HL_013,FEDERAL001,HOME,FEDERAL Home Loan,1400000,63000000,12,360,Floating,0.8500000000000001,true,All,India,93,sample
+SIB_HL_014,SIB001,HOME,SIB Home Loan,1500000,64000000,12,360,Floating,0.9000000000000001,true,All,India,94,sample
+RBL_HL_015,RBL001,HOME,RBL Home Loan,1600000,65000000,12,360,Floating,0.95,true,All,India,80,sample
+IDBI_HL_016,IDBI001,HOME,IDBI Home Loan,1700000,66000000,12,360,Floating,1.0,true,All,India,81,sample
+CBI_HL_017,CBI001,HOME,CBI Home Loan,1800000,67000000,12,360,Floating,1.05,true,All,India,82,sample
+INDIAN_HL_018,INDIAN001,HOME,INDIAN Home Loan,1900000,68000000,12,360,Floating,1.1,true,All,India,83,sample
+UCO_HL_019,UCO001,HOME,UCO Home Loan,2000000,69000000,12,360,Floating,1.1500000000000001,true,All,India,84,sample
+PSB_HL_020,PSB001,HOME,PSB Home Loan,2100000,70000000,12,360,Floating,1.2,true,All,India,85,sample
+SBI_HL_021,SBI001,HOME,SBI Home Loan,2200000,71000000,12,360,Floating,1.25,true,All,India,86,sample
+HDFC_HL_022,HDFC001,HOME,HDFC Home Loan,2300000,72000000,12,360,Floating,1.3,true,All,India,87,sample
+ICICI_HL_023,ICICI001,HOME,ICICI Home Loan,2400000,73000000,12,360,Floating,1.35,true,All,India,88,sample
+PNB_HL_024,PNB001,HOME,PNB Home Loan,2500000,74000000,12,360,Floating,1.4000000000000001,true,All,India,89,sample

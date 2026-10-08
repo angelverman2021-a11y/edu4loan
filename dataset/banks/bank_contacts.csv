@@ -1,4 +1,26 @@
 contact_id,bank_id,department,phone,email,website_link,data_status
-C_SBI_1,SBI001,Loans,1800-11-2211,loans@sbi.co.in,sbi.co.in/loans,sample
-C_HDFC_1,HDFC001,Customer Care,1800-202-6161,support@hdfcbank.com,hdfcbank.com/support,sample
-C_KOTAK_1,KOTAK001,Loan Support,1860-266-2666,loans@kotak.com,kotak.com/loans,sample
+C_SBI_0,SBI001,Loans,1800-11-2000,loans@sbi.com,sbibank.com/contact,sample
+C_HDFC_1,HDFC001,Customer Care,1800-11-2001,customercare@hdfc.com,hdfcbank.com/contact,sample
+C_ICICI_2,ICICI001,Grievance,1800-11-2002,grievance@icici.com,icicibank.com/contact,sample
+C_PNB_3,PNB001,Home Loans,1800-11-2003,homeloans@pnb.com,pnbbank.com/contact,sample
+C_AXIS_4,AXIS001,Auto Loans,1800-11-2004,autoloans@axis.com,axisbank.com/contact,sample
+C_BOB_5,BOB001,Loans,1800-11-2005,loans@bob.com,bobbank.com/contact,sample
+C_KOTAK_6,KOTAK001,Customer Care,1800-11-2006,customercare@kotak.com,kotakbank.com/contact,sample
+C_IDFC_7,IDFC001,Grievance,1800-11-2007,grievance@idfc.com,idfcbank.com/contact,sample
+C_UBI_8,UBI001,Home Loans,1800-11-2008,homeloans@ubi.com,ubibank.com/contact,sample
+C_YES_9,YES001,Auto Loans,1800-11-2009,autoloans@yes.com,yesbank.com/contact,sample
+C_INDUS_10,INDUS001,Loans,1800-11-2010,loans@indus.com,indusbank.com/contact,sample
+C_CANARA_11,CANARA001,Customer Care,1800-11-2011,customercare@canara.com,canarabank.com/contact,sample
+C_BOI_12,BOI001,Grievance,1800-11-2012,grievance@boi.com,boibank.com/contact,sample
+C_FEDERAL_13,FEDERAL001,Home Loans,1800-11-2013,homeloans@federal.com,federalbank.com/contact,sample
+C_SIB_14,SIB001,Auto Loans,1800-11-2014,autoloans@sib.com,sibbank.com/contact,sample
+C_RBL_15,RBL001,Loans,1800-11-2015,loans@rbl.com,rblbank.com/contact,sample
+C_IDBI_16,IDBI001,Customer Care,1800-11-2016,customercare@idbi.com,idbibank.com/contact,sample
+C_CBI_17,CBI001,Grievance,1800-11-2017,grievance@cbi.com,cbibank.com/contact,sample
+C_INDIAN_18,INDIAN001,Home Loans,1800-11-2018,homeloans@indian.com,indianbank.com/contact,sample
+C_UCO_19,UCO001,Auto Loans,1800-11-2019,autoloans@uco.com,ucobank.com/contact,sample
+C_PSB_20,PSB001,Loans,1800-11-2020,loans@psb.com,psbbank.com/contact,sample
+C_SBI_21,SBI001,Customer Care,1800-11-2021,customercare@sbi.com,sbibank.com/contact,sample
+C_HDFC_22,HDFC001,Grievance,1800-11-2022,grievance@hdfc.com,hdfcbank.com/contact,sample
+C_ICICI_23,ICICI001,Home Loans,1800-11-2023,homeloans@icici.com,icicibank.com/contact,sample
+C_PNB_24,PNB001,Auto Loans,1800-11-2024,autoloans@pnb.com,pnbbank.com/contact,sample

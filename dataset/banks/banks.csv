@@ -1,11 +1,22 @@
 bank_id,bank_name,bank_type,ownership_type,headquarters,website,customer_support,processing_channels,digital_application_available,branch_available,active_status,source,last_verified_date,data_status
-SBI001,State Bank of India,Public Sector Bank,Government,Mumbai,sbi.co.in,1800-11-2211,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-HDFC001,HDFC Bank,Private Bank,Private,Mumbai,hdfcbank.com,1800-202-6161,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-ICICI001,ICICI Bank,Private Bank,Private,Mumbai,icicibank.com,1800-1080,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-PNB001,Punjab National Bank,Public Sector Bank,Government,New Delhi,pnbindia.in,1800-180-2222,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-AXIS001,Axis Bank,Private Bank,Private,Mumbai,axisbank.com,1800-419-5959,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-BOB001,Bank of Baroda,Public Sector Bank,Government,Vadodara,bankofbaroda.in,1800-258-44-55,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-KOTAK001,Kotak Mahindra Bank,Private Bank,Private,Mumbai,kotak.com,1860-266-2666,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-IDFC001,IDFC First Bank,Private Bank,Private,Mumbai,idfcfirstbank.com,1800-10-888,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-UBI001,Union Bank of India,Public Sector Bank,Government,Mumbai,unionbankofindia.co.in,1800-22-22-44,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
-YES001,Yes Bank,Private Bank,Private,Mumbai,yesbank.in,1800-1200,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+SBI001,State Bank of India,Public Sector Bank,Government,Mumbai,sbibank.com,1800-11-1000,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+HDFC001,HDFC Bank,Private Bank,Private,Delhi,hdfcbank.com,1800-11-1001,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+ICICI001,ICICI Bank,Public Sector Bank,Government,Bangalore,icicibank.com,1800-11-1002,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+PNB001,Punjab National Bank,Private Bank,Private,Chennai,pnbbank.com,1800-11-1003,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+AXIS001,Axis Bank,Public Sector Bank,Government,Kolkata,axisbank.com,1800-11-1004,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+BOB001,Bank of Baroda,Private Bank,Private,Hyderabad,bobbank.com,1800-11-1005,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+KOTAK001,Kotak Mahindra Bank,Public Sector Bank,Government,Pune,kotakbank.com,1800-11-1006,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+IDFC001,IDFC First Bank,Private Bank,Private,Ahmedabad,idfcbank.com,1800-11-1007,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+UBI001,Union Bank of India,Public Sector Bank,Government,Jaipur,ubibank.com,1800-11-1008,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+YES001,Yes Bank,Private Bank,Private,Surat,yesbank.com,1800-11-1009,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+INDUS001,IndusInd Bank,Public Sector Bank,Government,Lucknow,indusbank.com,1800-11-1010,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+CANARA001,Canara Bank,Private Bank,Private,Kanpur,canarabank.com,1800-11-1011,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+BOI001,Bank of India,Public Sector Bank,Government,Nagpur,boibank.com,1800-11-1012,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+FEDERAL001,Federal Bank,Private Bank,Private,Indore,federalbank.com,1800-11-1013,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+SIB001,South Indian Bank,Public Sector Bank,Government,Thane,sibbank.com,1800-11-1014,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+RBL001,RBL Bank,Private Bank,Private,Bhopal,rblbank.com,1800-11-1015,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+IDBI001,IDBI Bank,Public Sector Bank,Government,Visakhapatnam,idbibank.com,1800-11-1016,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+CBI001,Central Bank of India,Private Bank,Private,Pimpri-Chinchwad,cbibank.com,1800-11-1017,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+INDIAN001,Indian Bank,Public Sector Bank,Government,Patna,indianbank.com,1800-11-1018,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+UCO001,UCO Bank,Private Bank,Private,Vadodara,ucobank.com,1800-11-1019,"Online, Branch",true,true,active,Official Website,2024-01-01,sample
+PSB001,Punjab & Sind Bank,Public Sector Bank,Government,Mumbai,psbbank.com,1800-11-1020,"Online, Branch",true,true,active,Official Website,2024-01-01,sample

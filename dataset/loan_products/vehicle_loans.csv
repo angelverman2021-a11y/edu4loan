@@ -1,6 +1,26 @@
 loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,vehicle_type,new_or_used,vehicle_age_limit,LTV,data_status
-SBI_VL_001,SBI001,VEHICLE,SBI Auto Loan,50000,10000000,12,84,Floating,1.0,true,Car,New,0,90,sample
-HDFC_VL_001,HDFC001,VEHICLE,HDFC Car Loan,100000,30000000,12,84,Fixed,1.5,true,Car,"New, Used",5,100,sample
-ICICI_VL_001,ICICI001,VEHICLE,ICICI Car Loan,100000,20000000,12,84,Fixed,1.25,true,Car,"New, Used",5,100,sample
-KOTAK_VL_001,KOTAK001,VEHICLE,Kotak Car Prime,100000,15000000,12,84,Fixed,1.0,true,Car,New,0,90,sample
-AXIS_VL_001,AXIS001,VEHICLE,Axis Auto Loan,100000,25000000,12,84,Fixed,1.0,true,Car,"New, Used",5,100,sample
+SBI_VL_000,SBI001,VEHICLE,SBI Auto Loan,50000,2500000,12,84,Fixed,1.0,true,Car,"New, Used",5,80,sample
+HDFC_VL_001,HDFC001,VEHICLE,HDFC Auto Loan,100000,2600000,12,84,Fixed,1.1,true,Car,"New, Used",5,81,sample
+ICICI_VL_002,ICICI001,VEHICLE,ICICI Auto Loan,150000,2700000,12,84,Fixed,1.2,true,Car,"New, Used",5,82,sample
+PNB_VL_003,PNB001,VEHICLE,PNB Auto Loan,200000,2800000,12,84,Fixed,1.3,true,Car,"New, Used",5,83,sample
+AXIS_VL_004,AXIS001,VEHICLE,AXIS Auto Loan,250000,2900000,12,84,Fixed,1.4,true,Car,"New, Used",5,84,sample
+BOB_VL_005,BOB001,VEHICLE,BOB Auto Loan,300000,3000000,12,84,Fixed,1.5,true,Car,"New, Used",5,85,sample
+KOTAK_VL_006,KOTAK001,VEHICLE,KOTAK Auto Loan,350000,3100000,12,84,Fixed,1.6,true,Car,"New, Used",5,86,sample
+IDFC_VL_007,IDFC001,VEHICLE,IDFC Auto Loan,400000,3200000,12,84,Fixed,1.7000000000000002,true,Car,"New, Used",5,87,sample
+UBI_VL_008,UBI001,VEHICLE,UBI Auto Loan,450000,3300000,12,84,Fixed,1.8,true,Car,"New, Used",5,88,sample
+YES_VL_009,YES001,VEHICLE,YES Auto Loan,500000,3400000,12,84,Fixed,1.9,true,Car,"New, Used",5,89,sample
+INDUS_VL_010,INDUS001,VEHICLE,INDUS Auto Loan,550000,3500000,12,84,Fixed,2.0,true,Car,"New, Used",5,90,sample
+CANARA_VL_011,CANARA001,VEHICLE,CANARA Auto Loan,600000,3600000,12,84,Fixed,2.1,true,Car,"New, Used",5,91,sample
+BOI_VL_012,BOI001,VEHICLE,BOI Auto Loan,650000,3700000,12,84,Fixed,2.2,true,Car,"New, Used",5,92,sample
+FEDERAL_VL_013,FEDERAL001,VEHICLE,FEDERAL Auto Loan,700000,3800000,12,84,Fixed,2.3,true,Car,"New, Used",5,93,sample
+SIB_VL_014,SIB001,VEHICLE,SIB Auto Loan,750000,3900000,12,84,Fixed,2.4000000000000004,true,Car,"New, Used",5,94,sample
+RBL_VL_015,RBL001,VEHICLE,RBL Auto Loan,800000,4000000,12,84,Fixed,2.5,true,Car,"New, Used",5,95,sample
+IDBI_VL_016,IDBI001,VEHICLE,IDBI Auto Loan,850000,4100000,12,84,Fixed,2.6,true,Car,"New, Used",5,96,sample
+CBI_VL_017,CBI001,VEHICLE,CBI Auto Loan,900000,4200000,12,84,Fixed,2.7,true,Car,"New, Used",5,97,sample
+INDIAN_VL_018,INDIAN001,VEHICLE,INDIAN Auto Loan,950000,4300000,12,84,Fixed,2.8,true,Car,"New, Used",5,98,sample
+UCO_VL_019,UCO001,VEHICLE,UCO Auto Loan,1000000,4400000,12,84,Fixed,2.9000000000000004,true,Car,"New, Used",5,99,sample
+PSB_VL_020,PSB001,VEHICLE,PSB Auto Loan,1050000,4500000,12,84,Fixed,3.0,true,Car,"New, Used",5,80,sample
+SBI_VL_021,SBI001,VEHICLE,SBI Auto Loan,1100000,4600000,12,84,Fixed,3.1,true,Car,"New, Used",5,81,sample
+HDFC_VL_022,HDFC001,VEHICLE,HDFC Auto Loan,1150000,4700000,12,84,Fixed,3.2,true,Car,"New, Used",5,82,sample
+ICICI_VL_023,ICICI001,VEHICLE,ICICI Auto Loan,1200000,4800000,12,84,Fixed,3.3000000000000003,true,Car,"New, Used",5,83,sample
+PNB_VL_024,PNB001,VEHICLE,PNB Auto Loan,1250000,4900000,12,84,Fixed,3.4000000000000004,true,Car,"New, Used",5,84,sample

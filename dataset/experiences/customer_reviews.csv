@@ -1,15 +1,101 @@
 experience_id,bank_id,loan_product_id,loan_type,experience_category,rating,processing_time,review_text,sentiment,verified_source,source,date,data_status
-EXP001,SBI001,SBI_EDU_001,EDUCATION,Processing,4.0,15 days,Good interest rate but took some time to process.,positive,false,sample,2024-01-10,sample
-EXP002,HDFC001,HDFC_PL_001,PERSONAL,Processing,5.0,2 days,Very fast disbursement.,positive,true,sample,2024-01-12,sample
-EXP003,ICICI001,ICICI_EDU_001,EDUCATION,Customer Support,3.0,20 days,"Average support, process was a bit tedious.",neutral,false,sample,2024-01-15,sample
-EXP004,SBI001,SBI_HL_001,HOME,Documentation,2.0,30 days,Too much paperwork required.,negative,true,sample,2024-02-01,sample
-EXP005,AXIS001,AXIS_PL_001,PERSONAL,Processing,4.5,3 days,Smooth and entirely digital process.,positive,true,sample,2024-02-15,sample
-EXP006,BOB001,BOB_GL_001,GOLD,Branch Experience,4.0,1 days,Quick loan against gold in branch.,positive,true,sample,2024-03-05,sample
-EXP007,KOTAK001,KOTAK_PL_001,PERSONAL,Digital Experience,5.0,1 days,Instant pre-approved loan through the app.,positive,true,sample,2024-03-10,sample
-EXP008,IDFC001,IDFC_PL_001,PERSONAL,Processing,4.0,2 days,"Quick, but interest was a bit higher.",neutral,true,sample,2024-03-12,sample
-EXP009,PNB001,PNB_EDU_001,EDUCATION,Customer Support,2.5,45 days,Good rates but branch visits were exhausting.,negative,true,sample,2024-03-15,sample
-EXP010,YES001,YES_BL_001,BUSINESS,Documentation,3.5,10 days,Average processing time for MSME loan.,neutral,true,sample,2024-04-01,sample
-EXP011,UBI001,UBI_EDU_001,EDUCATION,Approval,4.5,12 days,Helpful branch manager.,positive,true,sample,2024-04-05,sample
-EXP012,HDFC001,HDFC_HL_001,HOME,Processing,4.0,14 days,Fast processing for home loans.,positive,true,sample,2024-04-10,sample
-EXP013,SBI001,SBI_VL_001,VEHICLE,Approval,4.5,3 days,Pre-approved auto loan went smooth.,positive,true,sample,2024-04-12,sample
-EXP014,ICICI001,ICICI_BL_001,BUSINESS,Processing,4.0,7 days,Digital journey was good.,positive,true,sample,2024-04-15,sample
+EXP_0000,SBI001,SBI_EDU_000,EDUCATION,Processing,1.0,2 days,Sample review 0 for SBI Scholar Loan,negative,true,sample,2024-05-01,sample
+EXP_0001,HDFC001,HDFC_PL_001,PERSONAL,Digital Experience,2.0,4 days,Sample review 1 for HDFC Personal Loan,negative,false,sample,2024-05-02,sample
+EXP_0002,ICICI001,ICICI_HL_002,HOME,Customer Support,3.0,6 days,Sample review 2 for ICICI Home Loan,neutral,true,sample,2024-05-03,sample
+EXP_0003,PNB001,PNB_VL_003,VEHICLE,Approval,4.0,8 days,Sample review 3 for PNB Auto Loan,positive,false,sample,2024-05-04,sample
+EXP_0004,AXIS001,AXIS_BL_004,BUSINESS,Documentation,5.0,10 days,Sample review 4 for AXIS MSME Loan,positive,true,sample,2024-05-05,sample
+EXP_0005,BOB001,BOB_GL_005,GOLD,Branch Experience,1.0,2 days,Sample review 5 for BOB Gold Loan,negative,false,sample,2024-05-06,sample
+EXP_0006,KOTAK001,KOTAK_EDU_006,EDUCATION,Processing,2.0,4 days,Sample review 6 for KOTAK Scholar Loan,negative,true,sample,2024-05-07,sample
+EXP_0007,IDFC001,IDFC_PL_007,PERSONAL,Digital Experience,3.0,6 days,Sample review 7 for IDFC Personal Loan,neutral,false,sample,2024-05-08,sample
+EXP_0008,UBI001,UBI_HL_008,HOME,Customer Support,4.0,8 days,Sample review 8 for UBI Home Loan,positive,true,sample,2024-05-09,sample
+EXP_0009,YES001,YES_VL_009,VEHICLE,Approval,5.0,10 days,Sample review 9 for YES Auto Loan,positive,false,sample,2024-05-10,sample
+EXP_0010,INDUS001,INDUS_BL_010,BUSINESS,Documentation,1.0,2 days,Sample review 10 for INDUS MSME Loan,negative,true,sample,2024-05-11,sample
+EXP_0011,CANARA001,CANARA_GL_011,GOLD,Branch Experience,2.0,4 days,Sample review 11 for CANARA Gold Loan,negative,false,sample,2024-05-12,sample
+EXP_0012,BOI001,BOI_EDU_012,EDUCATION,Processing,3.0,6 days,Sample review 12 for BOI Scholar Loan,neutral,true,sample,2024-05-13,sample
+EXP_0013,FEDERAL001,FEDERAL_PL_013,PERSONAL,Digital Experience,4.0,8 days,Sample review 13 for FEDERAL Personal Loan,positive,false,sample,2024-05-14,sample
+EXP_0014,SIB001,SIB_HL_014,HOME,Customer Support,5.0,10 days,Sample review 14 for SIB Home Loan,positive,true,sample,2024-05-15,sample
+EXP_0015,RBL001,RBL_VL_015,VEHICLE,Approval,1.0,2 days,Sample review 15 for RBL Auto Loan,negative,false,sample,2024-05-16,sample
+EXP_0016,IDBI001,IDBI_BL_016,BUSINESS,Documentation,2.0,4 days,Sample review 16 for IDBI MSME Loan,negative,true,sample,2024-05-17,sample
+EXP_0017,CBI001,CBI_GL_017,GOLD,Branch Experience,3.0,6 days,Sample review 17 for CBI Gold Loan,neutral,false,sample,2024-05-18,sample
+EXP_0018,INDIAN001,INDIAN_EDU_018,EDUCATION,Processing,4.0,8 days,Sample review 18 for INDIAN Scholar Loan,positive,true,sample,2024-05-19,sample
+EXP_0019,UCO001,UCO_PL_019,PERSONAL,Digital Experience,5.0,10 days,Sample review 19 for UCO Personal Loan,positive,false,sample,2024-05-20,sample
+EXP_0020,PSB001,PSB_HL_020,HOME,Customer Support,1.0,2 days,Sample review 20 for PSB Home Loan,negative,true,sample,2024-05-21,sample
+EXP_0021,SBI001,SBI_VL_021,VEHICLE,Approval,2.0,4 days,Sample review 21 for SBI Auto Loan,negative,false,sample,2024-05-22,sample
+EXP_0022,HDFC001,HDFC_BL_022,BUSINESS,Documentation,3.0,6 days,Sample review 22 for HDFC MSME Loan,neutral,true,sample,2024-05-23,sample
+EXP_0023,ICICI001,ICICI_GL_023,GOLD,Branch Experience,4.0,8 days,Sample review 23 for ICICI Gold Loan,positive,false,sample,2024-05-24,sample
+EXP_0024,PNB001,PNB_EDU_024,EDUCATION,Processing,5.0,10 days,Sample review 24 for PNB Scholar Loan,positive,true,sample,2024-05-25,sample
+EXP_0025,SBI001,SBI_PL_000,PERSONAL,Digital Experience,1.0,2 days,Sample review 25 for SBI Personal Loan,negative,false,sample,2024-05-26,sample
+EXP_0026,HDFC001,HDFC_HL_001,HOME,Customer Support,2.0,4 days,Sample review 26 for HDFC Home Loan,negative,true,sample,2024-05-27,sample
+EXP_0027,ICICI001,ICICI_VL_002,VEHICLE,Approval,3.0,6 days,Sample review 27 for ICICI Auto Loan,neutral,false,sample,2024-05-28,sample
+EXP_0028,PNB001,PNB_BL_003,BUSINESS,Documentation,4.0,8 days,Sample review 28 for PNB MSME Loan,positive,true,sample,2024-05-01,sample
+EXP_0029,AXIS001,AXIS_GL_004,GOLD,Branch Experience,5.0,10 days,Sample review 29 for AXIS Gold Loan,positive,false,sample,2024-05-02,sample
+EXP_0030,BOB001,BOB_EDU_005,EDUCATION,Processing,1.0,2 days,Sample review 30 for BOB Scholar Loan,negative,true,sample,2024-05-03,sample
+EXP_0031,KOTAK001,KOTAK_PL_006,PERSONAL,Digital Experience,2.0,4 days,Sample review 31 for KOTAK Personal Loan,negative,false,sample,2024-05-04,sample
+EXP_0032,IDFC001,IDFC_HL_007,HOME,Customer Support,3.0,6 days,Sample review 32 for IDFC Home Loan,neutral,true,sample,2024-05-05,sample
+EXP_0033,UBI001,UBI_VL_008,VEHICLE,Approval,4.0,8 days,Sample review 33 for UBI Auto Loan,positive,false,sample,2024-05-06,sample
+EXP_0034,YES001,YES_BL_009,BUSINESS,Documentation,5.0,10 days,Sample review 34 for YES MSME Loan,positive,true,sample,2024-05-07,sample
+EXP_0035,INDUS001,INDUS_GL_010,GOLD,Branch Experience,1.0,2 days,Sample review 35 for INDUS Gold Loan,negative,false,sample,2024-05-08,sample
+EXP_0036,CANARA001,CANARA_EDU_011,EDUCATION,Processing,2.0,4 days,Sample review 36 for CANARA Scholar Loan,negative,true,sample,2024-05-09,sample
+EXP_0037,BOI001,BOI_PL_012,PERSONAL,Digital Experience,3.0,6 days,Sample review 37 for BOI Personal Loan,neutral,false,sample,2024-05-10,sample
+EXP_0038,FEDERAL001,FEDERAL_HL_013,HOME,Customer Support,4.0,8 days,Sample review 38 for FEDERAL Home Loan,positive,true,sample,2024-05-11,sample
+EXP_0039,SIB001,SIB_VL_014,VEHICLE,Approval,5.0,10 days,Sample review 39 for SIB Auto Loan,positive,false,sample,2024-05-12,sample
+EXP_0040,RBL001,RBL_BL_015,BUSINESS,Documentation,1.0,2 days,Sample review 40 for RBL MSME Loan,negative,true,sample,2024-05-13,sample
+EXP_0041,IDBI001,IDBI_GL_016,GOLD,Branch Experience,2.0,4 days,Sample review 41 for IDBI Gold Loan,negative,false,sample,2024-05-14,sample
+EXP_0042,CBI001,CBI_EDU_017,EDUCATION,Processing,3.0,6 days,Sample review 42 for CBI Scholar Loan,neutral,true,sample,2024-05-15,sample
+EXP_0043,INDIAN001,INDIAN_PL_018,PERSONAL,Digital Experience,4.0,8 days,Sample review 43 for INDIAN Personal Loan,positive,false,sample,2024-05-16,sample
+EXP_0044,UCO001,UCO_HL_019,HOME,Customer Support,5.0,10 days,Sample review 44 for UCO Home Loan,positive,true,sample,2024-05-17,sample
+EXP_0045,PSB001,PSB_VL_020,VEHICLE,Approval,1.0,2 days,Sample review 45 for PSB Auto Loan,negative,false,sample,2024-05-18,sample
+EXP_0046,SBI001,SBI_BL_021,BUSINESS,Documentation,2.0,4 days,Sample review 46 for SBI MSME Loan,negative,true,sample,2024-05-19,sample
+EXP_0047,HDFC001,HDFC_GL_022,GOLD,Branch Experience,3.0,6 days,Sample review 47 for HDFC Gold Loan,neutral,false,sample,2024-05-20,sample
+EXP_0048,ICICI001,ICICI_EDU_023,EDUCATION,Processing,4.0,8 days,Sample review 48 for ICICI Scholar Loan,positive,true,sample,2024-05-21,sample
+EXP_0049,PNB001,PNB_PL_024,PERSONAL,Digital Experience,5.0,10 days,Sample review 49 for PNB Personal Loan,positive,false,sample,2024-05-22,sample
+EXP_0050,SBI001,SBI_HL_000,HOME,Customer Support,1.0,2 days,Sample review 50 for SBI Home Loan,negative,true,sample,2024-05-23,sample
+EXP_0051,HDFC001,HDFC_VL_001,VEHICLE,Approval,2.0,4 days,Sample review 51 for HDFC Auto Loan,negative,false,sample,2024-05-24,sample
+EXP_0052,ICICI001,ICICI_BL_002,BUSINESS,Documentation,3.0,6 days,Sample review 52 for ICICI MSME Loan,neutral,true,sample,2024-05-25,sample
+EXP_0053,PNB001,PNB_GL_003,GOLD,Branch Experience,4.0,8 days,Sample review 53 for PNB Gold Loan,positive,false,sample,2024-05-26,sample
+EXP_0054,AXIS001,AXIS_EDU_004,EDUCATION,Processing,5.0,10 days,Sample review 54 for AXIS Scholar Loan,positive,true,sample,2024-05-27,sample
+EXP_0055,BOB001,BOB_PL_005,PERSONAL,Digital Experience,1.0,2 days,Sample review 55 for BOB Personal Loan,negative,false,sample,2024-05-28,sample
+EXP_0056,KOTAK001,KOTAK_HL_006,HOME,Customer Support,2.0,4 days,Sample review 56 for KOTAK Home Loan,negative,true,sample,2024-05-01,sample
+EXP_0057,IDFC001,IDFC_VL_007,VEHICLE,Approval,3.0,6 days,Sample review 57 for IDFC Auto Loan,neutral,false,sample,2024-05-02,sample
+EXP_0058,UBI001,UBI_BL_008,BUSINESS,Documentation,4.0,8 days,Sample review 58 for UBI MSME Loan,positive,true,sample,2024-05-03,sample
+EXP_0059,YES001,YES_GL_009,GOLD,Branch Experience,5.0,10 days,Sample review 59 for YES Gold Loan,positive,false,sample,2024-05-04,sample
+EXP_0060,INDUS001,INDUS_EDU_010,EDUCATION,Processing,1.0,2 days,Sample review 60 for INDUS Scholar Loan,negative,true,sample,2024-05-05,sample
+EXP_0061,CANARA001,CANARA_PL_011,PERSONAL,Digital Experience,2.0,4 days,Sample review 61 for CANARA Personal Loan,negative,false,sample,2024-05-06,sample
+EXP_0062,BOI001,BOI_HL_012,HOME,Customer Support,3.0,6 days,Sample review 62 for BOI Home Loan,neutral,true,sample,2024-05-07,sample
+EXP_0063,FEDERAL001,FEDERAL_VL_013,VEHICLE,Approval,4.0,8 days,Sample review 63 for FEDERAL Auto Loan,positive,false,sample,2024-05-08,sample
+EXP_0064,SIB001,SIB_BL_014,BUSINESS,Documentation,5.0,10 days,Sample review 64 for SIB MSME Loan,positive,true,sample,2024-05-09,sample
+EXP_0065,RBL001,RBL_GL_015,GOLD,Branch Experience,1.0,2 days,Sample review 65 for RBL Gold Loan,negative,false,sample,2024-05-10,sample
+EXP_0066,IDBI001,IDBI_EDU_016,EDUCATION,Processing,2.0,4 days,Sample review 66 for IDBI Scholar Loan,negative,true,sample,2024-05-11,sample
+EXP_0067,CBI001,CBI_PL_017,PERSONAL,Digital Experience,3.0,6 days,Sample review 67 for CBI Personal Loan,neutral,false,sample,2024-05-12,sample
+EXP_0068,INDIAN001,INDIAN_HL_018,HOME,Customer Support,4.0,8 days,Sample review 68 for INDIAN Home Loan,positive,true,sample,2024-05-13,sample
+EXP_0069,UCO001,UCO_VL_019,VEHICLE,Approval,5.0,10 days,Sample review 69 for UCO Auto Loan,positive,false,sample,2024-05-14,sample
+EXP_0070,PSB001,PSB_BL_020,BUSINESS,Documentation,1.0,2 days,Sample review 70 for PSB MSME Loan,negative,true,sample,2024-05-15,sample
+EXP_0071,SBI001,SBI_GL_021,GOLD,Branch Experience,2.0,4 days,Sample review 71 for SBI Gold Loan,negative,false,sample,2024-05-16,sample
+EXP_0072,HDFC001,HDFC_EDU_022,EDUCATION,Processing,3.0,6 days,Sample review 72 for HDFC Scholar Loan,neutral,true,sample,2024-05-17,sample
+EXP_0073,ICICI001,ICICI_PL_023,PERSONAL,Digital Experience,4.0,8 days,Sample review 73 for ICICI Personal Loan,positive,false,sample,2024-05-18,sample
+EXP_0074,PNB001,PNB_HL_024,HOME,Customer Support,5.0,10 days,Sample review 74 for PNB Home Loan,positive,true,sample,2024-05-19,sample
+EXP_0075,SBI001,SBI_VL_000,VEHICLE,Approval,1.0,2 days,Sample review 75 for SBI Auto Loan,negative,false,sample,2024-05-20,sample
+EXP_0076,HDFC001,HDFC_BL_001,BUSINESS,Documentation,2.0,4 days,Sample review 76 for HDFC MSME Loan,negative,true,sample,2024-05-21,sample
+EXP_0077,ICICI001,ICICI_GL_002,GOLD,Branch Experience,3.0,6 days,Sample review 77 for ICICI Gold Loan,neutral,false,sample,2024-05-22,sample
+EXP_0078,PNB001,PNB_EDU_003,EDUCATION,Processing,4.0,8 days,Sample review 78 for PNB Scholar Loan,positive,true,sample,2024-05-23,sample
+EXP_0079,AXIS001,AXIS_PL_004,PERSONAL,Digital Experience,5.0,10 days,Sample review 79 for AXIS Personal Loan,positive,false,sample,2024-05-24,sample
+EXP_0080,BOB001,BOB_HL_005,HOME,Customer Support,1.0,2 days,Sample review 80 for BOB Home Loan,negative,true,sample,2024-05-25,sample
+EXP_0081,KOTAK001,KOTAK_VL_006,VEHICLE,Approval,2.0,4 days,Sample review 81 for KOTAK Auto Loan,negative,false,sample,2024-05-26,sample
+EXP_0082,IDFC001,IDFC_BL_007,BUSINESS,Documentation,3.0,6 days,Sample review 82 for IDFC MSME Loan,neutral,true,sample,2024-05-27,sample
+EXP_0083,UBI001,UBI_GL_008,GOLD,Branch Experience,4.0,8 days,Sample review 83 for UBI Gold Loan,positive,false,sample,2024-05-28,sample
+EXP_0084,YES001,YES_EDU_009,EDUCATION,Processing,5.0,10 days,Sample review 84 for YES Scholar Loan,positive,true,sample,2024-05-01,sample
+EXP_0085,INDUS001,INDUS_PL_010,PERSONAL,Digital Experience,1.0,2 days,Sample review 85 for INDUS Personal Loan,negative,false,sample,2024-05-02,sample
+EXP_0086,CANARA001,CANARA_HL_011,HOME,Customer Support,2.0,4 days,Sample review 86 for CANARA Home Loan,negative,true,sample,2024-05-03,sample
+EXP_0087,BOI001,BOI_VL_012,VEHICLE,Approval,3.0,6 days,Sample review 87 for BOI Auto Loan,neutral,false,sample,2024-05-04,sample
+EXP_0088,FEDERAL001,FEDERAL_BL_013,BUSINESS,Documentation,4.0,8 days,Sample review 88 for FEDERAL MSME Loan,positive,true,sample,2024-05-05,sample
+EXP_0089,SIB001,SIB_GL_014,GOLD,Branch Experience,5.0,10 days,Sample review 89 for SIB Gold Loan,positive,false,sample,2024-05-06,sample
+EXP_0090,RBL001,RBL_EDU_015,EDUCATION,Processing,1.0,2 days,Sample review 90 for RBL Scholar Loan,negative,true,sample,2024-05-07,sample
+EXP_0091,IDBI001,IDBI_PL_016,PERSONAL,Digital Experience,2.0,4 days,Sample review 91 for IDBI Personal Loan,negative,false,sample,2024-05-08,sample
+EXP_0092,CBI001,CBI_HL_017,HOME,Customer Support,3.0,6 days,Sample review 92 for CBI Home Loan,neutral,true,sample,2024-05-09,sample
+EXP_0093,INDIAN001,INDIAN_VL_018,VEHICLE,Approval,4.0,8 days,Sample review 93 for INDIAN Auto Loan,positive,false,sample,2024-05-10,sample
+EXP_0094,UCO001,UCO_BL_019,BUSINESS,Documentation,5.0,10 days,Sample review 94 for UCO MSME Loan,positive,true,sample,2024-05-11,sample
+EXP_0095,PSB001,PSB_GL_020,GOLD,Branch Experience,1.0,2 days,Sample review 95 for PSB Gold Loan,negative,false,sample,2024-05-12,sample
+EXP_0096,SBI001,SBI_EDU_021,EDUCATION,Processing,2.0,4 days,Sample review 96 for SBI Scholar Loan,negative,true,sample,2024-05-13,sample
+EXP_0097,HDFC001,HDFC_PL_022,PERSONAL,Digital Experience,3.0,6 days,Sample review 97 for HDFC Personal Loan,neutral,false,sample,2024-05-14,sample
+EXP_0098,ICICI001,ICICI_HL_023,HOME,Customer Support,4.0,8 days,Sample review 98 for ICICI Home Loan,positive,true,sample,2024-05-15,sample
+EXP_0099,PNB001,PNB_VL_024,VEHICLE,Approval,5.0,10 days,Sample review 99 for PNB Auto Loan,positive,false,sample,2024-05-16,sample
