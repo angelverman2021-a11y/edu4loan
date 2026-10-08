@@ -227,7 +227,7 @@ export const ApplicationTrackerPage: React.FC = () => {
                   <h3 className="font-heading font-bold text-lg text-slate-900">State Bank of India</h3>
                   <p className="text-sm text-slate-500">SBI Scholar Scheme • B.Tech (2022)</p>
                 </div>
-                <Badge variant="success" className="bg-emerald-100 text-emerald-800 border-none">Disbursed</Badge>
+                <Badge variant="verified" className="bg-emerald-100 text-emerald-800 border-none">Disbursed</Badge>
               </div>
               
               <div className="space-y-4">

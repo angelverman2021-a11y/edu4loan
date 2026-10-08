@@ -47,13 +47,13 @@ interface BankData {
   hexColor: string;
   minRate: number;
   maxRate: number;
-  maxLoanLakh: number;   // in lakhs (0 = need-based)
+  maxLoanLakh: number;
   collateralFreeUptoLakh: number;
   marginPercent: number;
-  moratoriumMonths: number; // course + post
+  moratoriumMonths: number;
   maxTenureYears: number;
   processingFeePct: number;
-  girlConcessionBps: number; // basis points (50 = 0.5%)
+  girlConcessionBps: number;
   cgfselCover: boolean;
   pmVidyalaxmi: boolean;
   sectionEighty: boolean;
