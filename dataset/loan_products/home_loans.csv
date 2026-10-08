@@ -1,1 +1,4 @@
 loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,property_type,property_location,LTV,data_status
+SBI_HL_001,SBI001,HOME,SBI Regular Home Loan,100000,50000000,12,360,Floating,0.35,true,All,India,90,sample
+HDFC_HL_001,HDFC001,HOME,HDFC Home Loan,100000,100000000,12,360,Floating,0.5,true,All,India,85,sample
+PNB_HL_001,PNB001,HOME,PNB Max Saver,50000,30000000,12,360,Floating,0.25,true,All,India,80,sample

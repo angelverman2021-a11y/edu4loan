@@ -1,2 +1,7 @@
 experience_id,bank_id,loan_product_id,loan_type,experience_category,rating,processing_time,review_text,sentiment,verified_source,source,date,data_status
 EXP001,SBI001,SBI_EDU_001,EDUCATION,Processing,4.0,15 days,Good interest rate but took some time to process.,positive,false,sample,2024-01-10,sample
+EXP002,HDFC001,HDFC_PL_001,PERSONAL,Processing,5.0,2 days,Very fast disbursement.,positive,true,sample,2024-01-12,sample
+EXP003,ICICI001,ICICI_EDU_001,EDUCATION,Customer Support,3.0,20 days,"Average support, process was a bit tedious.",neutral,false,sample,2024-01-15,sample
+EXP004,SBI001,SBI_HL_001,HOME,Documentation,2.0,30 days,Too much paperwork required.,negative,true,sample,2024-02-01,sample
+EXP005,AXIS001,AXIS_PL_001,PERSONAL,Processing,4.5,3 days,Smooth and entirely digital process.,positive,true,sample,2024-02-15,sample
+EXP006,BOB001,BOB_GL_001,GOLD,Branch Experience,4.0,1 days,Quick loan against gold in branch.,positive,true,sample,2024-03-05,sample

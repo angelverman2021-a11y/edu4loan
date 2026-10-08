@@ -1,1 +1,4 @@
 rule_id,loan_product_id,min_age,max_age,min_income,co_applicant_required,collateral_required,data_status
+EL_EDU_01,SBI_EDU_001,18,35,0,true,false,sample
+EL_EDU_02,HDFC_EDU_001,18,30,250000,true,false,sample
+EL_EDU_03,ICICI_EDU_001,18,35,300000,true,true,sample

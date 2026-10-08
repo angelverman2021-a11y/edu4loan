@@ -32,17 +32,18 @@ def validate():
             errors += 1
 
     # 2. Loan Products
-    education_loans = read_csv(f"{DATASET_DIR}/loan_products/education_loans.csv")
     loan_product_ids = set()
-    for row in education_loans:
-        if row.get('loan_product_id'):
-            if row['loan_product_id'] in loan_product_ids:
-                print(f"Duplicate loan_product_id: {row['loan_product_id']}")
+    for product_type in ['education_loans', 'personal_loans', 'home_loans', 'vehicle_loans', 'business_loans', 'gold_loans']:
+        products = read_csv(f"{DATASET_DIR}/loan_products/{product_type}.csv")
+        for row in products:
+            if row.get('loan_product_id'):
+                if row['loan_product_id'] in loan_product_ids:
+                    print(f"Duplicate loan_product_id: {row['loan_product_id']} in {product_type}.csv")
+                    errors += 1
+                loan_product_ids.add(row['loan_product_id'])
+            if row.get('bank_id') and row.get('bank_id') not in bank_ids:
+                print(f"Invalid bank_id {row.get('bank_id')} in {product_type}.csv")
                 errors += 1
-            loan_product_ids.add(row['loan_product_id'])
-        if row.get('bank_id') and row.get('bank_id') not in bank_ids:
-            print(f"Invalid bank_id {row.get('bank_id')} in education_loans.csv")
-            errors += 1
 
     # 3. Experiences
     experiences = read_csv(f"{DATASET_DIR}/experiences/customer_reviews.csv")

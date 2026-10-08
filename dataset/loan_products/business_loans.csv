@@ -1,1 +1,3 @@
 loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,business_vintage,annual_turnover,GST_required,ITR_required,data_status
+HDFC_BL_001,HDFC001,BUSINESS,HDFC Business Growth,500000,5000000,12,48,Fixed,2.0,true,3,4000000,true,true,sample
+ICICI_BL_001,ICICI001,BUSINESS,ICICI MSME Loan,100000,20000000,12,60,Floating,1.5,true,2,2000000,true,true,sample

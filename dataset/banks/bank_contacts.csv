@@ -1,1 +1,3 @@
 contact_id,bank_id,department,phone,email,website_link,data_status
+C_SBI_1,SBI001,Loans,1800-11-2211,loans@sbi.co.in,sbi.co.in/loans,sample
+C_HDFC_1,HDFC001,Customer Care,1800-202-6161,support@hdfcbank.com,hdfcbank.com/support,sample

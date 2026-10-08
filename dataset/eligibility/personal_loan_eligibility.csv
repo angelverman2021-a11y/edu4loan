@@ -1,1 +1,5 @@
 rule_id,loan_product_id,min_age,max_age,min_income,min_credit_score,employment_type,data_status
+EL_PL_01,HDFC_PL_001,21,60,25000,700,SALARIED,sample
+EL_PL_02,ICICI_PL_001,23,58,30000,720,SALARIED,sample
+EL_PL_03,SBI_PL_001,21,58,15000,650,"SALARIED, SELF_EMPLOYED",sample
+EL_PL_04,AXIS_PL_001,21,60,15000,700,SALARIED,sample

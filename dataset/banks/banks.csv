@@ -1,3 +1,7 @@
 bank_id,bank_name,bank_type,ownership_type,headquarters,website,customer_support,processing_channels,digital_application_available,branch_available,active_status,source,last_verified_date,data_status
 SBI001,State Bank of India,Public Sector Bank,Government,Mumbai,sbi.co.in,1800-11-2211,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
 HDFC001,HDFC Bank,Private Bank,Private,Mumbai,hdfcbank.com,1800-202-6161,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+ICICI001,ICICI Bank,Private Bank,Private,Mumbai,icicibank.com,1800-1080,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+PNB001,Punjab National Bank,Public Sector Bank,Government,New Delhi,pnbindia.in,1800-180-2222,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+AXIS001,Axis Bank,Private Bank,Private,Mumbai,axisbank.com,1800-419-5959,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+BOB001,Bank of Baroda,Public Sector Bank,Government,Vadodara,bankofbaroda.in,1800-258-44-55,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
