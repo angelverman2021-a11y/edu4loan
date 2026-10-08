@@ -5,3 +5,11 @@ EXP003,ICICI001,ICICI_EDU_001,EDUCATION,Customer Support,3.0,20 days,"Average su
 EXP004,SBI001,SBI_HL_001,HOME,Documentation,2.0,30 days,Too much paperwork required.,negative,true,sample,2024-02-01,sample
 EXP005,AXIS001,AXIS_PL_001,PERSONAL,Processing,4.5,3 days,Smooth and entirely digital process.,positive,true,sample,2024-02-15,sample
 EXP006,BOB001,BOB_GL_001,GOLD,Branch Experience,4.0,1 days,Quick loan against gold in branch.,positive,true,sample,2024-03-05,sample
+EXP007,KOTAK001,KOTAK_PL_001,PERSONAL,Digital Experience,5.0,1 days,Instant pre-approved loan through the app.,positive,true,sample,2024-03-10,sample
+EXP008,IDFC001,IDFC_PL_001,PERSONAL,Processing,4.0,2 days,"Quick, but interest was a bit higher.",neutral,true,sample,2024-03-12,sample
+EXP009,PNB001,PNB_EDU_001,EDUCATION,Customer Support,2.5,45 days,Good rates but branch visits were exhausting.,negative,true,sample,2024-03-15,sample
+EXP010,YES001,YES_BL_001,BUSINESS,Documentation,3.5,10 days,Average processing time for MSME loan.,neutral,true,sample,2024-04-01,sample
+EXP011,UBI001,UBI_EDU_001,EDUCATION,Approval,4.5,12 days,Helpful branch manager.,positive,true,sample,2024-04-05,sample
+EXP012,HDFC001,HDFC_HL_001,HOME,Processing,4.0,14 days,Fast processing for home loans.,positive,true,sample,2024-04-10,sample
+EXP013,SBI001,SBI_VL_001,VEHICLE,Approval,4.5,3 days,Pre-approved auto loan went smooth.,positive,true,sample,2024-04-12,sample
+EXP014,ICICI001,ICICI_BL_001,BUSINESS,Processing,4.0,7 days,Digital journey was good.,positive,true,sample,2024-04-15,sample

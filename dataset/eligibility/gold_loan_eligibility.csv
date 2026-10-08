@@ -1,1 +1,6 @@
 rule_id,loan_product_id,min_age,max_age,data_status
+EL_GL_01,SBI_GL_001,18,70,sample
+EL_GL_02,BOB_GL_001,18,70,sample
+EL_GL_03,HDFC_GL_001,18,70,sample
+EL_GL_04,ICICI_GL_001,18,70,sample
+EL_GL_05,UBI_GL_001,18,70,sample

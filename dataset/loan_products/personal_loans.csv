@@ -1,5 +1,8 @@
 loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,data_status,active_status
-HDFC_PL_001,HDFC001,PERSONAL,HDFC Personal Loan,50000,4000000,12,60,Fixed,2.5,true,true,active
-ICICI_PL_001,ICICI001,PERSONAL,ICICI Insta Personal Loan,10000,5000000,12,72,Fixed,2.0,true,true,active
-SBI_PL_001,SBI001,PERSONAL,SBI Xpress Credit,25000,2000000,6,72,Floating,1.5,true,false,active
-AXIS_PL_001,AXIS001,PERSONAL,Axis Personal Loan,50000,1500000,12,60,Fixed,2.0,true,true,active
+HDFC_PL_001,HDFC001,PERSONAL,HDFC Personal Loan,50000,4000000,12,60,Fixed,2.5,true,sample,active
+ICICI_PL_001,ICICI001,PERSONAL,ICICI Insta Personal Loan,10000,5000000,12,72,Fixed,2.0,true,sample,active
+SBI_PL_001,SBI001,PERSONAL,SBI Xpress Credit,25000,2000000,6,72,Floating,1.5,true,sample,active
+AXIS_PL_001,AXIS001,PERSONAL,Axis Personal Loan,50000,1500000,12,60,Fixed,2.0,true,sample,active
+KOTAK_PL_001,KOTAK001,PERSONAL,Kotak Personal Loan,50000,2500000,12,60,Fixed,2.25,true,sample,active
+IDFC_PL_001,IDFC001,PERSONAL,IDFC First Personal Loan,20000,1000000,6,60,Fixed,1.5,true,sample,active
+YES_PL_001,YES001,PERSONAL,Yes Bank Personal Loan,100000,5000000,12,60,Fixed,2.0,true,sample,active

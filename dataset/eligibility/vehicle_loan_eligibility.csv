@@ -1,1 +1,6 @@
 rule_id,loan_product_id,min_age,max_age,min_income,data_status
+EL_VL_01,SBI_VL_001,21,65,25000,sample
+EL_VL_02,HDFC_VL_001,21,60,30000,sample
+EL_VL_03,ICICI_VL_001,21,60,30000,sample
+EL_VL_04,KOTAK_VL_001,21,60,25000,sample
+EL_VL_05,AXIS_VL_001,21,65,25000,sample

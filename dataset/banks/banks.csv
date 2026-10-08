@@ -5,3 +5,7 @@ ICICI001,ICICI Bank,Private Bank,Private,Mumbai,icicibank.com,1800-1080,"Online,
 PNB001,Punjab National Bank,Public Sector Bank,Government,New Delhi,pnbindia.in,1800-180-2222,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
 AXIS001,Axis Bank,Private Bank,Private,Mumbai,axisbank.com,1800-419-5959,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
 BOB001,Bank of Baroda,Public Sector Bank,Government,Vadodara,bankofbaroda.in,1800-258-44-55,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+KOTAK001,Kotak Mahindra Bank,Private Bank,Private,Mumbai,kotak.com,1860-266-2666,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+IDFC001,IDFC First Bank,Private Bank,Private,Mumbai,idfcfirstbank.com,1800-10-888,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+UBI001,Union Bank of India,Public Sector Bank,Government,Mumbai,unionbankofindia.co.in,1800-22-22-44,"Online, Branch",true,true,active,Official Website,2024-01-01,verified
+YES001,Yes Bank,Private Bank,Private,Mumbai,yesbank.in,1800-1200,"Online, Branch",true,true,active,Official Website,2024-01-01,verified

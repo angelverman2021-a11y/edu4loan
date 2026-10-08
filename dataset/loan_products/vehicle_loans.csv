@@ -1,3 +1,6 @@
 loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,vehicle_type,new_or_used,vehicle_age_limit,LTV,data_status
 SBI_VL_001,SBI001,VEHICLE,SBI Auto Loan,50000,10000000,12,84,Floating,1.0,true,Car,New,0,90,sample
 HDFC_VL_001,HDFC001,VEHICLE,HDFC Car Loan,100000,30000000,12,84,Fixed,1.5,true,Car,"New, Used",5,100,sample
+ICICI_VL_001,ICICI001,VEHICLE,ICICI Car Loan,100000,20000000,12,84,Fixed,1.25,true,Car,"New, Used",5,100,sample
+KOTAK_VL_001,KOTAK001,VEHICLE,Kotak Car Prime,100000,15000000,12,84,Fixed,1.0,true,Car,New,0,90,sample
+AXIS_VL_001,AXIS001,VEHICLE,Axis Auto Loan,100000,25000000,12,84,Fixed,1.0,true,Car,"New, Used",5,100,sample

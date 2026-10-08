@@ -1,1 +1,6 @@
 rule_id,loan_product_id,min_age,max_age,min_income,min_credit_score,data_status
+EL_HL_01,SBI_HL_001,18,70,20000,650,sample
+EL_HL_02,HDFC_HL_001,21,65,30000,700,sample
+EL_HL_03,PNB_HL_001,18,70,15000,650,sample
+EL_HL_04,ICICI_HL_001,21,65,30000,700,sample
+EL_HL_05,BOB_HL_001,18,70,20000,650,sample

@@ -3,3 +3,5 @@ BR_SBI_01,SBI001,Mumbai Main,SBIN0000001,Mumbai,Mumbai,Maharashtra,400001,123456
 BR_HDFC_01,HDFC001,Delhi CP,HDFC0000002,Connaught Place,New Delhi,Delhi,110001,1234567891,cp@hdfcbank.com,sample
 BR_ICICI_01,ICICI001,Bangalore MG Road,ICIC0000003,MG Road,Bangalore,Karnataka,560001,1234567892,mgroad@icicibank.com,sample
 BR_PNB_01,PNB001,Chennai Mount Road,PUNB0000004,Mount Road,Chennai,Tamil Nadu,600002,1234567893,mountroad@pnb.co.in,sample
+BR_KOTAK_01,KOTAK001,Mumbai BKC,KKBK0000005,BKC,Mumbai,Maharashtra,400051,1234567894,bkc@kotak.com,sample
+BR_IDFC_01,IDFC001,Pune Main,IDFB0000006,Shivaji Nagar,Pune,Maharashtra,411005,1234567895,pune@idfcfirst.com,sample

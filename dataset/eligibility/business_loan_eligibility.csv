@@ -1,1 +1,6 @@
 rule_id,loan_product_id,min_age,max_age,min_business_vintage,min_turnover,data_status
+EL_BL_01,HDFC_BL_001,21,65,3,4000000,sample
+EL_BL_02,ICICI_BL_001,23,65,2,2000000,sample
+EL_BL_03,SBI_BL_001,21,65,2,1000000,sample
+EL_BL_04,IDFC_BL_001,25,65,3,2000000,sample
+EL_BL_05,YES_BL_001,21,65,3,3000000,sample
