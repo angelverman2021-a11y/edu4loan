@@ -22,6 +22,7 @@ import searchRoutes from './routes/search.routes';
 import whatIfRoutes from './routes/whatIf.routes';
 import chatbotRoutes from './routes/chatbot.routes';
 import bankStatisticsRoutes from './routes/bankStatistics.routes';
+import datasetRoutes from './routes/dataset.routes';
 
 const app = express();
 
@@ -82,6 +83,7 @@ app.use('/api/search', searchRoutes);
 app.use('/api/what-if', whatIfRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/bank-statistics', bankStatisticsRoutes);
+app.use('/api/dataset', datasetRoutes);
 
 // 404 Route Handler
 app.use((req: Request, res: Response) => {
