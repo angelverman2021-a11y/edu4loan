@@ -1,0 +1,10 @@
+feature,weight,description
+interest_rate,0.2,Lower effective interest rate is preferred
+eligibility,0.25,Potential eligibility match
+processing_fee,0.1,Lower fee preferred
+tenure_fit,0.1,Compatibility with requested tenure
+customer_experience,0.15,Customer experience score
+processing_experience,0.05,Reported processing experience
+digital_experience,0.05,Digital application experience
+support_quality,0.05,Customer support quality
+branch_availability,0.05,Availability based on location

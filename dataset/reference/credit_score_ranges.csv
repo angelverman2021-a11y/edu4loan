@@ -1,0 +1,6 @@
+range_id,min_score,max_score,data_status
+POOR,300,579,verified
+FAIR,580,669,verified
+GOOD,670,739,verified
+VERY_GOOD,740,799,verified
+EXCELLENT,800,850,verified

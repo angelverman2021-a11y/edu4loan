@@ -1,0 +1,3 @@
+range_id,min_income,max_income,data_status
+R1,0,300000,verified
+R2,300001,600000,verified

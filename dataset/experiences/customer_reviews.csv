@@ -1,0 +1,2 @@
+experience_id,bank_id,loan_product_id,loan_type,experience_category,rating,processing_time,review_text,sentiment,verified_source,source,date,data_status
+EXP001,SBI001,SBI_EDU_001,EDUCATION,Processing,4.0,15 days,Good interest rate but took some time to process.,positive,false,sample,2024-01-10,sample

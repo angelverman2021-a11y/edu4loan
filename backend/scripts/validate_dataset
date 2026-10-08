@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+import os
+import csv
+import sys
+
+DATASET_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../dataset'))
+
+def read_csv(filepath):
+    if not os.path.exists(filepath):
+        print(f"File not found: {filepath}")
+        return []
+    with open(filepath, 'r') as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+
+def validate():
+    print("Starting dataset validation...")
+    errors = 0
+
+    # 1. Banks
+    banks = read_csv(f"{DATASET_DIR}/banks/banks.csv")
+    bank_ids = set()
+    for row in banks:
+        if row.get('bank_id'):
+            if row['bank_id'] in bank_ids:
+                print(f"Duplicate bank_id: {row['bank_id']}")
+                errors += 1
+            bank_ids.add(row['bank_id'])
+        else:
+            print("Missing bank_id in banks.csv")
+            errors += 1
+
+    # 2. Loan Products
+    education_loans = read_csv(f"{DATASET_DIR}/loan_products/education_loans.csv")
+    loan_product_ids = set()
+    for row in education_loans:
+        if row.get('loan_product_id'):
+            if row['loan_product_id'] in loan_product_ids:
+                print(f"Duplicate loan_product_id: {row['loan_product_id']}")
+                errors += 1
+            loan_product_ids.add(row['loan_product_id'])
+        if row.get('bank_id') and row.get('bank_id') not in bank_ids:
+            print(f"Invalid bank_id {row.get('bank_id')} in education_loans.csv")
+            errors += 1
+
+    # 3. Experiences
+    experiences = read_csv(f"{DATASET_DIR}/experiences/customer_reviews.csv")
+    for row in experiences:
+        if row.get('bank_id') and row.get('bank_id') not in bank_ids:
+            print(f"Invalid bank_id {row.get('bank_id')} in customer_reviews.csv")
+            errors += 1
+        if row.get('loan_product_id') and row.get('loan_product_id') not in loan_product_ids:
+            print(f"Invalid loan_product_id {row.get('loan_product_id')} in customer_reviews.csv")
+            errors += 1
+
+    if errors == 0:
+        print("Validation successful! No errors found.")
+    else:
+        print(f"Validation failed with {errors} errors.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    validate()

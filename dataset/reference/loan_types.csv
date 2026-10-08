@@ -1,0 +1,7 @@
+loan_type_id,loan_type_name,description
+EDUCATION,Education Loan,Loans for pursuing higher education
+PERSONAL,Personal Loan,Unsecured loans for personal use
+HOME,Home Loan,Loans for purchasing or constructing a home
+VEHICLE,Vehicle Loan,Loans for purchasing two/four wheelers
+BUSINESS,Business Loan,Loans for business expansion or working capital
+GOLD,Gold Loan,Loans against gold ornaments

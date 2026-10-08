@@ -1,0 +1,1 @@
+loan_product_id,bank_id,loan_type_id,product_name,minimum_loan_amount,maximum_loan_amount,minimum_tenure,maximum_tenure,interest_rate_type,processing_fee,prepayment_allowed,gold_purity,LTV,repayment_method,data_status
