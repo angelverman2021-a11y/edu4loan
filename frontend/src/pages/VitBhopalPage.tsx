@@ -18,6 +18,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { VerifiedBadge } from '@/components/ui/VerifiedBadge';
 import { api } from '@/services/api';
+import { EligibleBanksView } from '@/components/loans/EligibleBanksView';
 
 export const VitBhopalPage: React.FC = () => {
   const [institution, setInstitution] = useState<any>(null);
@@ -301,6 +302,15 @@ export const VitBhopalPage: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Eligible Banks Section */}
+      <div className="pt-8 border-t border-slate-200">
+        <div className="space-y-4 mb-8">
+          <h2 className="text-2xl font-extrabold text-slate-900">Verified Banks & Financial Institutions</h2>
+          <p className="text-sm text-slate-600">List of banks and NBFCs categorized by their approval status and eligibility for VIT Bhopal students.</p>
+        </div>
+        <EligibleBanksView />
       </div>
     </div>
   );

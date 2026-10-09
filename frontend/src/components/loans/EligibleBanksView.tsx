@@ -367,7 +367,7 @@ export const EligibleBanksView: React.FC = () => {
   ];
 
   const filteredBanks = useMemo(() => {
-    return ELIGIBLE_BANKS.filter((bank) => {
+    const results = ELIGIBLE_BANKS.filter((bank) => {
       const matchesSearch = bank.bankName.toLowerCase().includes(searchQuery.toLowerCase()) || bank.category.toLowerCase().includes(searchQuery.toLowerCase());
       
       let matchesFilter = true;
@@ -383,6 +383,10 @@ export const EligibleBanksView: React.FC = () => {
 
       return matchesSearch && matchesFilter;
     });
+
+    const getScore = (b: BankListStatus) => b.status.includes('🟢 Verified') ? 0 : (b.status.includes('🟡 Eligibility') ? 1 : 2);
+    
+    return results.sort((a, b) => getScore(a) - getScore(b));
   }, [searchQuery, activeFilter]);
 
   return (
