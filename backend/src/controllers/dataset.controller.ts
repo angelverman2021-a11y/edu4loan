@@ -54,4 +54,13 @@ export class DatasetController {
       sendError(res, 500, 'INTERNAL_ERROR', error.message);
     }
   }
+
+  static getInterestRates(req: Request, res: Response) {
+    try {
+      const rates = DatasetService.getInterestRates();
+      sendSuccess(res, rates, 200, 'Interest rates retrieved successfully');
+    } catch (error: any) {
+      sendError(res, 500, 'INTERNAL_ERROR', error.message);
+    }
+  }
 }

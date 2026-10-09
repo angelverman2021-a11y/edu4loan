@@ -64,12 +64,12 @@ const mockStats = {
 };
 
 for (const [id, stats] of Object.entries(mockStats)) {
-  const statString = \`totalLoansGiven: \${stats.totalLoansGiven},
-    outstandingAmountCrores: \${stats.outstandingAmountCrores},
-    yearWiseApplications: \${JSON.stringify(stats.yearWiseApplications)},
-    stateWiseApplications: \${JSON.stringify(stats.stateWiseApplications)},
-    note: \`;
-  const regex = new RegExp(\`id: '\\\${id}'.*?note: \`, 's');
+  const statString = `totalLoansGiven: ${stats.totalLoansGiven},
+    outstandingAmountCrores: ${stats.outstandingAmountCrores},
+    yearWiseApplications: ${JSON.stringify(stats.yearWiseApplications)},
+    stateWiseApplications: ${JSON.stringify(stats.stateWiseApplications)},
+    note: `;
+  const regex = new RegExp(`id: '\\${id}'.*?note: `, 's');
   content = content.replace(regex, (match) => {
     return match.replace('note: ', statString);
   });

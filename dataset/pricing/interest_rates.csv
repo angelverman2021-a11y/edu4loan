@@ -1,5 +1,5 @@
 rate_id,loan_product_id,interest_rate_min,interest_rate_max,effective_date,data_status
-IR_0_0,SBI_EDU_000,8.0,11.0,2024-01-01,sample
+IR_0_0,SBI_EDU_000,8.5rate ,11.0,2024-01-01,sample
 IR_0_1,HDFC_EDU_001,8.1,11.1,2024-01-01,sample
 IR_0_2,ICICI_EDU_002,8.2,11.2,2024-01-01,sample
 IR_0_3,PNB_EDU_003,8.3,11.3,2024-01-01,sample

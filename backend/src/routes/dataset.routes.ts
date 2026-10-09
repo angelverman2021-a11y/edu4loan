@@ -7,5 +7,6 @@ router.get('/banks', DatasetController.getBanks);
 router.get('/loan-types', DatasetController.getLoanTypes);
 router.get('/products/:type', DatasetController.getLoanProducts);
 router.post('/compare', DatasetController.compareLoans);
+router.get('/interest-rates', DatasetController.getInterestRates);
 
 export default router;

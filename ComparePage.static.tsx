@@ -62,10 +62,6 @@ interface BankData {
   processingDayMax: number;
   officialUrl: string;
   note: string;
-  totalLoansGiven: number;
-  outstandingAmountCrores: number;
-  yearWiseApplications: { year: string; count: number }[];
-  stateWiseApplications: { state: string; count: number }[];
 }
 
 const BANKS: BankData[] = [
@@ -90,10 +86,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 14, processingDayMax: 21,
     officialUrl: 'https://sbi.co.in/web/student-platform/student-loan-scheme',
-    totalLoansGiven: 850000,
-    outstandingAmountCrores: 12500,
-    yearWiseApplications: [{"year": "2021", "count": 180000}, {"year": "2022", "count": 210000}, {"year": "2023", "count": 240000}],
-    stateWiseApplications: [{"state": "MP", "count": 45000}, {"state": "MH", "count": 60000}, {"state": "DL", "count": 30000}],
     note: 'Standard education loan for recognized universities',
   },
   {
@@ -117,10 +109,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 7, processingDayMax: 15,
     officialUrl: 'https://canarabank.com/User_page.aspx?othlink=375',
-    totalLoansGiven: 420000,
-    outstandingAmountCrores: 6200,
-    yearWiseApplications: [{"year": "2021", "count": 90000}, {"year": "2022", "count": 110000}, {"year": "2023", "count": 130000}],
-    stateWiseApplications: [{"state": "MP", "count": 20000}, {"state": "KA", "count": 40000}, {"state": "MH", "count": 25000}],
     note: 'Need-based maximum, CSIS nodal bank',
   },
   {
@@ -144,10 +132,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 10, processingDayMax: 25,
     officialUrl: 'https://www.pnbindia.in/education-loan.html',
-    totalLoansGiven: 510000,
-    outstandingAmountCrores: 7800,
-    yearWiseApplications: [{"year":"2021","count":110000},{"year":"2022","count":130000},{"year":"2023","count":145000}],
-    stateWiseApplications: [{"state":"PB","count":35000},{"state":"MP","count":18000},{"state":"UP","count":40000}],
     note: 'Robust coverage for recognized domestic courses',
   },
   {
@@ -171,10 +155,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 10, processingDayMax: 20,
     officialUrl: 'https://www.unionbankofindia.co.in/english/Education-Loan.aspx',
-    totalLoansGiven: 380000,
-    outstandingAmountCrores: 5400,
-    yearWiseApplications: [{"year":"2021","count":85000},{"year":"2022","count":95000},{"year":"2023","count":110000}],
-    stateWiseApplications: [{"state":"MH","count":30000},{"state":"MP","count":25000},{"state":"UP","count":22000}],
     note: 'Strong presence in Madhya Pradesh region',
   },
   {
@@ -198,10 +178,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 12, processingDayMax: 18,
     officialUrl: 'https://www.bankofbaroda.in/personal-banking/loans/education-loan/baroda-gyan',
-    totalLoansGiven: 490000,
-    outstandingAmountCrores: 7100,
-    yearWiseApplications: [{"year": "2021", "count": 105000}, {"year": "2022", "count": 125000}, {"year": "2023", "count": 140000}],
-    stateWiseApplications: [{"state": "GJ", "count": 45000}, {"state": "MP", "count": 15000}, {"state": "MH", "count": 35000}],
     note: 'High limit for domestic studies, 0.5% prompt serving concession',
   },
   {
@@ -225,10 +201,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: true,
     processingDayMin: 7, processingDayMax: 10,
     officialUrl: 'https://www.axisbank.com/retail/loans/education-loan',
-    totalLoansGiven: 210000,
-    outstandingAmountCrores: 3500,
-    yearWiseApplications: [{"year":"2021","count":45000},{"year":"2022","count":60000},{"year":"2023","count":75000}],
-    stateWiseApplications: [{"state":"MH","count":25000},{"state":"DL","count":15000},{"state":"KA","count":18000}],
     note: 'Private bank, higher rates but faster approval',
   },
   {
@@ -252,10 +224,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 5, processingDayMax: 10,
     officialUrl: 'https://www.hdfcbank.com/personal/borrow/popular-loans/educational-loan',
-    totalLoansGiven: 310000,
-    outstandingAmountCrores: 5200,
-    yearWiseApplications: [{"year":"2021","count":70000},{"year":"2022","count":85000},{"year":"2023","count":105000}],
-    stateWiseApplications: [{"state":"MH","count":35000},{"state":"DL","count":20000},{"state":"KA","count":25000}],
     note: 'Fast processing, door-step service',
   },
   {
@@ -279,10 +247,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 7, processingDayMax: 12,
     officialUrl: 'https://www.icicibank.com/personal-banking/loans/education-loan',
-    totalLoansGiven: 280000,
-    outstandingAmountCrores: 4800,
-    yearWiseApplications: [{"year":"2021","count":65000},{"year":"2022","count":80000},{"year":"2023","count":95000}],
-    stateWiseApplications: [{"state":"MH","count":32000},{"state":"KA","count":22000},{"state":"DL","count":18000}],
     note: 'Comprehensive coverage for tuition and living expenses',
   },
   {
@@ -306,10 +270,6 @@ const BANKS: BankData[] = [
     prepaymentPenalty: false,
     processingDayMin: 3, processingDayMax: 7,
     officialUrl: 'https://www.idfcfirstbank.com/personal-banking/loans/education-loan',
-    totalLoansGiven: 120000,
-    outstandingAmountCrores: 1900,
-    yearWiseApplications: [{"year":"2021","count":20000},{"year":"2022","count":35000},{"year":"2023","count":50000}],
-    stateWiseApplications: [{"state":"MH","count":15000},{"state":"KA","count":10000},{"state":"TN","count":8000}],
     note: 'Zero margin money, fully digital application process',
   }
 ];
@@ -360,41 +320,7 @@ const CustomEMITooltip = ({ active, payload, label }: any) => {
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 export const ComparePage: React.FC = () => {
-  const [dynamicBanks, setDynamicBanks] = useState<BankData[]>(BANKS);
-
-  useEffect(() => {
-    const fetchRates = () => {
-      fetch('http://localhost:5001/api/dataset/interest-rates')
-        .then(res => res.json())
-        .then(data => {
-          if (data?.data) {
-            setDynamicBanks(prev => {
-              let changed = false;
-              const next = prev.map(bank => {
-                const rateData = data.data.find((r: any) => r.loan_product_id && r.loan_product_id.startsWith(bank.id.toUpperCase() + '_EDU'));
-                if (rateData) {
-                  const newMin = parseFloat(rateData.interest_rate_min);
-                  const newMax = parseFloat(rateData.interest_rate_max);
-                  if (bank.minRate !== newMin || bank.maxRate !== newMax) {
-                    changed = true;
-                    return { ...bank, minRate: newMin, maxRate: newMax };
-                  }
-                }
-                return bank;
-              });
-              return changed ? next : prev;
-            });
-          }
-        })
-        .catch(err => console.error("Error polling rates:", err));
-    };
-
-    fetchRates();
-    const interval = setInterval(fetchRates, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [dynamicBanks]);
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, []);
 
   const [selected, setSelected] = useState<Set<string>>(new Set(['sbi', 'canara', 'pnb']));
 
@@ -412,7 +338,7 @@ export const ComparePage: React.FC = () => {
     });
   };
 
-  const activeBanks = useMemo(() => dynamicBanks.filter((b) => selected.has(b.id)), [selected, dynamicBanks]);
+  const activeBanks = useMemo(() => BANKS.filter((b) => selected.has(b.id)), [selected]);
 
   /* ── Chart data ── */
   const rateChartData = useMemo(() =>
@@ -556,7 +482,7 @@ export const ComparePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {dynamicBanks.map((b) => {
+            {BANKS.map((b) => {
               const isSelected = selected.has(b.id);
               return (
                 <button
@@ -634,68 +560,8 @@ export const ComparePage: React.FC = () => {
           </div>
         </section>
 
-        
         {/* ════════════════════════════════════════════════════════════════
-            STEP 3: BANK STATISTICS & OUTSTANDING LOANS
-        ════════════════════════════════════════════════════════════════ */}
-        <section className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Building2 className="h-5 w-5 text-brand-700" />
-              <h2 className="text-lg font-extrabold text-slate-900">Education Loan Market Statistics</h2>
-            </div>
-            <p className="text-sm text-slate-500">Historical data: Total loans given, outstanding amount, and applications (Year & State-wise)</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {activeBanks.map((b) => (
-              <div key={b.id} className="border border-slate-200 rounded-2xl p-5 bg-slate-50">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white text-sm font-extrabold" style={{ backgroundColor: b.hexColor }}>
-                    {b.shortName.slice(0, 2)}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900">{b.shortName}</h3>
-                    <p className="text-xs text-slate-500">Total Loans: <span className="font-semibold text-slate-700">{new Intl.NumberFormat('en-IN').format(b.totalLoansGiven)}</span></p>
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <p className="text-xs text-slate-500 mb-1">Outstanding Amount</p>
-                  <p className="text-lg font-extrabold text-slate-900">₹{new Intl.NumberFormat('en-IN').format(b.outstandingAmountCrores)} Cr</p>
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-xs font-bold text-slate-700 mb-2">Year-wise Applications</p>
-                    <div className="space-y-1.5">
-                      {b.yearWiseApplications.map((y, i) => (
-                        <div key={i} className="flex items-center justify-between text-xs">
-                          <span className="text-slate-600">{y.year}</span>
-                          <span className="font-semibold text-slate-900">{new Intl.NumberFormat('en-IN').format(y.count)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-700 mb-2">State-wise Applications (Top 3)</p>
-                    <div className="space-y-1.5">
-                      {b.stateWiseApplications.map((s, i) => (
-                        <div key={i} className="flex items-center justify-between text-xs">
-                          <span className="text-slate-600">{s.state}</span>
-                          <span className="font-semibold text-slate-900">{new Intl.NumberFormat('en-IN').format(s.count)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════════════════════
-            STEP 4: EMI COMPARISON LINE CHART
+            STEP 3: EMI COMPARISON LINE CHART
         ════════════════════════════════════════════════════════════════ */}
         <section className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
           <div>
@@ -727,7 +593,7 @@ export const ComparePage: React.FC = () => {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            STEP 5: RADAR CHART — OVERALL SCORE
+            STEP 4: RADAR CHART — OVERALL SCORE
         ════════════════════════════════════════════════════════════════ */}
         <section className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
           <div>
@@ -780,7 +646,7 @@ export const ComparePage: React.FC = () => {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            STEP 6: FULL COMPARISON TABLE
+            STEP 5: FULL COMPARISON TABLE
         ════════════════════════════════════════════════════════════════ */}
         <section className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
           <div className="px-6 sm:px-8 py-5 border-b border-slate-100 flex items-center justify-between">
@@ -845,7 +711,7 @@ export const ComparePage: React.FC = () => {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            STEP 7: BANK NOTES + CTA
+            STEP 6: BANK NOTES + CTA
         ════════════════════════════════════════════════════════════════ */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {activeBanks.map((b, i) => (
